@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>知识估值中的频率编码</title>
+<meta name="description" content="译文提出，神经元激发频率可能编码概念网络中的知识价值，并列举肌肉收缩、位置细胞、疼痛、音高和颜色等频率编码线索。作者设想，知识估值网络会调节相关概念的激活频率；例如，食物或书籍的可获得性可放大预期奖励。文中将其类比为决策树的期望价值估计和剪枝，并以鸟类书籍为例说明。">
+<meta name="author" content="Piotr Wozniak">
+<meta property="og:title" content="知识估值中的频率编码">
+<meta property="og:description" content="译文提出，神经元激发频率可能编码概念网络中的知识价值，并列举肌肉收缩、位置细胞、疼痛、音高和颜色等频率编码线索。作者设想，知识估值网络会调节相关概念的激活频率；例如，食物或书籍的可获得性可放大预期奖励。文中将其类比为决策树的期望价值估计和剪枝，并以鸟类书籍为例说明。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2024-05-19">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="698598052" data-rec-seeds="560852624,571218385,627555200,266541480,586408138,617467538,631679783,654019177">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2024-05-19">2024-05-19</time>
+          <a class="tag" href="../?q=%E8%AE%A4%E7%9F%A5%E5%9F%BA%E7%9F%B3%20%26%20%E6%95%99%E8%82%B2%E5%9F%B9%E8%AE%AD">认知基石 &amp; 教育培训</a>
+          <a class="tag" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a>
+          <span>约 2 分钟</span>
+          <span>▲ 9</span>
+        </p>
+        <h1>知识估值中的频率编码</h1>
+        
+        <p class="tags"><a href="../?q=%E7%9F%A5%E8%AF%86%E4%BC%B0%E5%80%BC">#知识估值</a><a href="../?q=%E9%A2%91%E7%8E%87%E7%BC%96%E7%A0%81">#频率编码</a><a href="../?q=%E6%A6%82%E5%BF%B5%E7%BD%91%E7%BB%9C">#概念网络</a><a href="../?q=%E6%BF%80%E6%B4%BB%E6%89%A9%E6%95%A3">#激活扩散</a><a href="../?q=%E5%A5%96%E5%8A%B1%E9%A2%84%E6%B5%8B">#奖励预测</a><a href="../?q=%E5%86%B3%E7%AD%96%E6%A0%91">#决策树</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">价值的频率编码</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">证据</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">价值决策树</a></li><li class="level-2"><a href="#sec-4" data-toc-target="sec-4">例子</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <h2 id="sec-1">价值的频率编码</h2><p data-pid="UzTp9hqB">在<a class="wrap external" href="https://supermemo.guru/wiki/Concept_network" rel="noopener noreferrer" target="_blank">概念网络</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>中，为了让某个神经元或<a class="wrap external" href="https://supermemo.guru/wiki/Concept_map" rel="noopener noreferrer" target="_blank">概念图</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>传递<a class="wrap external" href="https://supermemo.guru/wiki/Knowledge_valuation" rel="noopener noreferrer" target="_blank">知识估值</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup>，它要么需要与编码价值的神经元同时激发，要么在输出信号中编码价值。激发频率（或激发率）看起来是表达与<a class="wrap external" href="https://supermemo.guru/wiki/Concept" rel="noopener noreferrer" target="_blank">概念</a><sup class="cite" id="cite-4"><a href="#ref-4">[4]</a></sup>（由<a class="wrap external" href="https://supermemo.guru/wiki/Concept_neuron" rel="noopener noreferrer" target="_blank">概念神经元</a>或<a class="wrap external" href="https://supermemo.guru/wiki/Concept_map" rel="noopener noreferrer" target="_blank">概念图</a>表示）相关价值的一个有吸引力的候选者。</p><h2 id="sec-2">证据</h2><p data-pid="ydgxJvan"><b>频率编码</b>可能在<a class="wrap external" href="https://supermemo.guru/wiki/Concept_network" rel="noopener noreferrer" target="_blank">概念网络</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>中表达价值。以下是来自神经生理学各个领域的一些线索：</p><ul><li data-pid="ZmCQxhG4"> 肌肉的收缩与激发频率成正比（这一事实在 1926 年被发现，并催生了<b>频率编码</b>的概念）<br/> </li><li data-pid="tUqyAZ4c"> 神经元的更大激活会增加激发频率<br/> </li><li data-pid="aOutD-Sm"> 激发频率可能需要达到一个临界值才能激活目标神经元<br/> </li><li data-pid="DGkkvmgF"> 位置细胞在特定位置显示出更高的激发频率<br/> </li><li data-pid="OT3dZ9we"> 信号的频率与疼痛程度相对应<br/> </li><li data-pid="OvJO4WUX"> 声音的音高通过频率编码<br/> </li><li data-pid="EbkFqYo5"> 物体的颜色通过频率编码<br/> </li><li data-pid="pVLcnMxD"> 频率编码用于表达关节的位置<br/> </li><li data-pid="4dRoT0qL"> 凝视注视（gaze fixation）通过频率编码，可能表达被观察物体的<b>价值</b>（<a class="wrap external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4911340/" rel="noopener noreferrer" target="_blank">来源</a>）<br/> </li><li data-pid="FMTYZgF2"> 阿片类药物可能通过抑制 GABA 释放来增加多巴胺细胞的激发（<a class="wrap external" href="http://www.physiology.org/doi/full/10.1152/physrev.2001.81.1.299" rel="noopener noreferrer" target="_blank">来源</a>）<br/> </li><li data-pid="2NK61V8M"> CA1 细胞通过频率编码来表示时间延迟（<a class="wrap external" href="https://www.sciencedirect.com/science/article/pii/S2211124719309398" rel="noopener noreferrer" target="_blank">来源</a>）<br/> </li></ul><h2 id="sec-3">价值决策树</h2><p data-pid="SKM-hPKe">在<a class="wrap external" href="https://supermemo.guru/wiki/Knowledge_valuation_network" rel="noopener noreferrer" target="_blank">知识估值网络</a><sup class="cite" id="cite-5"><a href="#ref-5">[5]</a></sup>中，参与<b><a class="wrap external" href="https://supermemo.guru/wiki/Concept" rel="noopener noreferrer" target="_blank">概念</a></b><sup class="cite" id="cite-4"><a href="#ref-4">[4]</a></sup>的<b>频率编码</b>会调节<a class="wrap external" href="https://supermemo.guru/wiki/Spreading_activation" rel="noopener noreferrer" target="_blank">激活-扩散</a>的波动。这就像<a class="wrap external" href="https://en.wikipedia.org/wiki/Decision_tree" rel="noopener noreferrer" target="_blank">决策树</a>中的期望价值估计。此外，激活可能会受到价值阈值的限制，使得估值过程既有选择性又省算力。这类似于决策树中的剪枝（<a class="wrap external" href="https://en.wikipedia.org/wiki/Branch_and_bound" rel="noopener noreferrer" target="_blank">分支定界法</a>）。</p><h2 id="sec-4">例子</h2><p data-pid="JtkOONLO">假设你遇到一本鸟类爱好者写的鸟类分类书。当大脑解读出书名时，鸟类的概念可能会在网络中被激活并传播价值。不过，真正的强烈反应可能取决于这本书的可获得性。同样的书，如果在电视上看到，效果会与作为圣诞礼物拆开的书完全不同。电视上的书可能只是带来一种基于期待的「想要」奖励，而圣诞礼物则会迅速引发高水平的「喜欢」奖励。在<a class="wrap external" href="https://supermemo.guru/wiki/Knowledge_valuation_network" rel="noopener noreferrer" target="_blank">知识估值网络</a><sup class="cite" id="cite-5"><a href="#ref-5">[5]</a></sup>中，这种价值差异可能通过一个与「可获得性」相关的概念来表达。</p><p data-pid="EnrlRDGU">同样，如果大脑能计算出获取食物的路径，其表达了「可获得性」，食物的预期奖励可能会瞬间放大。</p><p data-pid="aKLZhOo9">用频率编码的术语来说，<a class="wrap external" href="https://supermemo.guru/wiki/Knowledge_valuation_network" rel="noopener noreferrer" target="_blank">知识估值网络</a><sup class="cite" id="cite-5"><a href="#ref-5">[5]</a></sup>的输出会决定决策<a class="wrap external" href="https://supermemo.guru/wiki/Concept" rel="noopener noreferrer" target="_blank">概念</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>的激发频率，这个激发会受到「可获得性」的增强。或者，「关于鸟类的书」这个概念，可能通过「可获得性」概念的反馈来增加其激发频率。心理实验表明，后一种情况似乎更合理。当「可获得性」消失时，对这本书的兴趣显然不会降到最低（例如，仅对电视上的书产生的适度反应）。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="z_Aa8Lek"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 GPT-4，校对 Jarrett Ye<br/>原文：<a class="wrap external" href="https://supermemo.guru/wiki/Rate_coding_in_knowledge_valuation" rel="noopener noreferrer" target="_blank">Rate coding in knowledge valuation - supermemo.guru</a><br/>这篇文章是<a class="wrap external" href="https://supermemo.guru/wiki/Piotr_Wozniak" rel="noopener noreferrer" target="_blank">彼得·沃兹尼亚克</a><sup class="cite" id="cite-6"><a href="#ref-6">[6]</a></sup>博士在 <a class="wrap external" href="https://supermemo.guru/wiki/SuperMemo_Guru" rel="noopener noreferrer" target="_blank">SuperMemo Guru</a> 上关于记忆、学习、创造力和问题解决系列文章的一部分</blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 概念网络 <a class="tm-internal" data-tm-id="266541480" href="266541480.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 概念图 <a class="tm-internal" data-tm-id="627555200" href="627555200.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 知识估值 <a class="tm-internal" data-tm-id="560852624" href="560852624.html">站内阅读 ↗</a></li><li id="ref-4"><a aria-label="返回正文" class="ref-back" href="#cite-4">↩</a> 概念 <a class="tm-internal" data-tm-id="571218385" href="571218385.html">站内阅读 ↗</a></li><li id="ref-5"><a aria-label="返回正文" class="ref-back" href="#cite-5">↩</a> 知识估值网络 <a class="tm-internal" data-tm-id="617467538" href="617467538.html">站内阅读 ↗</a></li><li id="ref-6"><a aria-label="返回正文" class="ref-back" href="#cite-6">↩</a> 彼得 · 沃兹尼亚克 <a class="tm-internal" data-tm-id="303204832" href="303204832.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">价值的频率编码</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">证据</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">价值决策树</a></li><li class="level-2"><a href="#sec-4" data-toc-target="sec-4">例子</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Piotr%20Wozniak">Piotr Wozniak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://supermemo.guru/wiki/Rate_coding_in_knowledge_valuation" target="_blank" rel="noopener noreferrer">https://supermemo.guru/wiki/Rate_coding_in_knowledge_valuation ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/698598052" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="560852624"><div class="post-meta"><time datetime="2022-09-05">2022-09-05</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 47 · 2 分钟</span></div><div class="post-summary"><h2><a href="560852624.html"><span>知识估值</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文把「知识估值」定义为大脑依据个人目标和已有知识网络评估信息价值的过程，并提出一个知识片段的价值可沿相关概念传播。作者将其与学习乐趣、个体化课程相联系，同时列举速率编码、阿片受体梯度和眶额皮质等可能机制；这些机制以假设形式呈现。</p><p class="tags"><a href="../?q=%E7%9F%A5%E8%AF%86%E4%BC%B0%E5%80%BC">#知识估值</a><a href="../?q=%E6%A6%82%E5%BF%B5%E7%BD%91%E7%BB%9C">#概念网络</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E5%8A%A8%E6%9C%BA">#学习动机</a><a href="../?q=%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1">#课程设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="571218385"><div class="post-meta"><time datetime="2022-10-07">2022-10-07</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 10 · 1 分钟</span></div><div class="post-summary"><h2><a href="571218385.html"><span>概念</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>词条将“概念”定义为对一组对象或特征的泛化，并说明它可由概念细胞表示，也可体现为概念网络中的激活模式。作者还将概念激活与联想、心理计算联系起来。</p><p class="tags"><a href="../?q=%E6%A6%82%E5%BF%B5">#概念</a><a href="../?q=%E6%B3%9B%E5%8C%96">#泛化</a><a href="../?q=%E6%A6%82%E5%BF%B5%E7%BD%91%E7%BB%9C">#概念网络</a><a href="../?q=%E6%A6%82%E5%BF%B5%E7%BB%86%E8%83%9E">#概念细胞</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1938889102624792640"><div class="post-meta"><time datetime="2025-08-13">2025-08-13</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 170 · 4 分钟</span></div><div class="post-summary"><h2><a href="1938889102624792640.html"><span>高中生，看了很多中式教育和阶级的视频，没有学习动力怎么办？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>你看了很多中式教育和阶级的视频，就失去了学习动力，说明你的学习动力很可能是完全由外部控制的，而不是源于内在动机。了解内在动机的原理，可能对你恢复的学习内驱力有所帮助。 以下内容摘自 @Thoughts Memo 汉化组的译文《 内在动机 》 内在动机 是源自个体内心的驱动力。在高效学习中， 学习内驱力 [1] 应该是内在动机的…</p><p class="tags"><a href="../?q=%E5%AD%A6%E4%B9%A0%E5%8A%A8%E6%9C%BA">#学习动机</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E5%86%85%E9%A9%B1%E5%8A%9B">#学习内驱力</a><a href="../?q=%E6%A6%82%E5%BF%B5%E7%BD%91%E7%BB%9C">#概念网络</a><a href="../?q=%E5%86%85%E5%9C%A8%E5%8A%A8%E6%9C%BA">#内在动机</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="689271349"><div class="post-meta"><time datetime="2024-03-27">2024-03-27</time><a class="meta-author" href="../?q=Susana%20Peci%C3%B1a">Susana Peciña</a><span>▲ 21 · 1 分钟</span></div><div class="post-summary"><h2><a href="689271349.html"><span>喜欢和渴望所涉及的神经回路</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>摘录概述一项关于味觉奖赏的研究：促进进食的阿片类神经回路分布较广，而增强“喜欢”甜味的享乐热点更集中于伏隔核壳部。</p><p class="tags"><a href="../?q=%E5%A5%96%E8%B5%8F%E5%9B%9E%E8%B7%AF">#奖赏回路</a><a href="../?q=%E5%96%9C%E6%AC%A2%E4%B8%8E%E6%B8%B4%E6%9C%9B">#喜欢与渴望</a><a href="../?q=%E4%BC%8F%E9%9A%94%E6%A0%B8">#伏隔核</a><a href="../?q=%E9%98%BF%E7%89%87%E5%8F%97%E4%BD%93">#阿片受体</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="564164660"><div class="post-meta"><time datetime="2022-09-14">2022-09-14</time><a class="meta-author" href="../?q=Edmund%20T.%20Rolls">Edmund T. Rolls</a><span>▲ 6 · 1 分钟</span></div><div class="post-summary"><h2><a href="564164660.html"><span>杏仁体可能涉及到奖励新奇的输入</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这条研究札记援引 Rolls 的文献指出，对视觉刺激有奖励反应的部分杏仁体神经元，也可能对相对新奇的视觉输入作出反应，并参与实现新奇刺激的奖励价值。</p><p class="tags"><a href="../?q=%E6%9D%8F%E4%BB%81%E6%A0%B8">#杏仁核</a><a href="../?q=%E6%96%B0%E5%A5%87%E5%88%BA%E6%BF%80">#新奇刺激</a><a href="../?q=%E5%A5%96%E5%8A%B1%E6%9C%BA%E5%88%B6">#奖励机制</a><a href="../?q=%E8%A7%86%E8%A7%89%E8%BE%93%E5%85%A5">#视觉输入</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="586408138"><div class="post-meta"><time datetime="2022-11-24">2022-11-24</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 6 · 2 分钟</span></div><div class="post-summary"><h2><a href="586408138.html"><span>位于眶额皮质的价值编码神经元</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这则译文把 Peter Wozniak 关于“知识估值网络”的设想与一项猴子眶额皮质研究联系起来。所引研究报告称，OFC 神经元活动会随被关注线索的价值变化；作者据此提出，类似机制或许也参与食物和知识的估值，但研究本身考察的是猴子对物体线索的注意，并未直接验证知识价值判断。</p><p class="tags"><a href="../?q=%E7%9C%B6%E9%A2%9D%E7%9A%AE%E8%B4%A8">#眶额皮质</a><a href="../?q=%E4%BB%B7%E5%80%BC%E7%BC%96%E7%A0%81">#价值编码</a><a href="../?q=%E6%B3%A8%E6%84%8F%E5%8A%9B">#注意力</a><a href="../?q=%E7%9F%A5%E8%AF%86%E4%BC%B0%E5%80%BC%E7%BD%91%E7%BB%9C">#知识估值网络</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anki 2.1 scheduler/安排算法</title>
+<meta name="description" content="译文介绍 Anki 2.1 安排算法的改进，涵盖筛选牌组、卡片队列、学习按钮、暂停搁置和时区处理等行为变化，并说明旧版 Anki 2.0 不兼容。译者补充指出，新算法仍处于 SM-2 框架内。">
+<meta name="author" content="Anki">
+<meta property="og:title" content="Anki 2.1 scheduler/安排算法">
+<meta property="og:description" content="译文介绍 Anki 2.1 安排算法的改进，涵盖筛选牌组、卡片队列、学习按钮、暂停搁置和时区处理等行为变化，并说明旧版 Anki 2.0 不兼容。译者补充指出，新算法仍处于 SM-2 框架内。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-08-10">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="177609573" data-rec-seeds="619959757,46530394,46856037,46855765,6046109771,46628007,1812676919,664758200">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2020-08-10">2020-08-10</time>
+          <a class="tag" href="../?q=AnkiX%E9%AB%98%E8%80%83">AnkiX高考</a>
+          <a class="tag" href="../?q=Anki">Anki</a>
+          <span>约 2 分钟</span>
+          <span>▲ 16</span>
+        </p>
+        <h1>Anki 2.1 scheduler/安排算法</h1>
+        
+        <p class="tags"><a href="../?q=Anki">#Anki</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%A4%8D%E4%B9%A0%E8%B0%83%E5%BA%A6">#复习调度</a><a href="../?q=%E7%AD%9B%E9%80%89%E7%89%8C%E7%BB%84">#筛选牌组</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E6%AD%A5%E4%BC%90">#学习步伐</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">改动</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">兼容性</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <blockquote data-pid="Mtedy1ix">原文：<a class="external" href="https://faqs.ankiweb.net/the-anki-2.1-scheduler.html" rel="noopener noreferrer" target="_blank"><span class="invisible">https://</span><span class="visible">faqs.ankiweb.net/the-an</span><span class="invisible">ki-2.1-scheduler.html</span><span class="ellipsis"></span></a>、<br/>应 <a class="member_mention" data-hash="1b1bb3d52475618aa9d13066099c9a1d" data-hovercard="p$b$1b1bb3d52475618aa9d13066099c9a1d" href="https://www.zhihu.com/people/1b1bb3d52475618aa9d13066099c9a1d" rel="noopener noreferrer" target="_blank">@木子洋芋派</a> 的邀请更新。有任何想了解的 Anki 相关的话题？欢迎在评论区留言！</blockquote><p data-pid="_zbFz8WO">Anki 2.1 带有一个改进的安排算法，修复了以前的 Anki 版本存在的一些问题。</p><blockquote data-pid="6iT3pcXj">译者注：依然没有脱离 SM-2 的框架</blockquote><h2 id="sec-1">改动</h2><p data-pid="7Mh_t-S_">筛选牌组：</p><ul><li data-pid="LQF9_N4g">筛选后的牌组在构建或清空后不再重置（重新）学习卡，并且复习和学习卡将显示在正确的队列中，而不是新的队列中。</li><li data-pid="xJDRVOCM">筛选牌组支持第二个搜索项，因此你可以同时筛出 100 张待复习的卡片和20张新卡片</li><li data-pid="bKrUTwK0">未到期的卡片的安排得到了改进，并且将显示 4 个按钮而不是 3 个。</li><li data-pid="wuR7g6HI">筛选后的卡片不再支持自定义步伐，现在有一个简单的 "预览模式"，而不是以前的禁用安排更改的选项。新的牌序在预览时不会被遗忘。</li><li data-pid="gMMUCHQa">卡片可以在筛选牌组中被搁置或暂停</li></ul><p data-pid="qqaOuYpU">其它算法改动：</p><ul><li data-pid="y9NMvLSH">暂停和搁置不会重置卡片的学习步伐。</li><li data-pid="P9f1lxMa">当牌组有子牌组时，所有子牌组上的复习卡片将被一次性取出，而不是一个一个地显示每个子牌组的卡片。</li><li data-pid="rTvOPO0a">学习卡有 4 个按钮，而不是 3 个按钮——困难按钮将重复当前的步伐。</li><li data-pid="-pK923vn">“下一天开始”现在是相对于当前时区而言。</li><li data-pid="q92GaHGh">失误的复习卡片在最后一个重新学习的步骤上更新它们的复习间隔，而不是第一个步骤。</li><li data-pid="P3MTUov_">Anki现在可以区分手工搁置和自动搁置，你可以保持其中一组搁置的同时解除另一组搁置。</li><li data-pid="_B18kois">在设置界面新增“在复习前展示步伐更长(长于一天)且处于学习中的卡牌”选项</li><li data-pid="E9q3IXfx">学习数量现在是卡片的数量而不是需要完成的步伐的数量。</li><li data-pid="WVUebPt3">当卡片在重新学习时，简单按钮增加1天的间隔（相较于一般按钮）</li></ul><h2 id="sec-2">兼容性</h2><p data-pid="nTeskZaI">最新的 Anki 2.1.x 版本，AnkiWeb 和最新版本的移动客户端均支持新的安排算法。</p><p data-pid="zwYD-2HW">Anki 2.0 不支持新的安排算法。如果要在 Anki 2.0 和 2.1 之间切换，请不要启用新的安排算法，因为这有可能破坏您的集合。 </p><hr/><p data-pid="2pNt2k5c">最近发现一个 Anki 的中文社区，正在翻译新手册，我可能也会参与一下。</p><a class="wrap external" data-image="https://pic2.zhimg.com/v2-99e56ba6403206901ac6f94be728d5d1_ipico.jpg" data-image-height="550" data-image-width="550" href="https://i.anki.link/" rel="noopener noreferrer" target="_blank">Anki中文文档</a><p></p>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">改动</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">兼容性</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Anki">Anki</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://docs.ankiweb.net/faqs/the-anki-2.1-scheduler" target="_blank" rel="noopener noreferrer">https://docs.ankiweb.net/faqs/the-anki-2.1-scheduler ↗</a><br><a href="https://faqs.ankiweb.net/the-anki-2.1-scheduler.html" target="_blank" rel="noopener noreferrer">https://faqs.ankiweb.net/the-anki-2.1-scheduler.html ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/177609573" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="619959757"><div class="post-meta"><time datetime="2019-03-11">2019-03-11</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 9 · 1 分钟</span></div><div class="post-summary"><h2><a href="619959757.html"><span>anki2.1中新出的V2 scheduler功能与原来的有什么区别?</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>感谢邀请， 简单来说，最明显的变化是，学习新卡片和重新学习卡片现在都有 4 个选项了，具体的算法改进见我专栏里的文章： 在Anki2.1中实验性卡片调度系统(记忆算法)的改变 希望对你有帮助</p><p class="tags"><a href="../?q=Anki">#Anki</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8D%A1%E7%89%87%E8%B0%83%E5%BA%A6">#卡片调度</a><a href="../?q=%E7%AD%9B%E9%80%89%E7%89%8C%E7%BB%84">#筛选牌组</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="46530394"><div class="post-meta"><time datetime="2018-10-11">2018-10-11</time><a class="meta-author" href="../?q=Anki">Anki</a><span>▲ 26 · 4 分钟</span></div><div class="post-summary"><h2><a href="46530394.html"><span>在Anki2.1中实验性卡片调度系统(记忆算法)的改变</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本文逐条翻译 Anki 2.1 实验性调度系统的更新，包括筛选牌组、学习按钮、复习队列、时区起始日、失误卡重学步骤、埋藏状态及学习计数等变化，并指出当时新调度仅在桌面端和 iOS 端提供。</p><p class="tags"><a href="../?q=Anki">#Anki</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8D%A1%E7%89%87%E8%B0%83%E5%BA%A6">#卡片调度</a><a href="../?q=%E7%AD%9B%E9%80%89%E7%89%8C%E7%BB%84">#筛选牌组</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="6046109771"><div class="post-meta"><time datetime="2024-11-11">2024-11-11</time><a class="meta-author" href="../?q=Soren%20Bjornstad">Soren Bjornstad</a><span>▲ 209 · 14 分钟</span></div><div class="post-summary"><h2><a href="6046109771.html"><span>如何追赶积压的 Anki 复习任务</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Soren Bjornstad 按中断时长提出追赶 Anki 逾期复习的策略，核心是别惊慌，也不要清空牌组或重置学习记录。短暂停顿可直接继续；积压较多时，可设定每日上限、暂时暂停逾期卡片或按相对逾期程度排序；中断数周时先整理优先级并把牌组移入非活跃区，再分批恢复；停摆数月以上则先清理过时或低价值卡片。作者强调维持进度感、避免积…</p><p class="tags"><a href="../?q=Anki">#Anki</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%A4%8D%E4%B9%A0%E7%A7%AF%E5%8E%8B">#复习积压</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E4%B9%A0%E6%83%AF">#学习习惯</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="664758200"><div class="post-meta"><time datetime="2023-11-22">2023-11-22</time><a class="meta-author" href="../?q=Expertium">Expertium</a><span>▲ 377 · 8 分钟</span></div><div class="post-summary"><h2><a href="664758200.html"><span>Anki 新算法 FSRS 配置指南</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这份针对 Anki 23.10 及以上版本的指南说明，启用内置 FSRS 前应移除旧自定义排程代码并更新相关插件；启用后旧简易度设置不再起作用。期望保留率是到期时成功回忆的比例，越高复习负担越大；初学和重学步骤应在当天完成。默认只在以后复习时采用新排程，立即重排可能使大量卡片同时到期。 按文中版本，少于1000次有效复习时用默…</p><p class="tags"><a href="../?q=FSRS">#FSRS</a><a href="../?q=Anki">#Anki</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%9C%9F%E6%9C%9B%E4%BF%9D%E7%95%99%E7%8E%87">#期望保留率</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1907786810685395276"><div class="post-meta"><time datetime="2025-05-20">2025-05-20</time><a class="meta-author" href="../?q=Jarrett%20Ye">Jarrett Ye</a><span>▲ 341 · 32 分钟</span></div><div class="post-summary"><h2><a href="1907786810685395276.html"><span>FSRS for Anki 发展史</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者因高中使用Anki的学习效果而关注间隔重复算法，2022年开始将FSRS接入Anki。早期受自定义调度器限制，借助JavaScript和Colab实现调度器、个体参数优化与模拟。v2改用论文中的遗忘后稳定性公式，增加参数并加入难度均值回归；v3助手插件可读取完整复习日志重算记忆状态，减少旧卡片迁移误差。用户反馈又带来推荐保…</p><p class="tags"><a href="../?q=FSRS">#FSRS</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=Anki">#Anki</a><a href="../?q=%E7%AE%97%E6%B3%95%E7%A0%94%E5%8F%91">#算法研发</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1812676919"><div class="post-meta"><time datetime="2021-04-02">2021-04-02</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 9 · 1 分钟</span></div><div class="post-summary"><h2><a href="1812676919.html"><span>Anki 导入别人的牌组后如何清除别人的学习记录？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>windows/Mac 叶峻峣：疑问:如何重置牌组的进度? 安卓 Anki中如何将待复习的卡片变为新卡片？ ios ios版的anki如何重置学习进度？ 以上就是各端重置学习记录的教程。</p><p class="tags"><a href="../?q=Anki">#Anki</a><a href="../?q=%E5%A4%8D%E4%B9%A0%E8%AE%A1%E5%88%92">#复习计划</a><a href="../?q=%E9%80%BE%E6%9C%9F%E5%A4%8D%E4%B9%A0">#逾期复习</a><a href="../?q=%E5%8D%A1%E7%89%87%E7%AE%A1%E7%90%86">#卡片管理</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

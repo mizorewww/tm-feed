@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anki 可以视为 supermemo 的开源实现吗，它们的差别还有多大？</title>
+<meta name="description" content="Anki 自行车，SuperMemo 方程式（暴论 2333 https://masterhowtolearn.wordpress.com/ 看过 Anki 手册的人都知道，Anki 是算法是基于 SM-2 的修修补补版。而 SM-2 是一个经验算法，它的提出 [1] (1987年)比 SuperMemo 的双变量记忆模型 […">
+<meta name="author" content="Thoughts Memo">
+<meta property="og:title" content="Anki 可以视为 supermemo 的开源实现吗，它们的差别还有多大？">
+<meta property="og:description" content="Anki 自行车，SuperMemo 方程式（暴论 2333 https://masterhowtolearn.wordpress.com/ 看过 Anki 手册的人都知道，Anki 是算法是基于 SM-2 的修修补补版。而 SM-2 是一个经验算法，它的提出 [1] (1987年)比 SuperMemo 的双变量记忆模型 […">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-07-31">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="1373468425" data-rec-seeds="99505568,97887756,1847718575,959753274,1729652349,999630947,2283656621,1257414590">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2020-07-31">2020-07-31</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%E7%9A%84%E5%8E%86%E5%8F%B2">间隔重复的历史</a>
+          <a class="tag" href="../?q=Thoughts%20Memo">Thoughts Memo</a>
+          <span>约 3 分钟</span>
+          <span>▲ 61</span>
+        </p>
+        <h1>Anki 可以视为 supermemo 的开源实现吗，它们的差别还有多大？</h1>
+        <details class="question-fold"><summary>查看问题描述</summary><div class="question-fold-body prose"><p>开源实现 supermemo 的成本有多高？</p></div></details>
+        <p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E9%97%B4%E9%9A%94%E6%95%88%E5%BA%94">#间隔效应</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="MT8C1Lvx">Anki 自行车，SuperMemo 方程式（暴论 2333</p><figure data-size="normal"><noscript><img class="origin_image zh-lightbox-thumb" data-default-watermark-src="https://pica.zhimg.com/50/v2-20971660dc41d19e9c243ee26335c123_720w.jpg?source=2c26e567" data-original-token="v2-eec8132e2bf7e4ef26794a991ec1ce24" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://pic1.zhimg.com/v2-eec8132e2bf7e4ef26794a991ec1ce24_r.jpg?source=2c26e567" width="747"/></noscript><img class="origin_image zh-lightbox-thumb lazy" data-default-watermark-src="https://pica.zhimg.com/50/v2-20971660dc41d19e9c243ee26335c123_720w.jpg?source=2c26e567" data-original-token="v2-eec8132e2bf7e4ef26794a991ec1ce24" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://pic1.zhimg.com/50/v2-eec8132e2bf7e4ef26794a991ec1ce24_720w.jpg?source=2c26e567" width="747"/><figcaption>https://masterhowtolearn.wordpress.com/</figcaption></figure><p data-pid="DVz0XIzG">看过 Anki 手册的人都知道，Anki 是算法是基于 SM-2 的修修补补版。而 SM-2 是一个经验算法，它的提出<sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>(1987年)比 SuperMemo 的双变量记忆模型<sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>(1988年)还早。</p><p data-pid="2lAw-s0K">从现在来看，SM-2 存在理论缺陷：</p><blockquote data-pid="YrSFRZRe"><b>SM-2 的问题</b><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup><br/>SM-2 用 E-factor 同时表示卡片难度和记忆稳定性，即 E-factor 越大卡片越简单，且间隔乘数越大。然而间隔乘数会随着记忆稳定性的增加而下降。这有点像在自行车上使用同一个控制杆来改变档位和方向。<br/>而且，每一个卡片都有自己的 EF，互相不影响，这使得 SM-2 的收敛速度很慢。旧卡片的学习经验不能帮助新卡片收敛。<br/>简单来说<br/>SM2 使用学习者在卡片上的表现来确定下次安排该卡片的时间<br/>SM3 + 会根据学习者在卡片上的表现来确定下一次安排该卡片及类似卡片的时间</blockquote><p data-pid="dlpud2uy">这是从理论上来讲，如果从算法性能指数来比较的话：</p><blockquote data-pid="0_J7Bdwn">这是一个示例性的700,000次重复的初步估计（以下是偏差值，越小越好）：<sup class="cite" id="cite-4"><a href="#ref-4">[4]</a></sup><br/><a class="wrap external" href="https://supermemo.guru/wiki/Algorithm_SM-17" rel="noopener noreferrer" target="_blank">算法SM-17</a>：1.1<br/><a class="wrap external" href="https://supermemo.guru/wiki/Algorithm_SM-2" rel="noopener noreferrer" target="_blank">算法SM-2</a>：35.3<br/><a class="wrap external" href="https://supermemo.guru/wiki/Leitner" rel="noopener noreferrer" target="_blank">Leitner</a>（标准化）：47.7<br/>Pimsleur（1967）：60.6</blockquote><p data-pid="pr-eT0ug">这是从算法层面来对比，SuperMemo 18 与 Anki 已经是天差地别了。</p><p data-pid="1cl0i93I">如果比较两者的功能的话，那两者的界面对比就能说明一切：</p><p data-pid="KQelRUA1">SuperMemo 是这样的：</p><figure data-size="normal"><noscript><img class="origin_image zh-lightbox-thumb" data-default-watermark-src="https://picx.zhimg.com/50/v2-a2c60007aa4b034d116752cb828a728a_720w.jpg?source=2c26e567" data-original-token="v2-c06b713a5e88952edbea58bbd89203a2" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://picx.zhimg.com/v2-c06b713a5e88952edbea58bbd89203a2_r.jpg?source=2c26e567" width="1536"/></noscript><img class="origin_image zh-lightbox-thumb lazy" data-default-watermark-src="https://picx.zhimg.com/50/v2-a2c60007aa4b034d116752cb828a728a_720w.jpg?source=2c26e567" data-original-token="v2-c06b713a5e88952edbea58bbd89203a2" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://picx.zhimg.com/50/v2-c06b713a5e88952edbea58bbd89203a2_720w.jpg?source=2c26e567" width="1536"/></figure><p data-pid="BMAW1Ffj">Anki 是这样的：</p><figure data-size="normal"><noscript><img class="origin_image zh-lightbox-thumb" data-default-watermark-src="https://picx.zhimg.com/50/v2-51d2a41faf96cc80d1fcabb6bdaf9df9_720w.jpg?source=2c26e567" data-original-token="v2-a77aa71b5cf00c367fceb80867ca0566" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://picx.zhimg.com/v2-a77aa71b5cf00c367fceb80867ca0566_r.jpg?source=2c26e567" width="1920"/></noscript><img class="origin_image zh-lightbox-thumb lazy" data-default-watermark-src="https://picx.zhimg.com/50/v2-51d2a41faf96cc80d1fcabb6bdaf9df9_720w.jpg?source=2c26e567" data-original-token="v2-a77aa71b5cf00c367fceb80867ca0566" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://pic1.zhimg.com/50/v2-a77aa71b5cf00c367fceb80867ca0566_720w.jpg?source=2c26e567" width="1920"/></figure><p data-pid="aPoRn4rR">功能数量完全不在一个量级。。。</p><p data-pid="IJDQgogn">PS: 这里我犯了个错误，如果考虑到 Anki 的插件数量，那就翻转了，Anki 的自由度比 Supermemo 更高。</p><hr/><p data-pid="Oy6uW5RC">说到开源 SuperMemo 的成本，我觉得可能能和开源 Word 相比。</p><p data-pid="EESc7-JO">SuperMemo 从 1987 的 DOS 版本诞生，到如今的 SM-18，已经过去近 30 年了。</p><p data-pid="Uy1ns90G">目前我还在继续研究 SuperMemo 的算法，尝试收集一些数据来做验证，大家可以期待一下，结果会发在我的另一个专栏：</p><a class="internal" data-image="https://pic1.zhimg.com/v2-27e7ae6074e0924d0e2f31d97d784b16_ipico.jpg" data-image-height="277" data-image-width="277" href="https://zhuanlan.zhihu.com/supermemo-guru-cn" rel="noopener noreferrer" target="_blank">SuperMemo Guru翻译计划</a><p data-pid="TStVem7l">希望我的回答对题主有所帮助。</p><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 04 SuperMemo 1.0: 日志 (1987) <a class="tm-internal" data-tm-id="97887756" href="97887756.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 05 1988：记忆的两个组成成分 <a class="tm-internal" data-tm-id="99505568" href="99505568.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> First adaptable spaced repetition algorithm: Algorithm SM-4 <a href="https://supermemo.guru/wiki/First_adaptable_spaced_repetition_algorithm:_Algorithm_SM-4" rel="noopener noreferrer" target="_blank">https://supermemo.guru/wiki/First_adaptable_spaced_repetition_algori…</a></li><li id="ref-4"><a aria-label="返回正文" class="ref-back" href="#cite-4">↩</a> Universal metric for cross-comparison of spaced repetition algorithms <a href="https://supermemo.guru/wiki/Universal_metric_for_cross-comparison_of_spaced_repetition_algorithms" rel="noopener noreferrer" target="_blank">https://supermemo.guru/wiki/Universal_metric_for_cross-comparison_of…</a></li></ol>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Thoughts%20Memo">Thoughts Memo</a></dd></div>
+            
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://www.zhihu.com/question/410304241/answer/1373468425" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="99505568"><div class="post-meta"><time datetime="2019-12-26">2019-12-26</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 49 · 20 分钟</span></div><div class="post-summary"><h2><a href="99505568.html"><span>05 1988：记忆的两个组成成分</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者提出，长期记忆不能用单一“强度”表示，而需区分可提取性R和稳定性S：R表示当下回忆概率，S表示遗忘速度和记忆可持续时间。因此，刚复习后回忆都很容易的两段记忆，仍可能因稳定性不同而有不同的最佳复习间隔；流利或一次回忆成功不代表长期牢固。 在最佳间隔重复时，复习恢复R并提高S，下一次间隔可延长；R仍高时重复不会提高S，这构成间…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E9%97%B4%E9%9A%94%E6%95%88%E5%BA%94">#间隔效应</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1729652349"><div class="post-meta"><time datetime="2021-02-14">2021-02-14</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 26 · 1 分钟</span></div><div class="post-summary"><h2><a href="1729652349.html"><span>如何评价Anki插件Auto Ease Factor?</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这个插件我去年暑假研究算法的时候试用过了（大概是2020年7月），简单的评价一下，就是没有跳出 sm-2 算法的框架。 它这个算法的特点就是将一个单词的历史保留率（累积回忆次数/累积复习次数）和间隔系数关联起来，也就是改变了间隔系数的收敛方式。本质上，还是一个简单的状态空间方法，具体可以参考我这篇文章： 叶峻峣：从 Anki…</p><p class="tags"><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=SM-5">#SM-5</a><a href="../?q=SM-2">#SM-2</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="959753274"><div class="post-meta"><time datetime="2020-01-02">2020-01-02</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 40 · 1 分钟</span></div><div class="post-summary"><h2><a href="959753274.html"><span>手机上的anki app 复习的间隔时间可以改吗 在哪里改？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>请问题主用的是 ankidroid（安卓） 还是 ankimobile（ios）？ 如果是安卓，请在主界面长按「牌组/记忆库」&gt;&gt; 点击牌组选项 你就会看到：「选项组」、「组管理」、「新卡片」、「复习」等选项。 然后点击「复习」 修改时间间隔因子 就可以了。 具体的参数修改建议看下面这篇文章 叶峻峣：【硬核】参数模拟——每天…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E9%97%B4%E9%9A%94%E6%95%88%E5%BA%94">#间隔效应</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="97887756"><div class="post-meta"><time datetime="2019-12-17">2019-12-17</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 33 · 14 分钟</span></div><div class="post-summary"><h2><a href="97887756.html"><span>04 1987 SuperMemo 1.0: 日志</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Piotr Wozniak 依据日记回顾 SuperMemo 1.0：早期 Basic 程序缓慢，随后改用 Turbo Pascal，在学校事务与硬件限制间逐步完成编辑、数据库和复习功能，于1987年12月13日开始实际学习。磁盘容量不足使他不得不放弃保存完整复习历史。 后半介绍 SM-2：把纸本成页复习拆成尽可能小的独立项目…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=SM-2">#SM-2</a><a href="../?q=%E7%AE%80%E6%98%93%E5%BA%A6%E5%9B%A0%E5%AD%90">#简易度因子</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="279166945"><div class="post-meta"><time datetime="2020-11-08">2020-11-08</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 21 · 3 分钟</span></div><div class="post-summary"><h2><a href="279166945.html"><span>间隔效应</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章解释间隔效应，并区分增加学习间隔可能带来的正面收益与复习过频可能使效果被忽略的负面解释。作者以记忆的双组分模型和稳定化函数统一二者，称每条记忆痕迹都有使预期效果最大化的复习时机；SuperMemo 数据显示，稳定性较低、内容较复杂的记忆可能有更明显的间隔效应。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E6%95%88%E5%BA%94">#间隔效应</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E7%A8%B3%E5%AE%9A%E5%8C%96%E5%87%BD%E6%95%B0">#稳定化函数</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="205600711"><div class="post-meta"><time datetime="2020-08-29">2020-08-29</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 17 · 8 分钟</span></div><div class="post-summary"><h2><a href="205600711.html"><span>06 1989: SuperMemo 适应用户记忆(上)</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本篇介绍 SuperMemo 4 如何从 SM-2 的固定间隔规则发展出可自适应的最优间隔矩阵：根据重复质量调整矩阵条目，并据此安排不同难度卡片的复习。作者认为，这一思路首次尝试让旧项目经验影响新项目，但 SM-4 的修正过于缓慢，七个月内未显示明确的保留率收益；间隔可能倒退、难度因子变化也会造成过长或过短的调度，促使后续转向…</p><p class="tags"><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SM-4">#SM-4</a><a href="../?q=%E6%9C%80%E4%BC%98%E9%97%B4%E9%9A%94%E7%9F%A9%E9%98%B5">#最优间隔矩阵</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

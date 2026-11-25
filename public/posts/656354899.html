@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>对于卡片生成任务，选择要强化的目标概念，和为这些目标概念编写卡片，是两个独立的问题</title>
+<meta name="description" content="Matuschak 将卡片生成拆成两个问题：选择哪些概念值得强化，以及如何为指定概念写卡片。他认为后者已有较清晰的写作原则，模型在获得目标后更容易执行；前者需要了解读者兴趣、已有知识和目标，因而更难自动化。作者建议由读者先高亮重要内容，再让模型协助写卡片。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="对于卡片生成任务，选择要强化的目标概念，和为这些目标概念编写卡片，是两个独立的问题">
+<meta property="og:description" content="Matuschak 将卡片生成拆成两个问题：选择哪些概念值得强化，以及如何为指定概念写卡片。他认为后者已有较清晰的写作原则，模型在获得目标后更容易执行；前者需要了解读者兴趣、已有知识和目标，因而更难自动化。作者建议由读者先高亮重要内容，再让模型协助写卡片。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-09-15">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="656354899" data-rec-seeds="639267420,644435780,630862056,656355546,716570823,656760808,470710559,397245681">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2023-09-15">2023-09-15</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%20%26%20%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">间隔重复 &amp; 注意力管理</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 3 分钟</span>
+          <span>▲ 6</span>
+        </p>
+        <h1>对于卡片生成任务，选择要强化的目标概念，和为这些目标概念编写卡片，是两个独立的问题</h1>
+        
+        <p class="tags"><a href="../?q=%E5%8D%A1%E7%89%87%E7%94%9F%E6%88%90">#卡片生成</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%A3%80%E7%B4%A2%E6%8F%90%E7%A4%BA">#检索提示</a><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E7%9F%A5%E8%AF%86%E9%80%89%E6%8B%A9">#知识选择</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="O70J2Vrl">对于<a class="wrap external" href="https://notes.andymatuschak.org/z2DY7qsP5iHsiA5hxUHheV8hu7Xe96vdGyYX" rel="noopener noreferrer" target="_blank">使用机器学习从解释性文本中生成优质的间隔重复卡片</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>的问题，大多数人似乎是将语言模型对准一段文字或一个被高亮的短语，然后告诉它「就这些内容写一些卡片吧！」这很少会有可接受的结果，除非文本内容本身某种意义上可以完全决定卡片应该是关于什么的（比如「碳的原子序数是 6。」）</p><p data-pid="Z2eOs6if">直觉告诉我，对语言模型而言，<b>选择什么内容来制卡</b>要比<b>编写强化某个具体细节的卡片</b>要难得多。见<a class="wrap external" href="https://notes.andymatuschak.org/zQ4E1DXZoZTTitsik89ZcvXMu8dQMkJzRUS" rel="noopener noreferrer" target="_blank">将卡片生成任务定义为强化目标的过滤问题</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>。</p><p data-pid="umLQAHvx">原因之一在于，模型<b>无法知道</b>—— 至少在没有大量其他外部信息的情况下 —— 你对什么感兴趣、你已经知道什么、什么对你阅读这个材料的目标来说很重要。在人类作者为一般读者写卡片，这已经是一个问题了（见<a class="wrap external" href="https://notes.andymatuschak.org/z3XqmAYKcD411jZgBik9oyXgcrarXycADWVeh" rel="noopener noreferrer" target="_blank">助记媒介应该让读者对他们收集的卡片进行控制</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup>），但至少在那种情况下，作者心中有整本书的结构，也知道为了整体，学习哪些东西是最重要的。</p><p data-pid="NHmxXPpW">另一个导致「选」比「制」更困难的原因是，我们可以给模型有效写卡的具体建议。如果我们给它一个《如何写出好卡片》中的原则，并要求以此为准验证输出的每一张卡片，它的表现要比简单地 「写一个关于 xxx（特定细节）的卡片」要好得多。相比之下，我们还没有一套关于目标选择的原则。我们只是告诉它例如「写出关于最重要的细节的卡片」。实际上，我们需要编码一些知识理论（给它）。这方面可能已经有一些进展，但我怀疑，用户的输入总是必不可少的，哪怕只为了优化模型选择。（小部分相关内容见：<a class="wrap external" href="https://notes.andymatuschak.org/zmrbnm683nVZi9ut63vsr8BwYKEtATA6e4B3" rel="noopener noreferrer" target="_blank">对于卡片生成任务，大型语言模型（LLM）缺乏为复杂概念材料编写卡片的模式</a><sup class="cite" id="cite-4"><a href="#ref-4">[4]</a></sup>）</p><p data-pid="xZJQ3jQp">我觉得这种困难基本可以接受。阅读时，要是看到最重要或最有趣的部分，我们也会用荧光笔画线，这很自然（<a class="wrap external" href="https://notes.andymatuschak.org/z2vBgMKvhXq9yM4wMR3uuQVsqJRarfbfbEoWr" rel="noopener noreferrer" target="_blank">间隔重复系统中选择去记忆某项内容的行为有如轻松的手势</a><sup class="cite" id="cite-5"><a href="#ref-5">[5]</a></sup>）。这基本上就完成了「选」。回过头来，<b>根据</b>这些高亮部分写卡片，是相当费力和耗时的（<a class="wrap external" href="https://notes.andymatuschak.org/z3ntJ7w9C3uapYp1m3gy2EK6PN788guzEoUNN" rel="noopener noreferrer" target="_blank">写好间隔重复记忆卡片很难</a><sup class="cite" id="cite-6"><a href="#ref-6">[6]</a></sup>）；如果模型可以帮助解决这个问题，那就太好了。虽然光有高亮部分也一定不够：<a class="wrap external" href="https://notes.andymatuschak.org/zomoPzCNzSi5GqtfTeVWgm7RjmiArjS8vvM5" rel="noopener noreferrer" target="_blank">对于卡片生成任务，大型语言模型（LLM）经常需要额外的提示，来确定从何种角度制卡</a><sup class="cite" id="cite-7"><a href="#ref-7">[7]</a></sup>。</p><hr/><p data-pid="YUNsouiz">过去的几年里，一些想法引导我产生如此思考。<a class="wrap external" href="https://notes.andymatuschak.org/zn9igQGgecLncBSpKbgv5123mC5YEAP3hnfP" rel="noopener noreferrer" target="_blank">Ozzie Kirkby</a> 和我注意到（<a class="wrap external" href="https://notes.andymatuschak.org/zWLsqjDeYgCEERgoVeE8BjFbPrWSPsR5WhY" rel="noopener noreferrer" target="_blank">2021-06-10</a>），模型从个人笔记生成的卡片更为优秀，这些笔记已经从较长的段落中提炼出了你关心的内容。同样，<a class="wrap external" href="https://notes.andymatuschak.org/z4A7LCXBAkAUH2uZ21JnNrBhJHCjkobFMyn" rel="noopener noreferrer" target="_blank">GPT-3 能够将填空卡转换为问答卡</a><sup class="cite" id="cite-8"><a href="#ref-8">[8]</a></sup>，也是一个卡片生成任务，其中强化目标已经被非常准确地指定了。</p><h2 id="sec-1">链接至本文（已汉化）</h2><ul><li data-pid="_jaorvxI"><a class="internal tm-internal" data-tm-id="644435780" href="644435780.html">对于卡片生成任务，大型语言模型（LLM）经常需要额外的提示，来确定从何种角度制卡</a></li><li data-pid="Jf61oU5S"><a class="internal tm-internal" data-tm-id="639267420" href="639267420.html">将卡片生成任务定义为强化目标的过滤问题</a></li><li data-pid="jxl9QLms"><a class="internal tm-internal" data-tm-id="656760808" href="656760808.html">GPT-4 在指导下，通常能够从解释性文本中为陈述性知识生成可用的间隔重复卡片</a></li><li data-pid="RyjVfstB"><a class="internal tm-internal" data-tm-id="716570823" href="716570823.html">叶峻峣：使用机器学习从解释性文本中生成优质的间隔重复卡片</a></li></ul><h2 id="sec-2">声明</h2><p data-pid="a1kSLiu9">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="p3OzuhSp"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 <span class="nolink">Jarrett</span>Ye，校对 Shom、<span class="nolink">偶然奇怪~ ☆</span><br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/z62s1nNLEfhGbDmpb8Z7dZiYyi3kaSziuLVXd" rel="noopener noreferrer" target="_blank">In prompt generation, choosing reinforcement targets and writing prompts for those targets are two separate problems (andymatuschak.org)</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 使用机器学习从解释性文本中生成优质的间隔重复卡片 <a class="tm-internal" data-tm-id="716570823" href="716570823.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 将卡片生成任务定义为强化目标的过滤问题 <a class="tm-internal" data-tm-id="639267420" href="639267420.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 助记媒介应该允许读者对他们收集的卡片进行控制 <a class="tm-internal" data-tm-id="481230325" href="481230325.html">站内阅读 ↗</a></li><li id="ref-4"><a aria-label="返回正文" class="ref-back" href="#cite-4">↩</a> 对于卡片生成任务，大型语言模型（LLM）缺乏为复杂概念材料编写卡片的模式 <a class="tm-internal" data-tm-id="656355546" href="656355546.html">站内阅读 ↗</a></li><li id="ref-5"><a aria-label="返回正文" class="ref-back" href="#cite-5">↩</a> 间隔重复系统中选择去记忆某项内容的行为有如轻松的手势 <a class="tm-internal" data-tm-id="470710559" href="470710559.html">站内阅读 ↗</a></li><li id="ref-6"><a aria-label="返回正文" class="ref-back" href="#cite-6">↩</a> 写好间隔重复记忆卡片很难 <a class="tm-internal" data-tm-id="397245681" href="397245681.html">站内阅读 ↗</a></li><li id="ref-7"><a aria-label="返回正文" class="ref-back" href="#cite-7">↩</a> 对于卡片生成任务，大型语言模型（LLM）经常需要额外的提示，来确定从何种角度制卡 <a class="tm-internal" data-tm-id="644435780" href="644435780.html">站内阅读 ↗</a></li><li id="ref-8"><a aria-label="返回正文" class="ref-back" href="#cite-8">↩</a> GPT-3 能够将填空卡转换为问答卡 <a class="tm-internal" data-tm-id="630862056" href="630862056.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/z62s1nNLEfhGbDmpb8Z7dZiYyi3kaSziuLVXd" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/z62s1nNLEfhGbDmpb8Z7dZiYyi3kaSziuLVXd ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/656354899" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="639267420"><div class="post-meta"><time datetime="2023-06-25">2023-06-25</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 7 · 3 分钟</span></div><div class="post-summary"><h2><a href="639267420.html"><span>将卡片生成任务定义为强化目标的过滤问题</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者指出，生成大量看似合理的候选卡片后再筛选，可能比单纯要求模型直接产出理想卡片更符合实际难点。关键挑战在于判定问题是否有趣、重要，而不只是合乎语法；常见细节可能信息熵低且与文章主旨无关。他提出可开发候选卡片排序或过滤界面，但承认重要性如何量化仍未解决。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8D%A1%E7%89%87%E7%94%9F%E6%88%90">#卡片生成</a><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E4%BF%A1%E6%81%AF%E7%AD%9B%E9%80%89">#信息筛选</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2033320783427129789"><div class="post-meta"><time datetime="2026-04-30">2026-04-30</time><a class="meta-author" href="../?q=Ozzie%20Kirkby">Ozzie Kirkby</a><span>▲ 78 · 37 分钟</span></div><div class="post-summary"><h2><a href="2033320783427129789.html"><span>记忆机器：LLM 能否根据读者的划线生成持久的抽认卡？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>间隔重复系统需要的不是泛泛问答卡，而是过数月仍能稳定提示同一记忆、又保留划线内容吸引力的问题。人工编写耗时，提示也会陈旧；作者检验能否以读者随手划线作为兴趣信号，让模型低成本生成可长期复习的提示。 在42名经验用户的实验中，读者对文章细节的兴趣差异明显，所选兴趣的平均重合仅39%；通用题库平均需删除三分之一以上的提示才符合个人…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E6%8F%90%E7%A4%BA%E8%B4%A8%E9%87%8F">#提示质量</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="644435780"><div class="post-meta"><time datetime="2023-07-19">2023-07-19</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 7 · 2 分钟</span></div><div class="post-summary"><h2><a href="644435780.html"><span>对于卡片生成任务，大型语言模型（LLM）经常需要额外的提示，来确定从何种角度制卡</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者观察到，为间隔重复卡片生成任务只提供文本与高亮范围，模型往往无法猜出用户想强化的角度；加入“为什么”或“符号”等提示通常能改善结果。真正关键的是卡片与个人兴趣、目标和注意点的联系，而模型难以直接获知这些；作者提出可尝试从个人阅读笔记生成卡片。</p><p class="tags"><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8D%A1%E7%89%87%E7%94%9F%E6%88%90">#卡片生成</a><a href="../?q=%E6%8F%90%E7%A4%BA%E8%AE%BE%E8%AE%A1">#提示设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2076357286067552264"><div class="post-meta"><time datetime="2026-08-28">2026-08-28</time><a class="meta-author" href="../?q=Fernando%20Borretti">Fernando Borretti</a><span>▲ 65 · 4 分钟</span></div><div class="post-summary"><h2><a href="2076357286067552264.html"><span>间隔重复的适用性</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文认为，间隔重复最适合简短、清晰、无歧义的事实映射，如词汇或元素符号；数学等概念性知识则需先建立理解，再设法提炼无歧义的问题。关系型事实较易制卡，孤立的抽象断言常会导致是非题或问题含糊。作者还质疑 AI 能否替学习者决定哪些概念重要，并建议收集如何从具体文本设计概念卡片的案例。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%A6%82%E5%BF%B5%E5%AD%A6%E4%B9%A0">#概念学习</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a><a href="../?q=%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0">#数学学习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2033687067805357981"><div class="post-meta"><time datetime="2026-05-01">2026-05-01</time><a class="meta-author" href="../?q=Jarrett%20Ye">Jarrett Ye · 回答</a><span>▲ 114 · 23 分钟</span></div><div class="post-summary"><h2><a href="2033687067805357981.html"><span>哪些知乎答主被大语言模型记住了？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>虽然链接都是错的，但是大方向上没错。 还是有概率把 Thoughts Memo 和 YJango 搞混： 不过直接问我实名好像信息更全面一些（当然错的细节也更多了）： 不枉我实名上网这么多年了属于是，离赛博永生又近一步。 我认为这个时代更应该多在网络上写作，因为你写下的每一个字将来都有可能被纳入训练语料库，成为塑造未来AI思想…</p><p class="tags"><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=AI%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE">#AI训练数据</a><a href="../?q=%E7%BD%91%E9%A1%B5%E5%8F%AF%E8%AE%BF%E9%97%AE%E6%80%A7">#网页可访问性</a><a href="../?q=%E4%B8%AA%E4%BA%BA%E7%BB%8F%E9%AA%8C">#个人经验</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="630862056"><div class="post-meta"><time datetime="2023-05-20">2023-05-20</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 12 · 1 分钟</span></div><div class="post-summary"><h2><a href="630862056.html"><span>GPT-3 能够将填空卡转换为问答卡</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文提出，用语言模型把较易编写的填空卡转成问答卡，或可兼顾制卡效率与理解；作者称与 Ozzie Kirkby 的初步实验结果不错，并把“确定要强化的概念”和“撰写问题”视为两个可分开的任务。</p><p class="tags"><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E5%A1%AB%E7%A9%BA%E5%8D%A1">#填空卡</a><a href="../?q=%E9%97%AE%E7%AD%94%E5%8D%A1">#问答卡</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

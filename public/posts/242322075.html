@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>在 RemNote 中构建知识</title>
+<meta name="description" content="译文以电脑知识为例，说明复杂概念可拆成层级结构、属性描述和相互关系，借此加深理解；拆分后的条目还可自动生成抽认卡并安排复习。文章总结 RemNote 建构知识的三个原则：把世界看作概念层级，为概念添加描述，并建立联结；也建议学习者用自己的语言重写条目。">
+<meta name="author" content="RemNote">
+<meta property="og:title" content="在 RemNote 中构建知识">
+<meta property="og:description" content="译文以电脑知识为例，说明复杂概念可拆成层级结构、属性描述和相互关系，借此加深理解；拆分后的条目还可自动生成抽认卡并安排复习。文章总结 RemNote 建构知识的三个原则：把世界看作概念层级，为概念添加描述，并建立联结；也建议学习者用自己的语言重写条目。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-09-14">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="242322075" data-rec-seeds="235834139,238211772,2257726633,239734539,245530782,238333440,411854751,274891979">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2020-09-14">2020-09-14</time>
+          <a class="tag" href="../?q=%E6%9D%82%E9%A1%B9">杂项</a>
+          <a class="tag" href="../?q=RemNote">RemNote</a>
+          <span>约 3 分钟</span>
+          <span>▲ 33</span>
+        </p>
+        <h1>在 RemNote 中构建知识</h1>
+        
+        <p class="tags"><a href="../?q=RemNote">#RemNote</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%BB%84%E7%BB%87">#知识组织</a><a href="../?q=%E6%A6%82%E5%BF%B5%E7%BD%91%E7%BB%9C">#概念网络</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">一个关于记忆的思想实验</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">为什么要把一个想法分解成这么多细节呢？</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">建构知识的三个原则</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <blockquote data-pid="tTwFvrt0">原文：<a class="wrap external" href="https://www.remnote.io/documentation/4cSP28pBtAgrNTLkg" rel="noopener noreferrer" target="_blank">Structuring Knowledge in RemNote</a><br/>争取把官方的教程全部翻译完</blockquote><hr/><h2 id="sec-1">一个关于记忆的思想实验</h2><p data-pid="lHGe4uNn">花点时间看看你的周围，观察你所看到的，也许是：一台电脑，一部手机，一株植物，或者一个人。这些都是你经常与之交互的内容，并且你已经建立了关于它们每一个的广泛的知识体系。假设我让你给我描述一下你的<b>电脑</b>。你你可以从它的主要组件开始：<b>鼠标</b>、<b>键盘</b>和<b>屏幕</b>。你将描述如何移动<b>鼠标</b>来打开屏幕上的<b>浏览器</b>，以及如何使用<b>浏览器</b>打开<b>网站</b>。如果我问你你的<b>鼠标</b>是什么颜色（或者问你一百个类似的问题），你可能会立刻回答。你似乎非常了解这个系统！</p><p data-pid="sdoi9ANS">让我们检查一下你的电脑在你的记忆和思考过程中的表现方式。</p><ol><li data-pid="FBbWyRSX">请注意，我们在上面加粗了几个主要概念，例如“<b>电脑</b>”，“<b>鼠标</b>”和“<b>键盘</b>”。 这些概念可以分解为以下组件：你的<b>计算机</b>具有<b>浏览器</b>，该<b>浏览器</b>具有<b>地址栏</b>。 这些概念形成一个层次结构，其中复杂的概念由不太复杂的概念组成。</li><li data-pid="FV0rchPG">请注意，对于这些概念，你知道许多不同的“描述”：<b>电脑</b>的重量、<b>屏幕</b>的大小、<b>鼠标</b>的颜色等等。</li><li data-pid="CAWBXS8i">请注意，你是根据它们之间的关系来考虑这些概念的——例如，你使用键盘来让字符显示在屏幕上。</li></ol><p data-pid="ORVOBEKu"> 如果我们试图根据上述原则来编写所有这些知识，你可能会编写如下内容</p><ul><li data-pid="56Q8NLdV">电脑</li><ul><li data-pid="C37S8dwx"><i>重量</i>:: 中等重量，一只手拿着不太舒服，但两只手可以轻松拿着</li><li data-pid="IHVaLdr7"><b>浏览器</b>:: 用于浏览网站的工具</li><ul><li data-pid="NurKJ0NE"><i>网站访问过程</i>:: 使用鼠标单击地址栏，然后使用键盘输入网址。</li><li data-pid="oUpfqVGi">地址栏  </li></ul><li data-pid="tYwnM6kl">键盘</li><ul><li data-pid="rtZMQWXj"><i>在黑暗中找到键位</i>:: “f”和“j”键底部的小突起</li></ul><li data-pid="7k8V--Um">屏幕</li><li data-pid="Fntgon4S">鼠标</li><ul><li data-pid="VEQ253ec"><i>颜色</i>:: 黑色</li></ul></ul><li data-pid="DJIANKwy">网站</li><ul><li data-pid="cAXjofKr">网址</li></ul></ul><h2 id="sec-2">为什么要把一个想法分解成这么多细节呢？</h2><ol><li data-pid="XJBxN9Qi">它帮助你理解复杂的概念。</li></ol><p data-pid="cOLJzN61">分解一个复杂的想法可以让你从简单的部分来理解它。我们相信，你如此了解你的电脑，是因为你对它的知识在你的大脑中以这种方式分解。想象一下，如果你想学习一些“更复杂的”东西。学习的过程将是完全相同的：把系统分解成你可以分别理解的更小的部分，学习每个部分是如何工作的，最后把所有的东西联系起来。</p><p data-pid="dd_UhqJa">2. 你可以更高效地测试你的知识。</p><p data-pid="6weNLPyM">分解一个复杂的概念意味着你可以测试你对个别细节的理解，大大提高你的学习效率。RemNote 可以帮助你自动化这个过程。上面的每条信息都会变成自动生成的抽认卡，你可以用它进行自我测试。这里有一些抽认卡示例。</p><figure data-size="normal"><img class="content_image" data-original-token="v2-b566f5e964db3ff4dfcb2bbca5311536" data-thumbnail="https://pica.zhimg.com/v2-b566f5e964db3ff4dfcb2bbca5311536_b.jpg" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://pica.zhimg.com/v2-b566f5e964db3ff4dfcb2bbca5311536_1440w.gif" width="402"/></figure><figure data-size="normal"><img class="content_image" data-original-token="v2-0f3a2928447762e0c0472a8abd121a23" data-thumbnail="https://pic4.zhimg.com/v2-0f3a2928447762e0c0472a8abd121a23_b.jpg" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://pic4.zhimg.com/v2-0f3a2928447762e0c0472a8abd121a23_1440w.gif" width="402"/></figure><figure data-size="normal"><img class="content_image" data-original-token="v2-62342797d4402a3c7ef024bfddaa5ba9" data-thumbnail="https://pic4.zhimg.com/v2-62342797d4402a3c7ef024bfddaa5ba9_b.jpg" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://pic4.zhimg.com/v2-62342797d4402a3c7ef024bfddaa5ba9_1440w.gif" width="402"/></figure><p data-pid="GIcLd2Ou">从你的 Rem 生成抽认卡后，RemNote 会自动安排一个接近最佳的练习安排。 通过不断地对自己所学的内容进行测试，你可以防止自己忘记。</p><h2 id="sec-3">建构知识的三个原则</h2><p data-pid="Uv31vM8N">在 RemNote 中，你需要按照信息在你大脑中的存在方式来组织信息。我们认为，我们上面探讨的三个原则体现了这种结构：</p><ol><li data-pid="w0Q2wvO8">把世界想象成排列成层次结构的概念。</li><li data-pid="vCWh5u5-">概念具有描述，可以让你更深入地理解它们。 </li><li data-pid="AAGg3FcD">概念之间要相互关联、相互连接，形成丰富的、具有联想性的思想知识库。</li></ol><p data-pid="NprJRuWi">让我们将这些想法应用于自己。 我们建议你考虑一下这些想法，以便记住它们。 你可以将以下结构直接导入知识库中，也可以编写自己的版本，这对你来说更有意义。 （我们建议你尝试用自己的语言重写这些想法——你的知识应该是你自己的！）</p><ul><li data-pid="l-pi8UXN">原则</li><ul><li data-pid="ypdJi9fA">建构知识的三个原则</li><ul><li data-pid="zyIG1PYS">把世界想象成排列成层次结构的概念。</li><li data-pid="Hs8_gVI5">概念具有描述，可以让你更深入地理解它们。</li><li data-pid="GJQtN8oZ">概念之间应该在思想上相互联系。</li></ul></ul><li data-pid="DIA4qna2">概念:: 一种缺失的 Rem，它代表了现实世界中的一个概念或东西。</li><ul><li data-pid="PTQt4ZRJ">描述:: 描述概念的一条信息（例如概念的“颜色”，或者你可以就概念提出的问题）</li><ul><li data-pid="5qPLCOSG">你可以从一种疾病学到的样例描述:: 该疾病的一系列症状</li></ul></ul></ul>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">一个关于记忆的思想实验</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">为什么要把一个想法分解成这么多细节呢？</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">建构知识的三个原则</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=RemNote">RemNote</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://www.remnote.io/documentation/4cSP28pBtAgrNTLkg" target="_blank" rel="noopener noreferrer">https://www.remnote.io/documentation/4cSP28pBtAgrNTLkg ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/242322075" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="235834139"><div class="post-meta"><time datetime="2020-09-12">2020-09-12</time><a class="meta-author" href="../?q=RemNote">RemNote</a><span>▲ 39 · 3 分钟</span></div><div class="post-summary"><h2><a href="235834139.html"><span>5 分钟了解 Remnote</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这份 RemNote 入门指南介绍以 Rem 记录知识、自动生成抽认卡并按遗忘节奏安排复习的流程，也示范如何把 DNA 等复杂概念拆成简单片段。作者认为，先组织概念、再进行间隔练习，能帮助用户逐步巩固理解与记忆。</p><p class="tags"><a href="../?q=RemNote">#RemNote</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86">#知识管理</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2257726633"><div class="post-meta"><time datetime="2021-12-05">2021-12-05</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 30 · 1 分钟</span></div><div class="post-summary"><h2><a href="2257726633.html"><span>有没有同时具备 anki 和 notion 功能的软件？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Notion 的功能可太多了。。。完全覆盖 Notion 功能的笔记软件估计没有。 但是结合 Anki 间隔重复功能的笔记软件还是有的，比如 RemNote、Logseq 等等。 由于我只用过 RemNote，所以就简单介绍一下： 如图所示，RemNote 是一款大纲笔记。 其内置了各种制卡语法，可以让你在写笔记的同时制作抽认…</p><p class="tags"><a href="../?q=RemNote">#RemNote</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86">#知识管理</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="411854751"><div class="post-meta"><time datetime="2021-09-18">2021-09-18</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 18 · 1 分钟</span></div><div class="post-summary"><h2><a href="411854751.html"><span>RemNote</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>短文介绍 RemNote 的结构化笔记与间隔重复卡片功能，认为其层级文本能方便生成记忆卡，但固定的数据模型可能限制散文写作与内容组合。作者将它视为有趣的产品实验，并提出嵌入式概念的可组合性问题。</p><p class="tags"><a href="../?q=RemNote">#RemNote</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%AC%94%E8%AE%B0%E7%B3%BB%E7%BB%9F">#笔记系统</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%BB%84%E7%BB%87">#知识组织</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1916861164312298292"><div class="post-meta"><time datetime="2025-06-13">2025-06-13</time><a class="meta-author" href="../?q=Jarrett%20Ye">Jarrett Ye · 回答</a><span>▲ 149 · 4 分钟</span></div><div class="post-summary"><h2><a href="1916861164312298292.html"><span>除了墨墨、Anki的软件外，有哪些软件可以用间隔重复算法FSRS？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这个关注 Awesome FSRS 就行了： open-spaced-repetition/awesome-fsrs: A curated list of awesome FSRS implementations, papers and resources 抽认卡应用 Markji Markji（墨墨记忆卡）是一款抽认卡应用…</p><p class="tags"><a href="../?q=RemNote">#RemNote</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%AC%94%E8%AE%B0%E7%B3%BB%E7%BB%9F">#笔记系统</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%BB%84%E7%BB%87">#知识组织</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="238211772"><div class="post-meta"><time datetime="2020-09-12">2020-09-12</time><a class="meta-author" href="../?q=RemNote">RemNote</a><span>▲ 11 · 2 分钟</span></div><div class="post-summary"><h2><a href="238211772.html"><span>迅速组织层次结构</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这篇 RemNote 官方教程说明如何用拖放、快捷键、剪切粘贴和引用/标签/入口来移动、整理层级笔记，并简要介绍如何复制不同类型的 Rem 链接。</p><p class="tags"><a href="../?q=RemNote">#RemNote</a><a href="../?q=%E7%AC%94%E8%AE%B0%E7%AE%A1%E7%90%86">#笔记管理</a><a href="../?q=%E5%B1%82%E7%BA%A7%E7%BB%93%E6%9E%84">#层级结构</a><a href="../?q=%E5%BF%AB%E6%8D%B7%E9%94%AE">#快捷键</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="239734539"><div class="post-meta"><time datetime="2020-09-13">2020-09-13</time><a class="meta-author" href="../?q=RemNote">RemNote</a><span>▲ 24 · 4 分钟</span></div><div class="post-summary"><h2><a href="239734539.html"><span>间隔重复概述</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章介绍 RemNote 如何从层级化笔记自动生成抽认卡，并用遗忘曲线解释间隔重复：主动回忆会重置曲线并降低后续衰减速度，因此卡片应分散到日、周、月乃至年间复习。文中说明 RemNote 队列如何依据回忆表现安排下次练习、提供每日目标帮助维持进度，并介绍手机端随时复习的用法。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E9%81%97%E5%BF%98%E6%9B%B2%E7%BA%BF">#遗忘曲线</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

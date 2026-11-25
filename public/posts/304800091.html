@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>记忆复杂性</title>
+<meta name="description" content="译文将记忆复杂性描述为记忆神经网络结构的属性：涉及的突触越多，长期保持和通过复习提升稳定性可能越困难。复杂记忆较难一致提取，因此建议采用最小信息原则；同一材料会因学习者编码方式不同而呈现不同复杂度。文章把原子记忆与复杂记忆纳入记忆双组分及三组分模型的区分。">
+<meta name="author" content="Piotr Wozniak">
+<meta property="og:title" content="记忆复杂性">
+<meta property="og:description" content="译文将记忆复杂性描述为记忆神经网络结构的属性：涉及的突触越多，长期保持和通过复习提升稳定性可能越困难。复杂记忆较难一致提取，因此建议采用最小信息原则；同一材料会因学习者编码方式不同而呈现不同复杂度。文章把原子记忆与复杂记忆纳入记忆双组分及三组分模型的区分。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-11-21">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="304800091" data-rec-seeds="580945538,608600880,559298549,559819340,558542113,179076885,52369009,274352214">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2020-11-21">2020-11-21</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%20%26%20%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">间隔重复 &amp; 注意力管理</a>
+          <a class="tag" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a>
+          <span>约 1 分钟</span>
+          <span>▲ 19</span>
+        </p>
+        <h1>记忆复杂性</h1>
+        
+        <p class="tags"><a href="../?q=%E8%AE%B0%E5%BF%86%E5%A4%8D%E6%9D%82%E6%80%A7">#记忆复杂性</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E6%9C%80%E5%B0%8F%E4%BF%A1%E6%81%AF%E5%8E%9F%E5%88%99">#最小信息原则</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E6%A8%A1%E5%9E%8B">#记忆模型</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="zCaqWK0y">记忆的复杂性反映了记忆的基础神经网络的结构<a class="wrap external" href="https://en.wikipedia.org/wiki/Complexity" rel="noopener noreferrer" target="_blank">复杂性</a>。</p><p data-pid="QmeF6bIp">简单的记忆可能依赖于一个单一的连接，可以被一致地重新激活。复杂的记忆可能涉及一组概念之间的纠结连接，根据记忆提取的背景，这些概念可能以不同的顺序或模式被激活。</p><p data-pid="ChEv2pqk">记忆的复杂性与下列因素呈正相关：</p><ul><li data-pid="5V2r6Vzn">提取记忆所涉及的突触数量（参见：<a class="wrap external" href="https://supermemo.guru/wiki/Grandmother_cell" rel="noopener noreferrer" target="_blank">祖母细胞</a>）</li><li data-pid="J5Vydv7E">长期保持记忆的难度（例如使用 <a class="wrap external" href="https://supermemo.guru/wiki/SuperMemo" rel="noopener noreferrer" target="_blank">SuperMemo</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>）</li><li data-pid="6JVk4tuY">通过复习提高<a class="wrap external" href="https://supermemo.guru/wiki/Memory_stability" rel="noopener noreferrer" target="_blank">记忆稳定性</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>的难度（在<a class="wrap external" href="https://supermemo.guru/wiki/Retrievability" rel="noopener noreferrer" target="_blank">可提取性</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup>相当的情况下）</li></ul><p data-pid="if53q1YO">复杂的记忆很难被一致地提取。因此，学生应采用<a class="wrap external" href="https://supermemo.guru/wiki/Minimum_information_principle" rel="noopener noreferrer" target="_blank">最小信息原则</a><sup class="cite" id="cite-4"><a href="#ref-4">[4]</a></sup>。简单的记忆更容易回忆，也更容易储存在长期记忆中。在 <a class="wrap external" href="https://supermemo.guru/wiki/SuperMemo" rel="noopener noreferrer" target="_blank">SuperMemo</a> 中，复杂性用项目难度来表示。</p><p data-pid="IQxW6a7W">在复杂记忆中，单个突触可能表现得像电子电路的子元件，并导致复合稳定性。例如，对于子稳定性 Sa 和 Sb，我们可能有。S = Sa * Sb / (Sa + Sb) （<a class="wrap external" href="https://supermemo.guru/wiki/Complexity_of_memories_in_spaced_repetition" rel="noopener noreferrer" target="_blank">解释</a>）</p><p data-pid="bpyUkhe1">同一个项目在不同的学生那里可能会有不同的编码（如根据他们的记忆能力）。这意味着记忆复杂性是一种神经网络属性，而不是直接反映项目的语义属性。</p><p data-pid="4j2wVGbZ">此外，项目难度是依赖于学生的。这意味着，即使两个学生用相同的复杂性对同一个项目进行编码，<a class="wrap external" href="https://supermemo.guru/wiki/Spaced_repetition" rel="noopener noreferrer" target="_blank">间隔重复</a><sup class="cite" id="cite-5"><a href="#ref-5">[5]</a></sup><sup class="cite" id="cite-6"><a href="#ref-6">[6]</a></sup>算法所测得的项目难度也可能不同（例如，当其中一个学生倾向于上午工作，而另一个学生则选择晚上）。</p><p data-pid="sU-iUens"><a class="wrap external" href="https://supermemo.guru/wiki/Atomic_memory" rel="noopener noreferrer" target="_blank">原子记忆</a><sup class="cite" id="cite-7"><a href="#ref-7">[7]</a></sup>是最简单的记忆，它完全遵循指数<a class="wrap external" href="https://supermemo.guru/wiki/Forgetting" rel="noopener noreferrer" target="_blank">遗忘</a><sup class="cite" id="cite-8"><a href="#ref-8">[8]</a></sup>，完全符合<a class="wrap external" href="https://supermemo.guru/wiki/Two_component_model_of_memory" rel="noopener noreferrer" target="_blank">记忆双组分模型</a><sup class="cite" id="cite-9"><a href="#ref-9">[9]</a></sup><sup class="cite" id="cite-10"><a href="#ref-10">[10]</a></sup>。</p><p data-pid="cat8qRga">记忆复杂性是<a class="wrap external" href="https://supermemo.guru/wiki/Three_component_model_of_memory" rel="noopener noreferrer" target="_blank">记忆三组分模型</a><sup class="cite" id="cite-11"><a href="#ref-11">[11]</a></sup>中的第三个组分，它将两组分模型从原子记忆扩展到复杂记忆。</p><p data-pid="1bzlkm1O">详见：</p><ul><li data-pid="ZJPvGOpC"><a class="wrap external" href="https://supermemo.guru/wiki/Complexity_of_memories_in_spaced_repetition" rel="noopener noreferrer" target="_blank">记忆复杂性的公式</a></li><li data-pid="5Vk0M-3b"><a class="wrap external" href="https://supermemo.guru/wiki/The_truth_about_grandmother_cells#Memory_stability_underlies_computability" rel="noopener noreferrer" target="_blank">记忆复杂性反证了新皮层的连接主义模型</a></li></ul><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 什么是SuperMemo <a href="https://www.yuque.com/supermemo/wiki/supermemo" rel="noopener noreferrer" target="_blank">https://www.yuque.com/supermemo/wiki/supermemo</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 记忆稳定性 <a class="tm-internal" data-tm-id="559298549" href="559298549.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 记忆可提取性 <a class="tm-internal" data-tm-id="559819340" href="559819340.html">站内阅读 ↗</a></li><li id="ref-4"><a aria-label="返回正文" class="ref-back" href="#cite-4">↩</a> 有效的学习：组织知识的20条原则 <a class="tm-internal" data-tm-id="52369009" href="52369009.html">站内阅读 ↗</a></li><li id="ref-5"><a aria-label="返回正文" class="ref-back" href="#cite-5">↩</a> 【理论】Study smarter, NOT longer. 你需要间隔重复！ <a class="tm-internal" data-tm-id="57020308" href="57020308.html">站内阅读 ↗</a></li><li id="ref-6"><a aria-label="返回正文" class="ref-back" href="#cite-6">↩</a> 间隔重复 (spaced repetition) <a class="tm-internal" data-tm-id="305651556" href="305651556.html">站内阅读 ↗</a></li><li id="ref-7"><a aria-label="返回正文" class="ref-back" href="#cite-7">↩</a> 原子记忆 <a class="tm-internal" data-tm-id="608600880" href="608600880.html">站内阅读 ↗</a></li><li id="ref-8"><a aria-label="返回正文" class="ref-back" href="#cite-8">↩</a> 遗忘 <a class="tm-internal" data-tm-id="558542113" href="558542113.html">站内阅读 ↗</a></li><li id="ref-9"><a aria-label="返回正文" class="ref-back" href="#cite-9">↩</a> 记忆的两个组成成分 <a class="tm-internal" data-tm-id="179076885" href="179076885.html">站内阅读 ↗</a></li><li id="ref-10"><a aria-label="返回正文" class="ref-back" href="#cite-10">↩</a> 记忆的双组分模型 <a class="tm-internal" data-tm-id="579476637" href="579476637.html">站内阅读 ↗</a></li><li id="ref-11"><a aria-label="返回正文" class="ref-back" href="#cite-11">↩</a> 记忆的三组分模型 <a class="tm-internal" data-tm-id="580945538" href="580945538.html">站内阅读 ↗</a></li></ol>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Piotr%20Wozniak">Piotr Wozniak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://supermemo.guru/wiki/Memory_complexity" target="_blank" rel="noopener noreferrer">https://supermemo.guru/wiki/Memory_complexity ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/304800091" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="608600880"><div class="post-meta"><time datetime="2023-02-22">2023-02-22</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 11 · 1 分钟</span></div><div class="post-summary"><h2><a href="608600880.html"><span>原子记忆</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>术语条目把“原子记忆”定义为最简单概念间的联想，并说明作者为何主张间隔重复巩固这类单位：它们可组合表示复杂知识，长期维持成本较低。条目还以苹果识别和词语联结对比复杂、简单记忆，解释复杂项目的概念激活可能不完整且顺序不稳，呼应最小信息原则。</p><p class="tags"><a href="../?q=%E5%8E%9F%E5%AD%90%E8%AE%B0%E5%BF%86">#原子记忆</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%9C%80%E5%B0%8F%E4%BF%A1%E6%81%AF%E5%8E%9F%E5%88%99">#最小信息原则</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%A4%8D%E6%9D%82%E6%80%A7">#记忆复杂性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="580945538"><div class="post-meta"><time datetime="2022-11-06">2022-11-06</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 9 · 3 分钟</span></div><div class="post-summary"><h2><a href="580945538.html"><span>记忆的三组分模型</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这则词条将长期记忆分为三项：可提取性决定当前回忆概率，稳定性决定遗忘速度，复杂性决定复习能否增强稳定性。作者据此说明 SuperMemo 的 DSR 模型及最小信息原则，认为简单、原子化的条目更容易形成稳定记忆；另有睡眠与昼夜节律等变量不在模型之内。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%A4%8D%E6%9D%82%E6%80%A7">#记忆复杂性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1582343122"><div class="post-meta"><time datetime="2020-11-18">2020-11-18</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 26 · 7 分钟</span></div><div class="post-summary"><h2><a href="1582343122.html"><span>如何可以快速的记忆自己需要记住的内容？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>定义 学习：将知识投入到记忆中 理解：将知识表现为简单的 连贯模型 引入 想要快速记忆，就需要改正记忆习惯，克服对死记硬背的依赖，通过理解和建立联系来加速记忆知识。 另外，可以通过一些工具来辅助，比如 Anki 、 SuperMemo 等基于主动回忆（ 测试效应 ）和 间隔重复 （ 间隔效应 ）的学习软件。 以下就简单介绍一下…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="279166945"><div class="post-meta"><time datetime="2020-11-08">2020-11-08</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 21 · 3 分钟</span></div><div class="post-summary"><h2><a href="279166945.html"><span>间隔效应</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章解释间隔效应，并区分增加学习间隔可能带来的正面收益与复习过频可能使效果被忽略的负面解释。作者以记忆的双组分模型和稳定化函数统一二者，称每条记忆痕迹都有使预期效果最大化的复习时机；SuperMemo 数据显示，稳定性较低、内容较复杂的记忆可能有更明显的间隔效应。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E6%95%88%E5%BA%94">#间隔效应</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E7%A8%B3%E5%AE%9A%E5%8C%96%E5%87%BD%E6%95%B0">#稳定化函数</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2564056451"><div class="post-meta"><time datetime="2022-07-08">2022-07-08</time><a class="meta-author" href="../?q=Jarrett%20Ye">Jarrett Ye · 回答</a><span>▲ 23 · 1 分钟</span></div><div class="post-summary"><h2><a href="2564056451.html"><span>长时记忆力能通过后天训练大幅提高吗？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>底层？是指神经突触层面吗？很可惜，不行。 虽然有一些突变可能会影响遗忘率，但在突触层面，遗忘的速度确实基本相同（与你有多聪明无关）。然而，同样是让人学得更快的东西，也能帮助他们忘得更慢。学习和缓慢遗忘的关键是表征（即知识的表述方式）。如果你用 SuperMemo 学习，你就会知道，问答项可以很难，也可以很简单。难的问答项遗忘得…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%9C%80%E5%B0%8F%E4%BF%A1%E6%81%AF%E5%8E%9F%E5%88%99">#最小信息原则</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%BB%84%E7%BB%87">#知识组织</a><a href="../?q=%E5%A1%AB%E7%A9%BA%E7%BB%83%E4%B9%A0">#填空练习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="559298549"><div class="post-meta"><time datetime="2022-08-30">2022-08-30</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 11 · 4 分钟</span></div><div class="post-summary"><h2><a href="559298549.html"><span>记忆稳定性</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>词条将记忆稳定性定义为记忆在未被提取时维持的时间变量，并说明其与可提取性共同构成长时记忆双组分模型。作者以突触稳定化及其对干扰的抑制解释稳定性，并借 SuperMemo 的复习历史和神经元示意图讨论复习、泛化、竞争干扰与遗忘；模型中的神经过程属于理论解释。</p><p class="tags"><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%B9%B2%E6%89%B0">#记忆干扰</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

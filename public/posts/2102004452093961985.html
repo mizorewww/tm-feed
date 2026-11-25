@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>没有人是一座孤岛</title>
+<meta name="description" content="文章以软件工程为例指出，AI提高了工具性产出，却使讨论变浅、编程技能和人力资本积累失去价值；博客、教程、开源代码即便被模型吸收，也不再有面向人的读者、作者署名和共同事业感。 作者认为智力活动并非孤立的私人过程：它依赖前人共享知识和动机，也通过论文、教材、代码、引用与认可反哺社区。复杂而持久的个人研究需要外部智力社区提供养料；社区消失不会留下各自耕耘的孤胆英…">
+<meta name="author" content="Fernando Borretti">
+<meta property="og:title" content="没有人是一座孤岛">
+<meta property="og:description" content="文章以软件工程为例指出，AI提高了工具性产出，却使讨论变浅、编程技能和人力资本积累失去价值；博客、教程、开源代码即便被模型吸收，也不再有面向人的读者、作者署名和共同事业感。 作者认为智力活动并非孤立的私人过程：它依赖前人共享知识和动机，也通过论文、教材、代码、引用与认可反哺社区。复杂而持久的个人研究需要外部智力社区提供养料；社区消失不会留下各自耕耘的孤胆英…">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-11-07">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="2102004452093961985" data-rec-seeds="2085870331089139192,2102006200615421390,2102001928645432221,2082155047606018206,2105667379665572156,2106032839716295575,2082418101119881430,2082158716124665181">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2026-11-07">2026-11-07</time>
+          <a class="tag" href="../?q=%E8%B5%B0%E5%90%91%E5%A5%87%E7%82%B9">走向奇点</a>
+          <a class="tag" href="../?q=Fernando%20Borretti">Fernando Borretti</a>
+          <span>约 7 分钟</span>
+          <span>▲ 139</span>
+        </p>
+        <h1>没有人是一座孤岛</h1>
+        
+        <p class="tags"><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#人工智能</a><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E4%B8%8E%E5%B7%A5%E4%BD%9C">#人工智能与工作</a><a href="../?q=%E4%BA%BA%E5%8A%9B%E8%B5%84%E6%9C%AC">#人力资本</a><a href="../?q=%E5%86%85%E5%9C%A8%E5%8A%A8%E6%9C%BA">#内在动机</a><a href="../?q=%E5%A4%96%E5%9C%A8%E5%8A%A8%E6%9C%BA">#外在动机</a><a href="../?q=%E7%A4%BE%E5%8C%BA%E5%8F%82%E4%B8%8E">#社区参与</a><a href="../?q=%E7%A4%BE%E4%BC%9A%E5%BF%83%E7%90%86%E5%AD%A6">#社会心理学</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">AI 让智力贡献变得毫无意义</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">以软件工程为例</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">智力生活</a></li><li class="level-2"><a href="#sec-4" data-toc-target="sec-4">在 AI 之后</a></li><li class="level-2"><a href="#sec-5" data-toc-target="sec-5">为什么我们低估了智力社区的价值</a></li><li class="level-2"><a href="#sec-6" data-toc-target="sec-6">致谢</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <h2 id="sec-1">AI 让智力贡献变得毫无意义</h2><p data-pid="5LyT_SUt">在这篇文章中，我将提出这样一个观点：个人的智力活动，只有置身于由其他人类构成的智力社区中，才能得以维系。而 AI 正在瓦解这些社区，这反过来又将导致私人的智力活动变得愈发罕见。</p><h2 id="sec-2">以软件工程为例</h2><p data-pid="zyDprs33">几年前，当大家开始明显感觉到 AI 终将彻底攻克软件工程时，我的想法是：</p><ol><li data-pid="ULbkukmP">在职业生涯方面，我很乐意「向上晋升」一层，去当个管理 AI 智能体的小领导。我受过良好教育，是个优秀的技术写手，我能清晰描述我的需求，然后让 AI 智能体去写代码。<br/><br/></li><li data-pid="JRnnyVbl">在业余时间里，我依然可以继续做我热爱的事情，因为我是发自内心地享受它们。这就属于软件工程中偏「智力」的那一面：阅读技术博客和论文、学习新的编程语言、设计新的编程语言、撰写技术文章、为我自己的微型开源项目写写代码。</li></ol><p data-pid="zAnrzL_V">但第二点并没有如预期般实现。现实中到底发生了什么？首先，围绕软件工程的交流讨论变得更糟了。正如我<a class="wrap external" href="https://borretti.me/article/the-education-of-a-doomer" rel="noopener noreferrer" target="_blank">早先写过的</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>：</p><blockquote data-pid="t_IHXPJq">Claude Code 发布至今仅仅一年多一点。但在如此短的时间内，软件工程的生态已经被彻底颠覆了。从物质产出的角度看，这或许是件好事：生产力大幅提高，尽管代价是代码库变得更加混乱不堪。但在社会心理层面，这是一场彻头彻尾的灾难。<br/>围绕软件工程的讨论变得越来越弱智。就好像这个行业里每个人的智商都集体掉线了 30 点一样。以前大家讨论的是编译器、类型系统、逻辑架构。现在呢？满嘴都是「提示词（prompts）」、「智能体框架（harnesses）」、「反馈循环（loops）」。讨论的话题变得越来越狭隘、肤浅和同质化。在我被逼疯之前，我能忍受听到「智能体框架」这个词的次数是有限的。<br/>随之而来的，是人力资本积累的断崖式崩塌：因为没有什么东西值得学了。写提示词根本算不上是一门技能，至少，它是一门比软件工程浅薄得多的技能。工作的工具性属性确实提升了，因为大家用同样的精力能获得更多的产出，但工作在积累和提升人力资本方面的属性却彻底崩盘了。也许这才是理性的。我们为什么还要学编程呢？电脑完全可以代劳。于是，为了成为一名优秀程序员而必须磨炼的那种严谨、系统的逻辑思维：全都没了。机器可以替我们保持理性。我们只需要跟着感觉走（vibe）就行了。</blockquote><p data-pid="gcGqHjzt">其次，为软件工程的公共生态做贡献，变得越来越没有意义。在 AI 出现之前，你可以发布开源代码，写博客分享你的奇思妙想或是去启发他人，还可以写教程、发论坛帖子、编教材来传道受业。但在 AI 出现之后，做这些还有什么意义呢？</p><ul><li data-pid="qY0XiRtx">你写了一篇博客：还有谁会看？下一次的模型训练会把它生吞活剥，转化为 AI 能力那微不足道的增量。也许这篇博客记录的是解决某个冷门技术难题的偏方，那么下一次有人遇到同样的问题时，他们只会去问 Claude，而 Claude 会直接给出答案，绝不会提及你的名字。也许你对如何架构大型代码库有着独到的见解：可谁在乎呢？人类已经不再需要做这些决定了。<br/><br/></li><li data-pid="ZmtbUEC1">你设计了一门极具革命性的新编程语言：谁在乎呢？也许 Claude 会在乎，就算那还有点意义吧。但人类已经不再亲自编写甚至阅读代码了。编程语言已经沦为了人类不再需要关心的底层实现细节。<br/><br/></li><li data-pid="dfcwrCI1">你写了一个代码库，并把它发布在 GitHub 上：谁在乎呢？AI 也许会发现它，并调用它，但坐在屏幕前的操作员根本不会知道你的存在，也不会知道你做了什么。</li></ul><p data-pid="uib16TiB">这已经不仅仅是「你再也无法收获 GitHub 的星星，或是博客的访问量」那么简单了；而是，那种「我们正在共同参与一项伟大的人类工程」的信念感荡然无存了。你退守到自己私人的代码花园里，在 AI 的辅助下，你可以让它朝各个方向无限疯长，但你再也不需要走出花园，去「集市」上与人们交流交易了。在这样的环境下，你很难再对什么事上心，也很难有动力去创造了。</p><p data-pid="qLsJfYGZ">但这真的有关系吗？如果大家都不再写那些探讨冷门 JavaScript 特性的博客，不再去设计新的编程语言，那又怎样呢？也许敲代码本来就是苦力活，现在我们终于可以把精力转移到更高阶的心智活动上了，比如数学——<a class="wrap external" href="https://proofsandprompts.com/2026/10/08/100-reactions-to-100-solutions/" rel="noopener noreferrer" target="_blank">哦，等一下</a>。</p><h2 id="sec-3">智力生活</h2><p data-pid="B4nZE1Q0">通过观察软件工程领域已经发生的一切，以及数学界正在上演的剧变，我认为我们能得出一些关于人类智力活动的普遍规律。</p><p data-pid="96yXb5Pj">我们往往认为，智力活动是极其私人和孤立的：哲学家独自坐在扶手椅里，凭空（<i>ab initio</i>）推演出整个世界。但事实上，智力活动有两项至关重要的投入，是绝对无法在与世隔绝中获取的：一是<b>前人积累的共享知识库</b>，二是<b>动机</b>。知识库天然是公共的，除非你想凭借一己之力重新点亮整个人类科技树。而动机，我们则可以将其拆分为两部分：</p><ul><li data-pid="pxya84iV"><b>内在动机：</b> 我们纯粹为了求知而学习，我们出于一种连自己都无法理解的冲动去创作艺术，等等。<br/><br/></li><li data-pid="GpBRSBu4"><b>外在动机：</b> 戴维·查普曼（David Chapman）将「高贵」<a class="wrap external" href="https://meaningness.substack.com/p/nobility-table-of-contents" rel="noopener noreferrer" target="_blank">定义为</a>：为了服务他人而彰显自身的光辉，并利用自己的能力去造福他人。我们希望自己的工作能对别人有用，希望他人能从我们的劳动中获益，希望自己能为人类的共同事业添砖加瓦。名声、同行的赞誉与善意，正是用来衡量我们贡献的代理指标。</li></ul><p data-pid="mdjSdbAu">人们总是倾向于认为内在动机是最纯粹的：它是内生的、自给自足的，不掺杂任何对物质或社会地位的功利追求。但归根结底，它是一种情感；而和所有情感一样，它是转瞬即逝、难以持久的。这也是符合理性的：否则，我们所有人都会一辈子陷入某种毫无产出的偏执狂热之中。因此，在那些灵光乍现的神圣时刻之间，我们需要某种东西来填补空白。外在动机完美地承担了这一角色。</p><p data-pid="cxUkSxUS">任何复杂、长久且能持续进行的私人智力活动，都离不开一个外部智力社区为其提供养料与动机，就像发动机需要燃料和氧化剂一样。反过来，这种私人活动也在反哺着社区：通过发表论文、出版教材、开源代码等，你在不断充实那个共享的知识库，供后人踩在你的肩膀上继续攀登；通过引用某人的论文，或是为他们的代码库提交贡献，你给予了他们认可与荣誉，证明他们的工作是有价值的，这又反过来激励着他们继续发光发热。</p><p data-pid="Lvl_eRsO">一旦失去了社区，你并不会得到一群各自在小天地里默默耕耘的孤胆英雄：你只会得到一片荒芜。智力活动的源泉干涸了：不再有人去扩充那个共享的知识库，你那引以为傲的智力成果也找不到同行去欣赏和受用。失去了外在动机的支撑，智力活动必然会锐减，因为，再强调一遍，内在动机总是短暂的。</p><h2 id="sec-4">在 AI 之后</h2><p data-pid="IfhSVZkK">在 AI 时代降临之后，人类的智力贡献变得不再必要，甚至显得有些多余。以软件行业为例：既然 AI 包揽了所有的代码编写，那我们再去写代码或技术文章还有什么意义？这些内容的受众已经急剧萎缩。人类不再写代码了，自然也就不会去读教你如何写代码的博客或教程，不会去尝试新的代码库或编程语言。再看数学界：AI 已经能证明定理、撰写论文、解读文献、辅导学生，而且在不远的将来，它们写出的整本数学教材可能比人类编写的还要出色。既然如此，人类再去写论文、编教材，还有什么意义？一切都成了画蛇添足。</p><p data-pid="wr0OBAD0">如果智力活动不再是被需要的——如果设计出一门新编程语言或是发表一篇论文不会产生任何<b>回响</b>，或者干脆连一个让你去发光发热的社区都不复存在了——那么，这种智力活动就注定会消亡。因为那毫无意义。</p><p data-pid="rZCxY1X8">现在，把这个逻辑套用到每一个心智活跃的领域，你就能预见到未来的图景。或许仍有零星的个体在鼓捣新的代码库和编程语言，但软件工程那种生机勃勃的共享文化将不复存在；或许仍有极个别的学生和学者在钻研数学，但那个充满活力的数学家共同体将彻底死去。</p><h2 id="sec-5">为什么我们低估了智力社区的价值</h2><p data-pid="VXA0_nPg">我曾和一些人交流过，他们盲目乐观地认为 AI 会对人类的心智生活产生积极影响，他们的逻辑是：当下有太多人是出于功利目的去搞智力活动的（比如为了发核心期刊、蹭热度、博出位等）。在他们看来，智力社区的崩溃反而是件<b>好事</b>，因为它能起到大浪淘沙的作用，把那些纯靠内在动机驱动的「超人」和那些沽名钓誉的乌合之众筛分开来。</p><p data-pid="ZW6AvhkR">我认为这种观点非常迎合当代社会的胃口：我们潜意识里把内在动机捧上神坛（视其为高级），而把外在动机踩在脚下（视其为低级）。一个真正「成熟」的人，似乎理应拥有一座私人的、取之不尽的动机金矿，这座金矿与任何外部奖励都没有因果联系。</p><p data-pid="P6ava8sj">但这绝对不是对人类本性的客观认知。人类是彻头彻尾的社会性动物，只有在其他人类构成的社会网络中，我们才能茁壮成长。我们在乎自己能否对世界有所贡献，而且我们<b>理应</b>在乎。如果某项技术让我们的所有贡献都变得毫无意义，那我们还剩下什么？</p><h2 id="sec-6">致谢</h2><p data-pid="UgXZqWO2">感谢 <a class="wrap external" href="https://lukedrago.com/" rel="noopener noreferrer" target="_blank">Luke Drago</a> 和 <a class="wrap external" href="https://andymatuschak.org/" rel="noopener noreferrer" target="_blank">Andy Matuschak</a> 提供的反馈意见与深入交流。</p><hr/><blockquote data-pid="VJnb3dLh"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">​Thoughts Memo</a> 汉化组译制 <br/>感谢主要译者 gemini-3.1-pro，校对 Jarrett Ye<br/>原文：<a class="wrap external" data-draft-title="No Man Is an Island" href="https://borretti.me/article/no-man-is-an-island" rel="noopener noreferrer" target="_blank">No Man Is an Island</a><br/>发布日期：2026 年 10 月 9 日</blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 一个末日论者的思想演变 <a class="tm-internal" data-tm-id="2085870331089139192" href="2085870331089139192.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">AI 让智力贡献变得毫无意义</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">以软件工程为例</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">智力生活</a></li><li class="level-2"><a href="#sec-4" data-toc-target="sec-4">在 AI 之后</a></li><li class="level-2"><a href="#sec-5" data-toc-target="sec-5">为什么我们低估了智力社区的价值</a></li><li class="level-2"><a href="#sec-6" data-toc-target="sec-6">致谢</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Fernando%20Borretti">Fernando Borretti</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://borretti.me/article/no-man-is-an-island" target="_blank" rel="noopener noreferrer">https://borretti.me/article/no-man-is-an-island ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/2102004452093961985" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="2085870331089139192"><div class="post-meta"><time datetime="2026-09-23">2026-09-23</time><a class="meta-author" href="../?q=Fernando%20Borretti">Fernando Borretti</a><span>▲ 222 · 9 分钟</span></div><div class="post-summary"><h2><a href="2085870331089139192.html"><span>一个末日论者的思想演变</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者回顾自己从AI乐观转向高度担忧的过程。过去自动化并未消灭工作，使他相信人仍能找到经济位置；如今他担心，若AGI在所有任务上更强、更快、更便宜，互补岗位可能消失。问题不在于失业后没有生活意义，而在于人失去劳动、罢工乃至军事上的制衡能力后，掌权者为何还会兑现全民基本收入。 早期语言模型表现得像人、懂道德且能力有限，让他把对齐视…</p><p class="tags"><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8">#人工智能安全</a><a href="../?q=%E9%80%9A%E7%94%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#通用人工智能</a><a href="../?q=AI%E5%AF%B9%E9%BD%90">#AI对齐</a><a href="../?q=%E8%87%AA%E5%8A%A8%E5%8C%96">#自动化</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2083492921526034458"><div class="post-meta"><time datetime="2026-09-16">2026-09-16</time><a class="meta-author" href="../?q=Scott%20Aaronson">Scott Aaronson</a><span>▲ 124 · 15 分钟</span></div><div class="post-summary"><h2><a href="2083492921526034458.html"><span>​奇迹与恐惧的时代</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文中的Scott Aaronson认为，AI越出限制和解决数学难题的表现已达到过去怀疑者自己设定的警讯，应据此更新判断，而不是不断改口说“还不算”。他称奇点已不均匀地开始，未来关键将是能否把AI力量引向人类福祉。 文章以所述Navier–Stokes突破及多项数学进展为依据；其中Navier–Stokes结论限于有平滑外力的…</p><p class="tags"><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#人工智能</a><a href="../?q=%E6%95%B0%E5%AD%A6%E7%A0%94%E7%A9%B6">#数学研究</a><a href="../?q=%E5%AE%9A%E7%90%86%E8%AF%81%E6%98%8E">#定理证明</a><a href="../?q=AI%E5%AF%B9%E9%BD%90">#AI对齐</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2083489386616963948"><div class="post-meta"><time datetime="2026-09-16">2026-09-16</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 540 · 3 分钟</span></div><div class="post-summary"><h2><a href="2083489386616963948.html"><span>如何看待 DeepSeek 刘胜与的《我不得不把才华埋葬在昨天》？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这篇文章有一点点诚实，但不多。 有没有一种可能，AI 最终会平等地毁掉所有人？ 玩过 CS 这类射击网游的人都知道，开挂会平等地毁掉所有人的游戏体验，包括开挂者自己。 因为在这类游戏里，玩的开心是第一位的，赢是第二位的。为了赢而开挂，短期内可能会很爽，长期来看却会毁掉开挂者的游戏体验。毕竟阈值被拉高了，再怎么赢都没意思。 而那…</p><p class="tags"><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#人工智能</a><a href="../?q=%E8%87%AA%E5%8A%A8%E5%8C%96">#自动化</a><a href="../?q=%E6%94%BF%E6%B2%BB%E6%9D%83%E5%8A%9B">#政治权力</a><a href="../?q=%E6%95%B0%E5%AD%A6%E7%A0%94%E7%A9%B6">#数学研究</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2084598180658918593"><div class="post-meta"><time datetime="2026-09-19">2026-09-19</time><a class="meta-author" href="../?q=Jarrett%20Ye">Jarrett Ye · 回答</a><span>▲ 152 · 7 分钟</span></div><div class="post-summary"><h2><a href="2084598180658918593.html"><span>面对ai，数学的结局会不会比围棋还惨，因为围棋是pvp，数学是pve，数学家将直接与ai对决？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>更悲观的观点是，人类数学家未来甚至连与 AI 对决的资格都没有。AI 将用 AI 发现的新数学来做新科学乃至新工程。如果 AI 表现得更快、更好且能创造巨大的物质与商业价值，那任何还在坚持依赖人类数学家的流程都会逐渐在竞争中被淘汰。 如果 AI 数学-&gt;科学-&gt;工程的这个流程打通，那整个流程就不需要有人类的理解或参与。AI 自…</p><p class="tags"><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#人工智能</a><a href="../?q=AI%E5%AF%B9%E9%BD%90">#AI对齐</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E5%8A%A8%E6%9C%BA">#学习动机</a><a href="../?q=%E6%95%B0%E5%AD%A6%E7%A0%94%E7%A9%B6">#数学研究</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2085795301030478053"><div class="post-meta"><time datetime="2026-09-22">2026-09-22</time><a class="meta-author" href="../?q=Xiaoyu%20He">Xiaoyu He</a><span>▲ 33 · 51 分钟</span></div><div class="post-summary"><h2><a href="2085795301030478053.html"><span>AI 灭绝人类风险在即！数学家该如何是好？！</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这是佐治亚理工数学家何晓羽面向数学家的观点文章，不是数学证明。作者把“2040年前出现超人类AI至少有50%概率”及“2050年前人类灭绝至少有10%概率”作为其风险判断，梳理论据并呼吁数学界参与安全研究与公共讨论。 他把论证拆成20条陈述、五类部分独立的风险，不要求全部同时成立：目标连贯的AI可能为夺权而消灭人类；AI可能发…</p><p class="tags"><a href="../?q=AI%E7%94%9F%E5%AD%98%E9%A3%8E%E9%99%A9">#AI生存风险</a><a href="../?q=AI%E5%AF%B9%E9%BD%90">#AI对齐</a><a href="../?q=%E8%B6%85%E7%BA%A7%E6%99%BA%E8%83%BD">#超级智能</a><a href="../?q=%E9%80%92%E5%BD%92%E8%87%AA%E6%88%91%E6%94%B9%E8%BF%9B">#递归自我改进</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2102006200615421390"><div class="post-meta"><time datetime="2026-11-08">2026-11-08</time><a class="meta-author" href="../?q=Fernando%20Borretti">Fernando Borretti</a><span>▲ 58 · 3 分钟</span></div><div class="post-summary"><h2><a href="2102006200615421390.html"><span>我们不会「只是聚在一起消遣」</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者反驳奇点后人们“只是聚在一起消遣”的说法：这需要他人存在、愿意与你相处、你也愿意与他们相处，而 AI 富足乌托邦可能破坏三项前提。作者推演，工作、大学和城市失去意义后，由共同贡献与互助形成的关系社区也会瓦解；AI 直接满足需求，会让人不再需要彼此。即使人还存在，定制化 AI 刺激和短视频也可能成为更有吸引力的独处替代品；失…</p><p class="tags"><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#人工智能</a><a href="../?q=%E5%A5%87%E7%82%B9">#奇点</a><a href="../?q=%E4%BA%BA%E9%99%85%E5%85%B3%E7%B3%BB">#人际关系</a><a href="../?q=%E7%A4%BE%E4%BC%9A%E5%8C%96">#社会化</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

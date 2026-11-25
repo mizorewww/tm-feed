@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>读者通过执行程序来回答 Execute Program 的交互卡片</title>
+<meta name="description" content="作者说明 Execute Program 的卡片要求学习者在嵌入式解释器中运行代码，系统按程序求值结果判定答案，而非逐字比对。因此答案可以有多种正确写法，交互更接近真实编程环境；复杂问题卡还让读者修改代码，使程序输出符合目标表达式。作者认为这种设计能把课程嵌入实际任务。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="读者通过执行程序来回答 Execute Program 的交互卡片">
+<meta property="og:description" content="作者说明 Execute Program 的卡片要求学习者在嵌入式解释器中运行代码，系统按程序求值结果判定答案，而非逐字比对。因此答案可以有多种正确写法，交互更接近真实编程环境；复杂问题卡还让读者修改代码，使程序输出符合目标表达式。作者认为这种设计能把课程嵌入实际任务。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-01-27">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="1999149514427213729" data-rec-seeds="1999896955036406673,1999145478621769990,2003900630289379481,2000259693428351079,2002091941106586794,2000982862988603503,576613520,2002785452772565187">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2026-01-27">2026-01-27</time>
+          <a class="tag" href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B%20%26%20%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">助记媒介 &amp; 思想工具</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 3 分钟</span>
+          <span>▲ 2</span>
+        </p>
+        <h1>读者通过执行程序来回答 Execute Program 的交互卡片</h1>
+        
+        <p class="tags"><a href="../?q=%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%AD%A6%E4%B9%A0">#交互式学习</a><a href="../?q=%E7%BC%96%E7%A8%8B%E6%95%99%E8%82%B2">#编程教育</a><a href="../?q=%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C">#代码执行</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E5%BA%94%E7%94%A8%E7%BB%83%E4%B9%A0">#应用练习</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="rXUB-oNp">像<a class="wrap external" href="https://notes.andymatuschak.org/zKPv6qkSErdRGqyryvgS2wS" rel="noopener noreferrer" target="_blank">助记媒介（Mnemonic medium）</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>一样，Execute Program 的课程将正文与交互卡片穿插在一起。但让 Execute Program 得以命名的核心理念在于，每一次交互都涉及在嵌入式解释器中执行一段程序。事实上，<a class="wrap external" href="https://notes.andymatuschak.org/zYCRKm7HujiD6CNtcC9gnmk" rel="noopener noreferrer" target="_blank">Execute Program 没有任何不可执行的卡片</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>。</p><p data-pid="1YNecUfA">例如，一节课可能包含几个段落，介绍在 SQL 中可以通过使用 <code>SELECT column_name</code> 来只选择特定的列。然后它可能会提供这样一个卡片：</p><div class="highlight"><pre><code class="language-text"> exec(`CREATE TABLE cats (name STRING, age INTEGER)`);
+ exec(`INSERT INTO cats (name, age) VALUES (“Boromir”, 3), (“Aragorn”, 15)`);
+ exec(`SELECT name FROM cats`)
+ &gt; </code></pre></div><p data-pid="vjSdfIaE">读者的光标位于最后一行；他们需要输入上方代码表达式的求值结果。Execute Program 随后会对读者的输入表达式（即作为 Javascript 代码）进行求值，并将结果值与测试值进行比较。</p><p data-pid="ql3YC-xJ">这 <i>看起来</i> 像是一个 Quizlet 风格的抽认卡，要求用户输入标准答案，但事实并非如此。这是一个真正的解释器，它会真正地对你的程序求值。所以你可以写 <code>[{name: “Boromir”}, {name: “Aragorn”}]</code> 或者 <code>[“Boromir”, “Aragorn”].map(n =&gt; ({name: n})</code>——这两种写法都是正确的。我喜欢这个设计模型，因为它将课程置于更接近真实的语境中：<a class="wrap external" data-draft-title="赋能环境着重于环境所赋能的事" href="https://notes.andymatuschak.org/z2etsLyP1LJUwNDPCwvRdUG" rel="noopener noreferrer" target="_blank">赋能环境着重于环境所赋能的事</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup>。</p><p data-pid="8UucFjt8">更复杂的卡片被称为「问题（problems）」，它为读者提供一份代码清单和一个「目标表达式」——即最后一行代码的期望值。例如：</p><div class="highlight"><pre><code class="language-text"> function adds2(input: number) {
+ }
+ adds2(4)
+ ​
+ // GOAL: 6</code></pre></div><p data-pid="W5hqkhJx">读者的任务是修改代码清单，以便生成目标表达式。当读者准备好时，他们执行自己的程序；程序会被求值，其输出将与目标值进行比较。</p><p data-pid="3q66qgXF">一个相关的、更具野心的构思：<a class="wrap external" href="https://notes.andymatuschak.org/zFS2bUsK1vzv1M7cYcMFdCV" rel="noopener noreferrer" target="_blank">将像 Shenzhen I/O 这样的游戏置于像 IDE 这样的专业环境中意味着什么？</a></p><p data-pid="uH5v7s1C">同样相关：<a class="wrap external" href="https://notes.andymatuschak.org/zLNcy2JiH3AGNaZjYkHzK9P" rel="noopener noreferrer" target="_blank">可执行的书籍</a></p><hr/><p data-pid="9I0ZIj36">Q. Execute Program 的卡片要求读者输入一个答案。这种交互与 Quizlet 的有何不同？ <br/>A. 答案是在真正的解释器中进行求值的，而不仅仅是逐字比对。</p><p data-pid="TttpYJCW">Q. 为什么 Execute Program 对读者的答案进行求值而不是逐字比对，这一点很重要？ <br/>A. 这允许读者在解决卡片时拥有一定的真实灵活性。</p><h2 id="sec-1">链接至本文（已汉化）</h2><ul><li data-pid="gH5jwUp5">暂无</li></ul><h2 id="sec-2">声明</h2><p data-pid="a1kSLiu9">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="LmxKl2KQ"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 gemini-3-pro-preview，校对 Jarrett Ye<br/>原文：<a class="wrap external" data-draft-title="Readers answer Execute Program’s prompts by executing a program" href="https://notes.andymatuschak.org/z9DRugkwcBv7iLRACEnWVDL" rel="noopener noreferrer" target="_blank">Readers answer Execute Program’s prompts by executing a program</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 助记媒介（Mnemonic medium） <a class="tm-internal" data-tm-id="459483765" href="459483765.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> Execute Program 没有不可执行的卡片 <a class="tm-internal" data-tm-id="1999896955036406673" href="1999896955036406673.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 赋能环境着重于环境所赋能的事 <a class="tm-internal" data-tm-id="487188240" href="487188240.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/z9DRugkwcBv7iLRACEnWVDL" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/z9DRugkwcBv7iLRACEnWVDL ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/1999149514427213729" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="1999896955036406673"><div class="post-meta"><time datetime="2026-01-28">2026-01-28</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 1 · 2 分钟</span></div><div class="post-summary"><h2><a href="1999896955036406673.html"><span>Execute Program 没有不可执行的卡片</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者说明 Execute Program 的交互卡片要求读者实际执行代码来回答，因此该课程只包含可执行的“应用卡片”，不能容纳解释正则表达式概念等传统问答卡。文章以此指出，面向操作技能的练习模式不适合主要依赖概念分析的课程。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%BB%83%E4%B9%A0">#可执行练习</a><a href="../?q=%E7%BC%96%E7%A8%8B%E6%95%99%E8%82%B2">#编程教育</a><a href="../?q=%E5%BA%94%E7%94%A8%E5%8D%A1%E7%89%87">#应用卡片</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1999145478621769990"><div class="post-meta"><time datetime="2026-01-26">2026-01-26</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 6 · 2 分钟</span></div><div class="post-summary"><h2><a href="1999145478621769990.html"><span>Execute Program 的课程根据读者的互动逐段展开正文</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者比较 Execute Program 与助记媒介：前者逐段解锁文字，读者完成交互卡片后才继续，阅读节奏一致、卡片更贴合流程，但自由滚动和略读空间较少。作者认为这种结构像一场只能回应的对话，互动仍由课程控制，因此不算由参与者行动主导的情景体验。</p><p class="tags"><a href="../?q=%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%AD%A6%E4%B9%A0">#交互式学习</a><a href="../?q=Execute%20Program">#Execute Program</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E9%98%85%E8%AF%BB%E4%BD%93%E9%AA%8C">#阅读体验</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2003900630289379481"><div class="post-meta"><time datetime="2026-02-08">2026-02-08</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 11 · 2 分钟</span></div><div class="post-summary"><h2><a href="2003900630289379481.html"><span>Execute Program</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这篇译文介绍 Gary Bernhardt 的 Execute Program：它把编程讲解与可执行练习结合，并用间隔重复系统安排回顾。作者列出其交互特点，包括课程按前置知识解锁、卡片要求实际运行程序、复习错误不作惩罚，以及进度更强调完成新课而非无限延长复习。</p><p class="tags"><a href="../?q=%E7%BC%96%E7%A8%8B%E6%95%99%E8%82%B2">#编程教育</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%AD%A6%E4%B9%A0">#交互式学习</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="576613520"><div class="post-meta"><time datetime="2022-10-26">2022-10-26</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 5 · 2 分钟</span></div><div class="post-summary"><h2><a href="576613520.html"><span>助记文本可以在一段时间内分小段连载，根据读者的记忆情况排期</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者设想将助记文本拆成短章节，并依据读者对前文的记忆安排解锁或推送时间；后续章节应补充而非重复前文，短小单元也可降低工作记忆负担。文中以 Execute Program 的课程结构为例，讨论一种跨时间展开的交互式文本。</p><p class="tags"><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BF%86">#工作记忆</a><a href="../?q=%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E6%9C%AC">#交互式文本</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2000259693428351079"><div class="post-meta"><time datetime="2026-01-29">2026-01-29</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 6 · 2 分钟</span></div><div class="post-summary"><h2><a href="2000259693428351079.html"><span>Execute Program 的卡片既是应用卡片，也是回忆卡片</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者比较助记媒介与 Execute Program 的学习卡片，指出后者以例题应用知识，看起来是应用卡；但若同一题干反复出现，答案逐渐依赖记忆，卡片便转为回忆卡。由此，程序性知识卡可能随重复变成陈述性知识卡，而陈述性知识也被包装成程序练习形式。</p><p class="tags"><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%BA%94%E7%94%A8%E7%BB%83%E4%B9%A0">#应用练习</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2001372387644563990"><div class="post-meta"><time datetime="2026-02-01">2026-02-01</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 9 · 2 分钟</span></div><div class="post-summary"><h2><a href="2001372387644563990.html"><span>在你成功复习其前置课程之前，Execute Program 的课程不会解锁</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者解释，Execute Program 会锁住尚未满足前置条件的课节，只有依赖课程被阅读并近期复习后才解锁。这样作者可写出更聚焦、无需重讲前置内容的课程，但也形成过关式学习序列，与间隔重复按个体记忆状态灵活安排复习的方式存在冲突。</p><p class="tags"><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1">#课程设计</a><a href="../?q=%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86">#前置知识</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

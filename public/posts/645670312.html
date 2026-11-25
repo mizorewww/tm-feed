@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>对于卡片生成任务，如果提供了充足的上下文，大型语言模型（LLM）可能会表现得更好</title>
+<meta name="description" content="译文指出，若只把一句解释性文本交给模型制卡，LLM 往往缺乏足够上下文来判断该强化哪个知识角度；提供周围数千个相关词元，可能有助于生成贴近原文语境的问题。量子力学示例展示了同一句目标文本在有无上下文时会形成不同卡片。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="对于卡片生成任务，如果提供了充足的上下文，大型语言模型（LLM）可能会表现得更好">
+<meta property="og:description" content="译文指出，若只把一句解释性文本交给模型制卡，LLM 往往缺乏足够上下文来判断该强化哪个知识角度；提供周围数千个相关词元，可能有助于生成贴近原文语境的问题。量子力学示例展示了同一句目标文本在有无上下文时会形成不同卡片。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-07-24">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="645670312" data-rec-seeds="644435780,716570823,656760808,644435843,656354899,639267420,656355546,630862056">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2023-07-24">2023-07-24</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%20%26%20%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">间隔重复 &amp; 注意力管理</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 3 分钟</span>
+          <span>▲ 6</span>
+        </p>
+        <h1>对于卡片生成任务，如果提供了充足的上下文，大型语言模型（LLM）可能会表现得更好</h1>
+        
+        <p class="tags"><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8D%A1%E7%89%87%E7%94%9F%E6%88%90">#卡片生成</a><a href="../?q=%E4%B8%8A%E4%B8%8B%E6%96%87%E5%AD%A6%E4%B9%A0">#上下文学习</a><a href="../?q=%E6%8F%90%E7%A4%BA%E5%B7%A5%E7%A8%8B">#提示工程</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">实例</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="hg3y7MF7">许多人试图创建系统，<a class="wrap external" href="https://notes.andymatuschak.org/z2DY7qsP5iHsiA5hxUHheV8hu7Xe96vdGyYX" rel="noopener noreferrer" target="_blank">使用机器学习从解释性文本中为简单的陈述性知识生成优质的间隔重复卡片</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>，这些系统往往会对高亮内容进行处理。你选择一段文字，然后让模型根据所选的内容生成卡片。但是，除非所选的内容是一个孤立的、明确的陈述，否则模型通常需要更多的上下文来理解如何生成优质卡片。比如，你如果从教科书中选择了一句话，模型就需要对教科书的层次、已经介绍过的内容，以及观点的框架等方面有所了解。为此，我发现在目标文本周围提供几千个上下文相关的词元往往会有所帮助。</p><p data-pid="AsH9iVAd">从某种角度来看，这样的上下文信息就像是在告诉模型，什么样的卡片才符合用户的需求；这也和另一种观点相吻合<a class="wrap external" href="https://notes.andymatuschak.org/zomoPzCNzSi5GqtfTeVWgm7RjmiArjS8vvM5" rel="noopener noreferrer" target="_blank">对于卡片生成任务，大型语言模型（LLM）经常需要额外的提示来确定需要强化何种角度</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>。</p><h2 id="sec-1">实例</h2><p data-pid="H-euSXPh">&lt;context&gt;设想一个质量为 <img alt="m" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=m"/> 的粒子，被限定在 <img alt="x" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=x"/> 轴上运动，同时受到某个特定的力 <img alt="F(x, t)" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=F%28x%2C+t%29"/> 作用（参见图 1.1）。经典力学的主要任务，就是求出粒子在任何特定时间的位置： <img alt="x(t)" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=x%28t%29"/> 。一旦我们得知了这个，我们就能算出速度（ <img alt="v=d x / d t" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=v%3Dd+x+%2F+d+t"/> ）、动量（ <img alt="p=m v" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=p%3Dm+v"/> ）、动能（ <img alt="T=(1 / 2) m v^2" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=T%3D%281+%2F+2%29+m+v%5E2"/> ）或者其它我们感兴趣的动力学变量。我们如何求出 <img alt="x(t)" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=x%28t%29"/> 呢？我们应用牛顿第二定律： <img alt="F=m a" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=F%3Dm+a"/> 。（对于保守系统——也就是我们只会考虑的那种，幸运的是，它们也是在微观层面上唯一存在的类型，力可以表达为势能函数的导数，也就是 <img alt="{ }^1 F=-\partial V / \partial x" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%7B+%7D%5E1+F%3D-%5Cpartial+V+%2F+%5Cpartial+x"/> ，于是牛顿定律就变成了 <img alt="m d^2 x / d t^2=-\partial V / \partial x" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=m+d%5E2+x+%2F+d+t%5E2%3D-%5Cpartial+V+%2F+%5Cpartial+x"/> 。）这个结论，再配合适当的初始条件（通常是在 <img alt="t=0" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=t%3D0"/> 时的位置和速度），就能确定 <img alt="x(t)" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=x%28t%29"/> </p><p data-pid="i4aRxU64">而量子力学处理同一问题的方式截然不同。在这种情况下，我们要找的是粒子的波函数， <img alt="\Psi(x, t)" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%5CPsi%28x%2C+t%29"/> ，我们通过求解薛定谔方程得到它：</p><p data-pid="4DSOQS33"><img alt=" i \hbar \frac{\partial \Psi}{\partial t}=-\frac{\hbar^2}{2 m} \frac{\partial^2 \Psi}{\partial x^2}+V \Psi " class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=+i+%5Chbar+%5Cfrac%7B%5Cpartial+%5CPsi%7D%7B%5Cpartial+t%7D%3D-%5Cfrac%7B%5Chbar%5E2%7D%7B2+m%7D+%5Cfrac%7B%5Cpartial%5E2+%5CPsi%7D%7B%5Cpartial+x%5E2%7D%2BV+%5CPsi+"/> </p><p data-pid="l1MgQYn7">其中， <img alt="i" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=i"/> 是 -1 的平方根， <img alt="\hbar" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%5Chbar"/> 是普朗克常数，或者更确切地说，是他的原始常数（ <img alt="h" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=h"/> ）除以 <img alt="2 \pi" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=2+%5Cpi"/> ：</p><p data-pid="_gK-AVpK"><img alt=" \hbar=\frac{h}{2 \pi}=1.054573 \times 10^{-34} \mathrm{~J} \mathrm{~s} " class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=+%5Chbar%3D%5Cfrac%7Bh%7D%7B2+%5Cpi%7D%3D1.054573+%5Ctimes+10%5E%7B-34%7D+%5Cmathrm%7B~J%7D+%5Cmathrm%7B~s%7D+"/> </p><p data-pid="TtpC4RKW">薛定谔方程在逻辑上与牛顿第二定律的作用相似：给定适当的初始条件（通常是 <img alt="\Psi(x, 0)" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%5CPsi%28x%2C+0%29"/> ），薛定谔方程就能确定未来所有时间的 <img alt="\Psi(x, t)" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%5CPsi%28x%2C+t%29"/> ，就像在经典力学中，牛顿定律决定了未来所有时间的 <img alt="x(t)" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=x%28t%29"/> 。 <img alt="^2" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%5E2"/> &lt;/context&gt;</p><p data-pid="8L-9boIG">&lt;target&gt;薛定谔方程在逻辑上与牛顿第二定律的作用相似&lt;/target&gt;</p><p data-pid="kTPOO7FF">&lt;hint&gt;怎样&lt;/hint&gt;</p><p data-pid="FiwO2UWH">有&lt;context&gt;：「<b>问题</b>：薛定谔方程在力学中作用，和牛顿第二定律有何相似之处？<b>答案</b>：只要有合适的初始条件，两者都可以确定系统在任何时间点的状态。」</p><p data-pid="guDOhVtE">没有：「薛定谔方程如何与牛顿第二定律相似呢？<b>答案</b>：薛定谔方程描述了量子状态随环境的演变，就如同牛顿第二定律描述了物体受力后的加速度变化。」</p><p data-pid="YMOLaW2J">前者更贴近原文的语境。</p><h2 id="sec-2"><br/>链接至本文（已汉化）</h2><ul><li data-pid="2c7QS6xy"><a class="internal tm-internal" data-tm-id="656760808" href="656760808.html">GPT-4 在指导下，通常能够从解释性文本中为陈述性知识生成可用的间隔重复卡片</a></li><li data-pid="k0BwCBN_"><a class="internal tm-internal" data-tm-id="716570823" href="716570823.html">叶峻峣：使用机器学习从解释性文本中生成优质的间隔重复卡片</a></li></ul><h2 id="sec-3">声明</h2><p data-pid="a1kSLiu9">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="Uy-oUh0g"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 GPT-4、校对 <span class="nolink">Jarrett</span>Ye<br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/z5LQFLXHFLrb4nYAtLrB3JBzNyJng8fYHVJYN" rel="noopener noreferrer" target="_blank">In prompt generation, LLMs may perform better with ample context (andymatuschak.org)</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 使用机器学习从解释性文本中生成优质的间隔重复卡片 <a class="tm-internal" data-tm-id="716570823" href="716570823.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 对于卡片生成任务，大型语言模型（LLM）经常需要额外的提示来确定强化的视角 <a class="tm-internal" data-tm-id="644435780" href="644435780.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">实例</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/z5LQFLXHFLrb4nYAtLrB3JBzNyJng8fYHVJYN" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/z5LQFLXHFLrb4nYAtLrB3JBzNyJng8fYHVJYN ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/645670312" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="644435780"><div class="post-meta"><time datetime="2023-07-19">2023-07-19</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 7 · 2 分钟</span></div><div class="post-summary"><h2><a href="644435780.html"><span>对于卡片生成任务，大型语言模型（LLM）经常需要额外的提示，来确定从何种角度制卡</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者观察到，为间隔重复卡片生成任务只提供文本与高亮范围，模型往往无法猜出用户想强化的角度；加入“为什么”或“符号”等提示通常能改善结果。真正关键的是卡片与个人兴趣、目标和注意点的联系，而模型难以直接获知这些；作者提出可尝试从个人阅读笔记生成卡片。</p><p class="tags"><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8D%A1%E7%89%87%E7%94%9F%E6%88%90">#卡片生成</a><a href="../?q=%E6%8F%90%E7%A4%BA%E8%AE%BE%E8%AE%A1">#提示设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2033320783427129789"><div class="post-meta"><time datetime="2026-04-30">2026-04-30</time><a class="meta-author" href="../?q=Ozzie%20Kirkby">Ozzie Kirkby</a><span>▲ 78 · 37 分钟</span></div><div class="post-summary"><h2><a href="2033320783427129789.html"><span>记忆机器：LLM 能否根据读者的划线生成持久的抽认卡？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>间隔重复系统需要的不是泛泛问答卡，而是过数月仍能稳定提示同一记忆、又保留划线内容吸引力的问题。人工编写耗时，提示也会陈旧；作者检验能否以读者随手划线作为兴趣信号，让模型低成本生成可长期复习的提示。 在42名经验用户的实验中，读者对文章细节的兴趣差异明显，所选兴趣的平均重合仅39%；通用题库平均需删除三分之一以上的提示才符合个人…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E6%8F%90%E7%A4%BA%E8%B4%A8%E9%87%8F">#提示质量</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="716570823"><div class="post-meta"><time datetime="2024-08-27">2024-08-27</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 16 · 4 分钟</span></div><div class="post-summary"><h2><a href="716570823.html"><span>使用机器学习从解释性文本中生成优质的间隔重复卡片</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这则笔记梳理用机器学习从解释性文本生成间隔重复卡片的难点：选择要强化的概念与撰写卡片是两项不同任务；语言模型可能需要卡片原则、明确的考查角度和充足上下文，处理复杂材料仍有不足。作者列出更简单的生成、改写、等价性与剧透检测子任务，并汇集数据集、模型和自动出题研究作为后续阅读线索。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">#机器学习</a><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2033687067805357981"><div class="post-meta"><time datetime="2026-05-01">2026-05-01</time><a class="meta-author" href="../?q=Jarrett%20Ye">Jarrett Ye · 回答</a><span>▲ 114 · 23 分钟</span></div><div class="post-summary"><h2><a href="2033687067805357981.html"><span>哪些知乎答主被大语言模型记住了？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>虽然链接都是错的，但是大方向上没错。 还是有概率把 Thoughts Memo 和 YJango 搞混： 不过直接问我实名好像信息更全面一些（当然错的细节也更多了）： 不枉我实名上网这么多年了属于是，离赛博永生又近一步。 我认为这个时代更应该多在网络上写作，因为你写下的每一个字将来都有可能被纳入训练语料库，成为塑造未来AI思想…</p><p class="tags"><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=AI%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE">#AI训练数据</a><a href="../?q=%E7%BD%91%E9%A1%B5%E5%8F%AF%E8%AE%BF%E9%97%AE%E6%80%A7">#网页可访问性</a><a href="../?q=%E4%B8%AA%E4%BA%BA%E7%BB%8F%E9%AA%8C">#个人经验</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2076357286067552264"><div class="post-meta"><time datetime="2026-08-28">2026-08-28</time><a class="meta-author" href="../?q=Fernando%20Borretti">Fernando Borretti</a><span>▲ 65 · 4 分钟</span></div><div class="post-summary"><h2><a href="2076357286067552264.html"><span>间隔重复的适用性</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文认为，间隔重复最适合简短、清晰、无歧义的事实映射，如词汇或元素符号；数学等概念性知识则需先建立理解，再设法提炼无歧义的问题。关系型事实较易制卡，孤立的抽象断言常会导致是非题或问题含糊。作者还质疑 AI 能否替学习者决定哪些概念重要，并建议收集如何从具体文本设计概念卡片的案例。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%A6%82%E5%BF%B5%E5%AD%A6%E4%B9%A0">#概念学习</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a><a href="../?q=%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0">#数学学习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="656354899"><div class="post-meta"><time datetime="2023-09-15">2023-09-15</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 6 · 3 分钟</span></div><div class="post-summary"><h2><a href="656354899.html"><span>对于卡片生成任务，选择要强化的目标概念，和为这些目标概念编写卡片，是两个独立的问题</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Matuschak 将卡片生成拆成两个问题：选择哪些概念值得强化，以及如何为指定概念写卡片。他认为后者已有较清晰的写作原则，模型在获得目标后更容易执行；前者需要了解读者兴趣、已有知识和目标，因而更难自动化。作者建议由读者先高亮重要内容，再让模型协助写卡片。</p><p class="tags"><a href="../?q=%E5%8D%A1%E7%89%87%E7%94%9F%E6%88%90">#卡片生成</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%A3%80%E7%B4%A2%E6%8F%90%E7%A4%BA">#检索提示</a><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

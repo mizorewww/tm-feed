@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第三十章 诊断性考试的技术深度剖析</title>
+<meta name="description" content="Math Academy利用知识图谱中的前置关系、相关性和压缩后的覆盖节点，用少量问题推断知识画像，接受有限的精度取舍以降低题量。系统同时记录掌握与置信度：答对高阶题却错基础题，或答对但耗时过长，都可能产生低置信区域。正负证据的符号判断掌握、幅度表示信心；正确答案向前置知识传播正证据，错误向后继传播负证据，过慢的正确答案权重较低。勉强达到门槛的主题先标为有…">
+<meta name="author" content="Justin Skycak">
+<meta property="og:title" content="第三十章 诊断性考试的技术深度剖析">
+<meta property="og:description" content="Math Academy利用知识图谱中的前置关系、相关性和压缩后的覆盖节点，用少量问题推断知识画像，接受有限的精度取舍以降低题量。系统同时记录掌握与置信度：答对高阶题却错基础题，或答对但耗时过长，都可能产生低置信区域。正负证据的符号判断掌握、幅度表示信心；正确答案向前置知识传播正证据，错误向后继传播负证据，过慢的正确答案权重较低。勉强达到门槛的主题先标为有…">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2025-05-08">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="1903424959960843411" data-rec-seeds="1903464003432322809,1902336777538245191,1896508097243104808,18159574293,1919092573588416310,1904984795546628821,26785682466,1916803246829314569">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2025-05-08">2025-05-08</time>
+          <a class="tag" href="../?q=The%20Math%20Academy%20Way">The Math Academy Way</a>
+          <a class="tag" href="../?q=Justin%20Skycak">Justin Skycak</a>
+          <span>约 7 分钟</span>
+          <span>▲ 22</span>
+        </p>
+        <h1>第三十章 诊断性考试的技术深度剖析</h1>
+        
+        <p class="tags"><a href="../?q=%E8%87%AA%E9%80%82%E5%BA%94%E8%AF%84%E4%BC%B0">#自适应评估</a><a href="../?q=%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1">#知识图谱</a><a href="../?q=%E8%AF%8A%E6%96%AD%E6%B5%8B%E8%AF%95">#诊断测试</a><a href="../?q=%E7%B2%BE%E7%86%9F%E5%AD%A6%E4%B9%A0">#精熟学习</a><a href="../?q=%E9%97%AE%E9%A2%98%E9%80%89%E6%8B%A9">#问题选择</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">最小化问题数量</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">知识置信度和条件性完成机制</a></li><li class="level-3"><a href="#sec-3" data-toc-target="sec-3">| 理论</a></li><li class="level-3"><a href="#sec-4" data-toc-target="sec-4">| 示例</a></li><li class="level-3"><a href="#sec-5" data-toc-target="sec-5">| 实现</a></li><li class="level-2"><a href="#sec-6" data-toc-target="sec-6">保守型与激进型掌握边界</a></li><li class="level-2"><a href="#sec-7" data-toc-target="sec-7">补充诊断</a></li><li class="level-2"><a href="#sec-8" data-toc-target="sec-8">选择优质的诊断问题</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <blockquote data-pid="rDVZ9V6Q"><b>注：</b>本章将展开阐述第四章<sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>和第二十一章<sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>中引入的概念。</blockquote><p data-pid="f_QINs-v">⠀⠀⠀<b>摘要：</b>Math Academy 采用自适应诊断技术来推断每位新生的知识画像。这种创新的诊断评估算法是利用知识图谱中的因果关系和基于相关性的推理，来高效且精确地评估学生的知识边界，同时最大限度地减少诊断中的问题数量。该算法能够衡量知识掌握的置信度并处理矛盾信息，使其诊断能够适应诸如前置知识与后继知识的掌握情况，以及准确性与答题时间冲突等微妙场景。对于那些经推断知识掌握置信度较低的领域，系统采用条件性完成机制，从而能够在收集更多关于学生表现的数据时，持续优化其学习定位。</p><h2 id="sec-1">最小化问题数量</h2><p data-pid="-l-tw0Jh">如果没有智能算法的支持，我们将需要海量的诊断问题来推断学生的知识边界。课程通常包含多达数百个主题，再加上两倍数量的基础主题——这意味着如果我们从最基础开始，为每个主题都设置诊断问题，那么直到学生无法正确回答为止，我们最终会向学生提出多达 500 多个问题。</p><p data-pid="BW0BG0Av">然而，Math Academy 通过一种创新的诊断问题选择算法，成功地将诊断问题数量减少了一个数量级。我们的诊断系统对于低年级课程（如前代数）通常只需要 20-40 个问题，对于高年级课程（如微积分）则需要 40-60 个问题。</p><p data-pid="Leg9x0NC">我们能够实现这种高效诊断的原因有两个：</p><ol><li data-pid="B-93WgW9">除了利用知识间的「因果」包含关系，我们还采用了更灵活的基于相关性的推理方法。<br/><br/></li><li data-pid="KDSXmWwK">我们预先将知识图谱压缩成最少数量的主题节点，这些节点能以所需精细度完整「覆盖」一门课程及其基础知识体系。</li></ol><p data-pid="u6EuK_d2">基于这些策略，我们的诊断评估算法在准确性和精确性方面得到了高度的优化。虽然一个完美准确且精确的诊断可能需要多达上千道题目，但是通过牺牲微不足道的准确度和精确度，我们成功将所需题目数量减少了一个数量级。</p><p data-pid="pWtQ1CGw">（当然，高度优化的算法也面临着被错误输入干扰的更大风险——但我们通过检测并重新评估那些可能被错误判断的问题来有效降低这种风险。）</p><h2 id="sec-2">知识置信度和条件性完成机制</h2><h3 id="sec-3">| 理论</h3><p data-pid="6Vz_wYsO">在诊断过程中，Math Academy 还测量<b>知识置信度</b>，即我们判断学生是否掌握某个主题的信心程度。大多数诊断能够完成并对学生的整体知识状况给出高置信度的评估，但有时也会出现一些置信度较低的区域。这些并非源于诊断覆盖范围不足，而是因为学生的答题表现中出现了矛盾冲突的情况。</p><p data-pid="EPsVuXpD">主要有两种冲突类型：</p><ol><li data-pid="D8w0U5oA">前置知识与后续知识的冲突：学生能正确回答较高级主题的问题，却错误回答了较基础的问题，这可能表明学生的知识画像中存在缺口。<br/><br/></li><li data-pid="W9pWDgFY">准确性与时间的冲突：学生提交了正确答案，但解题时间过长，这表明他们可能并未真正掌握相应主题。</li></ol><p data-pid="DbTyTgoM">为了处理这些冲突，我们精心权衡两个矛盾的情形，形成对学生知识状态的高度细致化诊断，就像一位优秀的家教那样，能够根据后续观察恰当地调整评估结果。</p><p data-pid="bWeWKQKL">特别地，如果评估结果刚好「勉强」达到让学生可以跳过某些主题的临界点，系统会将这些主题标记为<b>有条件完成</b>：系统最初会假定学生已掌握这些主题并据此安排学习任务，但一旦学生在学习过程中遇到困难，系统将立即沿着适当的学习路径进行「回溯」调整。</p><h3 id="sec-4">| 示例</h3><p data-pid="q1KB1kaA">举例来说，假设：</p><ul><li data-pid="584LKqyn">学生 A 在诊断测试中答对了很多题，但大多数题目都花费了过长时间；而<br/><br/></li><li data-pid="4KrbGi6o">学生 B 正确回答的题目较少，但答题又快又自信。</li></ul><p data-pid="2p98rpwI">那么结果是：</p><ul><li data-pid="4Gv2E3VG">学生 A 会被认为掌握了更多的整体知识，但其中相当一部分是低置信度的知识（如果他们遇到困难，这部分知识可能会被遗忘）；而<br/><br/></li><li data-pid="YdbwiVfo">学生 B 虽然整体知识量较少，但可能拥有更多高置信度的知识。</li></ul><figure data-size="normal"><img class="origin_image zh-lightbox-thumb" data-original-token="v2-0defb5e4cf75de5af719e7f90d2c9545" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://picx.zhimg.com/v2-0defb5e4cf75de5af719e7f90d2c9545_r.jpg" width="1277"/></figure><h3 id="sec-5">| 实现</h3><p data-pid="gIOvw32e">为了实现这种机制，我们在每个主题上采用<b>正负平衡值</b>来权衡诊断证据。</p><ul><li data-pid="6pQV3T29"><b>正负号</b>（正数或非正数）用来预测学生是否掌握该主题。</li><li data-pid="wMcQz0Ob">平衡值的<b>大小</b>则代表对这一预测的置信程度。</li></ul><p data-pid="cwgjEJJe">每个答案都关联一个<b>权重</b>，代表其对相应主题正负平衡的贡献。默认情况下，答案权重为 1。然而，如果学生提交了正确答案但花费的时间远超过已掌握该主题的学生的预期时间，那么这个答案的权重会相应降低。虽然这个答案仍然会给学生提供正面评价，但由于解题时间越长（超过合理时间标准），那么获得的正面评价就越少。<br/>一旦确定了答案的权重值，它会在整个知识图谱中传播，相应地更新各主题的正负值平衡：</p><ul><li data-pid="aLxfuTDF">一个<b>正确的</b>答案会<b>提高</b>该回答所涉及主题及其<b>前置知识点</b>（以及这些前置知识点的前置知识点，以此类推）的正负值平衡，而<br/><br/></li><li data-pid="gfKQwe8X">一个<b>错误的</b>答案则会<b>降低</b>该回答所涉及主题及其<b>后续知识点</b>（以及这些后续知识点的后续知识点，以此类推）的正负值平衡。</li></ul><p data-pid="wCb5VA32">在处理完所有诊断性问题后，任何具有正向正负值权重的主题都会等同于其正负值平衡数量，被记入重复练习次数。</p><h2 id="sec-6">保守型与激进型掌握边界</h2><p data-pid="YGYJS_R5">曾经有这样的情况：学生完成了某门课程，随后参加了同一课程的分级测试，却惊讶地发现测试结果显示他们在该课程中的知识水平比预期低。但这实际上是一个正常的结果，尤其对于基础较弱的学生而言。</p><p data-pid="6aGsz4tH">学生成功完成了课程的所有作业，并不意味着他们能在该课程的综合期末考试中取得优异成绩。这一点在分级测试中尤为明显，因为分级测试比普通考试更具挑战性：与普通考试不同，</p><ul><li data-pid="IgBFjcd7">分级测试必须覆盖每一个知识点（包括所有最难的主题），并且<br/><br/></li><li data-pid="_ytuJgU5">它必须包含每个知识点中最高级别的问题类型（如果学生只会解决简单情况，我们就不能让他们跳过该知识点）。</li></ul><p data-pid="q5sSvDor">此外，虽然我们常常将学生的「掌握边界」描述为贯穿学生知识图谱的单一界线，但实际上学生拥有的是一个「掌握区域」，其下限是保守型掌握边界，上限则是激进型掌握边界。分级测试测量的是保守型掌握边界，而基于掌握的分层学习则是在激进型掌握边界上运作的。</p><p data-pid="SBfntVCe">当学生成功完成一节课程后，他们已经充分掌握了该主题的知识，足以继续在已学内容的基础上叠加学习新知识，但他们可能还未达到对该主题的自主运用程度。打个比方，就像体操运动员在训练中学习新动作时，需要一段时间的练习，才能在比赛中自信展示这项技能，但这并不妨碍他们在此期间继续训练更高难度的动作。</p><h2 id="sec-7">补充诊断</h2><p data-pid="KKgZ2XCd">随着知识图谱中不断添加新主题和修订知识连接关系，从学生初始评估诊断中推断出的知识画像可能会逐渐过时。当这种情况发生时，我们会安排名为<b>补充诊断</b>的小型测评，以更新学生的知识状况。</p><p data-pid="0WCNFdOD">补充诊断所涵盖的主题是那些在原始诊断中未直接评估过的，并且在考虑原始诊断及之后所有评估答案时，正负权重平衡为零的主题。补充诊断采用与原始诊断相同的高效推断方法，因此通常规模较小，最多只包含几个问题。</p><h2 id="sec-8">选择优质的诊断问题</h2><p data-pid="Q7rL6ERW">为特定主题选择一个好的诊断问题需要考虑许多细微因素。</p><ul><li data-pid="O8w0HLO1">一方面，诊断性问题不能过于简单。每个诊断性问题应当具有足够的难度，使得当学生能够正确作答时，专业导师或教师能够判断出该学生已经完全掌握了相应的知识点。<br/><br/></li><li data-pid="Y_j5y7Ce">此外，诊断性问题应当考察相应主题的所有前置知识。否则，如果某个前置知识未被问题覆盖，那么即使学生不了解这一前置知识，也可能正确回答问题，从而错误地被认为掌握了这些前置知识。<br/><br/></li><li data-pid="BCbNYAqU">尽管如此，诊断性问题通常不应是其对应主题中最具挑战性的问题。问题越复杂，学生就越有可能因为一些小失误而犯错。</li></ul><p data-pid="BF7Fwx0Z">因此，每个诊断性问题应当选择为最简单的问题，同时满足：</p><ol><li data-pid="Sw7jXNDs">能够让专业导师或教师确信学生已经掌握了相应的主题，并且</li><li data-pid="xBI-U8iA">考察了该主题的所有前置知识。</li></ol><p data-pid="KSIzxict">在实际操作中，由于需要考虑诸多细微因素，我们通常通过人工方式选择诊断性问题。</p><hr/><p data-pid="Rj0-4Gin">上一章：</p><a class="internal tm-internal" data-tm-id="1902336777538245191" href="1902336777538245191.html">第二十六章 间隔重复的技术深度剖析 - 知乎</a><p data-pid="9ClM8dxK">下一章：</p><a class="internal tm-internal" data-tm-id="1903464003432322809" href="1903464003432322809.html">第二十八章 学习效率的技术深度剖析 - 知乎</a><hr/><blockquote data-pid="VuJdCQZl"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 claude-3.7-sonnet，校对 Jarrett Ye、白侑<br/>原文：<a class="wrap external" href="https://docs.google.com/document/d/1LLZK_34Oer9LwuqAv-pqxfXlR8n7V8zJ_MO323R7egI" rel="noopener noreferrer" target="_blank">The Math Academy Way: Using the Power of Science to Supercharge Student Learning</a></blockquote><p></p><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 第四章 核心技术：知识图谱 <a class="tm-internal" data-tm-id="18159574293" href="18159574293.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 第二十一章 针对性补习 <a class="tm-internal" data-tm-id="1896508097243104808" href="1896508097243104808.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">最小化问题数量</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">知识置信度和条件性完成机制</a></li><li class="level-3"><a href="#sec-3" data-toc-target="sec-3">| 理论</a></li><li class="level-3"><a href="#sec-4" data-toc-target="sec-4">| 示例</a></li><li class="level-3"><a href="#sec-5" data-toc-target="sec-5">| 实现</a></li><li class="level-2"><a href="#sec-6" data-toc-target="sec-6">保守型与激进型掌握边界</a></li><li class="level-2"><a href="#sec-7" data-toc-target="sec-7">补充诊断</a></li><li class="level-2"><a href="#sec-8" data-toc-target="sec-8">选择优质的诊断问题</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Justin%20Skycak">Justin Skycak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://docs.google.com/document/d/1LLZK_34Oer9LwuqAv-pqxfXlR8n7V8zJ_MO323R7egI/edit" target="_blank" rel="noopener noreferrer">https://docs.google.com/document/d/1LLZK_34Oer9LwuqAv-pqxfXlR8n7V8zJ_MO323R7egI/edit ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/1903424959960843411" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="1903464003432322809"><div class="post-meta"><time datetime="2025-05-11">2025-05-11</time><a class="meta-author" href="../?q=Justin%20Skycak">Justin Skycak</a><span>▲ 41 · 7 分钟</span></div><div class="post-summary"><h2><a href="1903464003432322809.html"><span>第三十一章 学习效率的技术深度剖析</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本章把理论最大学习效率理解为尽可能通过新主题中的包含关系完成旧知识的隐式复习，独立卡片则缺少这种压缩机会。Math Academy称其知识图谱已能接近该上界，并以“重复压缩”把多项到期内容归入更少任务；实际效果首先取决于解题质量，低准确率意味着更多工作才能取得同样进展。 速度以每工作日完成的XP衡量。作者认为，更快推进知识前沿…</p><p class="tags"><a href="../?q=%E5%AD%A6%E4%B9%A0%E6%95%88%E7%8E%87">#学习效率</a><a href="../?q=%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1">#知识图谱</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%89%8D%E7%BD%AE%E5%85%B3%E7%B3%BB">#前置关系</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1919092573588416310"><div class="post-meta"><time datetime="2025-06-19">2025-06-19</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 164 · 5 分钟</span></div><div class="post-summary"><h2><a href="1919092573588416310.html"><span>目前人工智能在教育领域都有哪些实际应用？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Math Academy 建立了一个全自动的数学自助学习系统，就是基于人工智能的。 本科毕业三年后，我又花了两个多月的时间，每天一小时，重新学完了概率与统计： 这是我最近一个月的学习录播： 合集·用 Math Academy 自学（重学）概率与统计 整个学习的体验是非常流畅的： 读概念介绍（1 分钟） 读例题（1 分钟） 做两…</p><p class="tags"><a href="../?q=%E7%B2%BE%E7%86%9F%E5%AD%A6%E4%B9%A0">#精熟学习</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%95%B0%E5%AD%A6%E6%95%99%E8%82%B2">#数学教育</a><a href="../?q=%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1">#知识图谱</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1902336777538245191"><div class="post-meta"><time datetime="2025-05-05">2025-05-05</time><a class="meta-author" href="../?q=Justin%20Skycak">Justin Skycak</a><span>▲ 35 · 9 分钟</span></div><div class="post-summary"><h2><a href="1902336777538245191.html"><span>第二十九章 间隔重复的技术深度剖析</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Math Academy的FIRe把高级主题成功练习沿包含关系向下计入基础主题，基础失败则向上传递；部分包含按题目实际涉及基础技能的概率折算，过早复习也降权。前置关系不等于实际练习包含，若只需概念理解，权重可为零。手工只需设置附近、非零且不能由重复流推断的关键关系，而非所有主题对。 跨课程等效技能即便不是先修祖先，也可设包含关…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=FIRe">#FIRe</a><a href="../?q=%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1">#知识图谱</a><a href="../?q=%E5%85%88%E4%BF%AE%E7%9F%A5%E8%AF%86">#先修知识</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1936564122906003135"><div class="post-meta"><time datetime="2025-08-07">2025-08-07</time><a class="meta-author" href="../?q=Math%20Academy%2C%20LLC">Math Academy, LLC</a><span>▲ 89 · 7 分钟</span></div><div class="post-summary"><h2><a href="1936564122906003135.html"><span>Math Academy 现有的课程</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本文是Math Academy课程目录，覆盖四年级起步、预代数、高中、SAT/AP、成人补基础及大学数学，并以自适应诊断识别前置缺口和已掌握内容。四年级入门要求掌握12以内乘法表并能独立阅读；文中列WASC认证与经学校门户安排UC学分成绩单的方式。 高中传统和综合序列内容相同而顺序不同，荣誉序列三年学完含预微积分的四年内容。成…</p><p class="tags"><a href="../?q=Math%20Academy">#Math Academy</a><a href="../?q=%E6%95%B0%E5%AD%A6%E8%AF%BE%E7%A8%8B">#数学课程</a><a href="../?q=%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1">#课程设计</a><a href="../?q=%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86">#前置知识</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1907408881207976645"><div class="post-meta"><time datetime="2025-05-27">2025-05-27</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 49 · 14 分钟</span></div><div class="post-summary"><h2><a href="1907408881207976645.html"><span>Math Academy 的 AI 是如何工作？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Math Academy以专家系统模拟辅导决策：知识图谱编码主题及依赖关系，学生模型用作答和间隔重复更新画像，诊断算法寻找已知与未知的边界，任务选择则优化单位时间学习量。诊断优先选择信息量大的题，并综合正误与用时；边缘掌握可先有条件放行，之后遇阻再回查。 FIRe将高阶练习中实际使用的基础技能计入隐式复习，但「学新课前需要懂」…</p><p class="tags"><a href="../?q=%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1">#知识图谱</a><a href="../?q=%E5%AD%A6%E7%94%9F%E6%A8%A1%E5%9E%8B">#学生模型</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%87%AA%E9%80%82%E5%BA%94%E5%AD%A6%E4%B9%A0">#自适应学习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1896508097243104808"><div class="post-meta"><time datetime="2025-04-19">2025-04-19</time><a class="meta-author" href="../?q=Justin%20Skycak">Justin Skycak</a><span>▲ 31 · 8 分钟</span></div><div class="post-summary"><h2><a href="1896508097243104808.html"><span>第二十一章 针对性补习</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本章介绍 Math Academy 的自动化针对性补习，目标是帮助学生独立达到原标准。遇到困难先增加练习或换主题休息后再试，反复卡在同一环节时，按知识图谱追溯具体前置技能；相关主题的学习速度也用于预测难点，提前增加必要复习。 诊断不仅查课程内容，也查更基础的缺口，但允许先学习不依赖缺口的目标课程内容，培养兴趣与习惯，再在必须补…</p><p class="tags"><a href="../?q=%E4%B8%AA%E6%80%A7%E5%8C%96%E8%BE%85%E5%AF%BC">#个性化辅导</a><a href="../?q=%E7%B2%BE%E7%86%9F%E5%AD%A6%E4%B9%A0">#精熟学习</a><a href="../?q=%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86">#前置知识</a><a href="../?q=%E8%A1%A5%E6%95%91%E6%95%99%E5%AD%A6">#补救教学</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

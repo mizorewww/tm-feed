@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>最优间隔</title>
+<meta name="description" content="这篇术语译文将最优间隔解释为分散复习同一知识点的理想时间，通常以复习时可提取性约 90% 为参照，并介绍 SuperMemo 17 以新学材料估算第一最优间隔的做法。作者给出一条遗忘曲线及约四天的估计，同时说明材料难度、初学程度和重复样本不足会影响曲线。">
+<meta name="author" content="Piotr Wozniak">
+<meta property="og:title" content="最优间隔">
+<meta property="og:description" content="这篇术语译文将最优间隔解释为分散复习同一知识点的理想时间，通常以复习时可提取性约 90% 为参照，并介绍 SuperMemo 17 以新学材料估算第一最优间隔的做法。作者给出一条遗忘曲线及约四天的估计，同时说明材料难度、初学程度和重复样本不足会影响曲线。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-11-16">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="584041631" data-rec-seeds="563438547,274352214,559819340,559298549,574628398,445497724,595158577,456205621">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2022-11-16">2022-11-16</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%20%26%20%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">间隔重复 &amp; 注意力管理</a>
+          <a class="tag" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a>
+          <span>约 2 分钟</span>
+          <span>▲ 8</span>
+        </p>
+        <h1>最优间隔</h1>
+        
+        <p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%9C%80%E4%BC%98%E9%97%B4%E9%9A%94">#最优间隔</a><a href="../?q=%E9%81%97%E5%BF%98%E6%9B%B2%E7%BA%BF">#遗忘曲线</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=SuperMemo">#SuperMemo</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="8sg8kjAU">在 <a class="wrap external" href="https://supermemo.guru/wiki/SuperMemo" rel="noopener noreferrer" target="_blank">SuperMemo</a> 中，<b>最优间隔</b>是分散<a class="wrap external" href="https://supermemo.guru/wiki/Review" rel="noopener noreferrer" target="_blank">复习</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>单个<a class="wrap external" href="https://supermemo.guru/wiki/Item" rel="noopener noreferrer" target="_blank">知识片段</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>的理想时间间隔。最优间隔可能会最大化记忆效果（即<a class="wrap external" href="https://supermemo.guru/wiki/Stabilization" rel="noopener noreferrer" target="_blank">稳定化</a>）<sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup>。在实际应用中，设置知识的<a class="wrap external" href="https://supermemo.guru/wiki/Retention" rel="noopener noreferrer" target="_blank">保留率</a>也许是最优的量度标准。在大多数情况下，<b>最优间隔</b>即暗示了一个遗忘指数为 10% 的<a class="wrap external" href="https://supermemo.guru/wiki/Interval" rel="noopener noreferrer" target="_blank">间隔</a>。在较新的 <a class="wrap external" href="https://supermemo.guru/wiki/SuperMemo" rel="noopener noreferrer" target="_blank">SuperMemos</a> 中，当<a class="wrap external" href="https://supermemo.guru/wiki/Stability" rel="noopener noreferrer" target="_blank">稳定性</a><sup class="cite" id="cite-4"><a href="#ref-4">[4]</a></sup>被用于代指<a class="wrap external" href="https://supermemo.guru/wiki/Interval" rel="noopener noreferrer" target="_blank">间隔</a>时，其也等同于<a class="wrap external" href="https://supermemo.guru/wiki/Retrievability" rel="noopener noreferrer" target="_blank">可提取性</a><sup class="cite" id="cite-5"><a href="#ref-5">[5]</a></sup>为 0.9 时的<b>最优间隔</b>。在 <a class="wrap external" href="https://supermemo.guru/wiki/SuperMemo_for_Windows" rel="noopener noreferrer" target="_blank">SuperMemo 17</a>（和后续版本）中，很容易就能找到<b>第一个最优间隔</b>，因为它和<a class="wrap external" href="https://supermemo.guru/wiki/First_forgetting_curve" rel="noopener noreferrer" target="_blank">第一条遗忘曲线</a>的<a class="wrap external" href="https://supermemo.guru/wiki/Recall" rel="noopener noreferrer" target="_blank">保留率</a><sup class="cite" id="cite-6"><a href="#ref-6">[6]</a></sup>水平下降到 90% 时相一致。SuperMemo 中的间隔受限于<a class="wrap external" href="https://supermemo.guru/wiki/Interval_dispersion" rel="noopener noreferrer" target="_blank">随机分散间隔</a>。</p><figure data-size="normal"><img class="origin_image zh-lightbox-thumb" data-original-token="v2-77db913648cf926f1705c5542f0c6465" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://pic4.zhimg.com/v2-77db913648cf926f1705c5542f0c6465_r.jpg" width="500"/><figcaption>Forgetting curve collected with SuperMemo 17</figcaption></figure><p data-pid="zjRvEr-n">图：<a class="wrap external" href="https://supermemo.guru/wiki/First_forgetting_curve" rel="noopener noreferrer" target="_blank">第一条遗忘曲线</a>，数据来自新学知识，用 <a class="wrap external" href="https://supermemo.guru/wiki/SuperMemo" rel="noopener noreferrer" target="_blank">SuperMemo</a> 收集。由于学习过程中新引入的学习材料是异质的，因此使用了幂函数近似。项目未按照<a class="wrap external" href="https://supermemo.guru/wiki/Memory_complexity" rel="noopener noreferrer" target="_blank">记忆复杂性</a><sup class="cite" id="cite-7"><a href="#ref-7">[7]</a></sup>区分，结果图线为衰减常数不同的指数型遗忘的叠加。在半对数图上，幂函数回归曲线是对数的（黄色），而且看起来几乎是直线。曲线显示，在所提出的案例中，回忆率在四年内仅仅下降到 58%，可以归功于所记忆的知识在现实生活中经历了多次使用。在<a class="wrap external" href="https://supermemo.guru/wiki/Retrievability" rel="noopener noreferrer" target="_blank">可提取性</a><sup class="cite" id="cite-5"><a href="#ref-5">[5]</a></sup>为 90% 的情况下，复习的第一个<span class="nolink">最优间隔</span>是 3.96 天。<a class="wrap external" href="https://supermemo.guru/wiki/Forgetting_curve" rel="noopener noreferrer" target="_blank">遗忘曲线</a><sup class="cite" id="cite-8"><a href="#ref-8">[8]</a></sup>可以用公式 R=0.9906*power(interval,-0.07) 来描述，其中 0.9906 是一天后的回忆率，而 -0.07 是衰减常数。在这种情况下，由该公式可得出 4 天后回忆率为 90% 。本图线使用了 80,399 次重复来绘制。如果材料中<a class="wrap external" href="https://supermemo.guru/wiki/Memory_complexity" rel="noopener noreferrer" target="_blank">困难</a>知识较高比例（尤其是<a class="wrap external" href="https://supermemo.guru/wiki/20_rules" rel="noopener noreferrer" target="_blank">表述不清的知识</a><sup class="cite" id="cite-9"><a href="#ref-9">[9]</a></sup>），或者是学生初次接触，助记能力较差，回忆率会较大幅度地下降。间隔 15-20 处曲线较不规则，这是因为重复样本数量不够（在对数表上后来的间隔类别包含了更大的间隔范围）</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="aMPJFnIV"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 HuangSir-create-life<br/>原文：<a class="wrap external" href="https://supermemo.guru/wiki/Optimum_interval" rel="noopener noreferrer" target="_blank">Optimum interval - supermemo.guru</a><br/>本<a class="wrap external" href="https://supermemo.guru/wiki/Glossary" rel="noopener noreferrer" target="_blank">术语表</a>条目用于解释《<a class="wrap external" href="https://supermemo.guru/wiki/Problem_of_Schooling" rel="noopener noreferrer" target="_blank">间隔重复的历史</a><sup class="cite" id="cite-10"><a href="#ref-10">[10]</a></sup>》（2017）作者：<a class="wrap external" href="https://supermemo.guru/wiki/Piotr_Wozniak" rel="noopener noreferrer" target="_blank">彼得·沃兹尼亚克</a><sup class="cite" id="cite-11"><a href="#ref-11">[11]</a></sup></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 重复 <a class="tm-internal" data-tm-id="572444486" href="572444486.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 条目 <a class="tm-internal" data-tm-id="571700330" href="571700330.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 稳定化 <a class="tm-internal" data-tm-id="595158577" href="595158577.html">站内阅读 ↗</a></li><li id="ref-4"><a aria-label="返回正文" class="ref-back" href="#cite-4">↩</a> 记忆稳定性 <a class="tm-internal" data-tm-id="559298549" href="559298549.html">站内阅读 ↗</a></li><li id="ref-5"><a aria-label="返回正文" class="ref-back" href="#cite-5">↩</a> 记忆可提取性 <a class="tm-internal" data-tm-id="559819340" href="559819340.html">站内阅读 ↗</a></li><li id="ref-6"><a aria-label="返回正文" class="ref-back" href="#cite-6">↩</a> 记忆召回 <a class="tm-internal" data-tm-id="563438547" href="563438547.html">站内阅读 ↗</a></li><li id="ref-7"><a aria-label="返回正文" class="ref-back" href="#cite-7">↩</a> 记忆复杂性 <a class="tm-internal" data-tm-id="304800091" href="304800091.html">站内阅读 ↗</a></li><li id="ref-8"><a aria-label="返回正文" class="ref-back" href="#cite-8">↩</a> 遗忘曲线 <a class="tm-internal" data-tm-id="274352214" href="274352214.html">站内阅读 ↗</a></li><li id="ref-9"><a aria-label="返回正文" class="ref-back" href="#cite-9">↩</a> 20 条知识表述规则（20 周年版） <a class="tm-internal" data-tm-id="269997143" href="269997143.html">站内阅读 ↗</a></li><li id="ref-10"><a aria-label="返回正文" class="ref-back" href="#cite-10">↩</a> 0 目录《间隔重复的历史》 <a href="https://zhuanlan.zhihu.com/p/375379522" rel="noopener noreferrer" target="_blank">https://zhuanlan.zhihu.com/p/375379522</a></li><li id="ref-11"><a aria-label="返回正文" class="ref-back" href="#cite-11">↩</a> 彼得·沃兹尼亚克 <a class="tm-internal" data-tm-id="303204832" href="303204832.html">站内阅读 ↗</a></li></ol>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Piotr%20Wozniak">Piotr Wozniak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://supermemo.guru/wiki/Optimum_interval" target="_blank" rel="noopener noreferrer">https://supermemo.guru/wiki/Optimum_interval ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/584041631" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="563438547"><div class="post-meta"><time datetime="2022-09-11">2022-09-11</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 6 · 2 分钟</span></div><div class="post-summary"><h2><a href="563438547.html"><span>记忆召回</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这则术语译文把记忆召回解释为从记忆中提取信息的能力，也称保留率，并用“十项中记住八项”说明 80% 召回率。遗忘曲线显示召回随时间下降，下降速度取决于记忆稳定性；词条还给出 SuperMemo 17 数据拟合及样本量、材料难度等边界。</p><p class="tags"><a href="../?q=%E8%AE%B0%E5%BF%86%E4%BF%9D%E7%95%99%E7%8E%87">#记忆保留率</a><a href="../?q=%E4%BF%9D%E7%95%99%E7%8E%87">#保留率</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="274352214"><div class="post-meta"><time datetime="2020-11-05">2020-11-05</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 22 · 5 分钟</span></div><div class="post-summary"><h2><a href="274352214.html"><span>遗忘曲线</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>词条介绍遗忘曲线：回忆概率会随时间下降，复习提升记忆稳定性并延长保持时间。作者区分单一稳定性记忆的指数遗忘与不同复杂度记忆混合后呈现的幂律近似，并用 SuperMemo 收集的曲线说明材料异质性、复习次数和学习者条件会影响数据形状；同时强调表述清晰的材料可能更易长期保留。</p><p class="tags"><a href="../?q=%E9%81%97%E5%BF%98%E6%9B%B2%E7%BA%BF">#遗忘曲线</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1595154225"><div class="post-meta"><time datetime="2020-11-25">2020-11-25</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 62 · 4 分钟</span></div><div class="post-summary"><h2><a href="1595154225.html"><span>艾宾浩斯遗忘曲线怎么用？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>我滴妈，都 0202 年了，还在用表格法实践遗忘曲线？这个东西，1982 年就有人用过了。。。 https://super-memory.com/articles/paper.htm 以下是原文翻译，如果没兴趣可以看第二节的新方法介绍 1985：SuperMemo 的诞生 1982 年，我更加关注大多数学生迟早会发现的东西：考…</p><p class="tags"><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=Piotr%20Wozniak">#Piotr Wozniak</a><a href="../?q=%E6%B8%90%E8%BF%9B%E9%98%85%E8%AF%BB">#渐进阅读</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="279166945"><div class="post-meta"><time datetime="2020-11-08">2020-11-08</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 21 · 3 分钟</span></div><div class="post-summary"><h2><a href="279166945.html"><span>间隔效应</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章解释间隔效应，并区分增加学习间隔可能带来的正面收益与复习过频可能使效果被忽略的负面解释。作者以记忆的双组分模型和稳定化函数统一二者，称每条记忆痕迹都有使预期效果最大化的复习时机；SuperMemo 数据显示，稳定性较低、内容较复杂的记忆可能有更明显的间隔效应。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E6%95%88%E5%BA%94">#间隔效应</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E7%A8%B3%E5%AE%9A%E5%8C%96%E5%87%BD%E6%95%B0">#稳定化函数</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2020082520478201804"><div class="post-meta"><time datetime="2026-03-25">2026-03-25</time><a class="meta-author" href="../?q=Giacomo%20Randazzo">Giacomo Randazzo</a><span>▲ 17 · 14 分钟</span></div><div class="post-summary"><h2><a href="2020082520478201804.html"><span>记忆模型的数学形式化</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Giacomo Randazzo 与 Aidan Campbell 将记忆模型形式化为：输入学生、卡片内容和完整复习历史，输出随时间变化的遗忘曲线及回忆概率。该框架突破只看单卡历史的局部独立假设，使跨卡迁移和干扰可被建模；稳定性成为可推导量，难度则由具体模型决定。作者还证明，若无额外结构假设，仅凭单次二元回忆结果无法识别可提取…</p><p class="tags"><a href="../?q=%E8%AE%B0%E5%BF%86%E6%A8%A1%E5%9E%8B">#记忆模型</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E9%81%97%E5%BF%98%E6%9B%B2%E7%BA%BF">#遗忘曲线</a><a href="../?q=FSRS">#FSRS</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="559819340"><div class="post-meta"><time datetime="2022-08-31">2022-08-31</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 8 · 2 分钟</span></div><div class="post-summary"><h2><a href="559819340.html"><span>记忆可提取性</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>词条把记忆可提取性定义为给定间隔下的回忆概率，并说明它与稳定性构成长时记忆双组分模型。文中介绍 SuperMemo 17 的遗忘曲线样本和幂函数拟合，指出回忆率会随间隔下降；作者也提醒，材料复杂度、初学者经验及知识表述质量会改变遗忘速度，曲线后段还受样本量不足影响。</p><p class="tags"><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E9%81%97%E5%BF%98%E6%9B%B2%E7%BA%BF">#遗忘曲线</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

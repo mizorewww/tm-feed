@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>叶峻峣, 苏敬勇, 曹译珑. 优化间隔重复调度的一种随机最短路径算法[C]//第 28 届 ACM SIGKDD 知识发现与数据挖掘学术会议论文集, 2022: 4381-4390</title>
+<meta name="description" content="作者评论一篇优化间隔重复调度的论文：卡片复习会改变其后续半衰期，因此无法直接观测单张卡片的完整半衰期序列。论文先按用户群体的初次回忆率划分难度，再拟合半衰期参数，并用马尔可夫时序模型描述难度与半衰期转移；方法已实现为 Anki 插件。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="叶峻峣, 苏敬勇, 曹译珑. 优化间隔重复调度的一种随机最短路径算法[C]//第 28 届 ACM SIGKDD 知识发现与数据挖掘学术会议论文集, 2022: 4381-4390">
+<meta property="og:description" content="作者评论一篇优化间隔重复调度的论文：卡片复习会改变其后续半衰期，因此无法直接观测单张卡片的完整半衰期序列。论文先按用户群体的初次回忆率划分难度，再拟合半衰期参数，并用马尔可夫时序模型描述难度与半衰期转移；方法已实现为 Anki 插件。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-08-13">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="649704369" data-rec-seeds="404257681,660604968,422644661,623551320,1907760881749718522,470710559,409427537,417555450">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2023-08-13">2023-08-13</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%20%26%20%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">间隔重复 &amp; 注意力管理</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 2 分钟</span>
+          <span>▲ 18</span>
+        </p>
+        <h1>叶峻峣, 苏敬勇, 曹译珑. 优化间隔重复调度的一种随机最短路径算法[C]//第 28 届 ACM SIGKDD 知识发现与数据挖掘学术会议论文集, 2022: 4381-4390</h1>
+        
+        <p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=FSRS">#FSRS</a><a href="../?q=%E5%8D%8A%E8%A1%B0%E6%9C%9F">#半衰期</a><a href="../?q=%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E6%A8%A1%E5%9E%8B">#马尔可夫模型</a><a href="../?q=%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95">#调度算法</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="-0TlZXaD">有关<a class="wrap external" href="https://notes.andymatuschak.org/zYK41LaWjuWkRmv3ZGnNmoF" rel="noopener noreferrer" target="_blank">优化间隔重复系统的调度算法</a>。来自 Jarrett Ye（校对：正是在下），一位赞助者。</p><p data-pid="sO1b_-zW">我觉得这篇论文里最吸引我的是他们用「半衰期」来描述<a class="wrap external" href="https://notes.andymatuschak.org/z2D1qPwddPktBjpNuwYFVva" rel="noopener noreferrer" target="_blank">间隔重复记忆系统</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>卡片的状态。但问题是，你没法直接量出一张卡片的半衰期。你只能做一次观察，因为每次练习都会改变接下来的半衰期。同一个项目的半衰期序列当然是相互关联的，但这仍然相当棘手。</p><p data-pid="yxKEIgo4">他们的方法是根据用户群体的初次回忆率将项目分为不同「难度组」。然后，他们可以使用汇总的用户组为后续事件拟合半衰期参数。可以想象，就像<a class="wrap external" href="https://notes.andymatuschak.org/zFkZXm2t1D4FAGGrBUUHNz4" rel="noopener noreferrer" target="_blank">项目反应理论</a>那样，为每位用户再加一个「能力」/「熟悉度」参数。</p><p data-pid="70YrzRss">然后，作者引入了一个马尔可夫时序模型，用于描述给定反应的半衰期和难度的转移方程组。这个方法已经被做成了 Anki 插件：<a class="wrap external" href="https://github.com/open-spaced-repetition/fsrs4anki" rel="noopener noreferrer" target="_blank">GitHub - open-spaced-repetition/fsrs4anki: A modern Anki custom scheduling based on free spaced repetition scheduler algorithm</a></p><h2 id="sec-1"><br/>链接至本文（已汉化）</h2><ul><li data-pid="JlrbeXr8">暂无</li></ul><h2 id="sec-2">声明</h2><p data-pid="a1kSLiu9">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="uMupMv4o"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 <span class="nolink">GPT</span>-4、校对 <span class="nolink">Jarrett</span>Ye<br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/zGrLCQ873eCpFvTsZoMRCbE" rel="noopener noreferrer" target="_blank">Ye, J., Su, J., &amp; Cao, Y. (2022). A Stochastic Shortest Path Algorithm for Optimizing Spaced Repetition Scheduling. Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining, 4381–4390 (andymatuschak.org)</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 间隔重复记忆系统（Spaced repetition memory system） <a class="tm-internal" data-tm-id="404257681" href="404257681.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/zGrLCQ873eCpFvTsZoMRCbE" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/zGrLCQ873eCpFvTsZoMRCbE ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/649704369" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="404257681"><div class="post-meta"><time datetime="2021-08-27">2021-08-27</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 88 · 16 分钟</span></div><div class="post-summary"><h2><a href="404257681.html"><span>间隔重复记忆系统（Spaced repetition memory system）</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 将间隔重复描述为结合测试效应与间隔效应的记忆系统，概述其软件、特殊变体、概念学习应用及常见障碍。文章强调 SRS 不仅能记事实，也可能帮助维持注意力、自动化基础知识和支持创造；但卡片质量、学习者负担与是否持续加入新内容都会影响效果。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SRS">#SRS</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F">#记忆系统</a><a href="../?q=%E5%8D%A1%E7%89%87%E8%AE%BE%E8%AE%A1">#卡片设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1907760881749718522"><div class="post-meta"><time datetime="2025-05-19">2025-05-19</time><a class="meta-author" href="../?q=Domenic%20Denicola">Domenic Denicola</a><span>▲ 261 · 12 分钟</span></div><div class="post-summary"><h2><a href="1907760881749718522.html"><span>间隔重复记忆系统：已取得长足进步</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Domenic Denicola 回顾间隔重复系统如何从 SM-2 一类固定间隔规则转向 FSRS：后者用机器学习拟合难度、稳定性和可提取性，再依用户设定的目标保留率安排复习，并可优化个人参数。作者以自己的日语卡片模拟和使用经验说明，较低的目标保留率可能减少复习负担并增加记住的卡片数。在该模拟中，每日复习量设有上限，降低保留率…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=FSRS">#FSRS</a><a href="../?q=SM-2">#SM-2</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1941069300833190267"><div class="post-meta"><time datetime="2025-08-23">2025-08-23</time><a class="meta-author" href="../?q=Giacomo%20Randazzo">Giacomo Randazzo</a><span>▲ 62 · 21 分钟</span></div><div class="post-summary"><h2><a href="1941069300833190267.html"><span>感知内容的间隔重复</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>多数SRS按卡片ID分别保存复习历史，不知道“意大利首都是什么”和“罗马属于哪个国家”语义相连。内容感知记忆模型将卡片文本和相关卡片的复习历史纳入遗忘预测，还可估算新卡难度、检测歧义和整组卡片结构；作者强调，语义不只是字面相似，而是问题能否有效引出概念。 作者区分调度器与记忆模型：前者决定今天复习哪些卡片，并可优化保留率、负荷…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E6%A8%A1%E5%9E%8B">#记忆模型</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E5%8D%A1%E7%89%87%E8%AF%AD%E4%B9%89">#卡片语义</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="3242193598"><div class="post-meta"><time datetime="2023-10-09">2023-10-09</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 217 · 1 分钟</span></div><div class="post-summary"><h2><a href="3242193598.html"><span>一个人能做出什么开源项目？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>给 Anki 移植了基于我论文中提出的 DHP 记忆模型的间隔重复算法 FSRS。 虽然现在不是我一个人的项目了，但主要还是我在写代码： open-spaced-repetition/fsrs4anki: A modern Anki custom scheduling based on free spaced repetiti…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E9%9A%8F%E6%9C%BA%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84">#随机最短路径</a><a href="../?q=%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86">#长期记忆</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="660604968"><div class="post-meta"><time datetime="2023-10-11">2023-10-11</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 3 · 2 分钟</span></div><div class="post-summary"><h2><a href="660604968.html"><span>重试结果可能会提供额外的可提取性信号</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 指出，间隔重复系统要从稀疏的成功或失败记录估计连续的回忆概率；若首次失败后短时间重试仍失败，这可作为初次可提取性更低的额外信号，但具体应降低多少尚难建模。他提到实验研究常记录成功前的尝试次数，艾宾浩斯也曾将其作为粗略指标。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=SRS">#SRS</a><a href="../?q=%E9%87%8D%E8%AF%95%E6%9C%BA%E5%88%B6">#重试机制</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1916861164312298292"><div class="post-meta"><time datetime="2025-06-13">2025-06-13</time><a class="meta-author" href="../?q=Jarrett%20Ye">Jarrett Ye · 回答</a><span>▲ 149 · 4 分钟</span></div><div class="post-summary"><h2><a href="1916861164312298292.html"><span>除了墨墨、Anki的软件外，有哪些软件可以用间隔重复算法FSRS？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这个关注 Awesome FSRS 就行了： open-spaced-repetition/awesome-fsrs: A curated list of awesome FSRS implementations, papers and resources 抽认卡应用 Markji Markji（墨墨记忆卡）是一款抽认卡应用…</p><p class="tags"><a href="../?q=RemNote">#RemNote</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%AC%94%E8%AE%B0%E7%B3%BB%E7%BB%9F">#笔记系统</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%BB%84%E7%BB%87">#知识组织</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

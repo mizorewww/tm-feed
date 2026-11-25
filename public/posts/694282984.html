@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Y Combinator</title>
+<meta name="description" content="作者将 Y Combinator 描述为创业者的赋能环境：资金之外，导师交流、演示日、办公时间和同伴社群共同传递实践与价值观。其关键在于参与者围绕有内在意义的创业项目行动，而非为抽象技能训练；文章还指出，远程版“创业学校”若能复现这种情景体验，影响可能很大。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="Y Combinator">
+<meta property="og:description" content="作者将 Y Combinator 描述为创业者的赋能环境：资金之外，导师交流、演示日、办公时间和同伴社群共同传递实践与价值观。其关键在于参与者围绕有内在意义的创业项目行动，而非为抽象技能训练；文章还指出，远程版“创业学校”若能复现这种情景体验，影响可能很大。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2024-04-24">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="694282984" data-rec-seeds="694626102,473212636,654019484,463926133,698476935,591395654,482949294,458337989">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2024-04-24">2024-04-24</time>
+          <a class="tag" href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B%20%26%20%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">助记媒介 &amp; 思想工具</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 2 分钟</span>
+          <span>▲ 15</span>
+        </p>
+        <h1>Y Combinator</h1>
+        
+        <p class="tags"><a href="../?q=%E8%B5%8B%E8%83%BD%E7%8E%AF%E5%A2%83">#赋能环境</a><a href="../?q=%E5%88%9B%E4%B8%9A%E6%95%99%E8%82%B2">#创业教育</a><a href="../?q=%E6%83%85%E6%99%AF%E4%BD%93%E9%AA%8C">#情景体验</a><a href="../?q=%E5%86%85%E5%9C%A8%E5%8A%A8%E6%9C%BA">#内在动机</a><a href="../?q=Y%20Combinator">#Y Combinator</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="ybAKYK-L">Y Combinator 是一家创业孵化器，它不仅提供资金支持，还为参与者打造了一个有助于他们快速成长的结构化环境。这里的活动多着眼于传授一整套精炼的实践和价值观：比如，通过与成功的前创始人吃饭交流，几乎像讲故事一样传递文化知识；一系列权威的书籍和演讲也起到同样的作用；紧凑的演示日（Demo Day）安排要求创始人按特定方式行动；而办公时间则提供面对面的指导，强调相同的原则。</p><p data-pid="D6N9dH2u">Y Combinator 是一个<a class="wrap external" href="https://notes.andymatuschak.org/z492hGrHvRvJiEY9UfB4Mby" rel="noopener noreferrer" target="_blank">赋能环境</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>：创业者们经常感叹，他们突然能做更多事情——而这不仅仅是因为资金的支持。虽然从某种程度上说，它像是一所学校，但关键的区别在于，创业者的所有活动都围绕着他们热衷的创业项目展开，而不是仅仅学习一些抽象的技能，这些技能未来可能用来实现某些有深度的目标（<a class="wrap external" href="https://notes.andymatuschak.org/z3PJFWDZ7gar2ttawQTmBek" rel="noopener noreferrer" target="_blank">赋能环境中的活动直接服务于有内在意义的目的</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>）。</p><p data-pid="Ekx9Qsem">Y Combinator 同时也是一种<a class="wrap external" href="https://notes.andymatuschak.org/z92TGMiBsnraf5KXxSTNkBJ" rel="noopener noreferrer" target="_blank">情景体验</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup>。创业者们通过参与晚餐、达成里程碑、听取讲座和参加办公时间，逐渐内化了一套特定的实践和价值观。在演示日等活动中，他们经常会体验到一系列特定的情绪。这些体验并不显得是外界「强加」的；很多时候，创业者们感觉这些都是自己引发的，尽管在 Y Combinator 这样的环境之外，他们可能根本接触不到这些体验（<a class="wrap external" href="https://notes.andymatuschak.org/zKubRcJXKjiCDPsPgJWckkP" rel="noopener noreferrer" target="_blank">情景体验可以引导人们积极参与到赋能环境中</a><sup class="cite" id="cite-4"><a href="#ref-4">[4]</a></sup>）。这些活动并不被定义为「练习」，而是被看作是<b>行动</b>（<a class="wrap external" href="https://notes.andymatuschak.org/z7d63BYfJrd81VFE25jkcDd" rel="noopener noreferrer" target="_blank">赋能环境的重点是创造成长和行动的机会，而不是技能培养</a><sup class="cite" id="cite-5"><a href="#ref-5">[5]</a></sup>）。</p><p data-pid="CVVdAW0W">Y Combinator 还开设了「创业学校」，这是一个简化版的远程学习项目。我认为，它虽然没有提供完全一致的情景体验，但如果能做到，其影响力将非常巨大（ <a class="wrap external" href="https://notes.andymatuschak.org/z6oXuXLZ7Wq1eBqskyfph2wz9gjohQUKSBFzx" rel="noopener noreferrer" target="_blank">情景体验作为一种大众媒介具有难以置信的潜力</a><sup class="cite" id="cite-6"><a href="#ref-6">[6]</a></sup>）。</p><h2 id="sec-1">链接至本文（已汉化）</h2><ul><li data-pid="kaY3t0z-"><a class="internal tm-internal" data-tm-id="698476935" href="698476935.html">§赋能环境、游戏和《启蒙琼林》</a></li><li data-pid="cHMiuakb"><a class="internal tm-internal" data-tm-id="458337989" href="458337989.html">赋能环境</a></li><li data-pid="xWKhiCN0"><a class="internal tm-internal" data-tm-id="463926133" href="463926133.html">情景体验（Enacted experience）</a></li><li data-pid="s9yukKCj"><a class="internal tm-internal" data-tm-id="591395654" href="591395654.html">赋能环境的重点是创造成长和行动的机会，而不是技能培养</a></li><li data-pid="BNPgmrpn"><a class="internal tm-internal" data-tm-id="694626102" href="694626102.html">设计新的赋能环境，可以看作是在打造一所超级大学（University++）</a></li></ul><h2 id="sec-2">声明</h2><p data-pid="a1kSLiu9">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="ga9V2o9D"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 GPT-4，校对 Jarrett Ye<br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/z9MxCsvv8DcHndqRECbxrRi" rel="noopener noreferrer" target="_blank">Y Combinator (andymatuschak.org)</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 赋能环境 <a class="tm-internal" data-tm-id="458337989" href="458337989.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 赋能环境中的活动直接服务于有内在意义的目的 <a class="tm-internal" data-tm-id="482949294" href="482949294.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 情景体验（Enacted experience） <a class="tm-internal" data-tm-id="463926133" href="463926133.html">站内阅读 ↗</a></li><li id="ref-4"><a aria-label="返回正文" class="ref-back" href="#cite-4">↩</a> 情景体验可以引导人们积极参与到赋能环境中 <a class="tm-internal" data-tm-id="654019484" href="654019484.html">站内阅读 ↗</a></li><li id="ref-5"><a aria-label="返回正文" class="ref-back" href="#cite-5">↩</a> 赋能环境的重点是创造成长和行动的机会，而不是技能培养 <a class="tm-internal" data-tm-id="591395654" href="591395654.html">站内阅读 ↗</a></li><li id="ref-6"><a aria-label="返回正文" class="ref-back" href="#cite-6">↩</a> 情景体验成为大众媒体时蕴藏极大潜力 <a class="tm-internal" data-tm-id="473212636" href="473212636.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/z9MxCsvv8DcHndqRECbxrRi" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/z9MxCsvv8DcHndqRECbxrRi ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/694282984" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="694626102"><div class="post-meta"><time datetime="2024-04-26">2024-04-26</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 13 · 2 分钟</span></div><div class="post-summary"><h2><a href="694626102.html"><span>设计新的赋能环境，可以看作是在打造一所超级大学（University++）</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者把设计新型赋能环境比作打造“University++”：既要让专家持续进行原创工作，也要让新手易于参与，并让活动与真实意义相连。文章以顶尖大学、Y Combinator、教育游戏及《启蒙琼林》为例，提出动态媒介可能比 MOOC 更能把学习嵌入真实情境。</p><p class="tags"><a href="../?q=%E8%B5%8B%E8%83%BD%E7%8E%AF%E5%A2%83">#赋能环境</a><a href="../?q=%E9%AB%98%E7%AD%89%E6%95%99%E8%82%B2">#高等教育</a><a href="../?q=%E6%83%85%E6%99%AF%E4%BD%93%E9%AA%8C">#情景体验</a><a href="../?q=Y%20Combinator">#Y Combinator</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="71425865126"><div class="post-meta"><time datetime="2025-01-04">2025-01-04</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 54 · 18 分钟</span></div><div class="post-summary"><h2><a href="71425865126.html"><span>英国是个岛国，和外界联络很困难，为什么产生了工业革命，并且出现了那么多科学发明？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>有很多原因，最近看了一篇文章 [1] ，其论点比较有意思：在推动创新的过程中，心理障碍的重要性可能不亚于人均财富或和平等因素。而「进步的观念」或「改进的态度」在 18 世纪的英国得到了大肆宣传，让很多人做好了心理准备，对传统的做法提出质疑，去追求进步，从而极大地推动了创新。其中，边缘化群体（宗教异议者、移民等）和一些高度有效的…</p><p class="tags"><a href="../?q=%E8%B5%8B%E8%83%BD%E7%8E%AF%E5%A2%83">#赋能环境</a><a href="../?q=%E5%88%9B%E4%B8%9A%E6%95%99%E8%82%B2">#创业教育</a><a href="../?q=%E6%83%85%E6%99%AF%E4%BD%93%E9%AA%8C">#情景体验</a><a href="../?q=%E5%86%85%E5%9C%A8%E5%8A%A8%E6%9C%BA">#内在动机</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="463926133"><div class="post-meta"><time datetime="2022-02-04">2022-02-04</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 20 · 3 分钟</span></div><div class="post-summary"><h2><a href="463926133.html"><span>情景体验（Enacted experience）</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 将“情景体验”定义为一种参与式体验：参与者感觉自己在创造活动进程，实际上设计者通过环境规则与反馈塑造体验。文章以游戏和 Y Combinator 等为例，说明当行动与结果形成紧密循环时，设计者可借此表达观点；电影和书籍则通常让受众感到时刻由作者创造。作者也列出这种设计对参与、行动反馈和元认知支架的…</p><p class="tags"><a href="../?q=%E6%83%85%E6%99%AF%E4%BD%93%E9%AA%8C">#情景体验</a><a href="../?q=%E5%8F%82%E4%B8%8E%E5%BC%8F%E7%8E%AF%E5%A2%83">#参与式环境</a><a href="../?q=%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1">#游戏设计</a><a href="../?q=%E8%B5%8B%E8%83%BD%E7%8E%AF%E5%A2%83">#赋能环境</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="15916671283"><div class="post-meta"><time datetime="2025-01-02">2025-01-02</time><a class="meta-author" href="../?q=Michael%20Nielsen">Michael Nielsen</a><span>▲ 48 · 3 分钟</span></div><div class="post-summary"><h2><a href="15916671283.html"><span>论意志的慈善</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文借 T. E. Lawrence、Y Combinator 和 Recurse Center 的例子，讨论“意志的慈善”：有些人能通过敏锐倾听与切实反馈，帮助他人发现尚未意识到的能力。作者认为，提供自主选择的环境比简单鼓励更能培养行动意志；相反，义务教育剥夺学生对环境、活动和伙伴的选择，可能削弱自主意识。他提出探讨如何把“…</p><p class="tags"><a href="../?q=%E6%84%8F%E5%BF%97%E7%9A%84%E6%85%88%E5%96%84">#意志的慈善</a><a href="../?q=%E8%87%AA%E4%B8%BB%E6%80%A7">#自主性</a><a href="../?q=%E5%80%BE%E5%90%AC%E4%B8%8E%E5%8F%8D%E9%A6%88">#倾听与反馈</a><a href="../?q=%E8%B5%8B%E8%83%BD%E7%8E%AF%E5%A2%83">#赋能环境</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="473212636"><div class="post-meta"><time datetime="2022-03-02">2022-03-02</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 9 · 1 分钟</span></div><div class="post-summary"><h2><a href="473212636.html"><span>情景体验成为大众媒体时蕴藏极大潜力</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者认为，情景体验有潜力成为传递思想、价值和实践的大众媒介，因为它能让参与者与作者意图建立联系，并引导人们投入赋能环境。文章指出，学徒制等形式不易大规模传播，电子游戏多用于审美体验，因而提出参考引导式冥想应用，探索可扩展的情景体验。</p><p class="tags"><a href="../?q=%E6%83%85%E6%99%AF%E4%BD%93%E9%AA%8C">#情景体验</a><a href="../?q=%E5%A4%A7%E4%BC%97%E5%AA%92%E4%BB%8B">#大众媒介</a><a href="../?q=%E8%B5%8B%E8%83%BD%E7%8E%AF%E5%A2%83">#赋能环境</a><a href="../?q=%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1">#交互设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="591395654"><div class="post-meta"><time datetime="2022-12-13">2022-12-13</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 8 · 2 分钟</span></div><div class="post-summary"><h2><a href="591395654.html"><span>赋能环境的重点是创造成长和行动的机会，而不是技能培养</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文认为，赋能环境的目标应是创造成长和实际行动的机会，而非单纯训练技能。以研究所或 Y Combinator 为例，参与者在追求内在有意义的项目时，个人成长是项目的副产品；作者据此质疑把书籍等媒介仅视为抽象知识传递工具，并提出能否设计出把知识与行动相连的“书”。</p><p class="tags"><a href="../?q=%E8%B5%8B%E8%83%BD%E7%8E%AF%E5%A2%83">#赋能环境</a><a href="../?q=%E5%AE%9E%E8%B7%B5%E5%AD%A6%E4%B9%A0">#实践学习</a><a href="../?q=%E5%86%85%E5%9C%A8%E5%8A%A8%E6%9C%BA">#内在动机</a><a href="../?q=%E7%9F%A5%E8%AF%86%E5%B7%A5%E4%BD%9C">#知识工作</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

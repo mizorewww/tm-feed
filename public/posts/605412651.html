@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关于间隔收件箱的一些想法</title>
+<meta name="description" content="作者记录一个尚在构想中的间隔收件箱应用：通过标签为待办、想法或稍后阅读等内容安排不同复习周期，并按话题分类；同时设想借 LessWrong 短推实现收件箱。界面应兼有按时间查看全部笔记的列表、集中复习的收件箱，以及通过维基链接连接的概念网络。">
+<meta name="author" content="Issa Rice">
+<meta property="og:title" content="关于间隔收件箱的一些想法">
+<meta property="og:description" content="作者记录一个尚在构想中的间隔收件箱应用：通过标签为待办、想法或稍后阅读等内容安排不同复习周期，并按话题分类；同时设想借 LessWrong 短推实现收件箱。界面应兼有按时间查看全部笔记的列表、集中复习的收件箱，以及通过维基链接连接的概念网络。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-02-11">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="605412651" data-rec-seeds="658059734,707701579,608723650,592187312,618757945,699675813,597533071,650466150">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2023-02-11">2023-02-11</time>
+          <a class="tag" href="../?q=Issawiki%20%26%20Learning">Issawiki &amp; Learning</a>
+          <a class="tag" href="../?q=Issa%20Rice">Issa Rice</a>
+          <span>约 2 分钟</span>
+          <span>▲ 11</span>
+        </p>
+        <h1>关于间隔收件箱的一些想法</h1>
+        
+        <p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E6%94%B6%E4%BB%B6%E7%AE%B1">#间隔收件箱</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%AC%94%E8%AE%B0%E7%AE%A1%E7%90%86">#笔记管理</a><a href="../?q=%E6%A0%87%E7%AD%BE">#标签</a><a href="../?q=Roam">#Roam</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-3"><a href="#sec-1" data-toc-target="sec-1">链接到本文的</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="g77S4z2M">我未来可能会做<a class="wrap external" href="https://wiki.issarice.com/wiki/Spaced_inbox" rel="noopener noreferrer" target="_blank">间隔收件箱</a> app ，下文是一些想法。</p><p data-pid="1r22f9Xw">标签似乎很重要。复习安排根据标签有所变化。比如我觉得在间隔收件箱里放待办事项很不错，这样就能给低优先级的事项安排更长的间隔。为了实现这点，你可以打上 #todo 之类标签，然后采用「待办事项复习安排」，这个安排可能和 #idea, #readlater 或者 #quote 的调度不同。这个概念不一定要叫做「标签」；只是用来区分不同复习安排的方法。</p><p data-pid="qZb8AAUk">还有一个要点是能区分话题，比如能区分默认的收件箱、AI 安全、日常工作。</p><hr/><p data-pid="GXSVTleR">我觉得 LessWrong 的短推送可以充当间隔收件箱——只要自己制作界面，与 LessWrong 通过 API 交互即可。</p><p data-pid="0k0-v611">问题是，有些人觉得在 LW 发帖有点可怕（比如我），而间隔重复收件箱的意义，就是让记笔记的过程更流畅。</p><hr/><p data-pid="y8GyWeJY">某种「所有笔记」 视图，只是按照创建时间或最后修改时间顺序列出笔记。如果你进入 <a class="external" href="https://roamresearch.com/#/app/YOUR_GRAPH_NAME/search" rel="noopener noreferrer" target="_blank"><span class="invisible">https://</span><span class="visible">roamresearch.com/#</span><span class="invisible">/app/YOUR_GRAPH_NAME/search</span><span class="ellipsis"></span></a>，你会发现 <a class="wrap external" href="https://wiki.issarice.com/index.php?title=Roam&amp;action=edit&amp;redlink=1" rel="noopener noreferrer" target="_blank">Roam</a> 也有这个功能。</p><p data-pid="pPRU8z1S">我目前在 inbox.txt 中的「间隔收件箱」<b>只</b>有这个视图。但也应该有一个默认的「收件箱」视图。有点像 Gmail 有收件箱和「所有邮件」。</p><hr/><p data-pid="ymdv7LRa">笔记/间隔收件箱应用程序的基本功能或「主要模式」？</p><ul><li data-pid="ud8wfwbF">每日笔记/org 模式记录/wordpress p2 主题/存放新想法的唯一场所，具有能够直接滚动浏览最近的笔记的功能</li><li data-pid="5pfNDmzL">收件箱功能，要复习的东西都显示在一个地方</li><li data-pid="0fqaVwD4">概念/页面的网络，彼此通过[[维基链接]]互相连接。</li></ul><h3 id="sec-1">链接到本文的</h3><ul><li data-pid="ap3yRdgZ"><a class="wrap external" href="https://wiki.issarice.com/wiki/Spaced_writing_inbox" rel="noopener noreferrer" target="_blank">间隔写作收件箱</a> ‎ (<a class="wrap external" href="https://wiki.issarice.com/index.php?title=Special:WhatLinksHere&amp;target=Spaced+writing+inbox" rel="noopener noreferrer" target="_blank">← links</a>)</li></ul><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="JLjoMD-A"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 changxvv、校对 JarrettYe<br/>原文：<a class="wrap external" href="https://wiki.issarice.com/wiki/Spaced_inbox_ideas" rel="noopener noreferrer" target="_blank">Spaced inbox ideas</a></blockquote>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-3"><a href="#sec-1" data-toc-target="sec-1">链接到本文的</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Issa%20Rice">Issa Rice</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://wiki.issarice.com/wiki/Spaced_inbox_ideas" target="_blank" rel="noopener noreferrer">https://wiki.issarice.com/wiki/Spaced_inbox_ideas ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/605412651" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="658059734"><div class="post-meta"><time datetime="2023-09-24">2023-09-24</time><a class="meta-author" href="../?q=Issa%20Rice">Issa Rice</a><span>▲ 9 · 1 分钟</span></div><div class="post-summary"><h2><a href="658059734.html"><span>间隔重复与打扫房间</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者把桌面凌乱比作未被提醒的复习：人会因误判某些书或草稿何时还会用到，而把它们一直留在手边。他设想间隔重复系统可适时提示整理或自动移走闲置物品，让清理环境变得柔和、自然。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%89%A9%E7%90%86%E6%9D%82%E4%B9%B1">#物理杂乱</a><a href="../?q=%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">#注意力管理</a><a href="../?q=%E8%A1%8C%E4%B8%BA%E6%8F%90%E7%A4%BA">#行为提示</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="707701579"><div class="post-meta"><time datetime="2024-07-09">2024-07-09</time><a class="meta-author" href="../?q=Issa%20Rice">Issa Rice</a><span>▲ 19 · 1 分钟</span></div><div class="post-summary"><h2><a href="707701579.html"><span>在解释学中你并不需要践行自己提倡的原则</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者认为，讲解如何解释知识的文章与实际解释本身是不同文体；正如影评不必成为电影，评论教学法也不必亲自遵循其所讨论的原则。</p><p class="tags"><a href="../?q=%E8%A7%A3%E9%87%8A">#解释</a><a href="../?q=%E6%95%99%E5%AD%A6%E6%B3%95">#教学法</a><a href="../?q=%E5%86%99%E4%BD%9C">#写作</a><a href="../?q=%E6%96%87%E5%AD%A6%E4%BD%93%E8%A3%81">#文学体裁</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="3560516947"><div class="post-meta"><time datetime="2024-07-13">2024-07-13</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 91 · 8 分钟</span></div><div class="post-summary"><h2><a href="3560516947.html"><span>如何在数学中进行刻意练习？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>针对学习数学证明的刻意练习 针对数学的刻意练习是什么样的？我具体指的是，自学本科和研究生阶段以证明为主的数学知识。（所以我不考虑高中之前更早阶段的数学，大学中证明成分较少的微积分和线性代数，数学竞赛，以及数学研究。我对数学研究很感兴趣，但这个问题似乎更难讨论。为什么不考虑数学竞赛？因为那些题目对我来说挺无聊的。） 对刻意练习的…</p><p class="tags"><a href="../?q=%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0">#刻意练习</a><a href="../?q=%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0">#数学学习</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%95%B0%E5%AD%A6%E8%AF%81%E6%98%8E">#数学证明</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1944442771533432041"><div class="post-meta"><time datetime="2025-09-01">2025-09-01</time><a class="meta-author" href="../?q=Vipul">Vipul</a><span>▲ 8 · 3 分钟</span></div><div class="post-summary"><h2><a href="1944442771533432041.html"><span>纠错练习</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章将纠错练习定义为让学习者识别错误、追溯根因并提出修正方法的诊断工具，适用于文本、图片或解题步骤。它可促使学习者主动审查材料、发现误解并获得顿悟，但难以制定统一评分标准，且设计费时、难度较高，更适合具备基础知识的学习者。</p><p class="tags"><a href="../?q=%E7%BA%A0%E9%94%99%E7%BB%83%E4%B9%A0">#纠错练习</a><a href="../?q=%E8%AF%8A%E6%96%AD%E6%80%A7%E8%AF%84%E4%BC%B0">#诊断性评估</a><a href="../?q=%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90">#错误分析</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="404586617"><div class="post-meta"><time datetime="2021-08-28">2021-08-28</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 12 · 1 分钟</span></div><div class="post-summary"><h2><a href="404586617.html"><span>专家回答启发式（来自 Issa Rice）</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Issa Rice 的启发式是：高质量记忆卡应能由领域专家脱离具体来源直接回答。若卡片依赖某篇助记材料的措辞或例子，虽可帮助精细编码和兴趣，却可能造成狭窄理解；共享卡片尤其容易因考查来源特定表达而产生令人沮丧的错误否定。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E5%8D%A1%E7%89%87%E8%AE%BE%E8%AE%A1">#卡片设计</a><a href="../?q=%E7%B2%BE%E7%BB%86%E7%BC%96%E7%A0%81">#精细编码</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="608723650"><div class="post-meta"><time datetime="2023-02-23">2023-02-23</time><a class="meta-author" href="../?q=Issa%20Rice">Issa Rice</a><span>▲ 6 · 1 分钟</span></div><div class="post-summary"><h2><a href="608723650.html"><span>自制卡片的间隔可以排得更长</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文指出，若卡片由学习者从正在读的材料中自行制作，复习所需事实已有充分上下文，因此其间隔可比外语词汇卡片安排得更长；作者同时提示，卡片间隔还需结合牌组设置考虑。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%87%AA%E5%88%B6%E5%8D%A1%E7%89%87">#自制卡片</a><a href="../?q=%E5%A4%8D%E4%B9%A0%E9%97%B4%E9%9A%94">#复习间隔</a><a href="../?q=%E4%B8%8A%E4%B8%8B%E6%96%87">#上下文</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

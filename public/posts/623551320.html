@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SRS 重试机制</title>
+<meta name="description" content="作者描述 SRS 的快速重试机制：答错的卡片会在当前阅读或复习环节稍后再次出现，成功提取后再进入较长的遗忘后间隔。作者介绍《量子国度》和 Orbit 的实现及早期准确率提升结果，同时承认自己尚未查阅相关实证文献；他也指出，间隔效应可能意味着快速重试未必优于下次复习再出现。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="SRS 重试机制">
+<meta property="og:description" content="作者描述 SRS 的快速重试机制：答错的卡片会在当前阅读或复习环节稍后再次出现，成功提取后再进入较长的遗忘后间隔。作者介绍《量子国度》和 Orbit 的实现及早期准确率提升结果，同时承认自己尚未查阅相关实证文献；他也指出，间隔效应可能意味着快速重试未必优于下次复习再出现。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-04-21">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="623551320" data-rec-seeds="537644290,660604968,404257681,472256442,486489705,424603970,397271029,399548149">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2023-04-21">2023-04-21</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%20%26%20%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">间隔重复 &amp; 注意力管理</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 2 分钟</span>
+          <span>▲ 8</span>
+        </p>
+        <h1>SRS 重试机制</h1>
+        
+        <p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SRS">#SRS</a><a href="../?q=%E9%87%8D%E8%AF%95%E6%9C%BA%E5%88%B6">#重试机制</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%87%86%E7%A1%AE%E7%8E%87">#记忆准确率</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">在助记媒介中</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="JVw4rSrj">在<a class="wrap external" href="https://notes.andymatuschak.org/z4eXdSMJFv2qVGXSUEKH4vdcHBrLHcFY1ZGfC" rel="noopener noreferrer" target="_blank">间隔重复记忆系统</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>中，通常有各种各样的「重试」机制。通常情况下，这些机制的工作方式是，如果你答不上来一个问题，几分钟后，或在复习结束时，它将再次呈现。换句话说，这张卡片被暂时分配一个很短的间隔，在成功记住之后，它就会得到新的「遗忘后」间隔，通常会更长。</p><h2 id="sec-1">在助记媒介中</h2><p data-pid="SsiZqrJY">从 2019 年底开始，《<a class="wrap external" href="https://notes.andymatuschak.org/z2fBHADWa93EZTuNzuww7V3Vi587ZyZ4FHTHm" rel="noopener noreferrer" target="_blank">量子国度</a>》实现了以下行为；<a class="wrap external" href="https://notes.andymatuschak.org/z72ioKyd4X48WndtAsfkhnKwsD8o5PaaT384o" rel="noopener noreferrer" target="_blank">Orbit</a> 一直都在实施这一行为。如果你在阅读文章时忘记了问题的答案，该问题会在文章的下一个复习区重新出现（除非是最后一个复习区，在这种情况下，一旦你回答了当前复习区的所有问题，它就会重新出现）。如果你在复习阶段忘记了问题的答案，它将在复习阶段结束时重新出现。</p><p data-pid="rEJ_hMty">到目前为止的研究结果：<a class="wrap external" href="https://notes.andymatuschak.org/z26sYZAf3H5ohZTM2eaAosMRNwLkXiRKDsAJ" rel="noopener noreferrer" target="_blank">重试干预使量子国度的早期准确率大幅提高</a>。</p><p data-pid="_xQkJS8K">这个功能大致受到 Anki 的「学习」队列启发。如果我忘记了一张卡片的答案，然后提前结束复习（即在再次复习该卡片之前），我觉得对它的记忆会变得不那么可靠。提取练习文献中可能存在实证数据。我还没有查阅相关文献，也没有在我的背景阅读中偶然发现它。</p><p data-pid="1AfgPnkK">有趣的是，<a class="wrap external" href="https://notes.andymatuschak.org/z5oCe7JTrkYfmb6SHE4n5HxisE7PdwS6nmXEw" rel="noopener noreferrer" target="_blank">间隔效应</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>表明，这种快速重试可能不如在下一个复习会话中重新呈现卡片那样有效。但我的直觉（以及我们越来越多的证据）表明，重试干预确实有帮助。在我读过的有关间隔效应的文献中，没有一篇根据最初的反应成功率来区分表现（尽管我认为应该已经有这样的研究了）。</p><p data-pid="O3WelXJl">关于<a class="wrap external" href="https://notes.andymatuschak.org/z4rRX3qwSSJRsEkdXKwH2shamgHNeRthrMLiF" rel="noopener noreferrer" target="_blank">助记媒介</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup>中这种机制的笔记：</p><ul><li data-pid="XKBiS7hI"><a class="wrap external" href="https://notes.andymatuschak.org/zq2kRQRbZ5ykqy6TWtece3NscvMdjYRUZFr" rel="noopener noreferrer" target="_blank">重试结果可能会提供额外的可提取性信号</a><sup class="cite" id="cite-4"><a href="#ref-4">[4]</a></sup></li></ul><h2 id="sec-2">链接至本文（已汉化）</h2><ul><li data-pid="liNmkclK"><a class="internal tm-internal" data-tm-id="404257681" href="404257681.html">间隔重复记忆系统（Spaced repetition memory system）</a></li><li data-pid="qdUxnAmk"><a class="internal tm-internal" data-tm-id="459483765" href="459483765.html">助记媒介（Mnemonic medium）</a></li><li data-pid="Xz4lY_9E"><a class="internal tm-internal" data-tm-id="537644290" href="537644290.html">如果学生学习材料有困难，间隔重复记忆系统可以怎样干预？</a></li><li data-pid="xccPKrta"><a class="internal tm-internal" data-tm-id="660604968" href="660604968.html">重试结果可能会提供额外的可提取性信号</a></li></ul><h2 id="sec-3">声明</h2><p data-pid="a1kSLiu9">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="tdIO9cMW"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 GPT-4、校对 Jarrett Ye<br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/z2GB3wDnERaJr2337zGJdb5Gnr7tURrfmoxu" rel="noopener noreferrer" target="_blank">SRS retry mechanism (andymatuschak.org)</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 间隔重复记忆系统（Spaced repetition memory system） <a class="tm-internal" data-tm-id="404257681" href="404257681.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 间隔效应 <a class="tm-internal" data-tm-id="424603970" href="424603970.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 助记媒介（Mnemonic medium） <a class="tm-internal" data-tm-id="459483765" href="459483765.html">站内阅读 ↗</a></li><li id="ref-4"><a aria-label="返回正文" class="ref-back" href="#cite-4">↩</a> 重试结果可能会提供额外的可提取性信号 <a class="tm-internal" data-tm-id="660604968" href="660604968.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">在助记媒介中</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/z2GB3wDnERaJr2337zGJdb5Gnr7tURrfmoxu" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/z2GB3wDnERaJr2337zGJdb5Gnr7tURrfmoxu ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/623551320" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="537644290"><div class="post-meta"><time datetime="2022-07-05">2022-07-05</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 5 · 4 分钟</span></div><div class="post-summary"><h2><a href="537644290.html"><span>如果学生学习材料有困难，间隔重复记忆系统可以怎样干预？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者比较 SRS 对难卡的几种干预：缩短复习间隔、让学生重试，或把卡片关联回原文、摘录困难段落、增加变体练习、提供解释和求助渠道。助记媒介可利用卡片与源文本的联系，但核心原则是根据回答错误的原因选择干预，而不是一律重复测试。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E5%8F%8D%E9%A6%88">#学习反馈</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="404257681"><div class="post-meta"><time datetime="2021-08-27">2021-08-27</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 88 · 16 分钟</span></div><div class="post-summary"><h2><a href="404257681.html"><span>间隔重复记忆系统（Spaced repetition memory system）</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 将间隔重复描述为结合测试效应与间隔效应的记忆系统，概述其软件、特殊变体、概念学习应用及常见障碍。文章强调 SRS 不仅能记事实，也可能帮助维持注意力、自动化基础知识和支持创造；但卡片质量、学习者负担与是否持续加入新内容都会影响效果。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SRS">#SRS</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F">#记忆系统</a><a href="../?q=%E5%8D%A1%E7%89%87%E8%AE%BE%E8%AE%A1">#卡片设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1941069300833190267"><div class="post-meta"><time datetime="2025-08-23">2025-08-23</time><a class="meta-author" href="../?q=Giacomo%20Randazzo">Giacomo Randazzo</a><span>▲ 62 · 21 分钟</span></div><div class="post-summary"><h2><a href="1941069300833190267.html"><span>感知内容的间隔重复</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>多数SRS按卡片ID分别保存复习历史，不知道“意大利首都是什么”和“罗马属于哪个国家”语义相连。内容感知记忆模型将卡片文本和相关卡片的复习历史纳入遗忘预测，还可估算新卡难度、检测歧义和整组卡片结构；作者强调，语义不只是字面相似，而是问题能否有效引出概念。 作者区分调度器与记忆模型：前者决定今天复习哪些卡片，并可优化保留率、负荷…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E6%A8%A1%E5%9E%8B">#记忆模型</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E5%8D%A1%E7%89%87%E8%AF%AD%E4%B9%89">#卡片语义</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2045404097"><div class="post-meta"><time datetime="2021-08-07">2021-08-07</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 65 · 1 分钟</span></div><div class="post-summary"><h2><a href="2045404097.html"><span>想问各位知友，用anki买别人做好的卡牌资源OK吗，还是自己做比较好，但感觉自己做要耗费很多时间呀？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作为一名分享过几十套牌组、上万张卡片的老 Ankier，我想说： 如果你需要记的内容比较死板，相互之间没有太多联系，用别人的牌组还行。 如果你要学的是计算机、数学、物理这类学科，那就很难说了，具体可以看这篇： 学习另一个人的间隔重复记忆卡片通常是无效的 另外，别人做的牌组质量难以衡量，不像图书那样可以看到别人的评价。 如果你执…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E6%9D%90%E6%96%99%E8%AE%BE%E8%AE%A1">#学习材料设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="565467709"><div class="post-meta"><time datetime="2022-09-17">2022-09-17</time><a class="meta-author" href="../?q=Issa%20Rice">Issa Rice</a><span>▲ 11 · 1 分钟</span></div><div class="post-summary"><h2><a href="565467709.html"><span>间隔重复让你感觉在某门学科上总是学生</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者指出，间隔重复能延长记忆，却可能让学习者觉得自己永远处于学生阶段：持续复习会不断提示遗忘之处。文章也提到 Andy Matuschak 对“量子计算学习者”的相反看法，认为持续学习可以意味着认真掌握，而非浅尝后遗忘。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E8%80%85%E8%BA%AB%E4%BB%BD">#学习者身份</a><a href="../?q=%E8%AE%B0%E5%BF%86">#记忆</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E5%8A%A8%E6%9C%BA">#学习动机</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="660604968"><div class="post-meta"><time datetime="2023-10-11">2023-10-11</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 3 · 2 分钟</span></div><div class="post-summary"><h2><a href="660604968.html"><span>重试结果可能会提供额外的可提取性信号</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 指出，间隔重复系统要从稀疏的成功或失败记录估计连续的回忆概率；若首次失败后短时间重试仍失败，这可作为初次可提取性更低的额外信号，但具体应降低多少尚难建模。他提到实验研究常记录成功前的尝试次数，艾宾浩斯也曾将其作为粗略指标。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=SRS">#SRS</a><a href="../?q=%E9%87%8D%E8%AF%95%E6%9C%BA%E5%88%B6">#重试机制</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

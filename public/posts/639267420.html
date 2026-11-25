@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>将卡片生成任务定义为强化目标的过滤问题</title>
+<meta name="description" content="作者指出，生成大量看似合理的候选卡片后再筛选，可能比单纯要求模型直接产出理想卡片更符合实际难点。关键挑战在于判定问题是否有趣、重要，而不只是合乎语法；常见细节可能信息熵低且与文章主旨无关。他提出可开发候选卡片排序或过滤界面，但承认重要性如何量化仍未解决。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="将卡片生成任务定义为强化目标的过滤问题">
+<meta property="og:description" content="作者指出，生成大量看似合理的候选卡片后再筛选，可能比单纯要求模型直接产出理想卡片更符合实际难点。关键挑战在于判定问题是否有趣、重要，而不只是合乎语法；常见细节可能信息熵低且与文章主旨无关。他提出可开发候选卡片排序或过滤界面，但承认重要性如何量化仍未解决。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-06-25">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="639267420" data-rec-seeds="656354899,644435780,656355546,716570823,645670312,644435843,630862056,2033320783427129789">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2023-06-25">2023-06-25</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%20%26%20%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">间隔重复 &amp; 注意力管理</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 3 分钟</span>
+          <span>▲ 7</span>
+        </p>
+        <h1>将卡片生成任务定义为强化目标的过滤问题</h1>
+        
+        <p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8D%A1%E7%89%87%E7%94%9F%E6%88%90">#卡片生成</a><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E4%BF%A1%E6%81%AF%E7%AD%9B%E9%80%89">#信息筛选</a><a href="../?q=%E5%BC%BA%E5%8C%96%E7%9B%AE%E6%A0%87">#强化目标</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">对候选卡片进行自动排序/筛选</a></li><li class="level-3"><a href="#sec-2" data-toc-target="sec-2">参考文献</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-4" data-toc-target="sec-4">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="XBInZKE7">当我开始专注<a class="wrap external" href="https://notes.andymatuschak.org/z2DY7qsP5iHsiA5hxUHheV8hu7Xe96vdGyYX" rel="noopener noreferrer" target="_blank">使用机器学习模型从解释文本中生成高质量的间隔重复卡片</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>，我认为这个问题主要在于如何让系统产生我想要的输出。但在体验过一些模型后，我注意到模型通常有能力产生足够接近我想要结果，但前提是我愿意生成并评估足够多的样本。这一过程的问题在于生成满意答案需要生成的样本数量过于庞大……但不是一个博尔赫斯数*。显然，任何足够复杂的模型都包含所有的句子；这不是在说我想要的卡片就在集合中，而是在说我可能会丢弃掉近乎所有的样本。</p><blockquote data-pid="AGCUKRAb">*译注：博尔赫斯数是一个虚构的数学概念，源于阿根廷作家豪尔赫·路易斯·博尔赫斯的作品《百科全书》。其中博尔赫斯数是一个极其巨大的数字，其大小超出人类理解和表达的范围。它被用来描述一个无限的、包含了所有可能的排列组合的图书馆或书库，其中每本书都是一本独特的书，包含了所有可能的组合。</blockquote><p data-pid="p0XUpLel">生成卡片的问题，跟让模型生成可接受的输出的问题完全不一样（<a class="wrap external" href="https://notes.andymatuschak.org/zPZqDQquq8TAxRVqCQTkxkq" rel="noopener noreferrer" target="_blank">卡片生成任务中，选择要强化的目标概念，和为这些目标概念编写卡片，是两个独立的问题</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>）。或许可以开发一些过滤器，筛选模型的输出，以找出我们需要的问题。此外，我们也可以开发一个界面来适应这个筛选问题。</p><h2 id="sec-1">对候选卡片进行自动排序/筛选</h2><p data-pid="tEpn8oZl">什么是「不合理」的问题？我发现这些问题并不是胡言乱语，而是非常规矩的问题，也都能说得通。但这些问题中读不出对文章的有趣理解。这种「有趣」有主观因素——有些人对人物时间事件等具体细节感兴趣，有人对关键定义感兴趣，而有人对大局影响感兴趣（<a class="wrap external" href="https://notes.andymatuschak.org/zRQJZytpQme5JHS83MSboQ4" rel="noopener noreferrer" target="_blank">对于卡片生成任务，大型语言模型（LLM）经常需要额外的提示，来确定从何种角度制卡</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup>；<a class="wrap external" href="https://notes.andymatuschak.org/zGkLPdiEs7Qohkesq7TNiBe" rel="noopener noreferrer" target="_blank">对于卡片生成任务，大型语言模型（LLM）缺乏为复杂概念材料编写卡片的模式</a><sup class="cite" id="cite-4"><a href="#ref-4">[4]</a></sup>）。但我想知道的是这种有趣是否能客观评价。</p><p data-pid="MTDvEy8U">比如，假设我们围绕一篇关于跑步者的文章生成问题，文章里有句话是「他绑紧了他的鞋带」，而如果有个问题是「他跑步前绑紧了什么？」，那么这个问题可以在客观上认为是低质量的，其中一个因素是当代故事里的其他跑步者都会这么干（也就是说，这条信息是低熵的）。另一个更为微妙的因素是，这个细节对这个故事<b>并不重要</b>。跑步者的鞋子是无关紧要的；文章之后也没有提起。我觉得量化第一个因素是可行的，但我不确定如何量化第二个因素。有个笨想法：如果你移除文章的某处细节，文章的自编码向量会移动多少？我们能在这里使用模型的熵吗？</p><h3 id="sec-2">参考文献</h3><p data-pid="FilrkBCi">我在 <a class="wrap external" href="https://notes.andymatuschak.org/zYhPmghQMv93jZsGwPfLcZx7E4npiQc87xX" rel="noopener noreferrer" target="_blank">2021 年 9 月 6日</a>与 <a class="wrap external" href="https://notes.andymatuschak.org/zJ55L18u5sagXqnMWh5szwfZ388oGQbyfW3" rel="noopener noreferrer" target="_blank">Yuval Milo</a> 的电话会谈里意识到了这点。</p><h2 id="sec-3">链接至本文（已汉化）</h2><ul><li data-pid="ETBAy36q"><a class="internal tm-internal" data-tm-id="656354899" href="656354899.html">卡片生成任务中，选择要强化的目标概念，和为这些目标概念编写卡片，是两个独立的问题</a></li><li data-pid="jhPB4YU8"><a class="internal tm-internal" data-tm-id="716570823" href="716570823.html">叶峻峣：使用机器学习从解释性文本中生成优质的间隔重复卡片</a></li></ul><h2 id="sec-4">声明</h2><p data-pid="a1kSLiu9">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="ySPjL02P"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 Shom、校对 <span class="nolink">Jarrett</span>Ye<br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/zQ4E1DXZoZTTitsik89ZcvXMu8dQMkJzRUS" rel="noopener noreferrer" target="_blank">Framing prompt generation as a filtering problem on reinforcement targets</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 使用机器学习从解释性文本中生成优质的间隔重复卡片 <a class="tm-internal" data-tm-id="716570823" href="716570823.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 卡片生成任务中，选择要强化的目标概念，和为这些目标概念编写卡片，是两个独立的问题 <a class="tm-internal" data-tm-id="656354899" href="656354899.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 对于卡片生成任务，大型语言模型（LLM）经常需要额外的提示，来确定从何种角度制卡 <a class="tm-internal" data-tm-id="644435780" href="644435780.html">站内阅读 ↗</a></li><li id="ref-4"><a aria-label="返回正文" class="ref-back" href="#cite-4">↩</a> 对于卡片生成任务，大型语言模型（LLM）缺乏为复杂概念材料编写卡片的模式 <a class="tm-internal" data-tm-id="656355546" href="656355546.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">对候选卡片进行自动排序/筛选</a></li><li class="level-3"><a href="#sec-2" data-toc-target="sec-2">参考文献</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-4" data-toc-target="sec-4">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/zQ4E1DXZoZTTitsik89ZcvXMu8dQMkJzRUS" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/zQ4E1DXZoZTTitsik89ZcvXMu8dQMkJzRUS ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/639267420" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="656354899"><div class="post-meta"><time datetime="2023-09-15">2023-09-15</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 6 · 3 分钟</span></div><div class="post-summary"><h2><a href="656354899.html"><span>对于卡片生成任务，选择要强化的目标概念，和为这些目标概念编写卡片，是两个独立的问题</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Matuschak 将卡片生成拆成两个问题：选择哪些概念值得强化，以及如何为指定概念写卡片。他认为后者已有较清晰的写作原则，模型在获得目标后更容易执行；前者需要了解读者兴趣、已有知识和目标，因而更难自动化。作者建议由读者先高亮重要内容，再让模型协助写卡片。</p><p class="tags"><a href="../?q=%E5%8D%A1%E7%89%87%E7%94%9F%E6%88%90">#卡片生成</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%A3%80%E7%B4%A2%E6%8F%90%E7%A4%BA">#检索提示</a><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2033320783427129789"><div class="post-meta"><time datetime="2026-04-30">2026-04-30</time><a class="meta-author" href="../?q=Ozzie%20Kirkby">Ozzie Kirkby</a><span>▲ 78 · 37 分钟</span></div><div class="post-summary"><h2><a href="2033320783427129789.html"><span>记忆机器：LLM 能否根据读者的划线生成持久的抽认卡？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>间隔重复系统需要的不是泛泛问答卡，而是过数月仍能稳定提示同一记忆、又保留划线内容吸引力的问题。人工编写耗时，提示也会陈旧；作者检验能否以读者随手划线作为兴趣信号，让模型低成本生成可长期复习的提示。 在42名经验用户的实验中，读者对文章细节的兴趣差异明显，所选兴趣的平均重合仅39%；通用题库平均需删除三分之一以上的提示才符合个人…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E6%8F%90%E7%A4%BA%E8%B4%A8%E9%87%8F">#提示质量</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="644435780"><div class="post-meta"><time datetime="2023-07-19">2023-07-19</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 7 · 2 分钟</span></div><div class="post-summary"><h2><a href="644435780.html"><span>对于卡片生成任务，大型语言模型（LLM）经常需要额外的提示，来确定从何种角度制卡</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者观察到，为间隔重复卡片生成任务只提供文本与高亮范围，模型往往无法猜出用户想强化的角度；加入“为什么”或“符号”等提示通常能改善结果。真正关键的是卡片与个人兴趣、目标和注意点的联系，而模型难以直接获知这些；作者提出可尝试从个人阅读笔记生成卡片。</p><p class="tags"><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8D%A1%E7%89%87%E7%94%9F%E6%88%90">#卡片生成</a><a href="../?q=%E6%8F%90%E7%A4%BA%E8%AE%BE%E8%AE%A1">#提示设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1983142909973914577"><div class="post-meta"><time datetime="2025-12-13">2025-12-13</time><a class="meta-author" href="../?q=Giacomo%20Randazzo">Giacomo Randazzo</a><span>▲ 108 · 11 分钟</span></div><div class="post-summary"><h2><a href="1983142909973914577.html"><span>别拿「间隔重复」来创业</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Giacomo Randazzo反思AI辅助间隔重复产品 Rember 未能成为成功创业公司，归因于三项结构性阻力：有效学习需要付出努力、复习习惯难养成、学习者需持续决定记什么。AI降低制卡成本，却未解决知识点选择、控制感与卡片质量问题；通用系统也难像具体考试或课程应用那样提供明确目标和持续内容，因此作者只看好小众工具，而非风…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%95%99%E8%82%B2%E7%A7%91%E6%8A%80">#教育科技</a><a href="../?q=%E5%88%9B%E4%B8%9A">#创业</a><a href="../?q=%E4%B9%A0%E6%83%AF%E5%85%BB%E6%88%90">#习惯养成</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2076357286067552264"><div class="post-meta"><time datetime="2026-08-28">2026-08-28</time><a class="meta-author" href="../?q=Fernando%20Borretti">Fernando Borretti</a><span>▲ 65 · 4 分钟</span></div><div class="post-summary"><h2><a href="2076357286067552264.html"><span>间隔重复的适用性</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文认为，间隔重复最适合简短、清晰、无歧义的事实映射，如词汇或元素符号；数学等概念性知识则需先建立理解，再设法提炼无歧义的问题。关系型事实较易制卡，孤立的抽象断言常会导致是非题或问题含糊。作者还质疑 AI 能否替学习者决定哪些概念重要，并建议收集如何从具体文本设计概念卡片的案例。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%A6%82%E5%BF%B5%E5%AD%A6%E4%B9%A0">#概念学习</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a><a href="../?q=%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0">#数学学习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="656355546"><div class="post-meta"><time datetime="2023-09-16">2023-09-16</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 10 · 4 分钟</span></div><div class="post-summary"><h2><a href="656355546.html"><span>对于卡片生成任务，大型语言模型（LLM）缺乏为复杂概念材料编写卡片的模式</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者指出，LLM 能按明确规则从简单说明文本生成事实卡片，却不擅长为复杂概念编写卡片，因为它往往只强化定义和术语，而不呈现分类、应用、例子及目的。以线性代数的阶梯形为例，他列出需要覆盖的概念关系，并推测模型需要一套更丰富的制卡模式语言。</p><p class="tags"><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a><a href="../?q=%E6%A6%82%E5%BF%B5%E5%AD%A6%E4%B9%A0">#概念学习</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

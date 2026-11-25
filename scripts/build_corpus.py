@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-Build offline corpus & hybrid recommender assets for tm-feed from:
+Build static HTML corpus & hybrid recommender assets for tm-feed from:
 - L-M-Sherlock/tm-index (CC0 1.0)
 - L-M-Sherlock/ZhiHuArchive (CC0 1.0)
 
-Outputs into public/:
-- public/posts/<id>.json        (full-text cleaned HTML + TOC + 3-slot bottom recs)
-- public/data/feed-index.json   (compact metadata for all items + global stats + facets)
-- public/data/embeddings.bin    (N x 128 Int8 L2-normalized hybrid semantic+graph vectors)
+Every post is rendered as a standalone static HTML page (curl-friendly, zero JS required to read):
+- public/index.html             (static homepage with pre-rendered initial feed + search input)
+- public/posts/<id>.html        (3,580 complete static HTML articles & answers + 6 static bottom recs)
+- public/data/feed-index.json   (compact metadata for client-side history recommender & instant search)
+- public/data/embeddings.bin    (3,580 x 128 Int8 L2-normalized hybrid semantic+graph vectors)
 - public/data/neighbors.json    (Top-12 cross-item graph + co-citation neighbors per item index)
 """
 
@@ -20,7 +21,7 @@ import json
 import math
 import re
 from pathlib import Path
-from urllib.parse import parse_qs, unquote, urlparse, urlsplit
+from urllib.parse import parse_qs, quote, unquote, urlparse, urlsplit
 
 import numpy as np
 import scipy.sparse as sp
@@ -36,6 +37,7 @@ POSTS_DIR = OUT_PUBLIC / "posts"
 DATA_DIR = OUT_PUBLIC / "data"
 
 SHANGHAI_TZ = dt.timezone(dt.timedelta(hours=8))
+BOTTOM_REC_LIMIT = 6
 
 AUTHOR_PROFILE_URLS = {
     "4c592f496dc33822b560b382907ff1d0": "https://www.zhihu.com/people/L.M.Sherlock",
@@ -52,6 +54,10 @@ def clean_ws(value: str | None) -> str:
     if not value:
         return ""
     return re.sub(r"\s+", " ", str(value)).strip()
+
+
+def esc(value: object) -> str:
+    return html.escape(str(value if value is not None else ""), quote=True)
 
 
 def strip_html(value: str | None) -> str:
@@ -78,7 +84,7 @@ def ts_to_date(ts: int | float | None, fallback: str = "") -> str:
 
 
 def normalize_href(raw_url: str, valid_ids: set[str]) -> tuple[str, str | None]:
-    """Return (cleaned_href, matched_internal_id_or_None)."""
+    """Return (cleaned_href_for_posts_dir, matched_internal_id_or_None)."""
     if not raw_url:
         return "", None
     url = raw_url.strip()
@@ -107,13 +113,12 @@ def normalize_href(raw_url: str, valid_ids: set[str]) -> tuple[str, str | None]:
     if m:
         matched_id = m.group(1) or m.group(2) or m.group(3)
         if matched_id in valid_ids:
-            return f"#/post/{matched_id}", matched_id
+            return f"{matched_id}.html", matched_id
 
-    # Relative ./12345.html from restorations
     m_rel = re.match(r"^\./(\d+)\.html$", url)
     if m_rel and m_rel.group(1) in valid_ids:
         mid = m_rel.group(1)
-        return f"#/post/{mid}", mid
+        return f"{mid}.html", mid
 
     parsed_split = urlsplit(url)
     if parsed_split.netloc in ("", "api.zhihu.com", "www.zhihu.com"):
@@ -167,31 +172,18 @@ def apply_restoration(raw_html: str, restoration: dict | None) -> tuple[str, dic
 
 
 def transform_html(raw_html: str, valid_ids: set[str]) -> tuple[str, list[dict], int]:
-    """
-    Clean Zhihu HTML into blog-new editorial prose HTML:
-    - Fix lazy images & equations
-    - Convert <sup data-numero> into blog-new .cite + ol.references
-    - Convert internal links to #/post/<id> with data-tm-id for hover .cite-card
-    - Extract TOC from h2/h3 and inject anchor ids
-    Returns (cleaned_html, toc_list, visible_char_count).
-    """
     if not raw_html:
         return "", [], 0
 
     soup = BeautifulSoup(raw_html, "lxml")
     root = soup.body if soup.body else soup
 
-    # Unwrap <u>
     for u in root.find_all("u"):
         u.unwrap()
 
-    # Clean images & equations
     for img in root.find_all("img"):
         actual = img.get("data-actualsrc") or img.get("data-original")
-        src = img.get("src", "")
-        if actual and (not src or src.startswith("data:image")):
-            img["src"] = actual
-        elif actual:
+        if actual:
             img["src"] = actual
 
         for attr in ("data-actualsrc", "data-original", "data-rawwidth", "data-rawheight", "data-size", "data-caption"):
@@ -199,7 +191,6 @@ def transform_html(raw_html: str, valid_ids: set[str]) -> tuple[str, list[dict],
 
         final_src = img.get("src", "")
         if not final_src or final_src.startswith("data:image/svg+xml"):
-            # Empty Zhihu lazy placeholder with no real URL
             if not img.get("eeimg") and "equation" not in final_src:
                 img.decompose()
                 continue
@@ -213,7 +204,6 @@ def transform_html(raw_html: str, valid_ids: set[str]) -> tuple[str, list[dict],
             img["decoding"] = "async"
             img["referrerpolicy"] = "no-referrer"
 
-    # Collect Zhihu native footnotes <sup data-text data-url data-numero>
     footnotes: dict[int, dict] = {}
     for sup in root.find_all("sup"):
         text = sup.get("data-text")
@@ -238,7 +228,6 @@ def transform_html(raw_html: str, valid_ids: set[str]) -> tuple[str, list[dict],
             a_tag.string = f"[{n}]"
             sup.append(a_tag)
 
-    # Rewrite links
     for a in root.find_all("a"):
         href = a.get("href", "")
         if href.startswith("#ref-") or href.startswith("#cite-"):
@@ -263,7 +252,6 @@ def transform_html(raw_html: str, valid_ids: set[str]) -> tuple[str, list[dict],
             a["target"] = "_blank"
             a["rel"] = "noopener noreferrer"
 
-    # Extract TOC from h2 / h3 (and promote stray h1 inside prose to h2)
     for h1 in root.find_all("h1"):
         h1.name = "h2"
 
@@ -282,7 +270,6 @@ def transform_html(raw_html: str, valid_ids: set[str]) -> tuple[str, list[dict],
             "title": title_txt[:80],
         })
 
-    # Append converted footnotes as blog-new ol.references
     if footnotes:
         hr = soup.new_tag("hr")
         root.append(hr)
@@ -313,9 +300,284 @@ def transform_html(raw_html: str, valid_ids: set[str]) -> tuple[str, list[dict],
     return out_html, toc, len(visible_text)
 
 
+def render_card_html(meta: dict, root_rel: str) -> str:
+    """Render static .post-row HTML card usable in both index.html and posts/<id>.html."""
+    author_disp = f"{meta['a']} · 回答" if meta["k"] == "ans" else meta["a"]
+    post_href = f"{root_rel}/posts/{meta['id']}.html" if root_rel == "." else f"{meta['id']}.html"
+    if post_href.startswith("./"):
+        post_href = post_href[2:]
+    q_base = "./" if root_rel == "." else "../"
+    tags_html = ""
+    if meta["kw"]:
+        tags_links = "".join(
+            f'<a href="{q_base}?q={quote(k)}">#{esc(k)}</a>' for k in meta["kw"][:4]
+        )
+        tags_html = f'<p class="tags">{tags_links}</p>'
+
+    return (
+        f'<article class="post-row" data-item-id="{esc(meta["id"])}">'
+        f'<div class="post-meta">'
+        f'<time datetime="{esc(meta["d"])}">{esc(meta["d"])}</time>'
+        f'<a class="meta-author" href="{q_base}?q={quote(meta["a"])}">{esc(author_disp)}</a>'
+        f'<span>▲ {meta["v"]} · {meta["m"]} 分钟</span>'
+        f'</div>'
+        f'<div class="post-summary">'
+        f'<h2><a href="{esc(post_href)}"><span>{esc(meta["t"])}</span><span class="arr" aria-hidden="true">↗</span></a></h2>'
+        f'<p>{esc(meta["s"])}</p>'
+        f'{tags_html}'
+        f'</div>'
+        f'<i class="rule" aria-hidden="true"></i>'
+        f'</article>'
+    )
+
+
+def render_post_page_html(payload: dict, bottom_metas: list[dict], seed_ids: list[str]) -> str:
+    title_e = esc(payload["title"])
+    desc_e = esc(truncate_hook(payload["summary"], 180))
+    author_e = esc(payload["author"])
+    date_e = esc(payload["date"])
+
+    toc_list_html = "".join(
+        f'<li class="level-{h["level"]}"><a href="#{esc(h["id"])}" data-toc-target="{esc(h["id"])}">{esc(h["title"])}</a></li>'
+        for h in payload["toc"]
+    )
+    toc_mobile = (
+        f'<details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol>{toc_list_html}</ol></nav></details>'
+        if toc_list_html
+        else ""
+    )
+    toc_desktop = (
+        f'<nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list">{toc_list_html}</ol></nav>'
+        if toc_list_html
+        else ""
+    )
+
+    q_fold = ""
+    if payload["kind"] == "answer" and payload.get("question_detail_html"):
+        q_fold = (
+            f'<details class="question-fold">'
+            f'<summary>查看问题描述</summary>'
+            f'<div class="question-fold-body prose">{payload["question_detail_html"]}</div>'
+            f'</details>'
+        )
+
+    tags_html = ""
+    if payload["keywords"]:
+        t_links = "".join(
+            f'<a href="../?q={quote(k)}">#{esc(k)}</a>' for k in payload["keywords"]
+        )
+        tags_html = f'<p class="tags">{t_links}</p>'
+
+    restoration_html = ""
+    if payload.get("restoration"):
+        r = payload["restoration"]
+        restoration_html = f'<aside class="restoration-banner"><strong>{esc(r["label"])}</strong>：{esc(r["notice"])}</aside>'
+
+    orig_authors_links = " · ".join(
+        f'<a href="../?q={quote(a)}">{esc(a)}</a>'
+        for a in (payload["original_authors"] or [payload["author"]])
+    )
+    orig_sources_row = ""
+    if payload["original_source_urls"]:
+        s_links = "<br>".join(
+            f'<a href="{esc(u)}" target="_blank" rel="noopener noreferrer">{esc(u)} ↗</a>'
+            for u in payload["original_source_urls"]
+        )
+        orig_sources_row = f"<div><dt>原文</dt><dd>{s_links}</dd></div>"
+
+    bottom_cards_html = "".join(render_card_html(m, "..") for m in bottom_metas)
+    seeds_attr = esc(",".join(seed_ids))
+
+    return f"""<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title_e}</title>
+<meta name="description" content="{desc_e}">
+<meta name="author" content="{author_e}">
+<meta property="og:title" content="{title_e}">
+<meta property="og:description" content="{desc_e}">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="{date_e}">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}}catch{{}}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="{esc(payload['id'])}" data-rec-seeds="{seeds_attr}">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="{date_e}">{date_e}</time>
+          <a class="tag" href="../?q={quote(payload['column'])}">{esc(payload['column'])}</a>
+          <a class="tag" href="../?q={quote(payload['author'])}">{author_e}</a>
+          <span>约 {payload['minutes']} 分钟</span>
+          <span>▲ {payload['votes']}</span>
+        </p>
+        <h1>{title_e}</h1>
+        {q_fold}
+        {tags_html}
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      {toc_mobile}
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          {restoration_html}
+          {payload['html']}
+        </div>
+        {toc_desktop}
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd>{orig_authors_links}</dd></div>
+            {orig_sources_row}
+            <div><dt>来源</dt><dd>{esc(payload['publisher'])} · <a href="{esc(payload['zhihu_url'])}" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        {bottom_cards_html}
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>
+"""
+
+
+def render_home_page_html(initial_metas: list[dict]) -> str:
+    cards_html = "".join(render_card_html(m, ".") for m in initial_metas)
+    return f"""<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>译文漫游</title>
+<meta name="description" content="Thoughts Memo 译文与问答个性化阅读流（收录 2,187 篇译文与 1,393 篇知乎回答）">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}}catch{{}}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body id="top" data-page="home" data-root=".">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <section class="writing">
+      <div class="search-bar">
+        <input id="search-input" type="search" placeholder="搜索标题、内容、作者或标签…" autocomplete="off" spellcheck="false">
+        <span class="search-count" id="search-count" hidden></span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="feed-list">
+        {cards_html}
+      </div>
+      <div class="feed-more" id="feed-sentinel">向下滚动加载更多</div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="app.js" defer></script>
+</body>
+</html>
+"""
+
+
+def mmr_pick(scored_cands: list[tuple[float, int]], sim_mat: np.ndarray, items_meta: list[dict], k: int, lam: float = 0.72) -> list[int]:
+    pool = scored_cands[: max(k * 8, 80)]
+    chosen: list[int] = []
+    used = [False] * len(pool)
+    for _ in range(min(k, len(pool))):
+        best_p = -1
+        best_v = -1e9
+        for p, (sc, c_idx) in enumerate(pool):
+            if used[p]:
+                continue
+            max_pen = 0.0
+            same_auth_cnt = 0
+            for prev_idx in chosen[-4:]:
+                v_sim = max(0.0, float(sim_mat[c_idx, prev_idx]))
+                same_a = 0.55 if items_meta[c_idx]["a"] == items_meta[prev_idx]["a"] else 0.0
+                if same_a > 0:
+                    same_auth_cnt += 1
+                pen = 0.5 * v_sim + same_a
+                if pen > max_pen:
+                    max_pen = pen
+            if same_auth_cnt >= 2:
+                max_pen += 0.8
+            val = lam * sc - (1.0 - lam) * max_pen
+            if val > best_v:
+                best_v = val
+                best_p = p
+        if best_p == -1:
+            break
+        used[best_p] = True
+        chosen.append(pool[best_p][1])
+    return chosen
+
+
 def main() -> None:
     POSTS_DIR.mkdir(parents=True, exist_ok=True)
     DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+    # Remove legacy .json files in public/posts/ if present
+    for old_json in POSTS_DIR.glob("*.json"):
+        old_json.unlink()
 
     print("[1/6] Loading tm-index metadata & ZhiHuArchive restorations...")
     cat_raw = json.loads((TM_INDEX_DIR / "catalog.json").read_text(encoding="utf-8"))
@@ -335,12 +597,8 @@ def main() -> None:
 
     included_articles = [a for a in cat_raw["articles"] if a.get("decision") != "exclude"]
     ans_dict_raw = ans_raw.get("answers", {})
-    if isinstance(ans_dict_raw, list):
-        ans_dict = {str(x["id"]): x for x in ans_dict_raw}
-    else:
-        ans_dict = {str(k): v for k, v in ans_dict_raw.items()}
+    ans_dict = {str(x["id"]): x for x in ans_dict_raw} if isinstance(ans_dict_raw, list) else {str(k): v for k, v in ans_dict_raw.items()}
 
-    # Invert article -> answer citations so each answer knows which translated articles it cites
     ans_to_articles: dict[str, list[dict]] = collections.defaultdict(list)
     for art in included_articles:
         aid_self = str(art["id"])
@@ -351,58 +609,28 @@ def main() -> None:
             lv = lv_info.get("level") if lv_info.get("level") in (1, 2, 3) else 2
             ans_to_articles[ans_id_s].append({
                 "id": aid_self,
-                "title": art["title"],
-                "author": (art.get("original_authors") or [art.get("publisher", "Thoughts Memo")])[0],
                 "level": lv,
-                "evidence": clean_ws(lv_info.get("evidence", "")),
                 "votes": art.get("voteup_count", 0),
             })
 
-    # Keep all cited answers that actually exist in ZhiHuArchive/answer/<id>.json
-    valid_answer_ids: list[str] = []
-    for ans_id in ans_dict:
-        if (ARCHIVE_DIR / "answer" / f"{ans_id}.json").exists():
-            valid_answer_ids.append(ans_id)
-
+    valid_answer_ids = [aid for aid in ans_dict if (ARCHIVE_DIR / "answer" / f"{aid}.json").exists()]
     valid_article_ids = {str(a["id"]) for a in included_articles if (ARCHIVE_DIR / "article" / f"{a['id']}.json").exists()}
     all_valid_ids = valid_article_ids | set(valid_answer_ids)
-    print(f"  -> Matched {len(valid_article_ids)} full-text articles + {len(valid_answer_ids)} full-text Zhihu answers = {len(all_valid_ids)} items")
+    print(f"  -> Matched {len(valid_article_ids)} articles + {len(valid_answer_ids)} answers = {len(all_valid_ids)} items")
 
-    # Sort articles & answers deterministically
     included_articles = [a for a in included_articles if str(a["id"]) in valid_article_ids]
     included_articles.sort(key=lambda a: (a.get("voteup_count", 0), a.get("date", "")), reverse=True)
     valid_answer_ids.sort(key=lambda aid: (ans_dict[aid].get("voteup_count", 0), ans_dict[aid].get("date", "")), reverse=True)
 
-    # Assign unified 0..N-1 index (articles first, then answers)
     items_meta: list[dict] = []
     id_to_idx: dict[str, int] = {}
     full_payloads: dict[str, dict] = {}
     corpus_texts: list[str] = []
 
-    print("[2/6] Parsing & sanitizing 3,500+ full-text HTML documents from ZhiHuArchive...")
-    # Build same-column chronological neighbor lookup for prev/next sequence recommendations
-    col_groups: dict[str, list[dict]] = collections.defaultdict(list)
-    for a in included_articles:
-        col = clean_ws(a.get("column") or "未分类")
-        col_groups[col].append(a)
-    col_prev_next: dict[str, list[tuple[str, str]]] = collections.defaultdict(list)
-    for col, group in col_groups.items():
-        if col in ("杂项", "未分类") or len(group) < 2:
-            continue
-        s_group = sorted(group, key=lambda x: (x.get("date", ""), str(x["id"])))
-        for idx_g, a in enumerate(s_group):
-            aid = str(a["id"])
-            if idx_g > 0:
-                p = s_group[idx_g - 1]
-                col_prev_next[aid].append((str(p["id"]), f"同专栏上一篇 · {col}"))
-            if idx_g + 1 < len(s_group):
-                n = s_group[idx_g + 1]
-                col_prev_next[aid].append((str(n["id"]), f"同专栏下一篇 · {col}"))
-
+    print("[2/6] Parsing & sanitizing 3,580 full-text HTML documents...")
     for a in included_articles:
         aid = str(a["id"])
-        arch_file = ARCHIVE_DIR / "article" / f"{aid}.json"
-        arch_json = json.loads(arch_file.read_text(encoding="utf-8"))
+        arch_json = json.loads((ARCHIVE_DIR / "article" / f"{aid}.json").read_text(encoding="utf-8"))
         raw_html = arch_json.get("content", "")
         restored_html, rest_notice = apply_restoration(raw_html, restorations_map.get(aid))
         cleaned_html, toc, vis_chars = transform_html(restored_html, all_valid_ids)
@@ -415,16 +643,10 @@ def main() -> None:
         keywords = a.get("keywords") or []
         summary = clean_ws(a.get("summary") or "")
         votes = int(a.get("voteup_count") or arch_json.get("voteup_count") or 0)
-        comment_count = int(arch_json.get("comment_count") or 0)
         date_str = a.get("date") or ts_to_date(arch_json.get("created"))
-        updated_str = ts_to_date(arch_json.get("updated"), date_str)
 
         idx = len(items_meta)
         id_to_idx[aid] = idx
-
-        in_deg = len(a.get("referenced_by") or [])
-        ans_deg = len(a.get("cited_by_answer_ids") or [])
-
         items_meta.append({
             "id": aid,
             "k": "art",
@@ -437,10 +659,10 @@ def main() -> None:
             "v": votes,
             "m": minutes,
             "chars": chars,
-            "kw": keywords[:6],
+            "kw": keywords[:5],
             "s": truncate_hook(summary, 165),
-            "in_deg": in_deg,
-            "ans_deg": ans_deg,
+            "in_deg": len(a.get("referenced_by") or []),
+            "ans_deg": len(a.get("cited_by_answer_ids") or []),
         })
 
         full_payloads[aid] = {
@@ -453,11 +675,8 @@ def main() -> None:
             "publisher": a.get("publisher", "Thoughts Memo"),
             "column": column,
             "date": date_str,
-            "updated": updated_str,
             "votes": votes,
-            "comment_count": comment_count,
             "minutes": minutes,
-            "chars": chars,
             "keywords": keywords,
             "summary": summary,
             "zhihu_url": a.get("url") or f"https://zhuanlan.zhihu.com/p/{aid}",
@@ -466,24 +685,19 @@ def main() -> None:
             "html": cleaned_html,
             "_raw_refs": a.get("references") or [],
             "_raw_ref_by": a.get("referenced_by") or [],
-            "_raw_ans_ids": a.get("cited_by_answer_ids") or [],
-            "_raw_ans_levels": a.get("answer_reference_levels") or {},
         }
 
-        doc_text = " ".join([
+        corpus_texts.append(" ".join([
             (clean_ws(a["title"]) + " ") * 3,
             (column + " ") * 2,
             " ".join(orig_authors) * 2,
             (" ".join(keywords) + " ") * 3,
             summary,
-        ])
-        corpus_texts.append(doc_text)
+        ]))
 
-    # Process Zhihu Answers
     for ans_id in valid_answer_ids:
         ans_info = ans_dict[ans_id]
-        arch_file = ARCHIVE_DIR / "answer" / f"{ans_id}.json"
-        arch_json = json.loads(arch_file.read_text(encoding="utf-8"))
+        arch_json = json.loads((ARCHIVE_DIR / "answer" / f"{ans_id}.json").read_text(encoding="utf-8"))
         raw_html = arch_json.get("content", "")
         restored_html, rest_notice = apply_restoration(raw_html, restorations_map.get(ans_id))
         cleaned_html, toc, vis_chars = transform_html(restored_html, all_valid_ids)
@@ -498,32 +712,28 @@ def main() -> None:
         minutes = max(1, round(chars / 480))
         publisher = clean_ws(ans_info.get("author") or (arch_json.get("author") or {}).get("name") or "Thoughts Memo")
         votes = int(ans_info.get("voteup_count") or arch_json.get("voteup_count") or 0)
-        comment_count = int(arch_json.get("comment_count") or 0)
         date_str = ans_info.get("date") or ts_to_date(arch_json.get("created_time"))
-        updated_str = ts_to_date(arch_json.get("updated_time"), date_str)
 
         cited_arts = sorted(
             [x for x in ans_to_articles.get(ans_id, []) if x["id"] in id_to_idx],
             key=lambda x: (x["level"], -x["votes"]),
         )
-        # Inherit top keywords & dominant column from cited translated articles!
         kw_counter: collections.Counter[str] = collections.Counter()
         col_counter: collections.Counter[str] = collections.Counter()
         for ca in cited_arts:
             art_meta = items_meta[id_to_idx[ca["id"]]]
-            weight = 3 if ca["level"] == 1 else (2 if ca["level"] == 2 else 1)
+            w = 3 if ca["level"] == 1 else (2 if ca["level"] == 2 else 1)
             for kw in art_meta["kw"]:
-                kw_counter[kw] += weight
+                kw_counter[kw] += w
             if art_meta["c"] not in ("杂项", "未分类"):
-                col_counter[art_meta["c"]] += weight
+                col_counter[art_meta["c"]] += w
 
         inferred_kws = [k for k, _ in kw_counter.most_common(5)]
-        inferred_col = col_counter.most_common(1)[0][0] if col_counter else "知乎问答实战"
-
+        inferred_col = col_counter.most_common(1)[0][0] if col_counter else "问答实战"
         hook = truncate_hook(plain_body, 165)
+
         idx = len(items_meta)
         id_to_idx[ans_id] = idx
-
         items_meta.append({
             "id": ans_id,
             "k": "ans",
@@ -555,11 +765,8 @@ def main() -> None:
             "publisher": publisher,
             "column": inferred_col,
             "date": date_str,
-            "updated": updated_str,
             "votes": votes,
-            "comment_count": comment_count,
             "minutes": minutes,
-            "chars": chars,
             "keywords": inferred_kws,
             "summary": hook,
             "question_detail_html": q_detail_html,
@@ -570,18 +777,15 @@ def main() -> None:
             "_cited_arts": cited_arts,
         }
 
-        doc_text = " ".join([
+        corpus_texts.append(" ".join([
             (q_title + " ") * 3,
             (inferred_col + " ") * 2,
             (" ".join(inferred_kws) + " ") * 3,
             plain_body[:1600],
-        ])
-        corpus_texts.append(doc_text)
+        ]))
 
     n_items = len(items_meta)
-    print(f"[3/6] Computing quality priors & multi-relational co-citation graph for {n_items} items...")
-
-    # Prior Quality Score Q(i) in [0, 1]
+    print(f"[3/6] Computing quality priors & co-citation graph for {n_items} items...")
     max_log_v = max(math.log1p(m["v"]) for m in items_meta) or 1.0
     max_log_in = max(math.log1p(m["in_deg"]) for m in items_meta) or 1.0
     max_log_ans = max(math.log1p(m["ans_deg"]) for m in items_meta) or 1.0
@@ -589,391 +793,146 @@ def main() -> None:
         qv = math.log1p(m["v"]) / max_log_v
         qi = math.log1p(m["in_deg"]) / max_log_in
         qa = math.log1p(m["ans_deg"]) / max_log_ans
-        if m["k"] == "art":
-            q = 0.50 * qv + 0.30 * qi + 0.20 * qa
-        else:
-            q = 0.72 * qv + 0.28 * qa
-        m["q"] = round(q, 4)
+        m["q"] = round(0.50 * qv + 0.30 * qi + 0.20 * qa if m["k"] == "art" else 0.72 * qv + 0.28 * qa, 4)
 
-    # Build sparse graph matrix:
-    # 1) Direct article-article citations
-    # 2) Article-answer citations
-    # 3) Answer Co-Citation Adamic-Adar bridges between articles (crucial cross-author bridge!)
     edge_weights: dict[tuple[int, int], float] = collections.defaultdict(float)
-    cocite_counts: dict[tuple[int, int], int] = collections.defaultdict(int)
-
     for aid in valid_article_ids:
         i = id_to_idx[aid]
-        p = full_payloads[aid]
-        for ref in p["_raw_refs"]:
+        for ref in full_payloads[aid]["_raw_refs"]:
             tid = str(ref.get("id") if isinstance(ref, dict) else ref)
             if tid in id_to_idx and tid != aid:
                 j = id_to_idx[tid]
                 edge_weights[(i, j)] += 1.0
                 edge_weights[(j, i)] += 0.85
 
-    # Answer-article links & Adamic-Adar Answer Co-Citation
     for ans_id in valid_answer_ids:
         a_idx = id_to_idx[ans_id]
         cited = full_payloads[ans_id]["_cited_arts"]
         deg = len(cited)
         if deg == 0:
             continue
-        aa_denom = math.log(1.0 + deg)
+        aa_denom = max(0.7, math.log(1.0 + deg))
         for ca in cited:
             i = id_to_idx[ca["id"]]
             lv_w = 1.0 if ca["level"] == 1 else (0.65 if ca["level"] == 2 else 0.3)
             edge_weights[(a_idx, i)] += 1.2 * lv_w
             edge_weights[(i, a_idx)] += 1.0 * lv_w
-
-        # Pairwise co-cited articles (cap very large directory answers at top 25 to avoid O(k^2) noise)
         capped = cited[:25]
         for u_pos in range(len(capped)):
-            u_id = capped[u_pos]["id"]
-            u_idx = id_to_idx[u_id]
+            u_idx = id_to_idx[capped[u_pos]["id"]]
             wu = 1.0 if capped[u_pos]["level"] == 1 else (0.65 if capped[u_pos]["level"] == 2 else 0.3)
             for v_pos in range(u_pos + 1, len(capped)):
-                v_id = capped[v_pos]["id"]
-                v_idx = id_to_idx[v_id]
+                v_idx = id_to_idx[capped[v_pos]["id"]]
                 wv = 1.0 if capped[v_pos]["level"] == 1 else (0.65 if capped[v_pos]["level"] == 2 else 0.3)
-                aa_score = (wu * wv) / max(aa_denom, 0.7)
+                aa_score = (wu * wv) / aa_denom
                 edge_weights[(u_idx, v_idx)] += 1.4 * aa_score
                 edge_weights[(v_idx, u_idx)] += 1.4 * aa_score
-                cocite_counts[(u_idx, v_idx)] += 1
-                cocite_counts[(v_idx, u_idx)] += 1
 
     rows, cols, vals = [], [], []
     for (u, v), w in edge_weights.items():
         rows.append(u)
         cols.append(v)
         vals.append(w)
-    for idx_self in range(n_items):
-        rows.append(idx_self)
-        cols.append(idx_self)
+    for s_idx in range(n_items):
+        rows.append(s_idx)
+        cols.append(s_idx)
         vals.append(2.0)
 
-    adj_mat = sp.csr_matrix((vals, (rows, cols)), shape=(n_items, n_items), dtype=np.float32)
-    adj_norm = normalize(adj_mat, norm="l2", axis=1)
+    adj_norm = normalize(sp.csr_matrix((vals, (rows, cols)), shape=(n_items, n_items), dtype=np.float32), norm="l2", axis=1)
 
-    print("[4/6] Computing 128-d Hybrid Semantic (Char+Word TF-IDF) + Graph SVD Embeddings...")
-    tfidf_char = TfidfVectorizer(
-        analyzer="char_wb",
-        ngram_range=(2, 4),
-        min_df=2,
-        max_df=0.85,
-        max_features=42000,
-        sublinear_tf=True,
-        dtype=np.float32,
-    ).fit_transform(corpus_texts)
+    print("[4/6] Computing 128-d Hybrid Semantic + Graph SVD Embeddings...")
+    tfidf_char = TfidfVectorizer(analyzer="char_wb", ngram_range=(2, 4), min_df=2, max_df=0.85, max_features=42000, sublinear_tf=True, dtype=np.float32).fit_transform(corpus_texts)
+    tfidf_word = TfidfVectorizer(token_pattern=r"(?u)\b\w+\b", min_df=2, max_df=0.85, max_features=16000, sublinear_tf=True, dtype=np.float32).fit_transform(corpus_texts)
+    hybrid_features = sp.hstack([tfidf_char * 0.65, tfidf_word * 0.45, adj_norm * 0.40], format="csr")
 
-    tfidf_word = TfidfVectorizer(
-        token_pattern=r"(?u)\b\w+\b",
-        min_df=2,
-        max_df=0.85,
-        max_features=16000,
-        sublinear_tf=True,
-        dtype=np.float32,
-    ).fit_transform(corpus_texts)
-
-    hybrid_features = sp.hstack([
-        tfidf_char * 0.65,
-        tfidf_word * 0.45,
-        adj_norm * 0.40,
-    ], format="csr")
-
-    svd = TruncatedSVD(n_components=128, random_state=42)
-    emb_f32 = svd.fit_transform(hybrid_features).astype(np.float32)
+    emb_f32 = TruncatedSVD(n_components=128, random_state=42).fit_transform(hybrid_features).astype(np.float32)
     emb_f32 = normalize(emb_f32, norm="l2", axis=1)
-
-    # Quantize to Int8 [-127, 127]
     emb_i8 = np.clip(np.round(emb_f32 * 127.0), -127, 127).astype(np.int8)
     (DATA_DIR / "embeddings.bin").write_bytes(emb_i8.tobytes())
-    print(f"  -> Wrote embeddings.bin ({emb_i8.nbytes / 1024:.1f} KB, shape={emb_i8.shape})")
 
-    print("[5/6] Precomputing 3-slot bottom recommendations & real-time graph neighbor tables...")
-    # Full cosine matrix (3580 x 3580 takes ~45 MB RAM and <0.15s in BLAS!)
+    print("[5/6] Building neighbor graph & static bottom-6 recommendations...")
     sim_matrix = emb_f32 @ emb_f32.T
-
-    # Build per-item top-12 neighbors for client-side 1-hop graph propagation
-    neighbors_compact: list[list[list[int]]] = []
     per_item_adj: dict[int, list[tuple[int, float]]] = collections.defaultdict(list)
     for (u, v), w in edge_weights.items():
         if u != v:
             per_item_adj[u].append((v, w))
 
+    neighbors_compact: list[list[list[int]]] = []
     for i in range(n_items):
         cand_scores: dict[int, float] = {}
         for nb, w in per_item_adj.get(i, []):
-            cand_scores[nb] = math.log1p(w) * 0.65 + float(sim_matrix[i, nb]) * 0.35
-        # Supplement with top semantic neighbors if sparse
-        top_sem = np.argpartition(-sim_matrix[i], 16)[:16]
+            cand_scores[nb] = min(1.0, math.log1p(w) * 0.60) + float(sim_matrix[i, nb]) * 0.40
+        top_sem = np.argpartition(-sim_matrix[i], 18)[:18]
         for nb in top_sem:
             nb_i = int(nb)
             if nb_i != i and nb_i not in cand_scores:
-                cand_scores[nb_i] = float(sim_matrix[i, nb_i]) * 0.75
-
-        ranked = sorted(cand_scores.items(), key=lambda x: x[1], reverse=True)[:12]
+                cand_scores[nb_i] = float(sim_matrix[i, nb_i]) * 0.78
+        ranked = sorted(cand_scores.items(), key=lambda x: x[1], reverse=True)[:14]
         neighbors_compact.append([[nb, int(round(sc * 100))] for nb, sc in ranked])
 
-    (DATA_DIR / "neighbors.json").write_text(
-        json.dumps(neighbors_compact, separators=(",", ":")),
-        encoding="utf-8",
-    )
+    (DATA_DIR / "neighbors.json").write_text(json.dumps(neighbors_compact, separators=(",", ":")), encoding="utf-8")
 
-    # Populate 3-slot bottom recommendations & write public/posts/<id>.json
-    print("[6/6] Writing 3,580 full-text post JSON files into public/posts/...")
-    article_indices = np.array([idx for idx, m in enumerate(items_meta) if m["k"] == "art"], dtype=np.int32)
-
+    print("[6/6] Rendering 3,580 standalone static HTML post pages + static index.html...")
     for idx, meta in enumerate(items_meta):
         iid = meta["id"]
         payload = full_payloads[iid]
+        payload.pop("_raw_refs", None)
+        payload.pop("_raw_ref_by", None)
+        payload.pop("_cited_arts", None)
 
-        if meta["k"] == "art":
-            # Slot 1: 顺藤摸瓜 · 引用延伸与同系上下文 (rec_chain)
-            chain_seen: set[str] = {iid}
-            rec_chain: list[dict] = []
+        # Static fallback bottom 6 cards (content + graph + prior quality + MMR diversity)
+        direct_lookup = {nb: w_int / 100.0 for nb, w_int in neighbors_compact[idx]}
+        top_vec_idx = np.argpartition(-sim_matrix[idx], 80)[:80]
+        cand_pool_idx = set(int(x) for x in top_vec_idx) | set(direct_lookup.keys())
+        cand_pool_idx.discard(idx)
 
-            for target_id, reason_label in col_prev_next.get(iid, []):
-                if target_id in id_to_idx and target_id not in chain_seen:
-                    chain_seen.add(target_id)
-                    tm = items_meta[id_to_idx[target_id]]
-                    rec_chain.append({
-                        "id": target_id,
-                        "title": tm["t"],
-                        "author": tm["a"],
-                        "votes": tm["v"],
-                        "minutes": tm["m"],
-                        "reason": reason_label,
-                    })
+        scored_cands: list[tuple[float, int]] = []
+        for c_idx in cand_pool_idx:
+            c_score = 0.55 * float(sim_matrix[idx, c_idx]) + 0.30 * direct_lookup.get(c_idx, 0.0) + 0.15 * items_meta[c_idx]["q"]
+            scored_cands.append((c_score, c_idx))
+        scored_cands.sort(key=lambda x: x[0], reverse=True)
 
-            for ref in payload.pop("_raw_refs", []):
-                tid = str(ref.get("id") if isinstance(ref, dict) else ref)
-                if tid in id_to_idx and tid not in chain_seen:
-                    chain_seen.add(tid)
-                    tm = items_meta[id_to_idx[tid]]
-                    rec_chain.append({
-                        "id": tid,
-                        "title": tm["t"],
-                        "author": tm["a"],
-                        "votes": tm["v"],
-                        "minutes": tm["m"],
-                        "reason": "本文直接引用",
-                    })
-                    if len(rec_chain) >= 6:
-                        break
+        chosen_indices = mmr_pick(scored_cands, sim_matrix, items_meta, BOTTOM_REC_LIMIT, lam=0.70)
+        bottom_metas = [items_meta[c_i] for c_i in chosen_indices]
+        seed_ids = [items_meta[nb]["id"] for nb, _ in neighbors_compact[idx][:8]]
 
-            raw_ref_by = payload.pop("_raw_ref_by", [])
-            if len(rec_chain) < 6:
-                ref_by_sorted = sorted(
-                    [str(r.get("id") if isinstance(r, dict) else r) for r in raw_ref_by],
-                    key=lambda rid: items_meta[id_to_idx[rid]]["v"] if rid in id_to_idx else -1,
-                    reverse=True,
-                )
-                for tid in ref_by_sorted:
-                    if tid in id_to_idx and tid not in chain_seen:
-                        chain_seen.add(tid)
-                        tm = items_meta[id_to_idx[tid]]
-                        rec_chain.append({
-                            "id": tid,
-                            "title": tm["t"],
-                            "author": tm["a"],
-                            "votes": tm["v"],
-                            "minutes": tm["m"],
-                            "reason": "延伸引用本文",
-                        })
-                        if len(rec_chain) >= 6:
-                            break
+        page_html = render_post_page_html(payload, bottom_metas, seed_ids)
+        (POSTS_DIR / f"{iid}.html").write_text(page_html, encoding="utf-8")
 
-            # Slot 2: 跨界共鸣 · 异作者破茧推荐 (rec_bridge)
-            my_authors = set(meta["au"])
-            my_kws = set(meta["kw"])
-            sims = sim_matrix[idx, article_indices]
-            top_cand_pos = np.argpartition(-sims, min(60, len(sims) - 1))[:60]
-            bridge_cands: list[tuple[float, int, str]] = []
-            for pos in top_cand_pos:
-                cand_idx = int(article_indices[pos])
-                if cand_idx == idx:
-                    continue
-                cm = items_meta[cand_idx]
-                if cm["id"] in chain_seen:
-                    continue
-                if my_authors and (my_authors & set(cm["au"])):
-                    continue  # Strictly cross-author!
-                cos_val = float(sim_matrix[idx, cand_idx])
-                co_cnt = cocite_counts.get((idx, cand_idx), 0)
-                score = 0.62 * cos_val + 0.23 * min(1.0, co_cnt / 4.0) + 0.15 * cm["q"]
-                shared_kw = list(my_kws & set(cm["kw"]))
-                if co_cnt >= 2:
-                    reason = f"被 {co_cnt} 篇回答共同引用 · {cm['a']}"
-                elif shared_kw:
-                    reason = f"跨作者共鸣「{shared_kw[0]}」· {cm['a']}"
-                else:
-                    reason = f"跨学派视角 · {cm['a']}"
-                bridge_cands.append((score, cand_idx, reason))
+    # Render static index.html with Top 20 MMR-diversified quality items for curl / no-JS
+    home_cands = sorted(
+        [(0.80 * m["q"] + 0.20 * min(1.0, (m["in_deg"] + m["ans_deg"]) / 30.0), idx) for idx, m in enumerate(items_meta)],
+        key=lambda x: x[0],
+        reverse=True,
+    )
+    home_initial_indices = mmr_pick(home_cands, sim_matrix, items_meta, 20, lam=0.74)
+    (OUT_PUBLIC / "index.html").write_text(
+        render_home_page_html([items_meta[i] for i in home_initial_indices]),
+        encoding="utf-8",
+    )
 
-            bridge_cands.sort(key=lambda x: x[0], reverse=True)
-            rec_bridge: list[dict] = []
-            seen_bridge_authors: set[str] = set()
-            for _, cand_idx, reason in bridge_cands:
-                cm = items_meta[cand_idx]
-                # Diversify authors inside rec_bridge too!
-                if cm["a"] in seen_bridge_authors and len(rec_bridge) < 4:
-                    continue
-                seen_bridge_authors.add(cm["a"])
-                rec_bridge.append({
-                    "id": cm["id"],
-                    "title": cm["t"],
-                    "author": cm["a"],
-                    "votes": cm["v"],
-                    "minutes": cm["m"],
-                    "reason": reason,
-                })
-                if len(rec_bridge) >= 5:
-                    break
-
-            # Slot 3: 知乎实战 · 引用本文的高赞回答 (rec_answers)
-            raw_ans_ids = payload.pop("_raw_ans_ids", [])
-            raw_ans_levels = payload.pop("_raw_ans_levels", {})
-            ans_cands = []
-            for aid_ans in raw_ans_ids:
-                aid_s = str(aid_ans)
-                if aid_s not in id_to_idx:
-                    continue
-                am = items_meta[id_to_idx[aid_s]]
-                lv_obj = raw_ans_levels.get(aid_s) or {}
-                lv = lv_obj.get("level") if lv_obj.get("level") in (1, 2, 3) else 2
-                ev = clean_ws(lv_obj.get("evidence", ""))
-                ans_cands.append((lv, -am["v"], aid_s, am, ev))
-            ans_cands.sort(key=lambda x: (x[0], x[1]))
-            rec_answers = []
-            for lv, _, aid_s, am, ev in ans_cands[:5]:
-                lv_tag = "核心节选引用" if lv == 1 else ("观点化用" if lv == 2 else "延伸提及")
-                rec_answers.append({
-                    "id": aid_s,
-                    "title": am["t"],
-                    "author": am["a"],
-                    "votes": am["v"],
-                    "minutes": am["m"],
-                    "reason": f"{lv_tag} · {am['v']} 赞同",
-                    "evidence": truncate_hook(ev, 90) if ev else "",
-                })
-
-            payload["rec_chain"] = rec_chain[:5]
-            payload["rec_bridge"] = rec_bridge[:5]
-            payload["rec_answers"] = rec_answers
-        else:
-            # Answer view bottom 3 slots:
-            cited_arts = payload.pop("_cited_arts", [])
-            rec_chain = []
-            cited_set = set()
-            for ca in cited_arts[:6]:
-                cid = ca["id"]
-                cited_set.add(cid)
-                cm = items_meta[id_to_idx[cid]]
-                lv_tag = "Level 1 核心引用" if ca["level"] == 1 else (f"Level {ca['level']} 引用")
-                rec_chain.append({
-                    "id": cid,
-                    "title": cm["t"],
-                    "author": cm["a"],
-                    "votes": cm["v"],
-                    "minutes": cm["m"],
-                    "reason": f"本回答{lv_tag}",
-                })
-
-            # Cross-author / expanded articles not directly cited
-            sims = sim_matrix[idx, article_indices]
-            top_pos = np.argpartition(-sims, min(30, len(sims) - 1))[:30]
-            bridge_list = []
-            for pos in top_pos:
-                c_idx = int(article_indices[pos])
-                cm = items_meta[c_idx]
-                if cm["id"] in cited_set:
-                    continue
-                bridge_list.append((float(sim_matrix[idx, c_idx]) * 0.75 + 0.25 * cm["q"], cm))
-            bridge_list.sort(key=lambda x: x[0], reverse=True)
-            rec_bridge = [
-                {
-                    "id": cm["id"],
-                    "title": cm["t"],
-                    "author": cm["a"],
-                    "votes": cm["v"],
-                    "minutes": cm["m"],
-                    "reason": f"延伸深读 · {cm['a']}",
-                }
-                for _, cm in bridge_list[:5]
-            ]
-
-            # Similar Zhihu answers
-            ans_indices = [i_a for i_a, m_a in enumerate(items_meta) if m_a["k"] == "ans" and i_a != idx]
-            ans_sims = [(float(sim_matrix[idx, i_a]) * 0.75 + 0.25 * items_meta[i_a]["q"], items_meta[i_a]) for i_a in ans_indices]
-            ans_sims.sort(key=lambda x: x[0], reverse=True)
-            rec_answers = [
-                {
-                    "id": am["id"],
-                    "title": am["t"],
-                    "author": am["a"],
-                    "votes": am["v"],
-                    "minutes": am["m"],
-                    "reason": f"相似问答 · {am['v']} 赞同",
-                }
-                for _, am in ans_sims[:5]
-            ]
-
-            payload["rec_chain"] = rec_chain
-            payload["rec_bridge"] = rec_bridge
-            payload["rec_answers"] = rec_answers
-
-        (POSTS_DIR / f"{iid}.json").write_text(
-            json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
-            encoding="utf-8",
-        )
-
-    # Facets & global corpus ledger stats
-    col_counts = collections.Counter(m["c"] for m in items_meta if m["k"] == "art")
-    kw_counts = collections.Counter(kw for m in items_meta for kw in m["kw"])
-    author_counts = collections.Counter(m["a"] for m in items_meta if m["k"] == "art")
-
-    total_chars = sum(m["chars"] for m in items_meta)
-    # Strip internal fields before writing feed-index.json
     compact_items = [
         {
             "id": m["id"],
             "k": m["k"],
             "t": m["t"],
             "a": m["a"],
-            "pub": m["pub"],
             "c": m["c"],
             "d": m["d"],
             "v": m["v"],
             "m": m["m"],
             "q": m["q"],
-            "kw": m["kw"][:5],
+            "kw": m["kw"][:4],
             "s": m["s"],
             "deg": m["in_deg"] + m["ans_deg"],
         }
         for m in items_meta
     ]
-
-    feed_index = {
-        "stats": {
-            "total_items": n_items,
-            "articles": sum(1 for m in items_meta if m["k"] == "art"),
-            "answers": sum(1 for m in items_meta if m["k"] == "ans"),
-            "total_chars": total_chars,
-            "total_edges": 13824 + 9913,
-            "embedding_dim": 128,
-        },
-        "columns": [{"name": c, "count": cnt} for c, cnt in col_counts.most_common(32)],
-        "top_keywords": [{"name": k, "count": cnt} for k, cnt in kw_counts.most_common(80)],
-        "top_authors": [{"name": a, "count": cnt} for a, cnt in author_counts.most_common(40)],
-        "items": compact_items,
-    }
     (DATA_DIR / "feed-index.json").write_text(
-        json.dumps(feed_index, ensure_ascii=False, separators=(",", ":")),
+        json.dumps({"items": compact_items}, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",
     )
-    print(f"  -> Wrote feed-index.json ({(DATA_DIR / 'feed-index.json').stat().st_size / 1024:.1f} KB)")
-    print("Done! All corpus & recommender assets built successfully.")
+    print("Done! All 3,580 static HTML pages + recommender assets generated.")
 
 
 if __name__ == "__main__":

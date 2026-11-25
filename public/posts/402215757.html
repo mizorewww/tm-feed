@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高效的间隔重复记忆系统的最大吸收率是多少？</title>
+<meta name="description" content="作者用“量子国度”的固定复习间隔构造简化模型，估算每日新卡量与复习时间的关系：在每次答对、每天复习约 10 分钟的假设下，新卡量约为 20 张；若错误率为 20%，则约 13 张，降至 5% 时约 18 张。作者指出减少错误可能使同等复习时间的卡片吞吐量提高约三分之一，同时提醒该固定间隔表未必是优化上限。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="高效的间隔重复记忆系统的最大吸收率是多少？">
+<meta property="og:description" content="作者用“量子国度”的固定复习间隔构造简化模型，估算每日新卡量与复习时间的关系：在每次答对、每天复习约 10 分钟的假设下，新卡量约为 20 张；若错误率为 20%，则约 13 张，降至 5% 时约 18 张。作者指出减少错误可能使同等复习时间的卡片吞吐量提高约三分之一，同时提醒该固定间隔表未必是优化上限。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-08-21">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="402215757" data-rec-seeds="399738674,398801663,404257681,409524135,404937659,399204959,400053434,417555450">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2021-08-21">2021-08-21</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%20%26%20%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">间隔重复 &amp; 注意力管理</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 3 分钟</span>
+          <span>▲ 15</span>
+        </p>
+        <h1>高效的间隔重复记忆系统的最大吸收率是多少？</h1>
+        
+        <p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%A4%8D%E4%B9%A0%E8%B4%9F%E6%8B%85">#复习负担</a><a href="../?q=%E9%94%99%E8%AF%AF%E7%8E%87">#错误率</a><a href="../?q=%E5%8D%A1%E7%89%87%E8%AE%BE%E8%AE%A1">#卡片设计</a><a href="../?q=%E5%A4%8D%E4%B9%A0%E9%97%B4%E9%9A%94">#复习间隔</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="ZKtZ_4Bq">想象一下，我每天增加 40 张新卡片，我在每次复习中总是答对所有卡片，而且它们的间隔按「量子国度」的固定安排表增长。在一年后，我将会复习：</p><ul><li data-pid="x-X0epkm">5 天前的卡片</li><li data-pid="FL4x3yOj">5+14=19 天前的卡片</li><li data-pid="TCh-YBLS">19+30=49 天前的卡片</li><li data-pid="5YHWigwx">49+60=109 天前的卡片</li><li data-pid="XDKPQWPd">109+120=229 天前的卡片</li></ul><p data-pid="ZzOnp_wG">因此，在这个例子中，我将复习 200 张卡片。如果平均每张花 6 秒钟，那就是每天 20 分钟。如果我们坚持以 10 分钟为限，那我就有 100 张卡片的容量，这意味着每天大约 20 张新卡片。</p><p data-pid="wg-p4IXl">由于指数的关系，两年时间并不会带来太多改变。如果我每天增加 40 张，在下一年再增加约 15k 张后，我每天会复习 240 张（大约 24 分钟）。如果我们想坚持 10 分钟的限制，这将意味着每天 17 张新卡片。在这些假设下，第三年每天又增加了 40 张卡片；第四年则没有增加。</p><p data-pid="NwlWAk4U">当然，这是在假设我每次都能答对的情况下。假设错误率为 10%，那么在一年后，我将复习241 张卡片，而不是 200 张。这还不算太糟。这使我的 10 分钟容量从每天 20 张（一年 7.3k 张）变为每天 16 张（一年 5.8k 张）。如果错误率为 5%，则为每天 18 张（一年约 6.5k 张）。这种差异是巨大的，值得追求，但这并不是决定性的。20% 的错误率产生了每天 13 张的吞吐量（一年约 4.8k 张）。</p><p data-pid="xGShZ4KD">所以换个说法，如果你能把错误率从 20% 降到 5%，你就可以在相同的复习环节内增加 1/3 的卡片。</p><p data-pid="94FhA8ET">不过要注意的是，「量子国度」的安排表可能不是一个很好的优化界限参考：<a class="wrap external" href="https://notes.andymatuschak.org/zS5uKLsoTbkJSadTv2U3Z4G3uEBrFxTLy5E" rel="noopener noreferrer" target="_blank">「量子国度」用户在实证五天保留后很少会忘记</a>！另见<a class="wrap external" href="https://notes.andymatuschak.org/z5N3g1Tc9jQMmRnExZxY23cUufNS1g6srNAbU" rel="noopener noreferrer" target="_blank">优化间隔重复系统的安排表</a>。</p><div class="highlight"><pre><code class="language-js"><span class="kr">const</span> <span class="nx">p</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">np</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="nx">p</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">newCards</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">ease</span> <span class="o">=</span> <span class="mf">2.5</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">max</span> <span class="o">=</span> <span class="mi">365</span><span class="p">;</span>
+<span class="err">​</span>
+<span class="kr">const</span> <span class="nx">queue</span> <span class="o">=</span> <span class="p">[{</span><span class="nx">baseDays</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span> <span class="nx">factor</span><span class="o">:</span> <span class="mi">1</span><span class="p">}];</span>
+<span class="kd">let</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">{</span><span class="nx">baseDays</span><span class="p">,</span> <span class="nx">factor</span><span class="p">}</span> <span class="o">=</span> <span class="nx">queue</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">baseDays</span> <span class="o">&gt;</span> <span class="nx">max</span> <span class="o">||</span> <span class="nx">factor</span> <span class="o">&lt;</span> <span class="mf">0.0001</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">continue</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">total</span> <span class="o">+=</span> <span class="nx">factor</span><span class="p">;</span>
+  <span class="nx">queue</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="nx">baseDays</span><span class="o">:</span> <span class="nx">baseDays</span> <span class="o">*</span> <span class="nx">ease</span><span class="p">,</span> <span class="nx">factor</span><span class="o">:</span> <span class="nx">factor</span> <span class="o">*</span> <span class="nx">p</span><span class="p">},</span> <span class="p">{</span><span class="nx">baseDays</span><span class="o">:</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nx">baseDays</span> <span class="o">/</span> <span class="nx">ease</span><span class="p">),</span> <span class="nx">factor</span><span class="o">:</span> <span class="nx">factor</span> <span class="o">*</span> <span class="nx">np</span><span class="p">});</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">total</span> <span class="o">*</span> <span class="nx">newCards</span><span class="p">);</span>
+</code></pre></div><p data-pid="R6XiuxnV">问：在一生中，使用 2020 年的间隔重复记忆系统，大约可以学到多少张卡片？ <br/>答： <img alt="10^6" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=10%5E6"/> </p><h2 id="sec-1">链接至本文（已汉化）</h2><ul><li data-pid="SSqcXiut"><a class="internal tm-internal" data-tm-id="399738674" href="399738674.html">间隔重复系统能力的限制因素是写出足够多的好卡片</a></li></ul><h2 id="sec-2">声明</h2><p data-pid="edneiXGh">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="pXec_YMm">原文：<a class="wrap external" href="https://notes.andymatuschak.org/z4J3EVtt8aQoZg8a5y48AmfYL4GauDjBSzw2s" rel="noopener noreferrer" target="_blank">What’s the maximum intake rate of an efficient spaced repetition memory system?</a></blockquote>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/z4J3EVtt8aQoZg8a5y48AmfYL4GauDjBSzw2s" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/z4J3EVtt8aQoZg8a5y48AmfYL4GauDjBSzw2s ↗</a><br><a href="https://notes.andymatuschak.org/zQQjjGJKWXbiA67R4jhzvz8" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/zQQjjGJKWXbiA67R4jhzvz8 ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/402215757" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="398801663"><div class="post-meta"><time datetime="2021-08-11">2021-08-11</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 22 · 2 分钟</span></div><div class="post-summary"><h2><a href="398801663.html"><span>间隔重复记忆卡片应该简洁</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者认为间隔重复卡片应尽量简洁，使复习保持轻快，并让注意力集中在真正需要提取的内容上。冗长题干可能增加复习负担、分散焦点，也更容易让学习者靠表面词句匹配答案；文中以 PageMaker 与 Quark 的例子展示如何删去无关信息。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8D%A1%E7%89%87%E8%AE%BE%E8%AE%A1">#卡片设计</a><a href="../?q=%E7%9F%A5%E8%AF%86%E8%A1%A8%E8%BF%B0">#知识表述</a><a href="../?q=%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D">#模式匹配</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="404257681"><div class="post-meta"><time datetime="2021-08-27">2021-08-27</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 88 · 16 分钟</span></div><div class="post-summary"><h2><a href="404257681.html"><span>间隔重复记忆系统（Spaced repetition memory system）</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 将间隔重复描述为结合测试效应与间隔效应的记忆系统，概述其软件、特殊变体、概念学习应用及常见障碍。文章强调 SRS 不仅能记事实，也可能帮助维持注意力、自动化基础知识和支持创造；但卡片质量、学习者负担与是否持续加入新内容都会影响效果。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SRS">#SRS</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F">#记忆系统</a><a href="../?q=%E5%8D%A1%E7%89%87%E8%AE%BE%E8%AE%A1">#卡片设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="412012134"><div class="post-meta"><time datetime="2021-09-19">2021-09-19</time><a class="meta-author" href="../?q=Jack%20Kinsella">Jack Kinsella</a><span>▲ 148 · 10 分钟</span></div><div class="post-summary"><h2><a href="412012134.html"><span>JAnki：写给程序员们的 13 条 Anki 使用经验</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者根据多年用Anki学编程的经历，建议优先记可用功能和跨语言概念，细节留到项目需要时强化；有序复杂流程可用清单，暂不需要的技术可暂停。代码截图、重点加粗和阅读后批量制卡可减少摩擦；限制复习量、拉长间隔则是他为坚持和当下应用而接受部分长期效率损失的取舍。 剪贴簿卡要求说清好坏代码的理由，反复答错时应亲手执行验证，未用功能先寻找…</p><p class="tags"><a href="../?q=Anki">#Anki</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0">#编程学习</a><a href="../?q=%E5%8D%A1%E7%89%87%E8%AE%BE%E8%AE%A1">#卡片设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2091409585"><div class="post-meta"><time datetime="2021-08-29">2021-08-29</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 31 · 1 分钟</span></div><div class="post-summary"><h2><a href="2091409585.html"><span>发现一款新的anki软件“滑记”app好用吗？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>还不错吧，名字很有年轻人的特色哈哈！ 之前还收到了滑记送的礼物： 感谢 @滑记 赠送的七夕礼物哈哈， 希望你… 我之前做的 Anki 高考牌组全都上架了： 似乎牌组、卡片、模板全部兼容 Anki，忘记、模糊、记得这三个按钮神似墨墨背单词[doge] 还有自研的 AI(?) 算法 客套话先说到这里，我觉得滑记的当务之急是提升卡片…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="565467709"><div class="post-meta"><time datetime="2022-09-17">2022-09-17</time><a class="meta-author" href="../?q=Issa%20Rice">Issa Rice</a><span>▲ 11 · 1 分钟</span></div><div class="post-summary"><h2><a href="565467709.html"><span>间隔重复让你感觉在某门学科上总是学生</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者指出，间隔重复能延长记忆，却可能让学习者觉得自己永远处于学生阶段：持续复习会不断提示遗忘之处。文章也提到 Andy Matuschak 对“量子计算学习者”的相反看法，认为持续学习可以意味着认真掌握，而非浅尝后遗忘。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E8%80%85%E8%BA%AB%E4%BB%BD">#学习者身份</a><a href="../?q=%E8%AE%B0%E5%BF%86">#记忆</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E5%8A%A8%E6%9C%BA">#学习动机</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="399738674"><div class="post-meta"><time datetime="2021-08-14">2021-08-14</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 14 · 2 分钟</span></div><div class="post-summary"><h2><a href="399738674.html"><span>间隔重复系统能力的限制因素是写出足够多的好卡片</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 认为，间隔重复系统的容量往往受制于能否写出足够多的好卡片，而不是吸收材料的能力；直接使用他人的卡片通常效果有限。他提出作者制作的助记媒介或可减轻制卡负担，并以每天读书、写卡所需时间及笔记制卡的经验说明，卡片创作成本可能限制人们长期记住多少有价值的内容。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E7%9F%A5%E8%AF%86%E5%90%B8%E6%94%B6">#知识吸收</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

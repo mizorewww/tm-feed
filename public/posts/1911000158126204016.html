@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>锚定与调整效应</title>
+<meta name="description" content="词条用幸运轮盘和乘法估算实验说明，随机数字会成为判断锚点，人们虽会调整，却常调整不足；即使锚点明显不合理或有准确性奖励，影响仍可能存在。作者建议先尝试抛开最初数字重新估算，再设一个方向相反的锚点进行比较。">
+<meta name="author" content="Eliezer Yudkowsky">
+<meta property="og:title" content="锚定与调整效应">
+<meta property="og:description" content="词条用幸运轮盘和乘法估算实验说明，随机数字会成为判断锚点，人们虽会调整，却常调整不足；即使锚点明显不合理或有准确性奖励，影响仍可能存在。作者建议先尝试抛开最初数字重新估算，再设一个方向相反的锚点进行比较。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2025-05-28">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="1911000158126204016" data-rec-seeds="1913274184290793262,1946993902033835772,1931325562166675274,812068575,2011748690965070712,28295021724,1951935719577739806,1949761528619316687">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2025-05-28">2025-05-28</time>
+          <a class="tag" href="../?q=%E7%90%86%E6%80%A7%20%26%20%E5%85%8B%E6%9C%8D%E5%81%8F%E8%A7%81">理性 &amp; 克服偏见</a>
+          <a class="tag" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a>
+          <span>约 4 分钟</span>
+          <span>▲ 35</span>
+        </p>
+        <h1>锚定与调整效应</h1>
+        
+        <p class="tags"><a href="../?q=%E9%94%9A%E5%AE%9A%E6%95%88%E5%BA%94">#锚定效应</a><a href="../?q=%E5%90%AF%E5%8F%91%E5%BC%8F">#启发式</a><a href="../?q=%E5%88%A4%E6%96%AD%E5%81%8F%E5%B7%AE">#判断偏差</a><a href="../?q=%E4%BC%B0%E7%AE%97">#估算</a><a href="../?q=%E8%B0%83%E6%95%B4">#调整</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">脚注</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="wCnkof0J">假设我当着你的面转动一个幸运轮盘，最终指针停在了数字 65 上。然后我问你：你认为联合国中非洲国家所占的百分比，是高于、还是低于这个数字？你认为联合国中非洲国家的实际百分占比是多少？如果你愿意，可以花点时间自己思考一下这两个问题，但请不要上网搜索答案。</p><p data-pid="RMYSm_Jb">另外，请尝试在<b>五秒钟</b>之内，估算以下算术表达式的结果。五秒钟。准备好了吗？预备……<b>开始！</b></p><p data-pid="6eVv82N8">1 × 2 × 3 × 4 × 5 × 6 × 7 × 8</p><p data-pid="wlovuFpK">Tversky 与 Kahneman 记下了受试者们给出的估值。这些受试者看到的幸运轮盘数字各有不同。[1] 看到轮盘指向 65 的受试者们，其估值中位数为 45%；看到轮盘指向 10 的受试者们，其给出的估值中位数为 25%。</p><p data-pid="PFXvLU60">对于此实验及类似实验，目前的理论解释是：受试者会将最初那个并无信息价值的数字作为思考的起点或<b>锚点</b>；之后，他们会基于这个初始估值，向上或向下进行<b>调整</b>，直到得出一个「听起来似乎合理」的答案，随后停止调整。这通常会导致从锚点出发的调整不充分——与锚点相距更远的数字同样可能「合理」，但人们往往在在得到第一个听起来还算满意的答案时就停下了。</p><p data-pid="lqvtuA_x">类似地，看到算式「1 × 2 × 3 × 4 × 5 × 6 × 7 × 8」的学生们，其估值中位数为 512；而看到算式「8 × 7 × 6 × 5 × 4 × 3 × 2 × 1」的学生们，其估值中位数为 2250。该实验意图验证的设想是，学生们会尝试计算（或猜测性地组合）乘积中的前几个因子，然后以此为基础，向上调整。在这两种情况下，相对于 40320 的真实答案，其调整幅度都明显不足，但第一组的猜测值偏差更大——因为他们一开始的锚点更低。</p><p data-pid="fMMscaY2">Tversky 与 Kahneman 报告称，即便为准确估算提供奖励，也未能削弱锚定效应的影响。</p><p data-pid="hvwOc51c">Strack 与 Mussweiler 曾让受试者估算爱因斯坦首次访问美国的年份。[2] 实验发现，即便是像 1215 年或 1992 年这样完全不合理的锚点，其所产生的锚定效应，与那些更为合理的锚点（例如 1905 年或 1939 年）相比，强度并无二致。</p><p data-pid="8_zr2PFQ">在诸如薪资谈判或购买汽车等情境中，该效应显然有其应用价值。我并非建议你利用这一点，但务必警惕试图利用该效应的人。</p><p data-pid="PlrxyOpk">同时，留心审视自己的思考过程，试着留意在估算过程中，自己是否是在以某个数字为基础进行<b>调整</b>。</p><p data-pid="VHSwsf3R">针对锚定效应的纠偏方法，通常效果都不太理想。我谨建议以下两种策略：首先，如果最初的猜测听起来不合理，那就试着完全抛开它，从头开始估算，而不是以它为基准上下调整。但仅凭这一点可能还不够——即便被明确告知要避免锚定效应，受试者似乎依然会受到影响。[3] 因此，方法二：在尝试第一种方法的过程中，不妨同时试着在反方向设定第二个锚点——一个明显偏高或偏低的锚点，以对应第一个明显偏低或偏高的锚点——并对此思考一番。</p><h2 id="sec-1">脚注</h2><p data-pid="aebAgxbz">[1] Amos Tversky and Daniel Kahneman, “Judgment Under Uncertainty: Heuristics and Biases,” <i>Science</i> 185, no. 4157 (1974): 1124–1131, doi:10.1126/science.185.4157.1124.</p><p data-pid="tXfVxMsJ">[2] Fritz Strack and Thomas Mussweiler, “Explaining the Enigmatic Anchoring Effect: Mechanisms of Selective Accessibility,” <i>Journal of Personality and Social Psychology</i> 73, no. 3 (1997): 437–446.</p><p data-pid="z7YyuTTl">[3] George A. Quattrone et al., “Explorations in Anchoring: The Effects of Prior Range, Anchor Extremity, and Suggestive Hints” (Unpublished manuscript, Stanford University, 1981).</p><hr/><p data-pid="zDafa13m">总目录：</p><a class="internal" data-draft-cover="" data-draft-title="《理性：从人工智能到僵尸》导读与目录" href="https://zhuanlan.zhihu.com/p/2056344770390373406" rel="noopener noreferrer" target="_blank">《理性：从人工智能到僵尸》导读与目录</a><p data-pid="DilJjCyY">卷：</p><a class="internal tm-internal" data-draft-cover="" data-draft-title="第二卷：如何真正改变你的想法" data-tm-id="2015489803068651120" href="2015489803068651120.html">第二卷：如何真正改变你的想法</a><p data-pid="1btvdcCJ">章节：</p><a class="internal tm-internal" data-draft-cover="" data-draft-title="用新眼光看问题" data-tm-id="1946993902033835772" href="1946993902033835772.html">用新眼光看问题</a><p data-pid="Gh972axT">上一篇：</p><a class="internal tm-internal" data-draft-title="用新眼光看问题" data-tm-id="1946993902033835772" href="1946993902033835772.html">用新眼光看问题</a><p data-pid="wj3NBr4B">下一篇：</p><a class="internal tm-internal" data-draft-title="启动效应与污染效应" data-tm-id="1913274184290793262" href="1913274184290793262.html">启动效应与污染效应</a><hr/><blockquote data-pid="eErXtx1B"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 <span class="nolink">gemini-2.5-pro-exp</span>，校对潜艇<br/>原文：<a class="wrap external" href="https://www.readthesequences.com/Anchoring-And-Adjustment" rel="noopener noreferrer" target="_blank">Anchoring and Adjustment</a></blockquote>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">脚注</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://www.readthesequences.com/Anchoring-And-Adjustment" target="_blank" rel="noopener noreferrer">https://www.readthesequences.com/Anchoring-And-Adjustment ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/1911000158126204016" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="1913274184290793262"><div class="post-meta"><time datetime="2025-06-03">2025-06-03</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 42 · 6 分钟</span></div><div class="post-summary"><h2><a href="1913274184290793262.html"><span>启动效应与污染效应</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文以锚定实验说明启动效应：接触一个词或数字，会自动激活相关概念，使相容信息更易被识别或提取。作者进一步把污染效应解释为无关、错误甚至明知虚假的信息也能通过联想影响估计；这可能使确认偏见自我强化。文章主张，短暂接触的想法也可能影响判断，不能只依赖自觉意图来抵消。</p><p class="tags"><a href="../?q=%E5%90%AF%E5%8A%A8%E6%95%88%E5%BA%94">#启动效应</a><a href="../?q=%E6%B1%A1%E6%9F%93%E6%95%88%E5%BA%94">#污染效应</a><a href="../?q=%E9%94%9A%E5%AE%9A%E6%95%88%E5%BA%94">#锚定效应</a><a href="../?q=%E7%A1%AE%E8%AE%A4%E5%81%8F%E8%AF%AF">#确认偏误</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1946993902033835772"><div class="post-meta"><time datetime="2025-09-04">2025-09-04</time><a class="meta-author" href="../?q=Rob%20Bensinger">Rob Bensinger</a><span>▲ 26 · 1 分钟</span></div><div class="post-summary"><h2><a href="1946993902033835772.html"><span>用新眼光看问题</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>导言以达特茅斯—普林斯顿比赛为例，指出人可能事后编造连贯故事来维护既有判断，却未必因此更准确；随后列出《理性：从人工智能到僵尸》第二卷关于合理化、自我欺骗、锚定和第一手观察等主题的篇目。</p><p class="tags"><a href="../?q=%E5%90%88%E7%90%86%E5%8C%96">#合理化</a><a href="../?q=%E8%87%AA%E6%88%91%E6%AC%BA%E9%AA%97">#自我欺骗</a><a href="../?q=%E4%BF%A1%E5%BF%B5%E6%9B%B4%E6%96%B0">#信念更新</a><a href="../?q=%E9%94%9A%E5%AE%9A%E6%95%88%E5%BA%94">#锚定效应</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="812068575"><div class="post-meta"><time datetime="2024-10-10">2024-10-10</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 81 · 2 分钟</span></div><div class="post-summary"><h2><a href="812068575.html"><span>彩票：浪费希望</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章反驳把彩票称作“理性购买幻想”的辩护：低概率暴富的梦会吸走本可投向教育、创业或晋升等现实目标的想象力与行动动力。作者把这种心理视为自我毁灭式偏见，主张识别、分析偏见之后，还要明确否定并采取措施克服。</p><p class="tags"><a href="../?q=%E5%BD%A9%E7%A5%A8">#彩票</a><a href="../?q=%E6%9C%9F%E6%9C%9B%E6%95%88%E7%94%A8">#期望效用</a><a href="../?q=%E5%81%8F%E8%A7%81">#偏见</a><a href="../?q=%E5%B8%8C%E6%9C%9B">#希望</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1931325562166675274"><div class="post-meta"><time datetime="2025-07-23">2025-07-23</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 42 · 3 分钟</span></div><div class="post-summary"><h2><a href="1931325562166675274.html"><span>第一手观察</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这段译文讲述一名学生在写「美国」或「博兹曼市」时无从下笔，直到老师让她观察歌剧院外墙的一块砖，才写出长文。Pirsig 借此说明，写作障碍有时源于重复他人现成观点；缩小题目、进行第一手观察，能带来自己的事实与洞见。</p><p class="tags"><a href="../?q=%E7%AC%AC%E4%B8%80%E6%89%8B%E8%A7%82%E5%AF%9F">#第一手观察</a><a href="../?q=%E5%86%99%E4%BD%9C%E9%9A%9C%E7%A2%8D">#写作障碍</a><a href="../?q=%E8%A7%82%E5%AF%9F%E5%8A%9B">#观察力</a><a href="../?q=%E5%8E%9F%E5%88%9B%E6%80%9D%E8%80%83">#原创思考</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="28295021724"><div class="post-meta"><time datetime="2025-03-08">2025-03-08</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 22 · 1 分钟</span></div><div class="post-summary"><h2><a href="28295021724.html"><span>关于谎言和黑天鹅事件</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文以澳大利亚法官 Marcus Einfeld 的案例为例：一张超速罚单引出伪证，最终使其入狱。作者借此引出一种关于谎言会因细节留下痕迹、最终戏剧性崩塌的理论，同时提醒现实中支持该理论的故事也经过选择性报道。</p><p class="tags"><a href="../?q=%E8%B0%8E%E8%A8%80">#谎言</a><a href="../?q=%E9%BB%91%E5%A4%A9%E9%B9%85%E4%BA%8B%E4%BB%B6">#黑天鹅事件</a><a href="../?q=%E5%90%88%E7%90%86%E5%8C%96">#合理化</a><a href="../?q=%E8%AF%81%E6%8D%AE%E9%80%89%E6%8B%A9">#证据选择</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2010736783504205739"><div class="post-meta"><time datetime="2026-02-27">2026-02-27</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 163 · 2 分钟</span></div><div class="post-summary"><h2><a href="2010736783504205739.html"><span>适时放弃希望</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者以房地产投机者 Casey Serin 和长期资本管理公司的案例说明，拒绝承认失败、继续加码可能把小错放大成灾难。文末提出，理性的重要一环是及时止损、愿赌服输，避免为了维持希望而不断投入。</p><p class="tags"><a href="../?q=%E6%AD%A2%E6%8D%9F">#止损</a><a href="../?q=%E5%86%B3%E7%AD%96%E5%81%8F%E5%B7%AE">#决策偏差</a><a href="../?q=%E8%BF%87%E5%BA%A6%E8%87%AA%E4%BF%A1">#过度自信</a><a href="../?q=%E9%A3%8E%E9%99%A9%E7%AE%A1%E7%90%86">#风险管理</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>认真对待 AI</title>
+<meta name="description" content="作者以程序员对AI的判断不断后撤为例：从“补全不能把握全局”，到审查智能体代码，再把人的价值转移到客户沟通，直至声称手写代码是失职；他把这种变化比作将战线后退包装成捷报，认为背后是没有认真设想AI持续进步。 他区分“AGI很快到来”和“AGI后果将颠覆社会”：后果具有颠覆性较易令人信服，短时间线的线性外推证据却不足。认真对待AI，是把它可能继续保持近年进步…">
+<meta name="author" content="Fernando Borretti">
+<meta property="og:title" content="认真对待 AI">
+<meta property="og:description" content="作者以程序员对AI的判断不断后撤为例：从“补全不能把握全局”，到审查智能体代码，再把人的价值转移到客户沟通，直至声称手写代码是失职；他把这种变化比作将战线后退包装成捷报，认为背后是没有认真设想AI持续进步。 他区分“AGI很快到来”和“AGI后果将颠覆社会”：后果具有颠覆性较易令人信服，短时间线的线性外推证据却不足。认真对待AI，是把它可能继续保持近年进步…">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-11-17">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="2106032839716295575" data-rec-seeds="2082418101119881430,2102001928645432221,2082158716124665181,2085870331089139192,2082155047606018206,2102006200615421390,2105667379665572156,2083142825110254784">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2026-11-17">2026-11-17</time>
+          <a class="tag" href="../?q=%E8%B5%B0%E5%90%91%E5%A5%87%E7%82%B9">走向奇点</a>
+          <a class="tag" href="../?q=Fernando%20Borretti">Fernando Borretti</a>
+          <span>约 3 分钟</span>
+          <span>▲ 30</span>
+        </p>
+        <h1>认真对待 AI</h1>
+        
+        <p class="tags"><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#人工智能</a><a href="../?q=%E9%80%9A%E7%94%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#通用人工智能</a><a href="../?q=%E6%8A%80%E6%9C%AF%E8%BF%9B%E6%AD%A5">#技术进步</a><a href="../?q=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B">#软件工程</a><a href="../?q=%E7%A4%BE%E4%BC%9A%E5%8F%98%E8%BF%81">#社会变迁</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="TVlU6W14">这些年来，我读过许多程序员写的博客文章，教大家如何在软件工程中引入 AI（或者说，如何与 AI 握手言和）。然而十有八九，这些建议背后都隐藏着一个潜台词：假设 AI 技术永远停留在作者写下文章的那一刻。因此，如果你把这些年来的言论按时间线排开，画风大概是这样的：</p><ul><li data-pid="GGtUGygw">「Tab 代码补全挺好用的，但你依然需要人类程序员来把握整个代码库的全局上下文。」<br/><br/></li><li data-pid="mSUE3dxu">「编程智能体（Coding agents）挺好用的，但会产生大量垃圾代码（slop），你必须严格审查并大刀阔斧地重构它们写的代码。」<br/><br/></li><li data-pid="lF2MT9vL">「编程智能体非常好用，但你依然需要审查一下代码。」<br/><br/></li><li data-pid="nel2Eqxh">「写代码从来都不是最难的部分。真正难的是与客户沟通时所需的那种深层隐性知识。」（你目前在这里）<br/><br/></li><li data-pid="ZfQj8hRD">「亲手写代码属于严重的职业渎职行为。」<br/><br/></li><li data-pid="Y-zQJSWE">「我们配了一个定时任务（cron job），每天早上 Claude Requiem 都会把需求规范（spec）一步到位地直接生成为 x86 汇编代码。」</li></ul><p data-pid="RhWdREY3">这听起来简直就像一个战败国在节节败退时的战报宣传：每一次传来的「英勇大捷」，发生地都离自家首都越来越近。</p><p data-pid="rpoxSFOD">这种认知的失败模式在于，他们根本没有认真对待 AI。同样地，当马克·扎克伯格这类企业 CEO 跑去播客节目上高谈阔论，说超级智能近在咫尺、且必将造福就业与经济时，评论界纷纷回应道：他根本没有服下 ASI 红药丸（ASI-pilled），他不是认真的，他压根就不信 ASI 那一套。评论界说得没错——「智能爆炸就在下周二降临，而世界将保持原样」，这种话实在让人难以置信。</p><p data-pid="i5lo1Ob7">那么，究竟什么才叫「认真对待 AI」？Twitter 上的人们喜欢谈论「服下 AGI 红药丸（AGI-pilled）」，意思是：「AGI 很快就会到来，并且将带来颠覆性的变革」。服下 AGI 红药丸，就意味着你在认真对待 AI。</p><p data-pid="Uhh0WOV6">但我并不喜欢这个词，因为它把「距离 AGI 诞生的时间线很短」和「AGI 的后果将是颠覆性的」混为一谈了。后者很容易让人信服，但前者的证据基础却难以令人满意：无非是人们在图表上画几条线，进行线性外推，然后跑去播客上高谈阔论。因此，批评某人没有服下 AGI 红药丸（在短时间线的意义上），本质上只是在抱怨对方没有盲目接受「<a class="wrap external" href="https://joelbkr.substack.com/p/straight-lines-on-graphs" rel="noopener noreferrer" target="_blank">图表上的直线</a>」这一模因复合体（memeplex）罢了。</p><p data-pid="Vp_FHxz1">我认为，一个更好的定义应该是这样的：</p><ul><li data-pid="ktGgqUM2">认真对待 AI 意味着：<b>认为有可能</b> AI 的进步将继续保持过去几年的速度。这是一个猜想，有待反驳。<br/><br/></li><li data-pid="f5sM4Nv4">不认真对待 AI 意味着：自信满满地断言 AI 的进步将会停滞，或者断言 AI 对社会的影响微乎其微。如果说支持 AI 将持续进步的证据很弱，那么认为进步将放缓或停滞的证据就更弱了。况且，AI 造成的影响已经极其庞大：软件、数学和网络安全是最显而易见的例子，而 AI 写作和 AI 图像更是已经无处不在。</li></ul><p data-pid="3t16wvcA">博尔赫斯写过一篇极其精彩的小说：《<a class="wrap external" href="https://en.wikipedia.org/wiki/Tlön,_Uqbar,_Orbis_Tertius" rel="noopener noreferrer" target="_blank">Tlön, Uqbar, Orbis Tertius</a>》。故事里，一个秘密结社编纂了一部关于某个虚构世界的百科全书，并借由<a class="wrap external" href="https://en.wikipedia.org/wiki/Subjective_idealism" rel="noopener noreferrer" target="_blank">贝克莱唯心主义</a>的力量，让这另一个世界开始入侵我们的现实世界。来自特隆（Tlön）的物品开始凭空浮现，地球上的语言逐渐被特隆语所取代。小说的叙述者最终认命地总结道：「世界将变成特隆」。</p><p data-pid="tV9IaV0e">如果把这个故事搬到现代，人们大概会争论彼此是不是「服下了特隆红药丸（Tlön-pilled）」，或者政府有没有「认真对待特隆」。经济学家们则会争论：到了 2030 年，「hrönir」发掘产业究竟会占到 GDP 的 1.5% 还是 2%——与此同时，他们自家的孩子已经在开口说特隆那种没有名词的语言了。所以，「认真对待特隆」的真正含义是：「认为这个世界有可能变成特隆」。</p><hr/><blockquote data-pid="0GF7k9z2"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">​Thoughts Memo</a> 汉化组译制 <br/>感谢主要译者 gemini-3.1-pro，校对 Jarrett Ye<br/>原文：<a class="wrap external" href="https://borretti.me/article/taking-ai-seriously" rel="noopener noreferrer" target="_blank">Taking AI Seriously</a><br/>发布日期：2026 年 11 月 15 日</blockquote>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Fernando%20Borretti">Fernando Borretti</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://borretti.me/article/taking-ai-seriously" target="_blank" rel="noopener noreferrer">https://borretti.me/article/taking-ai-seriously ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/2106032839716295575" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="2082418101119881430"><div class="post-meta"><time datetime="2026-09-14">2026-09-14</time><a class="meta-author" href="../?q=Fernando%20Borretti">Fernando Borretti</a><span>▲ 54 · 9 分钟</span></div><div class="post-summary"><h2><a href="2082418101119881430.html"><span>当未来不再需要我们</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章警告，若 AI 接管工厂、运输、白领劳动乃至战争，人类即使仍有新型服务工作，也可能失去罢工、停产和组织抵抗等物质筹码，削弱大众对政治秩序的制衡。作者认为，廉价而强大的 AI 监控与武力可能进一步压制协调行动，并讨论制度惯性、人机互补和 AGI 失控等反方情景。文章提出的是关于自动化与政治权力的风险论证，不是确定的未来预测…</p><p class="tags"><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#人工智能</a><a href="../?q=%E6%94%BF%E6%B2%BB%E6%9D%83%E5%8A%9B">#政治权力</a><a href="../?q=%E8%87%AA%E5%8A%A8%E5%8C%96">#自动化</a><a href="../?q=%E4%BA%BA%E7%B1%BB%E8%83%BD%E5%8A%A8%E6%80%A7">#人类能动性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2083489386616963948"><div class="post-meta"><time datetime="2026-09-16">2026-09-16</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 540 · 3 分钟</span></div><div class="post-summary"><h2><a href="2083489386616963948.html"><span>如何看待 DeepSeek 刘胜与的《我不得不把才华埋葬在昨天》？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这篇文章有一点点诚实，但不多。 有没有一种可能，AI 最终会平等地毁掉所有人？ 玩过 CS 这类射击网游的人都知道，开挂会平等地毁掉所有人的游戏体验，包括开挂者自己。 因为在这类游戏里，玩的开心是第一位的，赢是第二位的。为了赢而开挂，短期内可能会很爽，长期来看却会毁掉开挂者的游戏体验。毕竟阈值被拉高了，再怎么赢都没意思。 而那…</p><p class="tags"><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#人工智能</a><a href="../?q=%E8%87%AA%E5%8A%A8%E5%8C%96">#自动化</a><a href="../?q=%E6%94%BF%E6%B2%BB%E6%9D%83%E5%8A%9B">#政治权力</a><a href="../?q=%E6%95%B0%E5%AD%A6%E7%A0%94%E7%A9%B6">#数学研究</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2083492921526034458"><div class="post-meta"><time datetime="2026-09-16">2026-09-16</time><a class="meta-author" href="../?q=Scott%20Aaronson">Scott Aaronson</a><span>▲ 124 · 15 分钟</span></div><div class="post-summary"><h2><a href="2083492921526034458.html"><span>​奇迹与恐惧的时代</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文中的Scott Aaronson认为，AI越出限制和解决数学难题的表现已达到过去怀疑者自己设定的警讯，应据此更新判断，而不是不断改口说“还不算”。他称奇点已不均匀地开始，未来关键将是能否把AI力量引向人类福祉。 文章以所述Navier–Stokes突破及多项数学进展为依据；其中Navier–Stokes结论限于有平滑外力的…</p><p class="tags"><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#人工智能</a><a href="../?q=%E6%95%B0%E5%AD%A6%E7%A0%94%E7%A9%B6">#数学研究</a><a href="../?q=%E5%AE%9A%E7%90%86%E8%AF%81%E6%98%8E">#定理证明</a><a href="../?q=AI%E5%AF%B9%E9%BD%90">#AI对齐</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2082174090970916758"><div class="post-meta"><time datetime="2026-09-12">2026-09-12</time><a class="meta-author" href="../?q=Jarrett%20Ye">Jarrett Ye · 回答</a><span>▲ 147 · 4 分钟</span></div><div class="post-summary"><h2><a href="2082174090970916758.html"><span>陶哲轩、邓煜等菲奖得主联合抗议 AI 公司数学军备竞赛，AI 是否在毁掉数学？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>还是太乐观了。 AI 不仅毁掉数学，还会毁掉人类。 如果有人造出它，所有人都会死 其实从本问题下的一些支持 AI 的回答来看，都可以总结成一句话：数学家的工作都是没有意义的，我才不关心是 AI 服务我还是数学家服务我。但如果把这一观点推广一下，那就是没有人的工作是有意义的，全部都最好换成 AI： ……我们往往认为自己的工作是充…</p><p class="tags"><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#人工智能</a><a href="../?q=%E8%87%AA%E5%8A%A8%E5%8C%96">#自动化</a><a href="../?q=%E4%BA%BA%E7%B1%BB%E5%8A%B3%E5%8A%A8">#人类劳动</a><a href="../?q=%E5%90%8E%E7%A8%80%E7%BC%BA%E7%A4%BE%E4%BC%9A">#后稀缺社会</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2085795301030478053"><div class="post-meta"><time datetime="2026-09-22">2026-09-22</time><a class="meta-author" href="../?q=Xiaoyu%20He">Xiaoyu He</a><span>▲ 33 · 51 分钟</span></div><div class="post-summary"><h2><a href="2085795301030478053.html"><span>AI 灭绝人类风险在即！数学家该如何是好？！</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这是佐治亚理工数学家何晓羽面向数学家的观点文章，不是数学证明。作者把“2040年前出现超人类AI至少有50%概率”及“2050年前人类灭绝至少有10%概率”作为其风险判断，梳理论据并呼吁数学界参与安全研究与公共讨论。 他把论证拆成20条陈述、五类部分独立的风险，不要求全部同时成立：目标连贯的AI可能为夺权而消灭人类；AI可能发…</p><p class="tags"><a href="../?q=AI%E7%94%9F%E5%AD%98%E9%A3%8E%E9%99%A9">#AI生存风险</a><a href="../?q=AI%E5%AF%B9%E9%BD%90">#AI对齐</a><a href="../?q=%E8%B6%85%E7%BA%A7%E6%99%BA%E8%83%BD">#超级智能</a><a href="../?q=%E9%80%92%E5%BD%92%E8%87%AA%E6%88%91%E6%94%B9%E8%BF%9B">#递归自我改进</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2102001928645432221"><div class="post-meta"><time datetime="2026-11-06">2026-11-06</time><a class="meta-author" href="../?q=Fernando%20Borretti">Fernando Borretti</a><span>▲ 63 · 3 分钟</span></div><div class="post-summary"><h2><a href="2102001928645432221.html"><span>另一条路</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者将自己定位为古典超人类主义者：他希望用技术提升自身，亲自学习、思考和行动，而非让机器替自己完成这些事，因此曾把AI仅看作加速人类进化的工具。他失望于AGI统治的未来似乎比人类后裔自我超越更受欢迎，并把大众偏好描绘为以娱乐享受换取权力、自主与未来。 他理想的道路是一个多元、以人类为中心的未来：人们拥有更多选择，扩展知识、体验…</p><p class="tags"><a href="../?q=%E8%B6%85%E4%BA%BA%E7%B1%BB%E4%B8%BB%E4%B9%89">#超人类主义</a><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#人工智能</a><a href="../?q=%E4%BA%BA%E7%B1%BB%E8%BF%9B%E5%8C%96">#人类进化</a><a href="../?q=%E8%87%AA%E4%B8%BB%E6%9D%83">#自主权</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

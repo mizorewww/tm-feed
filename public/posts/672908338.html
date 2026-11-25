@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FSRS 算法简介</title>
+<meta name="description" content="文章介绍 FSRS 的目标是依据用户复习记录估计记忆状态，并按期望回忆率安排复习。它概述可提取性、稳定性和难度三变量模型、参数拟合与默认参数，并说明用户可通过选择目标保留率权衡复习量和记忆表现；文中同时比较其与 Anki 默认算法的差异。">
+<meta name="author" content="Expertium">
+<meta property="og:title" content="FSRS 算法简介">
+<meta property="og:description" content="文章介绍 FSRS 的目标是依据用户复习记录估计记忆状态，并按期望回忆率安排复习。它概述可提取性、稳定性和难度三变量模型、参数拟合与默认参数，并说明用户可通过选择目标保留率权衡复习量和记忆表现；文中同时比较其与 Anki 默认算法的差异。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-12-18">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="672908338" data-rec-seeds="671340049,649655080,664758200,3364880127,649701172,3514008309,1907760881749718522,692314506">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2023-12-18">2023-12-18</time>
+          <a class="tag" href="../?q=AnkiX%E9%AB%98%E8%80%83">AnkiX高考</a>
+          <a class="tag" href="../?q=Expertium">Expertium</a>
+          <span>约 3 分钟</span>
+          <span>▲ 67</span>
+        </p>
+        <h1>FSRS 算法简介</h1>
+        
+        <p class="tags"><a href="../?q=FSRS">#FSRS</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%BB%BA%E6%A8%A1">#记忆建模</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E5%A4%8D%E4%B9%A0%E8%B0%83%E5%BA%A6">#复习调度</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="NZzTZhT_">FSRS 是由墨墨背单词算法工程师 Jarrett Ye 开发的一种现代<a class="wrap external" href="https://en.wikipedia.org/wiki/Spaced_repetition" rel="noopener noreferrer" target="_blank">间隔重复</a>算法。它旨在学习用户的记忆习惯。相比 Anki 原有的 SM2 算法，FSRS 能更高效地安排复习计划。</p><p data-pid="DewNtpBi">间隔重复算法的核心目标，是计算出复习间隔的最佳时长。但究竟什么样的间隔才算「最佳」？在 FSRS 中，如果某个间隔能实现成功回忆一张卡片的特定概率，那么这个间隔就是最佳的。比如说，如果你想在下次看到某张卡片时，有 90% 的把握能成功回忆，那么最佳间隔就是回忆成功的概率为 90% 所需的时间。</p><p data-pid="k1li5otO">FSRS 基于「记忆的三变量模型」。这个模型认为，只需三个变量就足以描述人脑中单一记忆的状态。这三个变量包括：</p><ul><li data-pid="Lovif0xn">可提取性（R）：指某人在某一时刻成功回忆特定信息的可能性。它受到自上次复习以来经过的时间和记忆稳定性（S）的影响。</li><li data-pid="qtmDEpI4">稳定性（S）：指 R 从 100% 下降到 90% 所需的天数。举例来说，S = 365 表示需要过去整整一年，回忆特定卡片的概率才会降到 90%。</li><li data-pid="kCuSC0cd">难度（D）：特定信息本身的复杂程度。它反映了在复习后提升记忆稳定性的难易程度。</li></ul><p data-pid="Wz-dQbmY">在 FSRS 中，这三个变量共同构成了所谓的「记忆状态」。用户每次复习一张卡片，与这张卡片相关的记忆状态便会相应改变，但也有例外，比如发生在同一天内的后续复习不会引起变化。对于每张卡片，FSRS 每天只考虑一次复习，也就是最早的那次。每张卡片都有其独特的 DSR 值，也就是说，每张卡片都有自己的记忆状态。</p><p data-pid="8qygM_0f">为了精确计算 DSR 值，FSRS 会分析用户的复习记录，并利用机器学习算法计算出拟合复习记录的参数。最新版的 FSRS 在计算 D 和 S 的公式中用到了 17 个参数（而计算可提取性的公式则不需要任何参数）。如果你对细节感兴趣，可以查阅以下页面：<a class="wrap external" href="https://github.com/open-spaced-repetition/fsrs4anki/wiki/The-Algorithm" rel="noopener noreferrer" target="_blank">《算法》</a>和<a class="wrap external" href="https://github.com/open-spaced-repetition/fsrs4anki/wiki/The-mechanism-of-optimization" rel="noopener noreferrer" target="_blank">《优化机制》</a>。如果用户的复习记录不足，系统会默认使用预设的参数。这些参数是在数亿条复习数据（来自约两万名用户的）上运行 FSRS 优化器得出的。即使是用预设参数，FSRS 的效果也优于 Anki 默认的算法。</p><p data-pid="POYSq1zm">请注意，用户不应自行调整这些参数。如果你想调整复习计划，只需要选择一个合适的期望保留率。一般来说，70% 到 97% 的保留率是合理的。也就是说，用 FSRS 的用户可以设定一个特定的保留率，以在他们记忆保留率和复习压力之间权衡。更高的保留率意味着每天花在复习上对时间更多。</p><p data-pid="VZPSScA-">除了让用户自主选择他们期望达到的记忆保留率外，FSRS 相较于 Anki 的默认算法还有其他几个优点。使用 FSRS 时，在保持同样的记忆水平的条件下，用户所需的复习次数比 Anki 默认算法少 20% 到 30%。如果用户有段时间没使用 Anki，FSRS 在安排这些延后复习的卡片上也更加高效。此外，<a class="wrap external" href="https://github.com/open-spaced-repetition/fsrs4anki-helper" rel="noopener noreferrer" target="_blank">FSRS4Anki 助手插件</a>还提供了一些原本无法实现的便捷功能。</p><p data-pid="Yg9cpl-Y">如果你使用的是 23.10 版本或更高版本的 Anki，请参考<a class="wrap external" href="https://github.com/open-spaced-repetition/fsrs4anki/blob/main/docs/tutorial.md" rel="noopener noreferrer" target="_blank">这个指南</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>。如果你的 Anki 版本低于 23.10，你可以使用 FSRS 的独立版本，安装方法请参考<a class="wrap external" href="https://github.com/open-spaced-repetition/fsrs4anki#how-to-get-started" rel="noopener noreferrer" target="_blank">这个指南</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>。</p><p data-pid="HNf2ecSg">想了解 FSRS 与其他算法的比较效果，可以阅读以下页面：<a class="wrap external" href="https://github.com/open-spaced-repetition/fsrs-benchmark" rel="noopener noreferrer" target="_blank">基准测试</a>，以及 <a class="wrap external" href="https://github.com/open-spaced-repetition/fsrs-vs-sm17" rel="noopener noreferrer" target="_blank">FSRS 与 SuperMemo 最新算法之一 SM-17 的对比</a>。</p><p data-pid="7E1TyxUO">更多有关 FSRS 的问题，可查阅<a class="wrap external" href="https://github.com/open-spaced-repetition/fsrs4anki/wiki/FAQ" rel="noopener noreferrer" target="_blank">常见问题</a>。</p><p data-pid="n_QWFuzd">如果你想更深入了解间隔重复算法，可以阅读<a class="wrap external" href="https://github.com/open-spaced-repetition/fsrs4anki/wiki/Spaced-Repetition-Algorithm:-A-Three‐Day-Journey-from-Novice-to-Expert" rel="noopener noreferrer" target="_blank">《间隔重复记忆算法：e 天内，从入门到入土》</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup>。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="nH96N_LW">原文：<a class="wrap external" href="https://github.com/open-spaced-repetition/fsrs4anki/wiki/ABC-of-FSRS" rel="noopener noreferrer" target="_blank">ABC of FSRS · open-spaced-repetition/fsrs4anki Wiki (github.com)</a><br/>作者：<a class="wrap external" href="https://github.com/Expertium" rel="noopener noreferrer" target="_blank">Expertium</a>, <a class="wrap external" href="https://github.com/user1823" rel="noopener noreferrer" target="_blank">user1823</a> and <a class="wrap external" href="https://github.com/L-M-Sherlock" rel="noopener noreferrer" target="_blank">L-M-Sherlock</a><br/>译者：GPT-4<br/>校对：Jarrett Ye</blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> Anki 新算法 FSRS 配置指南 <a class="tm-internal" data-tm-id="664758200" href="664758200.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> FSRS4Anki 使用指北 <a href="https://zhuanlan.zhihu.com/p/636564830" rel="noopener noreferrer" target="_blank">https://zhuanlan.zhihu.com/p/636564830</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 间隔重复记忆算法：e 天内，从入门到入土。 <a href="https://zhuanlan.zhihu.com/p/556020884" rel="noopener noreferrer" target="_blank">https://zhuanlan.zhihu.com/p/556020884</a></li></ol>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Expertium">Expertium</a> · <a href="../?q=user1823">user1823</a> · <a href="../?q=L-M-Sherlock">L-M-Sherlock</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://github.com/open-spaced-repetition/fsrs4anki/wiki/ABC-of-FSRS" target="_blank" rel="noopener noreferrer">https://github.com/open-spaced-repetition/fsrs4anki/wiki/ABC-of-FSRS ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/672908338" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="671340049"><div class="post-meta"><time datetime="2023-12-09">2023-12-09</time><a class="meta-author" href="../?q=ClarityInMadness">ClarityInMadness</a><span>▲ 182 · 7 分钟</span></div><div class="post-summary"><h2><a href="671340049.html"><span>FSRS 现已成为世界上最精确的间隔重复算法*</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本文报告FSRS v4在复习日志上的回忆概率预测基准，以RMSE衡量预测与实测的差距，而非直接比较学习收益。参测SM-2是原版，不是Anki实现；它不输出回忆概率，须作假设把间隔转成概率。作者报告，在大规模Anki复习数据上，FSRS v4优于参测算法，默认参数版也优于SM-2。 SM-17因算法保密未在Anki数据上运行，研…</p><p class="tags"><a href="../?q=FSRS">#FSRS</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=RMSE">#RMSE</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="3514008309"><div class="post-meta"><time datetime="2024-05-29">2024-05-29</time><a class="meta-author" href="../?q=Jarrett%20Ye">Jarrett Ye · 回答</a><span>▲ 56 · 1 分钟</span></div><div class="post-summary"><h2><a href="3514008309.html"><span>如何评价笔记软件Marginnote4?</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>没用过，但支持地表最强开源间隔重复算法 FSRS： 叶峻峣：FSRS 是全世界最精确的间隔重复算法之一（最新基准测试更新）</p><p class="tags"><a href="../?q=FSRS">#FSRS</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%AE%97%E6%B3%95%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95">#算法基准测试</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1907760881749718522"><div class="post-meta"><time datetime="2025-05-19">2025-05-19</time><a class="meta-author" href="../?q=Domenic%20Denicola">Domenic Denicola</a><span>▲ 261 · 12 分钟</span></div><div class="post-summary"><h2><a href="1907760881749718522.html"><span>间隔重复记忆系统：已取得长足进步</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Domenic Denicola 回顾间隔重复系统如何从 SM-2 一类固定间隔规则转向 FSRS：后者用机器学习拟合难度、稳定性和可提取性，再依用户设定的目标保留率安排复习，并可优化个人参数。作者以自己的日语卡片模拟和使用经验说明，较低的目标保留率可能减少复习负担并增加记住的卡片数。在该模拟中，每日复习量设有上限，降低保留率…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=FSRS">#FSRS</a><a href="../?q=SM-2">#SM-2</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="664758200"><div class="post-meta"><time datetime="2023-11-22">2023-11-22</time><a class="meta-author" href="../?q=Expertium">Expertium</a><span>▲ 377 · 8 分钟</span></div><div class="post-summary"><h2><a href="664758200.html"><span>Anki 新算法 FSRS 配置指南</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这份针对 Anki 23.10 及以上版本的指南说明，启用内置 FSRS 前应移除旧自定义排程代码并更新相关插件；启用后旧简易度设置不再起作用。期望保留率是到期时成功回忆的比例，越高复习负担越大；初学和重学步骤应在当天完成。默认只在以后复习时采用新排程，立即重排可能使大量卡片同时到期。 按文中版本，少于1000次有效复习时用默…</p><p class="tags"><a href="../?q=FSRS">#FSRS</a><a href="../?q=Anki">#Anki</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%9C%9F%E6%9C%9B%E4%BF%9D%E7%95%99%E7%8E%87">#期望保留率</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2020082520478201804"><div class="post-meta"><time datetime="2026-03-25">2026-03-25</time><a class="meta-author" href="../?q=Giacomo%20Randazzo">Giacomo Randazzo</a><span>▲ 17 · 14 分钟</span></div><div class="post-summary"><h2><a href="2020082520478201804.html"><span>记忆模型的数学形式化</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Giacomo Randazzo 与 Aidan Campbell 将记忆模型形式化为：输入学生、卡片内容和完整复习历史，输出随时间变化的遗忘曲线及回忆概率。该框架突破只看单卡历史的局部独立假设，使跨卡迁移和干扰可被建模；稳定性成为可推导量，难度则由具体模型决定。作者还证明，若无额外结构假设，仅凭单次二元回忆结果无法识别可提取…</p><p class="tags"><a href="../?q=%E8%AE%B0%E5%BF%86%E6%A8%A1%E5%9E%8B">#记忆模型</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E9%81%97%E5%BF%98%E6%9B%B2%E7%BA%BF">#遗忘曲线</a><a href="../?q=FSRS">#FSRS</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="649655080"><div class="post-meta"><time datetime="2023-08-12">2023-08-12</time><a class="meta-author" href="../?q=ClarityInMadness">ClarityInMadness</a><span>▲ 110 · 6 分钟</span></div><div class="post-summary"><h2><a href="649655080.html"><span>解释 FSRS（上篇）：算法描述与运作原理</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文解释 FSRS v4 如何用 DSR 模型安排复习：难度 D、记忆稳定性 S 和回忆概率 R 共同决定评分后的稳定性更新及下次复习间隔。作者概述了参数优化、自适应初始稳定性和用户可设定目标保留率等优点，也说明算法对极端难度卡片的预测仍有偏差、需要大量复习数据且当时的使用流程较复杂。</p><p class="tags"><a href="../?q=FSRS">#FSRS</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=DSR%20%E6%A8%A1%E5%9E%8B">#DSR 模型</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

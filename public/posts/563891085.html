@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>通过间隔证明复习来理解证明中的关键点</title>
+<meta name="description" content="作者认为，间隔复习数学证明不只是在重记几行步骤；遗忘后尝试重建推理，会迫使学习者比较可行与不可行的选择，从而理解作者为何采用特定技巧。作者以自己回忆 Löb 定理证明开头的经历为例，展示如何从相关命题线索逐步想起对角化思路。">
+<meta name="author" content="Issa Rice">
+<meta property="og:title" content="通过间隔证明复习来理解证明中的关键点">
+<meta property="og:description" content="作者认为，间隔复习数学证明不只是在重记几行步骤；遗忘后尝试重建推理，会迫使学习者比较可行与不可行的选择，从而理解作者为何采用特定技巧。作者以自己回忆 Löb 定理证明开头的经历为例，展示如何从相关命题线索逐步想起对角化思路。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-09-13">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="563891085" data-rec-seeds="544715364,658395407,538568061,514987383,530037264,554633227,714466433,516677928">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2022-09-13">2022-09-13</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%20%26%20%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">间隔重复 &amp; 注意力管理</a>
+          <a class="tag" href="../?q=Issa%20Rice">Issa Rice</a>
+          <span>约 1 分钟</span>
+          <span>▲ 10</span>
+        </p>
+        <h1>通过间隔证明复习来理解证明中的关键点</h1>
+        
+        <p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%95%B0%E5%AD%A6%E8%AF%81%E6%98%8E">#数学证明</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E8%AF%81%E6%98%8E%E6%9E%84%E9%80%A0">#证明构造</a><a href="../?q=L%C3%B6b%E5%AE%9A%E7%90%86">#Löb定理</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-3"><a href="#sec-1" data-toc-target="sec-1">参见</a></li><li class="level-3"><a href="#sec-2" data-toc-target="sec-2">外部链接</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="PKp_Mbmb">我认为数学有一个核心难点就是「<a class="wrap external" href="https://wiki.issarice.com/wiki/Combinatorial_explosion_in_math" rel="noopener noreferrer" target="_blank">组合爆炸</a>」<sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>，换句话说就是可能性的问题。比如说一份证明中，有一处不等式符号是 ≤ 而不是 &lt; 或者其他符号（比如说反过来的 ≤），那么当你阅读这份证明时，你必须准备好去解释「为什么这么用」。对于证明中的每个环节，你必须有能力解释，为什么作者是如此操作，而非采用其他办法。最终你<a class="wrap external" href="https://wiki.issarice.com/wiki/Spaced_proof_review_is_not_about_memorizing_proofs" rel="noopener noreferrer" target="_blank">不仅仅记住了表面上短短几行的证明</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>—— 而是在解答一类更大的问题：「为什么作者选择这个办法，而不是其他那些行不通的办法」，这样一来，你写自己的证明时便有了思路。随着证明一点点淡忘，你的想法是「等一下，所以这里我应该做<b>这件事</b>还是<b>那件事</b>？」所以你测试这两条路，之后你会恍然大悟，「原来书上写成了那个样子是这个原因」。</p><p data-pid="iwVAPVFY">有一次我想证明 Löb 定理，但我连证明开头使用的技巧都忘记了。（也许这样也挺好，因为我不仅仅是依赖于记忆技巧！）最终我想起来了，Löb 定理和圣诞老人命题有关，所以我写下了「如果这句话是真的，那么圣诞老人存在」。于是我回忆起了我需要一些类似 <img alt="T \vdash L \leftrightarrow (L \to \varphi)" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=T+%5Cvdash+L+%5Cleftrightarrow+%28L+%5Cto+%5Cvarphi%29"/> 的命题，继而回忆起，它并不仅仅是一句光秃秃的命题， 而且在某个地方有一个可证明谓词，基于此我又回忆起，我们应该将 <img alt="\mathrm{Bew}(x) \to \varphi" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%5Cmathrm%7BBew%7D%28x%29+%5Cto+%5Cvarphi"/> 对角化。因此 <img alt="T \vdash L \leftrightarrow (\Box L \to \varphi)" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=T+%5Cvdash+L+%5Cleftrightarrow+%28%5CBox+L+%5Cto+%5Cvarphi%29"/> 。在这之前，对于为什么我应该将那个特殊的公式对角化（或者那个公式是哪里冒出来的），我是感到疑惑的。</p><h3 id="sec-1">参见</h3><ul><li data-pid="mmQZ_FuW"><a class="wrap external" href="https://wiki.issarice.com/wiki/Spaced_proof_review_as_a_way_to_invent_novel_proofs" rel="noopener noreferrer" target="_blank">通过间隔证明复习来发明新的证明方法</a></li></ul><h3 id="sec-2">外部链接</h3><ul><li data-pid="9IvP9b_u"><a class="wrap external" href="https://wiki.issarice.comhttps//mathoverflow.net/a/3957" rel="noopener noreferrer" target="_blank">https://mathoverflow.net/a/3957</a></li></ul><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="ifnSGgHG"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>原文：<a class="wrap external" href="https://wiki.issarice.com/wiki/Spaced_proof_review_as_a_way_to_understand_key_insights_in_a_proof" rel="noopener noreferrer" target="_blank">Spaced proof review as a way to understand key insights in a proof</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 数学中的组合爆炸 <a class="tm-internal" data-tm-id="658395407" href="658395407.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 间隔复习证明不在于记住证明 <a class="tm-internal" data-tm-id="544715364" href="544715364.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-3"><a href="#sec-1" data-toc-target="sec-1">参见</a></li><li class="level-3"><a href="#sec-2" data-toc-target="sec-2">外部链接</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Issa%20Rice">Issa Rice</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://wiki.issarice.com/wiki/Spaced_proof_review_as_a_way_to_understand_key_insights_in_a_proof" target="_blank" rel="noopener noreferrer">https://wiki.issarice.com/wiki/Spaced_proof_review_as_a_way_to_understand_key_insights_in_a_proof ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/563891085" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="544715364"><div class="post-meta"><time datetime="2022-07-22">2022-07-22</time><a class="meta-author" href="../?q=Issa%20Rice">Issa Rice</a><span>▲ 16 · 3 分钟</span></div><div class="post-summary"><h2><a href="544715364.html"><span>间隔复习证明不在于记住证明</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文认为，间隔复习证明的目标不该只是背下既有证明，而应通过反复处理重要结果培养更通用的证明能力与非语言的“心理动作”。作者指出，复习经典定理可减少遗忘并降低检查成本，但新问题仍然重要；间隔的作用也包括让重复不至于烦扰。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%95%B0%E5%AD%A6%E8%AF%81%E6%98%8E">#数学证明</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0">#数学学习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="538568061"><div class="post-meta"><time datetime="2022-07-07">2022-07-07</time><a class="meta-author" href="../?q=Issa%20Rice">Issa Rice</a><span>▲ 6 · 2 分钟</span></div><div class="post-summary"><h2><a href="538568061.html"><span>链表式证明卡</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这篇外部译文讨论用 Anki 记忆证明的“链表式证明卡”：每张卡询问下一步，但作者担心零散提取步骤会丢失证明上下文，且下一步可能不唯一。他认为数学学习更需要从头到尾讲述证明的能力；命名定理或证明可作中心节点，连接相关卡片。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%95%B0%E5%AD%A6%E8%AF%81%E6%98%8E">#数学证明</a><a href="../?q=%E8%AF%81%E6%98%8E%E5%8D%A1">#证明卡</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="83552021814"><div class="post-meta"><time datetime="2025-01-20">2025-01-20</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 308 · 25 分钟</span></div><div class="post-summary"><h2><a href="83552021814.html"><span>如何使用anki和supermemo学习数学物理编程等科目并准备考试？记忆软件是否不适合这些科目？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>类似问题我已经回答过好几次了，传统版本答案是： Thoughts Memo：用间隔重复系统来看穿数学概念 Thoughts Memo：用间隔重复软件记住一门编程语言 2025 年的新版答案是：Anki 是有极限的，所以不要用 Anki 啦！Math Academy 的间隔重复数学学习系统比 Anki 强多了，从它的算法就能看出…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0">#数学学习</a><a href="../?q=%E8%AF%81%E6%98%8E%E7%90%86%E8%A7%A3">#证明理解</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="472256442"><div class="post-meta"><time datetime="2022-02-26">2022-02-26</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 13 · 1 分钟</span></div><div class="post-summary"><h2><a href="472256442.html"><span>自主评分的间隔重复记忆系统比机器评分的系统更有效率</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者认为，机器评分的间隔重复系统要求输入答案，会把每项复习耗时提高数倍；选择题虽然免去输入，却将主动生成转为辨认，可能削弱记忆编码。文章据此主张自主评分的系统能降低交互成本并保留提取练习。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E7%94%9F%E6%88%90%E6%95%88%E5%BA%94">#生成效应</a><a href="../?q=%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1">#交互设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="412012134"><div class="post-meta"><time datetime="2021-09-19">2021-09-19</time><a class="meta-author" href="../?q=Jack%20Kinsella">Jack Kinsella</a><span>▲ 148 · 10 分钟</span></div><div class="post-summary"><h2><a href="412012134.html"><span>JAnki：写给程序员们的 13 条 Anki 使用经验</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者根据多年用Anki学编程的经历，建议优先记可用功能和跨语言概念，细节留到项目需要时强化；有序复杂流程可用清单，暂不需要的技术可暂停。代码截图、重点加粗和阅读后批量制卡可减少摩擦；限制复习量、拉长间隔则是他为坚持和当下应用而接受部分长期效率损失的取舍。 剪贴簿卡要求说清好坏代码的理由，反复答错时应亲手执行验证，未用功能先寻找…</p><p class="tags"><a href="../?q=Anki">#Anki</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0">#编程学习</a><a href="../?q=%E5%8D%A1%E7%89%87%E8%AE%BE%E8%AE%A1">#卡片设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="658395407"><div class="post-meta"><time datetime="2023-09-27">2023-09-27</time><a class="meta-author" href="../?q=Issa%20Rice">Issa Rice</a><span>▲ 13 · 1 分钟</span></div><div class="post-summary"><h2><a href="658395407.html"><span>数学中的组合爆炸</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者认为，数学解题比解谜游戏面临更大的组合爆炸：每一步可能调用代数等看似遥远领域中的知识，候选“走法”近乎无限，因此多数问题不能靠蛮力搜索解决。文末将间隔复习证明、反复尝试证明定理列作应对这种困难的相关方法。</p><p class="tags"><a href="../?q=%E6%95%B0%E5%AD%A6%E8%AF%81%E6%98%8E">#数学证明</a><a href="../?q=%E7%BB%84%E5%90%88%E7%88%86%E7%82%B8">#组合爆炸</a><a href="../?q=%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3">#问题解决</a><a href="../?q=%E9%97%B4%E9%9A%94%E5%A4%8D%E4%B9%A0">#间隔复习</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>常青笔记实现顺畅而渐进的写作（「渐进写作」）</title>
+<meta name="description" content="文章认为，原子化且彼此链接的常青笔记可以像检查点一样，让写作轻松暂停和继续；每条笔记短小完整，减少长篇草稿带来的工作记忆负担，并让任务间联系显现。作者据此将常青笔记与渐进写作相连，强调把思路外化有助于持续推进工作。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="常青笔记实现顺畅而渐进的写作（「渐进写作」）">
+<meta property="og:description" content="文章认为，原子化且彼此链接的常青笔记可以像检查点一样，让写作轻松暂停和继续；每条笔记短小完整，减少长篇草稿带来的工作记忆负担，并让任务间联系显现。作者据此将常青笔记与渐进写作相连，强调把思路外化有助于持续推进工作。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-11-06">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="430163534" data-rec-seeds="446019403,501187896,422262632,448897897,440755692,609604620,426450021,441969379">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2021-11-06">2021-11-06</time>
+          <a class="tag" href="../?q=%E5%B8%B8%E9%9D%92%E7%AC%94%E8%AE%B0%20%26%20%E7%9F%A5%E8%AF%86%E5%B7%A5%E4%BD%9C">常青笔记 &amp; 知识工作</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 3 分钟</span>
+          <span>▲ 19</span>
+        </p>
+        <h1>常青笔记实现顺畅而渐进的写作（「渐进写作」）</h1>
+        
+        <p class="tags"><a href="../?q=%E5%B8%B8%E9%9D%92%E7%AC%94%E8%AE%B0">#常青笔记</a><a href="../?q=%E6%B8%90%E8%BF%9B%E5%86%99%E4%BD%9C">#渐进写作</a><a href="../?q=%E5%86%99%E4%BD%9C%E8%BF%87%E7%A8%8B">#写作过程</a><a href="../?q=%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BF%86">#工作记忆</a><a href="../?q=%E7%AC%94%E8%AE%B0%E9%93%BE%E6%8E%A5">#笔记链接</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">参考文献</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="FkQOph6K">常青笔记是原子性的（<a class="wrap external" href="https://notes.andymatuschak.org/z4Rrmh17vMBbauEGnFPTZSK3UmdsGExLRfZz1" rel="noopener noreferrer" target="_blank">常青笔记应该是原子化的</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>），并含有大量链接（<a class="wrap external" href="https://notes.andymatuschak.org/z2HUE4ABbQjUNjrNemvkTCsLa1LPDRuwh1tXC" rel="noopener noreferrer" target="_blank">常青笔记之间应该建立大量链接</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>），因此中止或者继续写作常青笔记都非常轻松。这有助于<a class="wrap external" href="https://notes.andymatuschak.org/z8d4eJNaKrVDGTFpqRnQUPRkexB7K6XbcffAV" rel="noopener noreferrer" target="_blank">闭合开环</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup>。</p><p data-pid="9hZhVre3">这些笔记麻雀虽小五脏俱全，如同定期检查点。每篇笔记只需要几分钟的时间即可写就，但是因为这些笔记是<a class="wrap external" href="https://notes.andymatuschak.org/z4SDCZQeRo4xFEQ8H4qrSqd68ucpgE6LU155C" rel="noopener noreferrer" target="_blank">常青笔记</a><sup class="cite" id="cite-4"><a href="#ref-4">[4]</a></sup>，每篇笔记都是可依赖的坚实砖石——笔记完备地表达了自身描述的概念（<a class="wrap external" href="https://notes.andymatuschak.org/z6bci25mVUBNFdVWSrQNKr6u7AZ1jFzfTVbMF" rel="noopener noreferrer" target="_blank">常青笔记应面向概念</a><sup class="cite" id="cite-5"><a href="#ref-5">[5]</a></sup>）。当然，我们日后还会对笔记内容逐渐迭代完善，但每次迭代时，笔记仍将是一个基本完整、自成一体的单元。</p><p data-pid="sHB1p6mk">相比之下，当我们处理一份正在编写的长篇手稿时，我们要同时应付许多想法，这些想法完成度各不相同。这份文本在各个部分的完备程度都千差万别。同时文本很长，很容易迷失自己的位置，或者在继续工作时忘记其他相关点的位置。每天开始工作和结束工作都像是繁重的任务，都大量依赖工作记忆。</p><hr/><h2 id="sec-1">参考文献</h2><p data-pid="7DEHo92u">Ahrens, S. (2017). <i>How to Take Smart Notes: One Simple Technique to Boost Writing, Learning and Thinking – for Students, Academics and Nonfiction Book Writers</i>.</p><blockquote data-pid="-f71SrQ_">因为每个任务的结果得到记录，它们之间可能存在的联系因而变得清晰可见，我们便可以很容易地随时接着上次停下的地方继续工作，而不必一直把它记在心里。<br/><br/>如此这般，我们不再需要记住还有什么事情没完成，也可以从上次停止的位置继续完成这项任务。这也正是通过写作思考的优势之一，即把所有事情置于思绪之外。<br/><br/>只有当工作记忆中没有任何其他东西萦绕不去而占用宝贵的精神资源，我们才能体验到艾伦所说的「心灵若水」——在这种状态下，我们可以专注于眼前的工作，而不会被其他想法分散注意力。</blockquote><p data-pid="q5zghUu0">Wozniak, P. (2018, June 9). Incremental writing. Retrieved December 30, 2019, from <a class="external" href="https://supermemo.guru/wiki/Incremental_writing" rel="noopener noreferrer" target="_blank"><span class="invisible">https://</span><span class="visible">supermemo.guru/wiki/Inc</span><span class="invisible">remental_writing</span><span class="ellipsis"></span></a><sup class="cite" id="cite-6"><a href="#ref-6">[6]</a></sup></p><p data-pid="Fen6K2UP"><a class="wrap external" href="https://twitter.com/andy_matuschak/status/1271997374756315142" rel="noopener noreferrer" target="_blank">hak/status/1271997374756315142</a></p><h2 id="sec-2">链接至本文（已汉化）</h2><ul><li data-pid="J8P_TEIP"><a class="internal tm-internal" data-tm-id="501187896" href="501187896.html">§收件箱与注意力管理</a></li><li data-pid="Esib_SyK"><a class="internal tm-internal" data-tm-id="426450021" href="426450021.html">常青笔记之间应该建立大量链接</a></li><li data-pid="R4A27fRk"><a class="internal tm-internal" data-tm-id="422262632" href="422262632.html">笔记标题建议使用完整的句子，避免模糊主张</a></li><li data-pid="6-3AVqTl"><a class="internal tm-internal" data-tm-id="440755692" href="440755692.html">可执行的写作策略</a></li><li data-pid="S4FoQgsn"><a class="internal tm-internal" data-tm-id="446019403" href="446019403.html">默认不考虑读者，只为自己写笔记</a></li><li data-pid="Sl_qfTNz"><a class="internal tm-internal" data-tm-id="448897897" href="448897897.html">常青笔记有助于积累洞见</a></li><li data-pid="U2IQrXFn"><a class="internal tm-internal" data-tm-id="609604620" href="609604620.html">卡片笔记写作法 - Ahrens</a></li></ul><h2 id="sec-3">声明</h2><p data-pid="b3R0bA4p">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="vSYsWg1r"><a class="wrap external" href="https://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/z6C5H4eYH2A4omfNLuUcDiKibQ1hZG2RGNZ97" rel="noopener noreferrer" target="_blank">Evergreen notes permit smooth incremental progress in writing (“incremental writing”) (andymatuschak.org)</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 常青笔记应该是原子化的 <a class="tm-internal" data-tm-id="420726986" href="420726986.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 常青笔记之间应该建立大量链接 <a class="tm-internal" data-tm-id="426450021" href="426450021.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 闭合开环 <a class="tm-internal" data-tm-id="441969379" href="441969379.html">站内阅读 ↗</a></li><li id="ref-4"><a aria-label="返回正文" class="ref-back" href="#cite-4">↩</a> 常青笔记 (Evergreen notes) <a class="tm-internal" data-tm-id="416319260" href="416319260.html">站内阅读 ↗</a></li><li id="ref-5"><a aria-label="返回正文" class="ref-back" href="#cite-5">↩</a> 常青笔记应面向概念 <a class="tm-internal" data-tm-id="421580357" href="421580357.html">站内阅读 ↗</a></li><li id="ref-6"><a aria-label="返回正文" class="ref-back" href="#cite-6">↩</a> 渐进写作 <a href="https://www.yuque.com/supermemo/wiki/incremental_writing" rel="noopener noreferrer" target="_blank">https://www.yuque.com/supermemo/wiki/incremental_writing</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">参考文献</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/z6C5H4eYH2A4omfNLuUcDiKibQ1hZG2RGNZ97" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/z6C5H4eYH2A4omfNLuUcDiKibQ1hZG2RGNZ97 ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/430163534" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="446019403"><div class="post-meta"><time datetime="2021-12-16">2021-12-16</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 31 · 2 分钟</span></div><div class="post-summary"><h2><a href="446019403.html"><span>默认不考虑读者，只为自己写笔记</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者建议写常青笔记时默认先为自己写，再在需要发布时切换为面向读者的表达。过早补足背景、修饰文字和自我审查会增加负担，尤其在想法尚未成形时容易造成写作阻塞；先以能推进思考的形式记录，之后再逐渐加工，更适合他的实践。</p><p class="tags"><a href="../?q=%E5%B8%B8%E9%9D%92%E7%AC%94%E8%AE%B0">#常青笔记</a><a href="../?q=%E6%B8%90%E8%BF%9B%E5%86%99%E4%BD%9C">#渐进写作</a><a href="../?q=%E7%9F%A5%E8%AF%86%E5%B7%A5%E4%BD%9C">#知识工作</a><a href="../?q=%E5%86%99%E4%BD%9C%E8%BF%87%E7%A8%8B">#写作过程</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="448897897"><div class="post-meta"><time datetime="2021-12-23">2021-12-23</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 23 · 3 分钟</span></div><div class="post-summary"><h2><a href="448897897.html"><span>常青笔记有助于积累洞见</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 认为，创造性洞见常由先前想法逐步累积并交汇而来，常青笔记能让思考形成可迭代的基础。原子化笔记可在短时间内完成，并通过链接构成不断扩展的网络，随后与阅读材料互动、成为新作品的基础；他也提醒，卡片盒需要多年积累才可能显现复利。</p><p class="tags"><a href="../?q=%E5%B8%B8%E9%9D%92%E7%AC%94%E8%AE%B0">#常青笔记</a><a href="../?q=%E6%B4%9E%E8%A7%81%E7%A7%AF%E7%B4%AF">#洞见积累</a><a href="../?q=%E5%8E%9F%E5%AD%90%E5%8C%96%E7%AC%94%E8%AE%B0">#原子化笔记</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86">#知识管理</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2772990761"><div class="post-meta"><time datetime="2022-11-24">2022-11-24</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 755 · 20 分钟</span></div><div class="post-summary"><h2><a href="2772990761.html"><span>如何构建自己的笔记系统？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>可以参考 Andy Matuschak 的笔记写作系统——常青笔记。这里摘录几篇他自己笔记，供大家参考。 Andy 是前苹果系统工程师、前可汗学院研发组长，现独立研究员。 @Thoughts Memo 汉化组正在知乎上构建 Andy 的笔记系统。 以下内容，如果没有特殊说明，点击链接是英文原文，点击形如 [1] 的参考标注是对…</p><p class="tags"><a href="../?q=%E5%B8%B8%E9%9D%92%E7%AC%94%E8%AE%B0">#常青笔记</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86">#知识管理</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%9F%A5%E8%AF%86%E5%B7%A5%E4%BD%9C">#知识工作</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="422262632"><div class="post-meta"><time datetime="2021-10-16">2021-10-16</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 26 · 2 分钟</span></div><div class="post-summary"><h2><a href="422262632.html"><span>笔记标题建议使用完整的句子，避免模糊主张</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文建议用完整句子或问题作为常青笔记标题，让标题明确表达主张或待解问题；若难以概括，可能说明想法含混或笔记包含多个主题，应先拆分。作者把名词短语留给核心术语定义，并指出标题常在写作过程中逐渐浮现，清晰标题可反映理解加深。</p><p class="tags"><a href="../?q=%E5%B8%B8%E9%9D%92%E7%AC%94%E8%AE%B0">#常青笔记</a><a href="../?q=%E7%AC%94%E8%AE%B0%E6%A0%87%E9%A2%98">#笔记标题</a><a href="../?q=%E5%8E%9F%E5%AD%90%E5%8C%96%E7%AC%94%E8%AE%B0">#原子化笔记</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%BB%84%E7%BB%87">#知识组织</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2446781501"><div class="post-meta"><time datetime="2022-04-19">2022-04-19</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 46 · 6 分钟</span></div><div class="post-summary"><h2><a href="2446781501.html"><span>你是如何使用双链笔记软件做笔记的？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>不如看看常青笔记的提出者，Andy Matuschak 的公开笔记是怎样写的： About these notes 以下是 Thoughts Memo 汉化组的一些笔记译文， [数字] 表示对应的双链页面已有中文翻译，反向链接则只包含汉化内容。 常青笔记 (Evergreen notes) 原文： Evergreen note…</p><p class="tags"><a href="../?q=%E5%B8%B8%E9%9D%92%E7%AC%94%E8%AE%B0">#常青笔记</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86">#知识管理</a><a href="../?q=%E7%9F%A5%E8%AF%86%E5%B7%A5%E4%BD%9C">#知识工作</a><a href="../?q=%E5%8D%A1%E7%89%87%E7%9B%92%E7%AC%94%E8%AE%B0%E6%B3%95">#卡片盒笔记法</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="423996524"><div class="post-meta"><time datetime="2021-10-21">2021-10-21</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 31 · 1 分钟</span></div><div class="post-summary"><h2><a href="423996524.html"><span>大多数人只写临时的笔记</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文区分临时笔记与常青笔记：多数人把笔记当作储存想法或起草思路的容器，虽便于即时工作，却容易积成无法相互连接的杂乱记录。文章援引 Khoe 的“杂乱思考—整洁思考”区分，主张临时笔记应作为无序思考的输入，再转化为能累积知识的有序笔记；因此，单纯记录而不继续整理的笔记实践常常难以产生持久价值。</p><p class="tags"><a href="../?q=%E5%B8%B8%E9%9D%92%E7%AC%94%E8%AE%B0">#常青笔记</a><a href="../?q=%E7%AC%94%E8%AE%B0%E6%96%B9%E6%B3%95">#笔记方法</a><a href="../?q=%E7%9F%A5%E8%AF%86%E5%B7%A5%E4%BD%9C">#知识工作</a><a href="../?q=%E7%9F%A5%E8%AF%86%E6%95%B4%E5%90%88">#知识整合</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

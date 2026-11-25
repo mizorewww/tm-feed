@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RemNote</title>
+<meta name="description" content="短文介绍 RemNote 的结构化笔记与间隔重复卡片功能，认为其层级文本能方便生成记忆卡，但固定的数据模型可能限制散文写作与内容组合。作者将它视为有趣的产品实验，并提出嵌入式概念的可组合性问题。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="RemNote">
+<meta property="og:description" content="短文介绍 RemNote 的结构化笔记与间隔重复卡片功能，认为其层级文本能方便生成记忆卡，但固定的数据模型可能限制散文写作与内容组合。作者将它视为有趣的产品实验，并提出嵌入式概念的可组合性问题。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-09-18">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="411854751" data-rec-seeds="487321909,404257681,412281111,1916861164312298292,274891979,242322075,238211772,235834139">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2021-09-18">2021-09-18</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%20%26%20%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">间隔重复 &amp; 注意力管理</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 1 分钟</span>
+          <span>▲ 18</span>
+        </p>
+        <h1>RemNote</h1>
+        
+        <p class="tags"><a href="../?q=RemNote">#RemNote</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%AC%94%E8%AE%B0%E7%B3%BB%E7%BB%9F">#笔记系统</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%BB%84%E7%BB%87">#知识组织</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="5X_vqrTP"><a class="wrap external" href="https://www.remnote.io/homepage" rel="noopener noreferrer" target="_blank">RemNote</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup> 是网页端的<a class="wrap external" href="https://notes.andymatuschak.org/z8XrKGDz49o6XxEx7tzGewzrXQnw6jSgv3Yyf" rel="noopener noreferrer" target="_blank">笔记系统</a>，强调结构化的知识模型，对于将笔记整合进<a class="wrap external" href="https://notes.andymatuschak.org/z4eXdSMJFv2qVGXSUEKH4vdcHBrLHcFY1ZGfC" rel="noopener noreferrer" target="_blank">间隔重复记忆系统</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>提供了高质量的操作方法。参见：<a class="wrap external" href="https://notes.andymatuschak.org/z5ARNXtS5VxteskEW91S1yYTgAcLABNXsZuJE" rel="noopener noreferrer" target="_blank">助记媒介可以扩展到个人笔记上</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup></p><p data-pid="1IqM2b-S">它试图强行施加一种知识模型<sup class="cite" id="cite-4"><a href="#ref-4">[4]</a></sup>，但这个模型过于一板一眼：高度形式化，很是压抑。最终的笔记适用于生成 SRS 卡片，但不太适用于散文。</p><p data-pid="etWQp1Sq">例如，你可以通过编写 <code>Foo: foo‘s 的定义</code> 为来生成一张 SRS 卡片用于学习定义，或者使用项目符号列表描述概念的属性：</p><div class="highlight"><pre><code class="language-text"> ​遗忘曲线
+ ​
+ * 发现者：艾宾浩斯</code></pre></div><p data-pid="3ZiDkQEd">RemNote 有嵌入的概念，以便概念层级组合成不同的「文档」。类似 <a class="wrap external" href="https://notes.andymatuschak.org/z8PkzLcXuVG5xYF7sfUFhwF26WK2A2zCp8nAD" rel="noopener noreferrer" target="_blank">Roam Research</a> ，这种设计的内在逻辑是，按此模型构建的文本块可以构成可重用的单元。我担心文本块的可组合性：<a class="wrap external" href="https://notes.andymatuschak.org/z7DvEiUpF6dYkFGbpZZTBKQVM9jjNnx8D8Xzu" rel="noopener noreferrer" target="_blank">嵌入功能受到数据模型的可组合性的限制</a><sup class="cite" id="cite-5"><a href="#ref-5">[5]</a></sup></p><p data-pid="JDyRFaXf">RemNote 是有趣的研究实验，值得从中学习。好像其作者 {Martin Schnieder} 正试图将其商业化，但我不能判断他对待这个目标有多认真。该软件会定期<a class="wrap external" href="https://www.remnote.io/updates" rel="noopener noreferrer" target="_blank">更新</a>，已经添加了一长串新功能。</p><h2 id="sec-1">链接至本文（已汉化）</h2><ul><li data-pid="C1B7wen7"><a class="internal tm-internal" data-tm-id="404257681" href="404257681.html">间隔重复记忆系统</a></li><li data-pid="fL77d2AN"><a class="internal tm-internal" data-tm-id="487321909" href="487321909.html">助记媒介可以扩展到个人笔记上</a></li></ul><h2 id="sec-2">声明</h2><p data-pid="zusdWzVJ">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="ifX2brIx"><a class="wrap external" href="https://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/z6jecLFTkHG5MCFDvhwsd2p8YWykaHr6ZkHTi" rel="noopener noreferrer" target="_blank">RemNote</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> Remnote——记住你的笔记！ <a href="https://zhuanlan.zhihu.com/p/229018036" rel="noopener noreferrer" target="_blank">https://zhuanlan.zhihu.com/p/229018036</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 间隔重复记忆系统 <a class="tm-internal" data-tm-id="404257681" href="404257681.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 助记媒介可以扩展到个人笔记上 <a class="tm-internal" data-tm-id="487321909" href="487321909.html">站内阅读 ↗</a></li><li id="ref-4"><a aria-label="返回正文" class="ref-back" href="#cite-4">↩</a> 通用描述符 <a class="tm-internal" data-tm-id="274891979" href="274891979.html">站内阅读 ↗</a></li><li id="ref-5"><a aria-label="返回正文" class="ref-back" href="#cite-5">↩</a> 嵌入功能受数据模型的可组合性限制 <a class="tm-internal" data-tm-id="412281111" href="412281111.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/z6jecLFTkHG5MCFDvhwsd2p8YWykaHr6ZkHTi" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/z6jecLFTkHG5MCFDvhwsd2p8YWykaHr6ZkHTi ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/411854751" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="1916861164312298292"><div class="post-meta"><time datetime="2025-06-13">2025-06-13</time><a class="meta-author" href="../?q=Jarrett%20Ye">Jarrett Ye · 回答</a><span>▲ 149 · 4 分钟</span></div><div class="post-summary"><h2><a href="1916861164312298292.html"><span>除了墨墨、Anki的软件外，有哪些软件可以用间隔重复算法FSRS？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这个关注 Awesome FSRS 就行了： open-spaced-repetition/awesome-fsrs: A curated list of awesome FSRS implementations, papers and resources 抽认卡应用 Markji Markji（墨墨记忆卡）是一款抽认卡应用…</p><p class="tags"><a href="../?q=RemNote">#RemNote</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%AC%94%E8%AE%B0%E7%B3%BB%E7%BB%9F">#笔记系统</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%BB%84%E7%BB%87">#知识组织</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="487321909"><div class="post-meta"><time datetime="2022-03-28">2022-03-28</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 17 · 3 分钟</span></div><div class="post-summary"><h2><a href="487321909.html"><span>助记媒介可以扩展到个人笔记上</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文讨论如何把助记媒介扩展到个人笔记：SRS 擅长记忆却不利于持续发展想法，常青笔记有助于推敲却缺乏复习安排；若在个人笔记中嵌入问答或挖空卡片，或可兼得两者。作者列出与外部 SRS 同步、RemNote、Mochi、org-fc 和 TiddlyRemember 等实现，指出自由探索与草稿写作仍有设计局限。</p><p class="tags"><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E5%B8%B8%E9%9D%92%E7%AC%94%E8%AE%B0">#常青笔记</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86">#个人知识管理</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="242322075"><div class="post-meta"><time datetime="2020-09-14">2020-09-14</time><a class="meta-author" href="../?q=RemNote">RemNote</a><span>▲ 33 · 3 分钟</span></div><div class="post-summary"><h2><a href="242322075.html"><span>在 RemNote 中构建知识</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文以电脑知识为例，说明复杂概念可拆成层级结构、属性描述和相互关系，借此加深理解；拆分后的条目还可自动生成抽认卡并安排复习。文章总结 RemNote 建构知识的三个原则：把世界看作概念层级，为概念添加描述，并建立联结；也建议学习者用自己的语言重写条目。</p><p class="tags"><a href="../?q=RemNote">#RemNote</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%BB%84%E7%BB%87">#知识组织</a><a href="../?q=%E6%A6%82%E5%BF%B5%E7%BD%91%E7%BB%9C">#概念网络</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2257726633"><div class="post-meta"><time datetime="2021-12-05">2021-12-05</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 30 · 1 分钟</span></div><div class="post-summary"><h2><a href="2257726633.html"><span>有没有同时具备 anki 和 notion 功能的软件？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Notion 的功能可太多了。。。完全覆盖 Notion 功能的笔记软件估计没有。 但是结合 Anki 间隔重复功能的笔记软件还是有的，比如 RemNote、Logseq 等等。 由于我只用过 RemNote，所以就简单介绍一下： 如图所示，RemNote 是一款大纲笔记。 其内置了各种制卡语法，可以让你在写笔记的同时制作抽认…</p><p class="tags"><a href="../?q=RemNote">#RemNote</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86">#知识管理</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="404257681"><div class="post-meta"><time datetime="2021-08-27">2021-08-27</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 88 · 16 分钟</span></div><div class="post-summary"><h2><a href="404257681.html"><span>间隔重复记忆系统（Spaced repetition memory system）</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 将间隔重复描述为结合测试效应与间隔效应的记忆系统，概述其软件、特殊变体、概念学习应用及常见障碍。文章强调 SRS 不仅能记事实，也可能帮助维持注意力、自动化基础知识和支持创造；但卡片质量、学习者负担与是否持续加入新内容都会影响效果。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SRS">#SRS</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F">#记忆系统</a><a href="../?q=%E5%8D%A1%E7%89%87%E8%AE%BE%E8%AE%A1">#卡片设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="245530782"><div class="post-meta"><time datetime="2020-09-15">2020-09-15</time><a class="meta-author" href="../?q=RemNote">RemNote</a><span>▲ 31 · 2 分钟</span></div><div class="post-summary"><h2><a href="245530782.html"><span>制作间隔重复卡片</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章按操作步骤介绍 RemNote 如何从笔记创建单行、多行、填空和列表卡，说明各自的输入符号、卡片呈现方式及层级上下文。作者特别提醒，填空卡过度依赖可能让回忆局限于狭窄提示，周围文字应能代表希望记起内容时的真实语境。</p><p class="tags"><a href="../?q=RemNote">#RemNote</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%8A%BD%E8%AE%A4%E5%8D%A1%E8%AE%BE%E8%AE%A1">#抽认卡设计</a><a href="../?q=%E5%A1%AB%E7%A9%BA%E5%8D%A1">#填空卡</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

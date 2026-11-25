@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>交互是界面设计中的成本中心</title>
+<meta name="description" content="作者认为交互通常是用户需要承担的成本；分析信息时，理想界面应尽量无需操作。交互有时能过滤复杂选项，但设计者必须权衡收益与打断感。借 Bret Victor 的观点，文章指出交互要求用户预先知道想要什么、也知道如何操作；导航还会增加状态和迷路风险，因此低交互的信息呈现可减少用户与软件之间的心理模型负担。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="交互是界面设计中的成本中心">
+<meta property="og:description" content="作者认为交互通常是用户需要承担的成本；分析信息时，理想界面应尽量无需操作。交互有时能过滤复杂选项，但设计者必须权衡收益与打断感。借 Bret Victor 的观点，文章指出交互要求用户预先知道想要什么、也知道如何操作；导航还会增加状态和迷路风险，因此低交互的信息呈现可减少用户与软件之间的心理模型负担。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-02-27">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="472770296" data-rec-seeds="473212636,1999145478621769990,472256442,657469538,613210251,648828549,561086570,613210805">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2022-02-27">2022-02-27</time>
+          <a class="tag" href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B%20%26%20%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">助记媒介 &amp; 思想工具</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 2 分钟</span>
+          <span>▲ 15</span>
+        </p>
+        <h1>交互是界面设计中的成本中心</h1>
+        
+        <p class="tags"><a href="../?q=%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1">#界面设计</a><a href="../?q=%E7%94%A8%E6%88%B7%E4%BA%A4%E4%BA%92">#用户交互</a><a href="../?q=%E4%BA%A4%E4%BA%92%E6%88%90%E6%9C%AC">#交互成本</a><a href="../?q=%E4%BF%A1%E6%81%AF%E5%8F%AF%E8%A7%86%E5%8C%96">#信息可视化</a><a href="../?q=%E5%BF%83%E6%99%BA%E6%A8%A1%E5%9E%8B">#心智模型</a><a href="../?q=%E5%AF%BC%E8%88%AA">#导航</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">参考文献</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="mYnscmHJ">界面设计者通常对设计「有吸引力的交互」感兴趣，但交互本来就是是强加给用户的负担——是需要避免的负担。如果我正在使用界面来分析数据，零互动是最理想的状态。我阅读一屏幕的信息，注意到一个模式，然后回答我的问题。任何过滤框、导航按钮和清洗器都是额外的成本。</p><p data-pid="9TgElEra">当然，无论如何深思熟虑地呈现，在没有互动的情况下，都有太多的信息无法理解。在这些情况下，谨慎地使用互动性，可以过滤可能性空间，进而得到益处，但必须始终仔细地平衡这种益处所带来的割裂感。</p><p data-pid="zH7t3rwt">（2006 年）Bret Victor 还观察到：</p><blockquote data-pid="vP7yew7Q">交互除了可能极其浪费时间，还有更严重的问题：<br/><br/>用户必须已经知道她想要<b>什么</b>，才能要求得到它。如果软件能利用历史信息和环境做推断，便能为用户提供相关的信息，而用户甚至不知道自己需要这些信息，纯粹的交互式软件迫使用户做出先手。<br/><br/>用户必须知道<b>如何</b>问。也就是说，她必须学会操纵一台机器。在软件可用性社区中，Donald Norman 关于确定用户的「心理模型」的概念已经广为流传，直至现在，被认为是一个核心的设计挑战。然而，Norman 是在<b>机械</b>设备的背景下描述这个概念的。它只适用于某些软件，那些软件实际上隐性令用户建立模型。一个低交互的、非机械性的信息图形可以使用户和设计者免于在心理模型上的挣扎。<br/><br/>导航意味着状态。可以导航的软件会使用户迷路。导航越多，陷进去的角落就越多。可操纵的状态越多，进入「坏模式」的方式就越多。状态是人们害怕计算机的主要原因——有状态的东西可以被<b>破坏</b>。(注：一本书保持的唯一状态是它打开了哪一页，这就是为什么「迷失在一本书里」描述了一种愉悦的体验！）。</blockquote><hr/><h2 id="sec-1">参考文献</h2><p data-pid="HppvT8zz">Victor, B. (2006, March 15). Magic Ink: Information Software and the Graphical Interface. <a class="external" href="http://worrydream.com/MagicInk/" rel="noopener noreferrer" target="_blank"><span class="invisible">http://</span><span class="visible">worrydream.com/MagicInk</span><span class="invisible">/</span><span class="ellipsis"></span></a></p><h2 id="sec-2">链接至本文（已汉化）</h2><ul><li data-pid="QGC5T8qI"><a class="internal tm-internal" data-tm-id="472256442" href="472256442.html">自主评分的间隔重复记忆系统比机器评分的系统更有效率</a></li><li data-pid="xVMIigSK"><a class="internal tm-internal" data-draft-title="情景体验成为大众媒体时蕴藏极大潜力" data-tm-id="473212636" href="473212636.html">情景体验成为大众媒体时蕴藏极大潜力</a></li><li data-pid="SU2of_Y9"><a class="internal tm-internal" data-draft-title="Execute Program 的课程根据读者的互动逐段展开正文" data-tm-id="1999145478621769990" href="1999145478621769990.html">Execute Program 的课程根据读者的互动逐段展开正文</a></li></ul><h2 id="sec-3">声明</h2><p data-pid="EXe-X8pe">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="O7sl8RG-"><a class="wrap external" href="https://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/z87TFgTr98bz3MNFT26NhegyRCMgdkfNTBAzp" rel="noopener noreferrer" target="_blank">Interaction is a cost center in interface design (andymatuschak.org)</a></blockquote>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">参考文献</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/z87TFgTr98bz3MNFT26NhegyRCMgdkfNTBAzp" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/z87TFgTr98bz3MNFT26NhegyRCMgdkfNTBAzp ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/472770296" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="657469538"><div class="post-meta"><time datetime="2023-09-21">2023-09-21</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 20 · 9 分钟</span></div><div class="post-summary"><h2><a href="657469538.html"><span>用户观察带来的惊喜</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 记录为新助记媒介原型进行用户观察的过程：先与有经验的读者现场试用，再通过视频会议扩大测试，强调早期测试可容忍简陋，只要研究者在场能解说和修复问题。用户反馈带来意外发现，包括新功能引发更多笔记需求，以及卡片被当作阅读摘要。作者据此指出，为把见解写成问句而添加的多余词语会产生句法噪音，一个完整见解又常…</p><p class="tags"><a href="../?q=%E7%94%A8%E6%88%B7%E8%A7%82%E5%AF%9F">#用户观察</a><a href="../?q=%E4%BA%A7%E5%93%81%E5%8E%9F%E5%9E%8B">#产品原型</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E8%AE%BE%E8%AE%A1%E8%BF%AD%E4%BB%A3">#设计迭代</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="473212636"><div class="post-meta"><time datetime="2022-03-02">2022-03-02</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 9 · 1 分钟</span></div><div class="post-summary"><h2><a href="473212636.html"><span>情景体验成为大众媒体时蕴藏极大潜力</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者认为，情景体验有潜力成为传递思想、价值和实践的大众媒介，因为它能让参与者与作者意图建立联系，并引导人们投入赋能环境。文章指出，学徒制等形式不易大规模传播，电子游戏多用于审美体验，因而提出参考引导式冥想应用，探索可扩展的情景体验。</p><p class="tags"><a href="../?q=%E6%83%85%E6%99%AF%E4%BD%93%E9%AA%8C">#情景体验</a><a href="../?q=%E5%A4%A7%E4%BC%97%E5%AA%92%E4%BB%8B">#大众媒介</a><a href="../?q=%E8%B5%8B%E8%83%BD%E7%8E%AF%E5%A2%83">#赋能环境</a><a href="../?q=%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1">#交互设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="667273962"><div class="post-meta"><time datetime="2023-11-21">2023-11-21</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 26 · 15 分钟</span></div><div class="post-summary"><h2><a href="667273962.html"><span>思想工具：科学、设计、艺术、工匠精神？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者探问思想工具的进步应属于科学、设计、艺术还是工艺，并分别分析其驱动力：理解自然与人工系统、发明新的抽象概念、表达个人愿景，以及精细打磨产品。作者认为这些力量都不可缺少，但集体进步更像建立在共享模式与经验上的设计学科，而非可完全形式化的科学；工匠精神有价值，却未必是主要瓶颈。 这些力量还会相互促进：使用和研究人工工具，可以反…</p><p class="tags"><a href="../?q=%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">#思想工具</a><a href="../?q=%E4%BA%BA%E6%9C%BA%E7%95%8C%E9%9D%A2">#人机界面</a><a href="../?q=%E8%AE%BE%E8%AE%A1%E7%A7%91%E5%AD%A6">#设计科学</a><a href="../?q=%E4%BA%BA%E5%B7%A5%E5%88%B6%E5%93%81">#人工制品</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="648828549"><div class="post-meta"><time datetime="2023-08-09">2023-08-09</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 21 · 4 分钟</span></div><div class="post-summary"><h2><a href="648828549.html"><span>通俗易懂还是凝练难解；让人高速略过的用户界面</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak讨论新概念产品 Orbit 如何解释自身：简单介绍过于肤浅，完整框架又空泛难懂，而用户往往会“速通”界面文字。作者主张逐步揭示产品的更广泛愿景，先从具体用法开始，再通过后续邮件和复习体验扩展理解；他也考虑把解释移到界面之外，以类似文章的形式建立信任。</p><p class="tags"><a href="../?q=%E7%94%A8%E6%88%B7%E5%BC%95%E5%AF%BC">#用户引导</a><a href="../?q=%E7%95%8C%E9%9D%A2%E6%96%87%E6%A1%88">#界面文案</a><a href="../?q=%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C">#用户体验</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="561086570"><div class="post-meta"><time datetime="2022-09-04">2022-09-04</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 5 · 1 分钟</span></div><div class="post-summary"><h2><a href="561086570.html"><span>强大的创新往往侧重于创造全新范式，而非解决当前情境中的问题</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>短文以施乐 Alto 和 iPhone 为例指出，强力创新往往不是修补当前产品或情境，而是创造全新的使用范式；作者将这一观察延伸到政治、经济和精神制度。</p><p class="tags"><a href="../?q=%E5%88%9B%E6%96%B0">#创新</a><a href="../?q=%E8%8C%83%E5%BC%8F%E8%BD%AC%E7%A7%BB">#范式转移</a><a href="../?q=%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1">#产品设计</a><a href="../?q=%E6%8A%80%E6%9C%AF%E5%8F%B2">#技术史</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="631985093"><div class="post-meta"><time datetime="2023-05-26">2023-05-26</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 10 · 2 分钟</span></div><div class="post-summary"><h2><a href="631985093.html"><span>应用程序无法很好地记录滚动条的历史位置</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章认为，应用常未把滚动位置视为重要状态，因此用户切换聊天、搜索或收藏后容易丢失阅读位置。由于不同内容视图需要不同的恢复语义，滚动位置不应只由通用 UI 组件管理；记录和恢复行为应由应用按内容场景决定。</p><p class="tags"><a href="../?q=%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1">#界面设计</a><a href="../?q=%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C">#用户体验</a><a href="../?q=%E6%BB%9A%E5%8A%A8%E4%BD%8D%E7%BD%AE">#滚动位置</a><a href="../?q=%E5%BA%94%E7%94%A8%E7%8A%B6%E6%80%81">#应用状态</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

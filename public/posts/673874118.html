@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用理解喂养抽象</title>
+<meta name="description" content="文章主张，抽象概念应是基于既有理解的自动化工具，而非需要死记的“魔法步骤”；若要真正掌握概念，学习者应理解其来由并能自行找到解法。作者提出微世界作为一种教学设计：用范围受限、自洽的沙盒逐步引入复杂内容，让学生通过探索和兴趣驱动建立理解。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="用理解喂养抽象">
+<meta property="og:description" content="文章主张，抽象概念应是基于既有理解的自动化工具，而非需要死记的“魔法步骤”；若要真正掌握概念，学习者应理解其来由并能自行找到解法。作者提出微世界作为一种教学设计：用范围受限、自洽的沙盒逐步引入复杂内容，让学生通过探索和兴趣驱动建立理解。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-12-24">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="673874118" data-rec-seeds="1950572109941155203,657707605,1950573529075525115,19422901183,1938891290516390556,719498216,1946150192517714943,1943816324850643274">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2023-12-24">2023-12-24</time>
+          <a class="tag" href="../?q=%E8%AE%A4%E7%9F%A5%E5%9F%BA%E7%9F%B3%20%26%20%E6%95%99%E8%82%B2%E5%9F%B9%E8%AE%AD">认知基石 &amp; 教育培训</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 3 分钟</span>
+          <span>▲ 17</span>
+        </p>
+        <h1>用理解喂养抽象</h1>
+        
+        <p class="tags"><a href="../?q=%E6%8A%BD%E8%B1%A1%E6%A6%82%E5%BF%B5">#抽象概念</a><a href="../?q=%E6%A6%82%E5%BF%B5%E5%AD%A6%E4%B9%A0">#概念学习</a><a href="../?q=%E5%BE%AE%E4%B8%96%E7%95%8C">#微世界</a><a href="../?q=%E6%8E%A2%E7%B4%A2%E5%BC%8F%E5%AD%A6%E4%B9%A0">#探索式学习</a><a href="../?q=%E6%95%99%E5%AD%A6%E8%AE%BE%E8%AE%A1">#教学设计</a><a href="../?q=%E7%90%86%E8%A7%A3%E8%BF%81%E7%A7%BB">#理解迁移</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="-EerTaXd">抽象概念能够赋予我们力量，加快我们的步伐。作为理解的有效封装，它们能够推动领域的发展，但创造新的抽象概念必须基于对现有思想的深入理解。所以我要说的是：如果我们要精通某个领域，就不能将它的任何抽象概念视为魔法。相反，我们应该把这些抽象概念当作是我们已理解知识的自动化工具。</p><p data-pid="30KPwjcX">这个理念区分了遗传进化的无序、缓慢增强过程与科学进化的有目标、快速探索过程。理解不仅能指引我们前进的方向，还能帮助我们及时纠正偏差，没有这些，我们就无法实现持续的进步。</p><p data-pid="o0YuCxOg">比如说，如果你总是按照食谱做菜，却不理解每个步骤的原理，那么你很难在做菜失误时做出补救，也很难改进一道普通菜肴，更别提自己创新了。在音乐（「小调听起来悲伤」）、写作（五段论文）、数学（毕达哥拉斯定理）、工程（缓存系统）等领域里，对抽象概念的片面理解也同样适用。</p><hr/><p data-pid="Yc1K_IHh">如果你接受这个想法，那么我们就会面临一个实际的问题：没有大量的预备知识，怎样才能学会有用的东西呢？代数课特别容易遇到这种困境。</p><ul><li data-pid="ttAEQ7j5"> 老师：「今天我们将学习如何分解这种形式的二次方程。」<br/> </li><li data-pid="LMmrsIHm"> 学生：「我为什么要学这个？」<br/> </li><li data-pid="6MtJz_f3"> 老师：「这能帮你找到抛物线与 x 轴的交点。」<br/> </li><li data-pid="2b9AGQuM"> 学生：「我为什么要学这个？」<br/> </li><li data-pid="j20QsfQy"> 老师：「这有助于你计算物体的运动轨迹。」<br/> </li><li data-pid="yGZwg01T"> 学生：「啥？」<br/> </li><li data-pid="sgwMqTJ7"> 老师：「相信我，将来你会庆幸自己学了这些。」<br/> </li></ul><p data-pid="9h2Bt6QT">要培养真正的理解，我们必须以这样的方式来组织概念：让学生能够自己找出解决方法，而不是让他们死记硬背一些步骤。当然，只有学生真正想要解决的问题才会激励他们找出解法。</p><p data-pid="AIaO0zBb"><a class="wrap external" href="https://href.li/?https://web.archive.org/web/20120712082328/http://sites.wiki.ubc.ca/etec510/Microworlds" rel="noopener noreferrer" target="_blank">微世界</a>或许是一种解决方案。这个想法是：创造一个小型、自洽的沙盒环境，让学生可以在其中探索某个概念，除了他们已知的知识之外，几乎不需要其他指导。<a class="wrap external" href="http://blog.andymatuschak.org/post/981429112/progressive-disclosure-in-software-education" rel="noopener noreferrer" target="_blank">这个沙盒并不是 隐藏 细节，而是 聚焦 于特定内容</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>。那么，可以设想，逐步构建这样的微世界宇宙——每个都有其实用价值——这样从一个世界跳跃到另一个世界的距离就不会太远。</p><p data-pid="fVtwzFjm">想象你在学习弹键盘。开始时，你用的是只能演奏 C 调五音音阶的简易键盘。五个键不会太难。其他的键虽然存在，但是变暗了。你仍然可以弹奏各种曲子和节奏。你甚至可以尝试和弦，虽然许多人可能还没意识到这一点。然后，你可以切换到六音布鲁斯音阶模式：同样简单，同样不复杂。接下来，你可以在键盘上方显示你弹奏的音符对应的五线谱。这样一步步来。在这些简化的键盘上学到的技能，转到更复杂的键盘时也能派上用场！</p><p data-pid="5YA3mBxP">每个微世界自然会吸引不同类型的学生，这没关系：他们可以自由地在这些世界间穿梭。我们的目标是提供一个供实验和培养<b>理解</b>的沙盒，而不是一个固定的教学大纲。理解之所以奇妙，是因为它本身就是一个反馈循环：我们可以用它来产生更多的理解。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="bI6JVSTb"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 GPT-4、校对 Jarrett Ye<br/>原文：<a class="wrap external" href="https://blog.andymatuschak.org/post/11981786941/feeding-abstraction-with-understanding" rel="noopener noreferrer" target="_blank">Square Signals : Feeding abstraction with understanding (andymatuschak.org)</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 软件开发教育中的「渐进式呈现」 <a class="tm-internal" data-tm-id="1950572109941155203" href="1950572109941155203.html">站内阅读 ↗</a></li></ol>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://blog.andymatuschak.org/post/11981786941/feeding-abstraction-with-understanding" target="_blank" rel="noopener noreferrer">https://blog.andymatuschak.org/post/11981786941/feeding-abstraction-with-understanding ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/673874118" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="1950572109941155203"><div class="post-meta"><time datetime="2025-09-16">2025-09-16</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 47 · 5 分钟</span></div><div class="post-summary"><h2><a href="1950572109941155203.html"><span>软件开发教育中的「渐进式呈现」</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文质疑软件教学一开始就纠结教哪种语言，指出编程初学者常同时面对算法思维、语法、底层系统现实和缺乏动力等负担。作者借 Alice 与《不可思议的机器》对比，提出循序呈现：先给清晰目标和有限工具，让学习者通过短小谜题频繁完成真实作品，再逐步扩大工具箱，最终进入自由创作。</p><p class="tags"><a href="../?q=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%95%99%E8%82%B2">#软件开发教育</a><a href="../?q=%E6%B8%90%E8%BF%9B%E5%BC%8F%E5%91%88%E7%8E%B0">#渐进式呈现</a><a href="../?q=%E7%BC%96%E7%A8%8B%E6%95%99%E8%82%B2">#编程教育</a><a href="../?q=%E8%AE%A4%E7%9F%A5%E8%B4%9F%E8%8D%B7">#认知负荷</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="19422901183"><div class="post-meta"><time datetime="2025-01-20">2025-01-20</time><a class="meta-author" href="../?q=Neel%20Nanda">Neel Nanda</a><span>▲ 45 · 18 分钟</span></div><div class="post-summary"><h2><a href="19422901183.html"><span>如何有效教学</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Neel Nanda将学习视为信息压缩：学习者提炼概念，将其连入知识图谱，并能在适当情境调用；教学目标因此是传递关键概念和隐性直觉，而非灌输全部信息。语言会损失细节，师生背景不同，教师不能凭自己觉得讲清就推定学生明白，需建立学生思维模型并不断反馈校准。 教学应先交代问题的大局、用途与联系，按重要性突出少数核心，删减无关细节；检…</p><p class="tags"><a href="../?q=%E6%95%99%E5%AD%A6%E8%AE%BE%E8%AE%A1">#教学设计</a><a href="../?q=%E6%A6%82%E5%BF%B5%E5%AD%A6%E4%B9%A0">#概念学习</a><a href="../?q=%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1">#知识图谱</a><a href="../?q=%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86">#前置知识</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="619764249"><div class="post-meta"><time datetime="2023-04-06">2023-04-06</time><a class="meta-author" href="../?q=Kamil">Kamil</a><span>▲ 1042 · 10 分钟</span></div><div class="post-summary"><h2><a href="619764249.html"><span>别跟教材客气：优质（数学）书籍挑选指南</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文提出挑选优质教材的检查清单，首要标准是练习有答案、定义配有例子，并进一步考察教材是否解释背景与动机、提供正例和反例、预告进阶主题、谨慎使用术语、坦诚说明局限、关注元认知、配有清晰图示、语言简明且每章有总结。作者借数学、物理等教材举例，主张教材质量取决于是否帮助读者理解，而非只呈现形式化内容。</p><p class="tags"><a href="../?q=%E6%95%99%E6%9D%90%E8%AF%84%E4%BB%B7">#教材评价</a><a href="../?q=%E6%95%B0%E5%AD%A6%E6%95%99%E8%82%B2">#数学教育</a><a href="../?q=%E6%95%99%E5%AD%A6%E8%AE%BE%E8%AE%A1">#教学设计</a><a href="../?q=%E5%85%83%E8%AE%A4%E7%9F%A5">#元认知</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="657707605"><div class="post-meta"><time datetime="2023-09-24">2023-09-24</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 72 · 5 分钟</span></div><div class="post-summary"><h2><a href="657707605.html"><span>自上而下，再自下而上</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Matuschak 认为理解复杂领域需要在多个抽象层级间往返：只从整体实践入手可能碰到基础瓶颈，只自下而上学原理又容易失去动力。他建议用自上而下的探索建立兴趣和直觉，再以自下而上的基础知识加固理解，并把两者联系到真实经验。作者以重学线性代数并用于改进 iOS 翻页效果为例，强调个性化教育应能让基础知识与学生目标相连。</p><p class="tags"><a href="../?q=%E8%BF%98%E5%8E%9F%E8%AE%BA">#还原论</a><a href="../?q=%E6%95%B4%E4%BD%93%E8%AE%BA">#整体论</a><a href="../?q=%E8%87%AA%E4%B8%8A%E8%80%8C%E4%B8%8B%E5%AD%A6%E4%B9%A0">#自上而下学习</a><a href="../?q=%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E5%AD%A6%E4%B9%A0">#自下而上学习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="643871124"><div class="post-meta"><time datetime="2023-07-16">2023-07-16</time><a class="meta-author" href="../?q=Dwarkesh%20Patel">Dwarkesh Patel</a><span>▲ 289 · 95 分钟</span></div><div class="post-summary"><h2><a href="643871124.html"><span>Andy Matuschak - 自学，间隔重复，以及为什么书本不起作用</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Dwarkesh Patel 采访研究者兼设计师 Andy Matuschak，起点是后者逐句精读量子力学教材的示范。Matuschak 认为，深入阅读既需要兴趣，也需要训练；很多人并非不想理解，而是不知道如何提问、辨认困惑并追查作者的推理。材料越难，计划、监控理解等元认知越困难，因此课程大纲、阶段练习和伴随问题可暂时代办引导…</p><p class="tags"><a href="../?q=%E4%B8%BB%E5%8A%A8%E9%98%85%E8%AF%BB">#主动阅读</a><a href="../?q=%E8%87%AA%E4%B8%BB%E5%AD%A6%E4%B9%A0">#自主学习</a><a href="../?q=%E5%85%83%E8%AE%A4%E7%9F%A5">#元认知</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1908162232484885473"><div class="post-meta"><time datetime="2025-05-22">2025-05-22</time><a class="meta-author" href="../?q=Lelouch">Lelouch</a><span>▲ 361 · 1 分钟</span></div><div class="post-summary"><h2><a href="1908162232484885473.html"><span>你不是「笨」，你只是缺少「前置知识」</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者回忆自己曾把数学学习困难归因于“笨”，在沉浸式学习 150 天后转而认为主要缺口是前置知识。他于是从基础内容重新学习并持续练习，虽觉得过程缓慢、受挫，仍观察到基础掌握逐步为后续难题铺路；文章并未宣称自己已变得聪明，只说正在接近目标。</p><p class="tags"><a href="../?q=%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86">#前置知识</a><a href="../?q=%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0">#数学学习</a><a href="../?q=%E5%9F%BA%E7%A1%80%E8%AE%AD%E7%BB%83">#基础训练</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E4%BF%A1%E5%BF%B5">#学习信念</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

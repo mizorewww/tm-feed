@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>引用并非所指</title>
+<meta name="description" content="文章用晨星与暮星同为金星的悖论说明：同一对象的名称可互换，不代表关于名称的信念也能等价替换。作者把错误归于混淆信念、引用语与现实对象的类型，类比计算中混淆单位；他主张用明确的引用层级区分语句真值与外部现实。">
+<meta name="author" content="Eliezer Yudkowsky">
+<meta property="og:title" content="引用并非所指">
+<meta property="og:description" content="文章用晨星与暮星同为金星的悖论说明：同一对象的名称可互换，不代表关于名称的信念也能等价替换。作者把错误归于混淆信念、引用语与现实对象的类型，类比计算中混淆单位；他主张用明确的引用层级区分语句真值与外部现实。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-08-21">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="2074137124702627319" data-rec-seeds="2073707395801408592,2074569348044284505,2071629094639374930,2078777423596995416,2072982573580657197,2080666040158242594,2072623513647714847,812068575">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2026-08-21">2026-08-21</time>
+          <a class="tag" href="../?q=%E7%90%86%E6%80%A7%20%26%20%E5%85%8B%E6%9C%8D%E5%81%8F%E8%A7%81">理性 &amp; 克服偏见</a>
+          <a class="tag" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a>
+          <span>约 4 分钟</span>
+          <span>▲ 18</span>
+        </p>
+        <h1>引用并非所指</h1>
+        
+        <p class="tags"><a href="../?q=%E5%BC%95%E7%94%A8%E4%B8%8E%E6%8C%87%E7%A7%B0">#引用与指称</a><a href="../?q=%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91">#数理逻辑</a><a href="../?q=%E7%B1%BB%E5%9E%8B%E9%94%99%E8%AF%AF">#类型错误</a><a href="../?q=%E4%BF%A1%E5%BF%B5">#信念</a><a href="../?q=%E7%9C%9F%E7%90%86%E4%B8%8E%E7%8E%B0%E5%AE%9E">#真理与现实</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="C4SJuZ_c">在经典逻辑中，同一性的操作定义是：只要 <img alt="A = B" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=A+%3D+B"/> 是一个定理，你就可以在任何出现 <img alt="B" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=B"/> 的定理中用 <img alt="A" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=A"/> 来替换 <img alt="B" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=B"/>。例如，如果 <img alt="(2 + 2) = 4" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%282+%2B+2%29+%3D+4"/> 是一个定理，且 <img alt="((2 + 2) + 3) = 7" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%28%282+%2B+2%29+%2B+3%29+%3D+7"/> 也是一个定理，那么 <img alt="(4 + 3) = 7" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%284+%2B+3%29+%3D+7"/> 必定是一个定理。</p><p data-pid="ILo59N0s">这就引出了一个通常被表述为如下形式的悖论：晨星（morning star）和暮星（evening star）碰巧是同一个天体——金星（Venus）。假设 John 知道晨星和暮星是同一个天体。然而，Mary 却认为晨星是路西法（Lucifer）神，而暮星是维纳斯（Venus）神。John 知道「Mary 相信晨星是路西法」。那么，（通过等价替换法则）John 是否必须相信「Mary 相信暮星是路西法」呢？</p><p data-pid="no-IZbvk">这里还有一个更简单的悖论版本。陈述「<img alt="2 + 2 = 4" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=2+%2B+2+%3D+4"/>」是真的；也就是说，<img alt="((2 + 2) = 4) = 真" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%28%282+%2B+2%29+%3D+4%29+%3D+%E7%9C%9F"/> 是一个定理。而《费马大定理》也是真的。所以根据替换原则：我相信 <img alt="2 + 2 = 4 \Rightarrow" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=2+%2B+2+%3D+4+%5CRightarrow"/> 我相信「真」 <img alt="\Rightarrow" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%5CRightarrow"/> 我相信《费马大定理》。</p><p data-pid="NeSpBoVw">是的，我知道这看起来<b>显然</b>是错的。但请想象一下，有人在编写一个逻辑推理程序时，真的采用了「相等的项总是可以随意替换」这个原则，然后结果这个程序就遇到了这种死循环。现在再想象一下，他们为了防止这种情况发生专门写了一篇论文。接着再想象一下，另一个人对他们的解决方案表示不赞同。这方面的争论直到今天还在继续。</p><p data-pid="x0xUTWxH">就我个人而言，我会说 John 犯了一个「类型错误（type error）」，这就像是试图从 <img alt="20" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=20"/> 米的长度中减去 <img alt="5" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=5"/> 克的重量一样。「晨星」这个词与晨星这颗星球根本不属于同一个<b>类型</b>，更别说它们是同一个东西了。信念（Beliefs）又不是行星（planets）。</p><p data-pid="cL9PpDfc">晨星 = 暮星<br/>「晨星」 <img alt="\neq" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%5Cneq"/> 「暮星」</p><p data-pid="hZhy_0A6">在我看来，这个问题的根源在于，人们未能强制区分出「关于事物的信念」与「事物本身」之间的类型差异。最初的那个错误在于：在编写 AI 时，程序用它存储「关于晨星的信念」的同一种数据表示结构，去存储了「关于 Mary 对『晨星』的信念的信念」。</p><p data-pid="w_nWYoiS">如果 Mary 相信「晨星」是路西法，这绝对不意味着 Mary 相信「暮星」也是路西法，因为「晨星」 <img alt="\neq" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%5Cneq"/> 「暮星」。整个悖论完全源自于未能在恰当的地方使用引号。</p><p data-pid="chMiH-G5">你或许还记得，这已经不是我第一次谈论要严格遵守类型规范（type discipline）了——上一次是在我谈论<a class="wrap external" href="https://www.readthesequences.com/TerminalValuesAndInstrumentalValues" rel="noopener noreferrer" target="_blank">混淆期望效用与效用本身</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>的错误时。当一个人刚开始学物理时，学会时刻追踪单位是极其有用的——一直不厌其烦地写下「cm」、「kg」之类的前缀看起来或许是个累赘，直到有一天你突然发现：（a）你算出来的答案在数量级上错得离谱；并且（b）它的单位居然是「秒每平方克」。</p><p data-pid="wkTGKozc">同样地，信念和行星是截然不同的两种东西。至少，如果我们谈论的是人类的信念，那么：信念存在于大脑中，而行星存在于宇宙空间里。信念只有几微克重，行星可比那重多了。行星的体积远大于信念……好吧，你明白我的意思了。</p><p data-pid="oFuInDab">仅仅在「晨星」两边加上引号，似乎还不足以防止人们因为文本在视觉上的相似性，而把它跟真实的晨星混为一谈。所以，或许能更好地强制执行类型规范的方法，是使用一种在视觉上截然不同的编码方式：</p><p data-pid="eGKk9rEo">晨星 = 暮星<br/><img alt="13.15.18.14.9.14.7.0.19.20.1.18 \neq 5.22.5.14.9.14.7.0.19.20.1.18" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=13.15.18.14.9.14.7.0.19.20.1.18+%5Cneq+5.22.5.14.9.14.7.0.19.20.1.18"/> 。</p><blockquote data-pid="Gy4O7ljA">译注：即 morning star 与 evening star 的字母序号</blockquote><p data-pid="XiVAEEtB">学习数理逻辑也能帮你学会区分「引用语（引号内的词汇）」与「它所指代的实物」。在数理逻辑中，<img alt="\vdash P" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%5Cvdash+P"/>（意思是 <img alt="P" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=P"/> 是一个定理）与 <img alt="\vdash \square\ulcorner P\urcorner" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%5Cvdash+%5Csquare%5Culcorner+P%5Curcorner"/>（意思是「这是可被证明的：在某个编码的证明系统中，存在一个针对被编码句子 <img alt="P" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=P"/> 的编码证明」）是两个截然不同的命题。如果你在数理逻辑中弄丢了一层引用引号，那就如同你在物理学中弄丢了一个公制单位一样——你将会推导出荒谬至极的结果，比如「光速是 <img alt="299,792,458" class="math-eq" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=299%2C792%2C458"/> 米长」。</p><p data-pid="3o8j5KZq">阿尔弗雷德·塔斯基（Alfred Tarski）曾经试图用无限的句子家族来定义「真理（true）」的含义：</p><p data-pid="wcJEj3g0">「雪是白的」为真，当且仅当，雪是白的。<br/>「黄鼠狼是绿的」为真，当且仅当，黄鼠狼是绿的。<br/><img alt="\vdots" class="math-eq" eeimg="2" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%5Cvdots"/></p><p data-pid="WjTz4h--">当类似这样的句子开始让你觉得合情合理、内含深意时，你就会知道，你已经开始懂得区分「编码后的句子」与「外部世界的真实状态」了。</p><p data-pid="3jblq7Nn">同样地，<a class="wrap external" href="https://www.readthesequences.com/TheSimpleTruth" rel="noopener noreferrer" target="_blank">「真理（truth）」</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>的概念与<b>「现实（reality）」</b>的概念也大不相同。说一件事是「真」的，是在将一个信念与现实进行<b>比较</b>。而现实本身不需要与任何信念进行比较，它天然就是现实。下次如果有人跟你诡辩说「这世上没有任何东西是真的」时，请务必记住这一点。</p><hr/><p data-pid="FcMm1Y-_">总目录：</p><a class="internal" data-draft-cover="https://picx.zhimg.com/v2-3fef08abf83e7421c313574aac5dde16.png?source=7e7ef6e2&amp;needBackground=1" data-draft-title="《理性：从人工智能到僵尸》导读与目录" href="https://zhuanlan.zhihu.com/p/2056344770390373406" rel="noopener noreferrer" target="_blank">《理性：从人工智能到僵尸》导读与目录</a><p data-pid="Xuiw7k1m">卷：</p><a class="internal tm-internal" data-draft-cover="https://picx.zhimg.com/v2-28e9661e962caec2608202b8f2662d4d.jpg?source=7e7ef6e2&amp;needBackground=1" data-draft-title="第四卷：纯粹的现实" data-tm-id="2064365098970436713" href="2064365098970436713.html">第四卷：纯粹的现实</a><p data-pid="w7PLC_UP">章节：</p><a class="internal tm-internal" data-draft-cover="https://pic1.zhimg.com/v2-0c2975b29f4c18989fe712ceffff35bd.jpg?source=7e7ef6e2&amp;needBackground=1" data-draft-title="还原论导论" data-tm-id="2071629094639374930" href="2071629094639374930.html">还原论导论</a><p data-pid="6cp1v0hu">上一篇：</p><a class="internal tm-internal" data-draft-cover="https://picx.zhimg.com/v2-c62852c2b6de390b98a6c9b0c593ac87.jpg?source=7e7ef6e2&amp;needBackground=1" data-draft-title="概率存在于心智之中" data-tm-id="2073707395801408592" href="2073707395801408592.html">概率存在于心智之中</a><p data-pid="FD9ug0Oh">下一篇：</p><a class="internal tm-internal" data-draft-cover="https://picx.zhimg.com/v2-5e977a2398760ed7e55cb27ae97f9515.jpg?source=7e7ef6e2&amp;needBackground=1" data-draft-title="定性思维导致的混淆" data-tm-id="2074569348044284505" href="2074569348044284505.html">定性思维导致的混淆</a><hr/><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="l_lsYtiV"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 <span class="nolink">gemini-3.1-pro</span>，校对 Jarrett Ye<br/>原文：<a class="wrap external" href="https://www.readthesequences.com/The-Quotation-Is-Not-The-Referent" rel="noopener noreferrer" target="_blank">The Quotation is Not the Referent</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 终极价值与工具价值 <a class="tm-internal" data-tm-id="2041847079815926006" href="2041847079815926006.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 简单的真实 <a href="https://hpmor.xyz/ai2zb_interlude_1/" rel="noopener noreferrer" target="_blank">https://hpmor.xyz/ai2zb_interlude_1/</a></li></ol>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://www.readthesequences.com/The-Quotation-Is-Not-The-Referent" target="_blank" rel="noopener noreferrer">https://www.readthesequences.com/The-Quotation-Is-Not-The-Referent ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/2074137124702627319" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="2073707395801408592"><div class="post-meta"><time datetime="2026-08-20">2026-08-20</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 71 · 8 分钟</span></div><div class="post-summary"><h2><a href="2073707395801408592.html"><span>概率存在于心智之中</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Eliezer Yudkowsky 主张概率表达的是认知主体对结果的不完全信息，而非事物本身固有的物理属性。他用被做手脚的硬币、两孩家庭和扑克牌问题说明，提问方式改变了证据和条件概率，因此不同答案未必矛盾；把概率实体化为对象属性，才会制造“悖论”。</p><p class="tags"><a href="../?q=%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E7%90%86">#贝叶斯推理</a><a href="../?q=%E6%A6%82%E7%8E%87%E8%AE%BA">#概率论</a><a href="../?q=%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87">#条件概率</a><a href="../?q=%E8%AE%A4%E7%9F%A5%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7">#认知不确定性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2071629094639374930"><div class="post-meta"><time datetime="2026-08-14">2026-08-14</time><a class="meta-author" href="../?q=Rob%20Bensinger">Rob Bensinger</a><span>▲ 20 · 1 分钟</span></div><div class="post-summary"><h2><a href="2071629094639374930.html"><span>还原论导论</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这篇译出《还原论导论》序列的引言与目录，以“人由非人类部件组成”引出物理世界与人类经验的关系，并列出从物理主义、量子物理到科学实践的一系列文章。目录涵盖心智投射、引用与指称、还原论及解释等议题，作为《理性：从人工智能到僵尸》卷内专题的导航。</p><p class="tags"><a href="../?q=%E8%BF%98%E5%8E%9F%E8%AE%BA">#还原论</a><a href="../?q=%E7%89%A9%E7%90%86%E4%B8%BB%E4%B9%89">#物理主义</a><a href="../?q=%E7%A7%91%E5%AD%A6%E8%A7%A3%E9%87%8A">#科学解释</a><a href="../?q=%E5%BF%83%E6%99%BA%E5%93%B2%E5%AD%A6">#心智哲学</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2078777423596995416"><div class="post-meta"><time datetime="2026-09-03">2026-09-03</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 125 · 7 分钟</span></div><div class="post-summary"><h2><a href="2078777423596995416.html"><span>发现的喜悦</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者质疑“第一个发现者才最快乐”的观念，区分破解难题带来的理解与独占发现带来的地位奖励。他认为，亲自长期推演所得的理解确实更深，但若新知的乐趣必须依赖别人尚不知情，就会把发现变成竞争与稀缺性游戏；即使答案早已公开，个人仍可通过探索获得发现的喜悦。</p><p class="tags"><a href="../?q=%E5%8F%91%E7%8E%B0%E7%9A%84%E5%96%9C%E6%82%A6">#发现的喜悦</a><a href="../?q=%E6%95%B0%E5%AD%A6%E7%90%86%E8%A7%A3">#数学理解</a><a href="../?q=%E7%9F%A5%E8%AF%86%E5%85%B1%E4%BA%AB">#知识共享</a><a href="../?q=%E7%AB%9E%E4%BA%89">#竞争</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2072982573580657197"><div class="post-meta"><time datetime="2026-08-18">2026-08-18</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 65 · 5 分钟</span></div><div class="post-summary"><h2><a href="2072982573580657197.html"><span>把错误的问题问对</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文建议把难以直接回答的形而上学问题，改写为「我为什么相信这一点」，以便追溯信念的因果来源。作者用自由意志、意识和海市蜃楼等例子说明，信念本身是现实中的物理事件；追踪感官输入、认知机制和外部事实，能够检验信念是由真实对象支持，还是由误导性线索产生。</p><p class="tags"><a href="../?q=%E5%9B%A0%E6%9E%9C%E6%8E%A8%E7%90%86">#因果推理</a><a href="../?q=%E4%BF%A1%E5%BF%B5%E5%BD%A2%E6%88%90">#信念形成</a><a href="../?q=%E8%87%AA%E7%94%B1%E6%84%8F%E5%BF%97">#自由意志</a><a href="../?q=%E6%84%8F%E8%AF%86">#意识</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="812068575"><div class="post-meta"><time datetime="2024-10-10">2024-10-10</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 81 · 2 分钟</span></div><div class="post-summary"><h2><a href="812068575.html"><span>彩票：浪费希望</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章反驳把彩票称作“理性购买幻想”的辩护：低概率暴富的梦会吸走本可投向教育、创业或晋升等现实目标的想象力与行动动力。作者把这种心理视为自我毁灭式偏见，主张识别、分析偏见之后，还要明确否定并采取措施克服。</p><p class="tags"><a href="../?q=%E5%BD%A9%E7%A5%A8">#彩票</a><a href="../?q=%E6%9C%9F%E6%9C%9B%E6%95%88%E7%94%A8">#期望效用</a><a href="../?q=%E5%81%8F%E8%A7%81">#偏见</a><a href="../?q=%E5%B8%8C%E6%9C%9B">#希望</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2074569348044284505"><div class="post-meta"><time datetime="2026-08-22">2026-08-22</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 28 · 6 分钟</span></div><div class="post-summary"><h2><a href="2074569348044284505.html"><span>定性思维导致的混淆</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章认为，把信念简单分为“相信/不信”会让人混淆信念、真理与现实。以“雪是白的”为例，作者用概率置信度及准确性评分区分对外界的不确定与对自身信念状态的确定；他主张用定量概率思维避免把主观信念误当现实属性。</p><p class="tags"><a href="../?q=%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E7%90%86">#贝叶斯推理</a><a href="../?q=%E4%BF%A1%E5%BF%B5%E6%9B%B4%E6%96%B0">#信念更新</a><a href="../?q=%E5%87%86%E7%A1%AE%E6%80%A7">#准确性</a><a href="../?q=%E7%9C%9F%E7%90%86%E4%B8%8E%E7%8E%B0%E5%AE%9E">#真理与现实</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

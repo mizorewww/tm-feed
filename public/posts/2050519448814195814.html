@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>伪装的查询</title>
+<meta name="description" content="文章用“蓝蛋/红方”设定说明，讨论类别定义时，人们往往真正关心的是某个特征能否预测未观察到的属性或行动，而不只是词典规定的边界。不同场合下，“这是不是蓝蛋？”可能是在询问材料成分、分类方式或处理决定；因此许多关于定义的争论，实质上是被伪装成词语讨论的经验查询。">
+<meta name="author" content="Eliezer Yudkowsky">
+<meta property="og:title" content="伪装的查询">
+<meta property="og:description" content="文章用“蓝蛋/红方”设定说明，讨论类别定义时，人们往往真正关心的是某个特征能否预测未观察到的属性或行动，而不只是词典规定的边界。不同场合下，“这是不是蓝蛋？”可能是在询问材料成分、分类方式或处理决定；因此许多关于定义的争论，实质上是被伪装成词语讨论的经验查询。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-06-17">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="2050519448814195814" data-rec-seeds="2050179140419072823,2050999897550223000,2062469281753862293,2059600041661272639,2056323453402231148,2062240524812260000,2046571422441649104,2061023443156522584">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2026-06-17">2026-06-17</time>
+          <a class="tag" href="../?q=%E7%90%86%E6%80%A7%20%26%20%E5%85%8B%E6%9C%8D%E5%81%8F%E8%A7%81">理性 &amp; 克服偏见</a>
+          <a class="tag" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a>
+          <span>约 6 分钟</span>
+          <span>▲ 112</span>
+        </p>
+        <h1>伪装的查询</h1>
+        
+        <p class="tags"><a href="../?q=%E6%A6%82%E5%BF%B5%E5%88%86%E7%B1%BB">#概念分类</a><a href="../?q=%E5%AE%9A%E4%B9%89">#定义</a><a href="../?q=%E7%BB%8F%E9%AA%8C%E8%81%9A%E7%B1%BB">#经验聚类</a><a href="../?q=%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E7%90%86">#贝叶斯推理</a><a href="../?q=%E4%BA%8B%E7%89%A9%E7%A9%BA%E9%97%B4">#事物空间</a><a href="../?q=%E8%AE%A4%E7%9F%A5%E7%A7%91%E5%AD%A6">#认知科学</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="4YTW8NKS">想象一下你在一家奇特的工厂里做着一份奇特的工作：你的任务是从一条神秘的传送带上取下物体，并将它们分拣到两个不同的箱子里。当你刚入职时，高级分拣员 Susan 向你解释说，蓝色的蛋形物体被称为「蓝蛋（blegg）」，要放进「蓝蛋箱」；而红色的立方体被称为「红方（rube）」，要放进「红方箱」。</p><p data-pid="5ARxfFik">开始工作后，你很快注意到蓝蛋和红方之间除了颜色和形状，还有其他的区别。蓝蛋表面有绒毛，而红方则是光滑的。蓝蛋捏起来有点弹性，红方则是坚硬的。蓝蛋是不透明的，而红方的表面微微透光。</p><p data-pid="kQtxmsh4">工作没多久，你遇到了一个呈现异常深蓝色的蓝蛋——事实上，凑近一看，它的颜色是紫色的，介于红色和蓝色之间。</p><p data-pid="357uWnje">可是等等！你为什么要把这个东西叫做「蓝蛋」？「蓝蛋」最初的定义是蓝色（blue）和蛋形（egg-shaped）——实际上，「蓝色」这个限定条件就直接体现在「蓝蛋」这个名字里。而这个物体并不是蓝色的。既然缺少了一个必要条件，你应该叫它「紫色的蛋形物体」，而不是「蓝蛋」。</p><p data-pid="SaA5HhdA">但碰巧的是，除了是紫色的和蛋形的之外，这个物体也长着绒毛、有弹性并且不透明。所以当你看到它时，你心想：「哦，一个颜色奇怪的蓝蛋。」它肯定不是一个红方……对吧？</p><p data-pid="5KCDt33O">尽管如此，你还是不太确定接下来该怎么处理。于是你叫来了高级分拣员 Susan。</p><blockquote data-pid="IMEmW8n3">「哦，没错，这是一个蓝蛋，」Susan 说，「你可以把它放进蓝蛋箱。」 <br/><br/>你正要把紫色的蓝蛋扔进蓝蛋箱，但又停了下来。「Susan，」你问，「你怎么<b>知道</b>这是一个蓝蛋？」 <br/><br/>Susan 奇怪地看着你。「这不是很明显吗？这东西虽然是紫色的，但它依然是蛋形的、长着绒毛、有弹性且不透明，跟所有其他的蓝蛋一样。你总得允许有点颜色瑕疵吧。还是说，你在拿那种哲学难题考我，比如『你怎么知道世界不是在五分钟前连同我们虚假的记忆一起被创造出来的？』在哲学层面上，我也无法<b>绝对确定</b>它是一个蓝蛋，但这看起来是个合理的猜测。」 <br/><br/>「不，我的意思是……」你停顿了一下，斟酌着措辞。「<b>为什么</b>会有一个蓝蛋箱和一个红方箱？蓝蛋和红方之间究竟有什么<b>区别</b> ？」 <br/><br/>「蓝蛋是蓝色的蛋形物体，红方是红色的立方体，」Susan 耐心地回答。「你参加过标准的新员工入职培训了吧？」 <br/><br/>「为什么蓝蛋和红方<b>需要</b>被分拣出来？」 <br/><br/>「呃……因为不然它们就会混在一起？」Susan 说。「因为没人会付钱让我们整天坐在这里却<b>不</b>去分拣蓝蛋和红方？」 <br/><br/>「那是谁最开始决定第一个蓝色的蛋形物体叫做『蓝蛋』的，他们又是怎么决定的？」 <br/><br/>Susan 耸了耸肩。「我想你大可以把红色的立方体叫『蓝蛋』，把蓝色的蛋形物体叫『红方』，只是现在的叫法比较容易记住罢了。」 <br/><br/>你想了一会儿。「假设传送带上下来一个彻底混合的物体呢？比如，一个橙色、球形、长着绒毛、半透明，还带有扭动着的绿色触手的物体。我该怎么判断它是蓝蛋还是红方？」 <br/><br/>「哇哦，还从来没人发现过混得<b>这么</b>离谱的物体，」Susan 说，「但我猜我们会把它拿去给分拣扫描仪看看。」 <br/><br/>「分拣扫描仪是怎么工作的？」你追问道。「X 光？核磁共振成像？快中子透射光谱仪？」 <br/><br/>「我听说是根据贝叶斯法则（Bayes's Rule）工作的，但我也不太懂是怎么回事，」Susan 说。「不过，我挺喜欢念叨这个词的。贝叶斯、贝叶斯、贝叶斯、贝叶斯、贝叶斯。」 <br/><br/>「分拣扫描仪会<b>告诉</b>你什么？」 <br/><br/>「它会告诉你该把这东西放进蓝蛋箱还是红方箱。不然怎么叫分拣扫描仪呢。」 <br/><br/>听到这里，你陷入了沉默。 <br/><br/>「顺便说一句，」Susan 漫不经心地补充道，「你可能会感兴趣，蓝蛋里面含有小块的钒矿石，而红方里面含有少量的钯，这两种物质在工业上都很有用。」 <br/><br/>「Susan，你简直是个恶魔。」 <br/><br/>「谢谢夸奖。」 </blockquote><p data-pid="FsPDv7iR">好，现在看来我们终于发现了蓝蛋的核心与本质属性：蓝蛋就是一个内部含有钒矿石的物体。诸如蓝色和长绒毛这些表面特征，并不能<b>决定</b>一个物体是否是蓝蛋；表面特征之所以重要，仅仅是因为它们能帮你<b>推断</b>一个物体是不是蓝蛋——也就是说，推断这个物体里面是否含有钒。</p><p data-pid="VZ3G3z5b">「含有钒」就是一个充要定义：所有蓝蛋都含有钒，而且所有含有钒的物体都是蓝蛋：「蓝蛋」只不过是「含钒物体」的一种简写说法。对吗？</p><p data-pid="HcLDj6So">别急着下结论，Susan 说道：大约 98% 的蓝蛋含有钒，但有 2% 的反而含有钯。准确地说（Susan 继续讲），大约 98% 的蓝色、蛋形、长绒毛、有弹性、不透明的物体含有钒。对于那些不太典型的蓝蛋，这个比例可能会有所不同：95% 的紫色蓝蛋含有钒，92% 的坚硬蓝蛋含有钒，依此类推。</p><p data-pid="0T30gBM9">现在假设你发现了一个蓝色、蛋形、长绒毛、有弹性、不透明的物体，从所有可见特征来看都是一个再普通不过的蓝蛋，你一时兴起把它拿去分拣扫描仪测试，扫描仪却显示「钯」——这是那罕见的 2% 之一。那么，它是个蓝蛋吗？</p><p data-pid="w8WFiHPD">起初你可能会回答，既然你打算把这玩意儿扔进红方箱（用来提取钯），那你干脆就叫它「红方」得了。然而，事实证明，如果你关掉灯，几乎所有的蓝蛋都会在黑暗中发出微弱的光，而几乎所有的红方都不会。并且，对于那些含有钯（而非钒）的蓝色蛋形长绒毛有弹性不透明物体，它们在黑暗中发光的比例与普通蓝蛋的比例并没有显著差别。因此，如果你要猜测这个物体是像蓝蛋一样发光，还是像红方一样黯淡，你应该猜它会像蓝蛋一样发光。</p><p data-pid="N4NBavxU">那么这个物体<b>到底</b>是一个蓝蛋还是一个红方？</p><p data-pid="LZtQuGQo">一方面，无论你还了解到关于它的什么其他信息，你最终都会把它扔进红方箱。另一方面，如果这个物体还有任何你需要去推测的未知特征，你会把它当成一个蓝蛋（而不是红方）去进行推测——你会把它归入「蓝色蛋形长绒毛有弹性不透明物体」的相似性聚类中，而不是归入「红色立方体光滑坚硬半透明物体」的相似性聚类中。</p><p data-pid="HU4vMjcn">「这个物体是一个蓝蛋吗？」这个问题，在不同的场合下，其实代替了不同的查询（queries）。</p><p data-pid="RTOLXkxt">如果它没有代替<b>某种</b>实际的查询，你就没有任何理由去关心这个问题。</p><p data-pid="KnHeCx4u"><a class="wrap external" href="https://www.readthesequences.com/UncriticalSupercriticality" rel="noopener noreferrer" target="_blank">无神论是一种「宗教」吗？</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup> <a class="wrap external" href="https://www.readthesequences.com/CultishCountercultishness" rel="noopener noreferrer" target="_blank">超人类主义是一个「邪教」吗？</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>那些辩称无神论是一种宗教（「因为它也陈述了关于上帝的信仰」）的人，真正试图争辩的其实是（我认为）：无神论所使用的推理方法和宗教使用的推理方法处于同一水平；或者在导致暴力的可能性上，无神论并不比宗教更安全，等等……这里真正受到威胁的，是无神论者声称自己相对于宗教具有实质性差异和优越性；而宗教人士试图通过否认这种差异（而不是否认这种优越性！）来驳斥这一点。</p><p data-pid="EEn1w0gP">但这还不是从根本上最不理性的部分：最不理性的部分是，在争论的过程中，有人掏出了一本字典，查阅了「无神论」或「宗教」的定义。（而且没错，无论是无神论者还是宗教人士这么做，都同样愚蠢。）一本字典<b>怎么可能</b>决定无神论者的经验聚类（empirical cluster）是否真的与神学家的经验聚类有着实质性的不同？现实怎么可能随着一个词语的含义而改变？当我们重新划定边界时，事物空间（thingspace）中的点并不会跟着跑来跑去。</p><p data-pid="MbeGw43T">但人们常常没有<b>意识到</b>，他们关于「如何划定定义边界」的争论，实际上是在争论「要不要推断某个特征被该经验聚类内的大多数事物所共享」……</p><p data-pid="-NKUzuWf">这就是「伪装的查询」（disguised query）这句话的由来。</p><hr/><p data-pid="v7vKgUXI">总目录：</p><a class="internal" data-draft-cover="" data-draft-title="《理性：从人工智能到僵尸》导读与目录" href="https://zhuanlan.zhihu.com/p/2056344770390373406" rel="noopener noreferrer" target="_blank">《理性：从人工智能到僵尸》导读与目录</a><p data-pid="gtkSPQ9J">卷：</p><a class="internal tm-internal" data-draft-cover="" data-draft-title="第三卷：灵魂中的机械" data-tm-id="2063193105831141740" href="2063193105831141740.html">第三卷：灵魂中的机械</a><p data-pid="Yotmh7eI">章节：</p><a class="internal tm-internal" data-draft-cover="" data-draft-title="人类词语指南" data-tm-id="2062469281753862293" href="2062469281753862293.html">人类词语指南</a><p data-pid="6U48aJJf">上一篇：</p><a class="internal tm-internal" data-draft-cover="https://pica.zhimg.com/v2-e41918909bab7453220ba638aa7e2fa8.webp?source=7e7ef6e2&amp;needBackground=1" data-draft-title="事物空间的聚类结构" data-tm-id="2050179140419072823" href="2050179140419072823.html">事物空间的聚类结构</a><p data-pid="LIp9GPhN">下一篇：</p><a class="internal tm-internal" data-draft-cover="https://picx.zhimg.com/v2-9a37f719e216483ba877f5f7cf570f56.jpg?source=7e7ef6e2&amp;needBackground=1" data-draft-title="神经类别" data-tm-id="2050999897550223000" href="2050999897550223000.html">神经类别</a><hr/><blockquote data-pid="yd0pJwt_"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 gemini-3.1-pro，校对 Jarrett Ye<br/>原文：<a class="wrap external" href="https://www.readthesequences.com/Disguised-Queries" rel="noopener noreferrer" target="_blank">Disguised Queries</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 不加批判的超临界状态 <a class="tm-internal" data-tm-id="1972605380472334329" href="1972605380472334329.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 邪教式反邪 <a class="tm-internal" data-tm-id="2004256642078884961" href="2004256642078884961.html">站内阅读 ↗</a></li></ol>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://www.readthesequences.com/Disguised-Queries" target="_blank" rel="noopener noreferrer">https://www.readthesequences.com/Disguised-Queries ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/2050519448814195814" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="2050179140419072823"><div class="post-meta"><time datetime="2026-06-16">2026-06-16</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 29 · 6 分钟</span></div><div class="post-summary"><h2><a href="2050179140419072823.html"><span>事物空间的聚类结构</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章把事物描述映射成多维“事物空间”中的位置，用坐标和不确定性云表达对特征的认识，再以母亲、鸟类等类别说明概念往往围绕典型成员形成辐射状聚类，而非满足清晰的必要充分条件。定义可以有例外，只要能在实践中指向预期聚类即可；地图无需复制疆域的全部复杂度。</p><p class="tags"><a href="../?q=%E4%BA%8B%E7%89%A9%E7%A9%BA%E9%97%B4">#事物空间</a><a href="../?q=%E6%A6%82%E5%BF%B5%E8%81%9A%E7%B1%BB">#概念聚类</a><a href="../?q=%E8%BE%90%E5%B0%84%E7%8A%B6%E8%8C%83%E7%95%B4">#辐射状范畴</a><a href="../?q=%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83">#概率分布</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2062469281753862293"><div class="post-meta"><time datetime="2026-07-20">2026-07-20</time><a class="meta-author" href="../?q=Rob%20Bensinger">Rob Bensinger</a><span>▲ 12 · 1 分钟</span></div><div class="post-summary"><h2><a href="2062469281753862293.html"><span>人类词语指南</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本页是《人类词语指南》系列目录，导言称其探讨认知与概念形成；篇目涉及外延内涵、相似性聚类、定义争论、分类边界，也列出熵、互信息、朴素贝叶斯及词语出错方式。</p><p class="tags"><a href="../?q=%E6%A6%82%E5%BF%B5%E5%BD%A2%E6%88%90">#概念形成</a><a href="../?q=%E5%A4%96%E5%BB%B6%E4%B8%8E%E5%86%85%E6%B6%B5">#外延与内涵</a><a href="../?q=%E5%88%86%E7%B1%BB">#分类</a><a href="../?q=%E5%AE%9A%E4%B9%89%E4%BA%89%E8%AE%BA">#定义争论</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2059600041661272639"><div class="post-meta"><time datetime="2026-07-12">2026-07-12</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 21 · 8 分钟</span></div><div class="post-summary"><h2><a href="2059600041661272639.html"><span>互信息与事物空间中的密度</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文从熵和信息量解释互信息：若两个变量相关，获知一个状态会降低对另一个状态的不确定性；若联合分布能分解为边缘分布乘积，则彼此独立、互信息为零。作者把这一点用于词语与分类：为属性组合创造单独名称，只有当这些属性或相关特征比随机情况更常共同出现时，才会形成高效编码；应围绕事物空间中异常高概率密度的聚集区划定分类边界。</p><p class="tags"><a href="../?q=%E4%BA%92%E4%BF%A1%E6%81%AF">#互信息</a><a href="../?q=%E7%86%B5">#熵</a><a href="../?q=%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E7%90%86">#贝叶斯推理</a><a href="../?q=%E6%A6%82%E5%BF%B5%E5%BD%A2%E6%88%90">#概念形成</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2050999897550223000"><div class="post-meta"><time datetime="2026-06-18">2026-06-18</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 14 · 7 分钟</span></div><div class="post-summary"><h2><a href="2050999897550223000.html"><span>神经类别</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文以“蓝蛋”和“红方”说明两种类别网络设计：完全互联的网络能捕捉跨特征关联，却需要大量连接并可能反复震荡。它还可能让来自同一线索的信念相互强化，重复计算证据；带中央节点的网络计算更快、扩展性更强，但较难表达罕见的特征组合。两种架构都需要额外节点来表示某些特征交互，也都隐含对环境结构的假设。作者强调这只是帮助思考类别形成的计算…</p><p class="tags"><a href="../?q=%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">#神经网络</a><a href="../?q=%E7%B1%BB%E5%88%AB%E5%BD%A2%E6%88%90">#类别形成</a><a href="../?q=%E8%AE%A4%E7%9F%A5%E7%A7%91%E5%AD%A6">#认知科学</a><a href="../?q=%E6%B6%8C%E7%8E%B0">#涌现</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2056323453402231148"><div class="post-meta"><time datetime="2026-07-05">2026-07-05</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 20 · 6 分钟</span></div><div class="post-summary"><h2><a href="2056323453402231148.html"><span>「根据定义」的争论</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者认为，以“根据定义”强调一个结论，常是在用显而易见的分类特征替代真正有争议的预测。分类只能提供基于经验聚类的粗略推断，新的具体证据仍应更新判断；字典定义无法改变事物之间的实际相似性。借苏格拉底与毒芹、无神论是否为宗教等例子，文章提醒这种措辞可能把未经论证的含义偷偷塞进标签，强迫争论沿预设轨道进行。</p><p class="tags"><a href="../?q=%E5%AE%9A%E4%B9%89">#定义</a><a href="../?q=%E6%A6%82%E5%BF%B5%E5%88%86%E7%B1%BB">#概念分类</a><a href="../?q=%E7%BB%8F%E9%AA%8C%E8%81%9A%E7%B1%BB">#经验聚类</a><a href="../?q=%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E7%90%86">#贝叶斯推理</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2062240524812260000"><div class="post-meta"><time datetime="2026-07-19">2026-07-19</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 28 · 13 分钟</span></div><div class="post-summary"><h2><a href="2062240524812260000.html"><span>词语可能出错的 37 种方式</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文列举词语可能误导思考的方式：把定义当作不容质疑的事实、混淆内涵与外延、将模糊类别看成非黑即白，或让标签掩盖背后的归纳和概率判断。作者认为，词语分类会影响推理，不能靠“我可以这样定义”规避后果；讨论中若定义遮蔽了真正问题，应回到具体属性、证据和想回答的查询。</p><p class="tags"><a href="../?q=%E8%AF%8D%E8%AF%AD%E5%90%AB%E4%B9%89">#词语含义</a><a href="../?q=%E7%B1%BB%E5%88%AB%E5%88%A4%E6%96%AD">#类别判断</a><a href="../?q=%E5%AE%9A%E4%B9%89%E4%BA%89%E8%AE%BA">#定义争论</a><a href="../?q=%E6%8E%A8%E7%90%86%E9%94%99%E8%AF%AF">#推理错误</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

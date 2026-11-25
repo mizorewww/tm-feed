@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>如何评价Anki插件Auto Ease Factor?</title>
+<meta name="description" content="这个插件我去年暑假研究算法的时候试用过了（大概是2020年7月），简单的评价一下，就是没有跳出 sm-2 算法的框架。 它这个算法的特点就是将一个单词的历史保留率（累积回忆次数/累积复习次数）和间隔系数关联起来，也就是改变了间隔系数的收敛方式。本质上，还是一个简单的状态空间方法，具体可以参考我这篇文章： 叶峻峣：从 Anki…">
+<meta name="author" content="Thoughts Memo">
+<meta property="og:title" content="如何评价Anki插件Auto Ease Factor?">
+<meta property="og:description" content="这个插件我去年暑假研究算法的时候试用过了（大概是2020年7月），简单的评价一下，就是没有跳出 sm-2 算法的框架。 它这个算法的特点就是将一个单词的历史保留率（累积回忆次数/累积复习次数）和间隔系数关联起来，也就是改变了间隔系数的收敛方式。本质上，还是一个简单的状态空间方法，具体可以参考我这篇文章： 叶峻峣：从 Anki…">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-02-14">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="1729652349" data-rec-seeds="1836330509,1847718575,207094393,1373468425,473666349,1530158132,205600711,97887756">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2021-02-14">2021-02-14</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%E7%9A%84%E5%8E%86%E5%8F%B2">间隔重复的历史</a>
+          <a class="tag" href="../?q=Thoughts%20Memo">Thoughts Memo</a>
+          <span>约 1 分钟</span>
+          <span>▲ 26</span>
+        </p>
+        <h1>如何评价Anki插件Auto Ease Factor?</h1>
+        <details class="question-fold"><summary>查看问题描述</summary><div class="question-fold-body prose"><p>最近在寻找通过插件改善Anki算法的方案，看到这款插件的描述感觉很不错，在知乎上没有搜到相关的内容，不知是否有知友用过。希望如果有用过的知友能讲讲自己的体会，或具体使用方法，也希望有大神能分析分析这款插件适合哪些人用、不适合哪些人用（即保持默认参数更好）。</p><p>摘录插件页上的描述如下，完整请见</p><a class="external" href="https://ankiweb.net/shared/info/1672712021" rel="noopener noreferrer" target="_blank"><span class="invisible">https://</span><span class="visible">ankiweb.net/shared/info</span><span class="invisible">/1672712021</span><span class="ellipsis"></span></a><p class="ztext-empty-paragraph"><br/></p><hr/><p>Description</p><p># experimentalCardEaseFactor</p><p>Dynamically adjusts ease factor on cards automatically after each rep, constantly seeking the right ease adjustment to hit a target success rate.</p><p>See: </p><a class="wrap external" data-image="https://pica.zhimg.com/v2-205079b17d2659dc963e9000c403820c.jpg" data-image-height="300" data-image-width="300" href="https://eshapard.github.io/anki/thoughts-on-a-new-algorithm-for-anki.html" rel="noopener noreferrer" target="_blank">Thoughts On A New Algorithm For Anki</a><p> for the original rationale.</p><p>Important: **You must NOT/NOT use an interval modifier in your deck options**. Your interval modifier MUST be set to 100% (no change) for all decks. Otherwise this algorithm could be constantly chasing a moving target.</p><p>Warning: Does not seem to work with versions older than 2.1.21. </p><p>#### Differences from eshapard's version</p><p>Unlike eshapard's version, which requires four reviews before the algorithm kicks in, this version lets the algorithm adjust ease factors as early as possible, including using information from learning steps. Early data is less reliable, though, so we do two things: we limit how much the algorithm can change the ease factor at first, and we use a moving average to more heavily weight recent reps when calculating success rate.</p><p>If it took you a long time to learn a card originally, but now you've really got it down, your ease will rebound very quickly. The 'leash' setting ties your ease factor down at first, which limits the initial swings of the algorithm until you've had many more reviews and better quality data.</p><p>If you're used to ease factors very close to 250%, without a low leash, this algorithm can produce some alarmingly low (or high) ease factors. It will generally auto-adjust very quickly based on your performance though. </p><p>My anecdotal experience is that it front loads the work a bit, causing more reviews with short intervals in the beginning for hard cards, but backing off quickly after I know a card well.</p></div></details>
+        <p class="tags"><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=SM-5">#SM-5</a><a href="../?q=SM-2">#SM-2</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%87%AA%E9%80%82%E5%BA%94%E7%AE%97%E6%B3%95">#自适应算法</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="WE_O7YSf">这个插件我去年暑假研究算法的时候试用过了（大概是2020年7月），简单的评价一下，就是没有跳出 sm-2 算法的框架。</p><p data-pid="krlSWQ9f">它这个算法的特点就是将一个单词的历史保留率（累积回忆次数/累积复习次数）和间隔系数关联起来，也就是改变了间隔系数的收敛方式。本质上，还是一个简单的状态空间方法，具体可以参考我这篇文章：</p><a class="internal" data-image="https://pic4.zhimg.com/v2-079bd935fac29c15a61e06ea5c844a03_120x160.jpg" data-image-height="1920" data-image-width="1440" href="https://zhuanlan.zhihu.com/p/344716900" rel="noopener noreferrer" target="_blank">叶峻峣：从 Anki 算法说起，探索记忆的状态空间</a><p data-pid="8aVufVJL">sm-2 和 sm-3+ 的区别就在于：</p><p data-pid="SDsvsdfg">SM2 于后来修改的算法之间的关键区别是<sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>：</p><ul><li data-pid="8oUmP3U8">SM2 根据您的一张卡片上的表现来安排该卡片下一次的时间</li><li data-pid="X6V0syNt">SM3+ 根据您的一张卡片上的表现来安排该卡片，以及类似卡片下一次的时间</li></ul><p data-pid="XGXA7cXb">所以该插件的算法也只能归为 SM2 的变体，在结构上和 SM2 相差不大。至于效果，由于只利用了一张卡片的历史数据，每张卡片独立收敛，所以收敛速度和 Anki 的原算法差别不大。总的来说，由于这个插件也只能在 PC 上使用，所以我个人不推荐折腾它。</p><p data-pid="cRC6Ib2W">当然，当时我为了研究怎么以插件的形式来更新 Anki 算法，还是研究了一下它的源码的。想要做类似工作的朋友，也可以参考一下它的源码。</p><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 1989: SuperMemo 适应用户记忆(中) <a class="tm-internal" data-tm-id="207094393" href="207094393.html">站内阅读 ↗</a></li></ol>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Thoughts%20Memo">Thoughts Memo</a></dd></div>
+            
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://www.zhihu.com/question/443304430/answer/1729652349" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="1836330509"><div class="post-meta"><time datetime="2021-04-15">2021-04-15</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 12 · 1 分钟</span></div><div class="post-summary"><h2><a href="1836330509.html"><span>苹果 Anki 备忘录初始难度系数 250% 什么意思？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>前排提示：Anki备忘录不是官方版，以下内容可能不适用！ 难度系数（英文为 Ease，现已被翻译为简易度，下面采用简易度来指代）是 Anki 算法中的一个概念，关于 Anki 算法的介绍，可以阅读： 叶峻峣：Anki 算法与术语浅谈 简易度反映 Anki 卡片难度，对于频繁记不住的卡片，其简易度会逐渐下降，而反馈简单则可以增加…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=SM-2">#SM-2</a><a href="../?q=%E7%AE%80%E6%98%93%E5%BA%A6%E5%9B%A0%E5%AD%90">#简易度因子</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="207094393"><div class="post-meta"><time datetime="2020-08-30">2020-08-30</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 18 · 13 分钟</span></div><div class="post-summary"><h2><a href="207094393.html"><span>06 1989: SuperMemo 适应用户记忆(中)</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本文回顾 SM-5 如何从收敛缓慢的 SM-4 转向学习间隔增长倍率：按项目难度与复习阶段建立最优因子矩阵，用它计算下次间隔，再以随后回忆表现纠正此前用过的矩阵项。低分会减小倍率，遗忘则重启复习。作者强调，公开论文只给粗纲，随机分散和平滑等辅助程序对稳定收敛至关重要。 Anki 手册认为，跨卡自适应在难度、评分或学习时间不一致…</p><p class="tags"><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=SM-5">#SM-5</a><a href="../?q=SM-2">#SM-2</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1847718575"><div class="post-meta"><time datetime="2021-04-21">2021-04-21</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 23 · 1 分钟</span></div><div class="post-summary"><h2><a href="1847718575.html"><span>SuperMemo 算法原理是怎么样的，代码如何实现的？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>SM-2 叶峻峣：04 SuperMemo 1.0: 日志 (1987) SM-5 叶峻峣：06 1989: SuperMemo 适应用户记忆(上) 叶峻峣：06 1989: SuperMemo 适应用户记忆(中) 叶峻峣：06 1989: SuperMemo 适应用户记忆(下) 记忆双变量模型 叶峻峣：05 1988：记忆的…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=SM-2">#SM-2</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="473666349"><div class="post-meta"><time datetime="2022-03-01">2022-03-01</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 18 · 10 分钟</span></div><div class="post-summary"><h2><a href="473666349.html"><span>15 间隔重复的指数式普及</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本文回顾SM-2虽被SuperMemo后续算法取代，却因公开简单、Mnemosyne和Anki等软件及媒体报道而广泛传播，后被Quizlet短期采用并转向数据驱动算法。作者批评部分变体偏离原理，也反对把优化目标放在应试死记，而非长期自由学习。 作者区分接触人数与持续活跃者，承认规模估计含大量猜测，设想通过阅读与社交服务嵌入间隔…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SM-2">#SM-2</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=Anki">#Anki</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="413907414"><div class="post-meta"><time datetime="2021-09-25">2021-09-25</time><a class="meta-author" href="../?q=Master%20How%20To%20Learn">Master How To Learn</a><span>▲ 285 · 12 分钟</span></div><div class="post-summary"><h2><a href="413907414.html"><span>为什么我不再向我的朋友介绍 Anki / SuperMemo？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者反思为何不再主动向朋友推荐 Anki 或 SuperMemo：短暂介绍难以传达间隔重复的原理与价值，热情讲解还可能让对方感到困惑或受压。人们可能只是表达愿望，并未准备改变习惯；真正的信服通常来自亲自体验工具的好处。作者因此倾向于在线分享内容，让有兴趣者自行发现，而非持续劝说。</p><p class="tags"><a href="../?q=Anki">#Anki</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE">#学习建议</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1373468425"><div class="post-meta"><time datetime="2020-07-31">2020-07-31</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 61 · 3 分钟</span></div><div class="post-summary"><h2><a href="1373468425.html"><span>Anki 可以视为 supermemo 的开源实现吗，它们的差别还有多大？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Anki 自行车，SuperMemo 方程式（暴论 2333 https://masterhowtolearn.wordpress.com/ 看过 Anki 手册的人都知道，Anki 是算法是基于 SM-2 的修修补补版。而 SM-2 是一个经验算法，它的提出 [1] (1987年)比 SuperMemo 的双变量记忆模型 […</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

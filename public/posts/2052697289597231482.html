@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>33 昼夜节律振荡器基因</title>
+<meta name="description" content="本章介绍昼夜节律的分子振荡机制：SCN 是主要主振荡器，CLOCK/BMAL1 促进 Per 与 Cry 转录，累积的 PER/CRY 蛋白再抑制自身生成，形成约 24 小时的负反馈循环。作者以基因敲除动物说明不同基因对节律的作用，并比较哺乳动物、果蝇和蓝细菌的时钟系统；文中提醒该回路只是对复杂机制的简化模型。">
+<meta name="author" content="Piotr Wozniak">
+<meta property="og:title" content="33 昼夜节律振荡器基因">
+<meta property="og:description" content="本章介绍昼夜节律的分子振荡机制：SCN 是主要主振荡器，CLOCK/BMAL1 促进 Per 与 Cry 转录，累积的 PER/CRY 蛋白再抑制自身生成，形成约 24 小时的负反馈循环。作者以基因敲除动物说明不同基因对节律的作用，并比较哺乳动物、果蝇和蓝细菌的时钟系统；文中提醒该回路只是对复杂机制的简化模型。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-06-23">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="2052697289597231482" data-rec-seeds="497990585,2039439212685038490,1915483653053617542,1935996086130053136,720533648,606888160,1939270209425903857,1920870897704736060">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2026-06-23">2026-06-23</time>
+          <a class="tag" href="../?q=%E7%9D%A1%E7%9C%A0%E7%A0%94%E7%A9%B6%20%26%20%E7%94%9F%E6%B4%BB%E5%BB%BA%E8%AE%AE">睡眠研究 &amp; 生活建议</a>
+          <a class="tag" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a>
+          <span>约 5 分钟</span>
+          <span>▲ 5</span>
+        </p>
+        <h1>33 昼夜节律振荡器基因</h1>
+        
+        <p class="tags"><a href="../?q=%E6%98%BC%E5%A4%9C%E8%8A%82%E5%BE%8B">#昼夜节律</a><a href="../?q=SCN">#SCN</a><a href="../?q=CLOCK%E5%9F%BA%E5%9B%A0">#CLOCK基因</a><a href="../?q=PER/CRY">#PER/CRY</a><a href="../?q=%E8%BD%AC%E5%BD%95%E7%BF%BB%E8%AF%91%E8%B4%9F%E5%8F%8D%E9%A6%88%E5%9B%9E%E8%B7%AF">#转录翻译负反馈回路</a><a href="../?q=%E7%94%9F%E7%89%A9%E9%92%9F">#生物钟</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">33.1 生物钟</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">33.2 时钟基因</a></li><li class="level-3"><a href="#sec-3" data-toc-target="sec-3">33.2.1 反馈回路</a></li><li class="level-3"><a href="#sec-4" data-toc-target="sec-4">33.2.2 时钟基因突变</a></li><li class="level-3"><a href="#sec-5" data-toc-target="sec-5">33.2.3 时钟基因的演化</a></li><li class="level-2"><a href="#sec-6" data-toc-target="sec-6">33.3 2017 年诺贝尔奖</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <h2 id="sec-1"><b>33.1 生物钟</b></h2><p data-pid="It3bnEWY">视交叉上核（<a class="wrap external" href="https://supermemo.guru/wiki/How_do_we_fall_asleep?#Suprachiasmatic_nucleus_(SCN)" rel="noopener noreferrer" target="_blank">SCN</a>）是我们主要<a class="wrap external" href="https://supermemo.guru/wiki/Circadian_cycle" rel="noopener noreferrer" target="_blank">昼夜节律周期</a>根基处的主振荡器。SCN 中的单个细胞会基于一个遗传回路同步放电，该回路大约需要 24 小时完成一次循环。这个回路非常复杂，包含许多基因、它们的转录本以及蛋白产物。这个复杂系统中的单个组成部分会抑制、压制或激活其他组成部分。各种相互作用尚未被完全理解；不过，为了提示遗传时钟背后的一般原理，下文给出了一个简化模型。</p><h2 id="sec-2"><b>33.2 时钟基因</b></h2><p data-pid="Mcbu5a7G">遗传性的<b>昼夜节律振荡器时钟系统</b>形成一个负反馈回路：在细胞质中累积的时钟蛋白会被转运到细胞核，以抑制它们自身的转录。该机制被称为「转录-翻译负反馈回路」（transcription-translation negative-feedback loop，TTFL），能够产生相当规律的振荡。</p><h3 id="sec-3"><b>33.2.1 反馈回路</b></h3><p data-pid="jtEvOAl-">昼夜节律时钟系统的关键基因包括 <a class="wrap external" href="https://en.wikipedia.org/wiki/CLOCK" rel="noopener noreferrer" target="_blank">时钟基因（CLOCK）</a>、<a class="wrap external" href="https://en.wikipedia.org/wiki/ARNTL" rel="noopener noreferrer" target="_blank">Bmal1</a>、<a class="wrap external" href="https://en.wikipedia.org/wiki/Period_(gene)" rel="noopener noreferrer" target="_blank">period (Per)</a> 与 <a class="wrap external" href="https://en.wikipedia.org/wiki/Cryptochrome" rel="noopener noreferrer" target="_blank">隐花色素 (Cry)</a>。这些组成部分在生物界各个类群中都高度保守，这表明它们对生存具有关键作用。在一天开始时，两种转录激活因子 CLOCK 与 BMAL1 形成 CLOCK:BMAL1 蛋白二聚体。该二聚体促进其转录靶基因 period（Per）与 隐花色素（Cry）的转录。Per、Cry、Bmal1 与 Clock 的 <a class="wrap external" href="https://en.wikipedia.org/wiki/RNA" rel="noopener noreferrer" target="_blank">RNA</a> 会在细胞质中被翻译成蛋白质。PER 与 CRY 蛋白在白天于细胞质中累积，傍晚达到峰值，并在日落后开始在细胞核中累积。在细胞核中，PER 与 CRY 作为 CLOCK/BMAL1 活性的负调节因子，抑制它们自身的转录。结果是，PER 与 CRY 在夜间迅速下降，从而闭合负反馈回路。随后循环从 CLOCK:BMAL1 的产生重新开始，如此往复。Clock/Bmal1 与 Per/Cry 形成的回路以大约 24 小时为周期振荡。含 CRY 的复合体会抑制 CLOCK:BMAL1 二聚体的产生，并减缓 Per 与 Cry 基因的转录。考虑到 Per 至少有三种变体（Per1、Per2、Per3），Cry 也有两种（Cry1、Cry2），情况会更复杂。含 PER2 蛋白的复合体会增强 Bmal1 的转录；而 PER1 会轻度抑制 CLOCK/BMAL1 复合体诱导的转录。</p><h3 id="sec-4"><b>33.2.2 时钟基因突变</b></h3><p data-pid="olKvhMdK">通过构建基因敲除小鼠，可以很好地展示单个基因的昼夜节律作用。例如，缺失 Cry1 或 Cry2 的小鼠，其自由运行的昼夜节律周期会发生改变；若两个基因都缺失，这些动物在恒定条件下会变得无节律，并且 Per1 mRNA 水平持续升高！同样，Per1/Per2 双突变体也会失去节律性。Per2 基因的突变会导致家族性 <a class="wrap external" href="https://supermemo.guru/wiki/Good_sleep,_good_learning,_good_life:_Glossary#ASPS" rel="noopener noreferrer" target="_blank">ASPS</a>。Bmal1 的不可替代作用可以通过缺失实验展示：在恒定黑暗下，这会立即导致无节律。时钟基因也会受到多种激素、代谢与免疫输入的影响（例如<a class="wrap external" href="https://supermemo.guru/wiki/How_do_we_fall_asleep?#Adenosine" rel="noopener noreferrer" target="_blank">腺苷</a>）。</p><h3 id="sec-5"><b>33.2.3 时钟基因的演化</b></h3><p data-pid="YZRXkXs6">昼夜节律的遗传机制在进化中如此保守，以至于研究 <a class="wrap external" href="https://en.wikipedia.org/wiki/Drosophila" rel="noopener noreferrer" target="_blank">果蝇（Drosophila）</a> 为啮齿动物的基因敲除实验提供了一种廉价替代方案。对于大多数果蝇的昼夜节律时钟基因，人们已在哺乳动物中识别出其同源基因。不过在昆虫中，与哺乳动物不同，CRY1 的功能是光依赖的。甚至<a class="wrap external" href="https://en.wikipedia.org/wiki/Cyanobacteria" rel="noopener noreferrer" target="_blank">蓝细菌</a>也有一种昼夜节律遗传时钟，它可以在体外被重建，以进行细致的定量分析与对比仿真。研究蓝细菌得到的结论之一是：TTFL 时钟可能实际上受制于一个主生化振荡器，称为 PTO（post-translational oscillator，后翻译振荡器）（Qin et al. 2010[<span class="nolink">161]</span>）。关于生化振荡器作用的最初线索，来自在抑制转录与翻译的条件下昼夜节律仍能持续存在这一现象（Iwasaki et al. 2005[<span class="nolink">162]</span>）。除了昼夜节律角色之外，这些基因还参与其他功能。有趣的是，研究显示隐花色素参与鸟类的磁感知（magnetoception），以及植物生长中的光感受（photoreception）。</p><p data-pid="GRrLeHkf">振荡器系统的许多子组成部分似乎都可以以 24 小时为周期运行；甚至可以构成一个简单的理论三蛋白磷酸化回路：它具有温度补偿，其稳定性可能取决于对相关蛋白性质及/或其加工过程进行的微小调节。这可能意味着：为了产生稳定节律，并理想地匹配与地球自转相关的生活方式，单个蛋白必须在进化过程中被不断完善与调校。难怪科学家已经识别出大量突变，它们会对振荡器或其<a class="wrap external" href="https://supermemo.guru/wiki/Good_sleep,_good_learning,_good_life:_Glossary#entrainment" rel="noopener noreferrer" target="_blank">同调系统</a>的性质造成细微改变（Golombek and Rosenstein 2010[<span class="nolink">61]</span>）</p><h2 id="sec-6"><b>33.3 2017 年诺贝尔奖</b></h2><p data-pid="E5hc3bbW">Jeffrey Hall、Michael Rosbash 与 Michael Young 因为<a class="wrap external" href="http://www.sciencemag.org/news/2017/10/timing-everything-us-trio-earns-nobel-work-body-s-biological-clock" rel="noopener noreferrer" target="_blank">阐明了控制我们体内时钟的分子机制</a>而获得 2017 年诺贝尔生理学或医学奖。Rosbash 曾开玩笑抱怨：诺贝尔委员会凌晨 5 点的电话毁了他的<a class="wrap external" href="https://supermemo.guru/wiki/Circadian_cycle" rel="noopener noreferrer" target="_blank">昼夜节律</a>。</p><hr/><p data-pid="TuZ1hQzr">上一篇：<a class="internal tm-internal" data-tm-id="2039439212685038490" href="2039439212685038490.html">32 质疑记忆优化的科学家</a></p><p data-pid="J3AVKFNU">下一篇：<a class="internal tm-internal" data-tm-id="497990585" href="497990585.html">34 传闻和事实</a></p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="QmsMKIx4"><a class="wrap external" href="https://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 gpt-5.2-high，校对 <span class="nolink">luphut</span><br/>原文：<a class="wrap external" href="https://supermemo.guru/wiki/Good_sleep,_good_learning,_good_life#Circadian_oscillator_genes" rel="noopener noreferrer" target="_blank">Good sleep, good learning, good life - supermemo.guru</a><br/>目录：<a class="internal" href="https://zhuanlan.zhihu.com/p/496134717" rel="noopener noreferrer" target="_blank">《睡眠好，学习好，生活好》</a><br/>本文节选自：《<a class="wrap external" href="https://supermemo.guru/wiki/Science_of_sleep" rel="noopener noreferrer" target="_blank">睡眠的科学</a>》，作者：<a class="wrap external" href="https://supermemo.guru/wiki/Piotr_Wozniak" rel="noopener noreferrer" target="_blank">彼得·沃兹尼亚克</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>（2017）</blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 彼得 · 沃兹尼亚克 <a class="tm-internal" data-tm-id="303204832" href="303204832.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">33.1 生物钟</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">33.2 时钟基因</a></li><li class="level-3"><a href="#sec-3" data-toc-target="sec-3">33.2.1 反馈回路</a></li><li class="level-3"><a href="#sec-4" data-toc-target="sec-4">33.2.2 时钟基因突变</a></li><li class="level-3"><a href="#sec-5" data-toc-target="sec-5">33.2.3 时钟基因的演化</a></li><li class="level-2"><a href="#sec-6" data-toc-target="sec-6">33.3 2017 年诺贝尔奖</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Piotr%20Wozniak">Piotr Wozniak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://supermemo.guru/wiki/Good_sleep,_good_learning,_good_life" target="_blank" rel="noopener noreferrer">https://supermemo.guru/wiki/Good_sleep,_good_learning,_good_life ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/2052697289597231482" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="497990585"><div class="post-meta"><time datetime="2022-04-21">2022-04-21</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 29 · 24 分钟</span></div><div class="post-summary"><h2><a href="497990585.html"><span>34 传闻和事实</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Wozniak在《睡眠好，学习好，生活好》这一章中以“传闻/事实”讨论睡眠；以下归纳的是该章主张，不是人人适用的处方。作者认为没有适用于所有人的八小时标准，需求随个体和生物钟而定；“少睡更长寿”只是观察相关，疾病、质量和节律也会影响时长。困倦不只由睡眠不足造成，时机、闹钟、呼吸问题和药物也可能影响清醒度。 Wozniak认为适…</p><p class="tags"><a href="../?q=%E7%9D%A1%E7%9C%A0">#睡眠</a><a href="../?q=%E6%98%BC%E5%A4%9C%E8%8A%82%E5%BE%8B">#昼夜节律</a><a href="../?q=%E5%8D%88%E7%9D%A1">#午睡</a><a href="../?q=%E5%A4%B1%E7%9C%A0">#失眠</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="720533648"><div class="post-meta"><time datetime="2024-09-18">2024-09-18</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 40 · 10 分钟</span></div><div class="post-summary"><h2><a href="720533648.html"><span>8 双相的生活</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>彼得·沃兹尼亚克结合SuperMemo学习记录、SleepChart睡眠数据与既有研究，主张人的表现存在两个高峰和日中低谷。分析应依个人生理相位，而非统一钟点或被强制唤醒的时间。傍晚回升在不午睡者中也存在，午睡并非创造第二峰，而是减轻累积的稳态疲劳，使它更充分表现。 文章区分能入睡与能持续睡眠：午睡时容易睡着却往往较短，主观夜…</p><p class="tags"><a href="../?q=%E5%8F%8C%E7%9B%B8%E7%9D%A1%E7%9C%A0">#双相睡眠</a><a href="../?q=%E5%8D%88%E7%9D%A1">#午睡</a><a href="../?q=%E6%98%BC%E5%A4%9C%E8%8A%82%E5%BE%8B">#昼夜节律</a><a href="../?q=%E7%9D%A1%E7%9C%A0%E6%83%AF%E6%80%A7">#睡眠惯性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1980693806157410714"><div class="post-meta"><time datetime="2025-12-06">2025-12-06</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 1115 · 22 分钟</span></div><div class="post-summary"><h2><a href="1980693806157410714.html"><span>为什么现在的年轻人睡觉越来越晚？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>唉，手机 唉，游戏 唉，自制力 能不能别因为年轻人的生物钟和中登、老登不一样，就怪手机怪游戏怪年轻人没有自制力？ 建议了解一下 睡眠相位后移综合征（DSPS） ，这本质上是现代社会与年轻人生物钟的冲突。 生理机制差异 ：很多人的生物钟周期天生远长于 24 小时，且对光照等重置信号不敏感，导致入睡时间自然推后。对他们而言，深夜才…</p><p class="tags"><a href="../?q=%E6%98%BC%E5%A4%9C%E8%8A%82%E5%BE%8B">#昼夜节律</a><a href="../?q=%E7%9D%A1%E7%9C%A0%E7%9B%B8%E4%BD%8D">#睡眠相位</a><a href="../?q=%E5%97%9C%E7%9D%A1">#嗜睡</a><a href="../?q=%E8%87%AA%E7%94%B1%E8%BF%90%E4%BD%9C%E7%9A%84%E7%9D%A1%E7%9C%A0">#自由运作的睡眠</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="721439557"><div class="post-meta"><time datetime="2024-09-23">2024-09-23</time><a class="meta-author" href="../?q=Scott%20Alexander">Scott Alexander</a><span>▲ 146 · 22 分钟</span></div><div class="post-summary"><h2><a href="721439557.html"><span>褪黑素：比你想知道的要多得多</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>2018年作者把褪黑素解释为昼夜节律信号：除轻微催眠外，它还能更强地移动生物钟；困意则由昼夜节律和清醒时累积的“过程S”共同影响。 基于当时有限研究，他认为褪黑素对入睡与时差有统计学效果但催眠作用温和，平均只缩短约10分钟，未必远强于其他安眠药；依老年人、盲人和少量年轻人研究，他偏向约0.3毫克，称1毫克以内可接受而常见3–1…</p><p class="tags"><a href="../?q=%E8%A4%AA%E9%BB%91%E7%B4%A0">#褪黑素</a><a href="../?q=%E6%98%BC%E5%A4%9C%E8%8A%82%E5%BE%8B">#昼夜节律</a><a href="../?q=%E7%9D%A1%E7%9C%A0%E7%9B%B8%E4%BD%8D%E9%9A%9C%E7%A2%8D">#睡眠相位障碍</a><a href="../?q=%E6%97%B6%E5%B7%AE">#时差</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1950516755240817475"><div class="post-meta"><time datetime="2025-09-14">2025-09-14</time><a class="meta-author" href="../?q=Robin%20Hanson">Robin Hanson</a><span>▲ 81 · 3 分钟</span></div><div class="post-summary"><h2><a href="1950516755240817475.html"><span>「早起鸟」在打压「夜猫子」吗？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者以讽刺口吻追问“早起鸟”是否在制定更适合自己的学校与工作时间，导致夜猫子被视为懒惰。他汇列的研究对两种作息的认知、收入、健康与人格特征呈现混合相关：夜猫子有时得分更高或更富，早起则与尽责性相关；这些资料并不证明早起者总体更优，文章借此质疑时间规范是否反映群体偏好。</p><p class="tags"><a href="../?q=%E6%98%BC%E5%A4%9C%E8%8A%82%E5%BE%8B">#昼夜节律</a><a href="../?q=%E5%A4%9C%E7%8C%AB%E5%AD%90">#夜猫子</a><a href="../?q=%E6%97%A9%E8%B5%B7%E4%B9%A0%E6%83%AF">#早起习惯</a><a href="../?q=%E5%AD%A6%E6%A0%A1%E4%BD%9C%E6%81%AF">#学校作息</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1939270209425903857"><div class="post-meta"><time datetime="2025-08-17">2025-08-17</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 27 · 1 分钟</span></div><div class="post-summary"><h2><a href="1939270209425903857.html"><span>21 嗜睡症</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者把嗜睡定义为睡足后仍过度困倦，提出睡眠相位偏移可能是长期疲惫的一种较简单原因，并建议尝试一至两周自由作息观察是否改善；若无改善，则提示还可能存在需要专业评估的健康问题，例如阻塞性睡眠呼吸暂停。</p><p class="tags"><a href="../?q=%E5%97%9C%E7%9D%A1">#嗜睡</a><a href="../?q=%E6%98%BC%E5%A4%9C%E8%8A%82%E5%BE%8B">#昼夜节律</a><a href="../?q=%E7%9D%A1%E7%9C%A0%E7%9B%B8%E4%BD%8D">#睡眠相位</a><a href="../?q=%E8%87%AA%E7%94%B1%E8%BF%90%E4%BD%9C%E7%9A%84%E7%9D%A1%E7%9C%A0">#自由运作的睡眠</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三扇门的概率问题，直觉为什么会产生问题？</title>
+<meta name="description" content="因为很多人的直觉忽略了主持人的行为规则。或者说，很多人把「主持人打开第二扇门，且第二扇门是空的」和「第二扇门是空的」这两件事当成了一件事。 以下内容节选自 @Thoughts Memo 汉化组的译文《 什么是证据筛选？ 》 一个更简单的例子：一枚有偏差的硬币，要么偏向正面（正面概率 2/3，反面概率 1/3），要么偏向反面（正…">
+<meta name="author" content="Thoughts Memo">
+<meta property="og:title" content="三扇门的概率问题，直觉为什么会产生问题？">
+<meta property="og:description" content="因为很多人的直觉忽略了主持人的行为规则。或者说，很多人把「主持人打开第二扇门，且第二扇门是空的」和「第二扇门是空的」这两件事当成了一件事。 以下内容节选自 @Thoughts Memo 汉化组的译文《 什么是证据筛选？ 》 一个更简单的例子：一枚有偏差的硬币，要么偏向正面（正面概率 2/3，反面概率 1/3），要么偏向反面（正…">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2025-01-14">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="79134961476" data-rec-seeds="21962964397,22493693690,1908952639854589075,1906763874247643743,1979987449045337721,2069116852446482559,827917379,991286265">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2025-01-14">2025-01-14</time>
+          <a class="tag" href="../?q=%E7%90%86%E6%80%A7%20%26%20%E5%85%8B%E6%9C%8D%E5%81%8F%E8%A7%81">理性 &amp; 克服偏见</a>
+          <a class="tag" href="../?q=Thoughts%20Memo">Thoughts Memo</a>
+          <span>约 3 分钟</span>
+          <span>▲ 60</span>
+        </p>
+        <h1>三扇门的概率问题，直觉为什么会产生问题？</h1>
+        <details class="question-fold"><summary>查看问题描述</summary><div class="question-fold-body prose"><p><i>题主的初始表述：</i><br/>如果你和小 A 和小 B 三个人选盒子 1、2、3（只有一个盒子里有东西），现在告诉你小 B 选的 3 号盒子是空的，请问你要不要和小 A 换。<br/>本来三门问题我很好理解，但是一旦给其他两个门加上从属，为啥感觉直觉又出错了？</p><p>============</p><p><i>我是一个观众，为了简化模型，我补充和修改下问题（题主原来的表述我放到最后，因为游戏的实质是引入两个玩家，提出 3 个人反而容易混淆了问题）。</i></p><p><b>这个题并不是问大家如何理解「三门问题」，三门问题里，不换位置得奖概率 1/3，换了位置得奖概率 2/3，这个很好理解，不用解释了，也不用拷贝别处答案了。而且「三门问题」只是一种情形概括，并不规定一定要 3 个门，如果有 4 个或更多的门，结论也是一样的，就是更换后得奖概率提升。</b></p><p><b>题主这个游戏的实质是，原来的三门问题只有一个玩家，而这个「增强版」游戏引入了两个玩家。那么，当主持人打开空门以后，这两个玩家要不要互换位置，为什么？</b></p><p>为了让大家快速进入讨论，我直接给出「悖论」所在。</p><p>① 如果你认为两个玩家的得奖概率都为 1/2，无所谓换不换位置。那么问题来了：当你以玩家 1 的视角去看，为什么旁边多站个人，「三门问题」就失效了？如果我没注意到这个人，不知道这个人的存在，岂不是仍然应该遵循「三门问题」的结论，更换位置么？</p><p>② 如果你认为，从玩家 1 的视角，他应当换位置，因为能将中奖率从 1/3 提高至 2/3，那么问题又来了：从玩家 2 的视角，他显然也应当换位置，所以由于两人换了位置，两人的得奖概率都提高了？</p><p>③ 有答主说，3 门 2 玩家，会出现主持人无法「永不打开 2 个玩家的门、且永远只打开一个空门」（也就是说，他构造了一种情形，可能俩玩家选的都是空的，剩下的唯一的门后有奖励，主持人打开就穿帮了，游戏没法玩了）。</p><p><b>这确实是个问题。于是，我们不妨将三门升级为四门，同时有 2 个玩家，那么主持人就必然可以永远打开一个非玩家的空门，此时我们依旧可以提问，玩家要不要换位置？</b></p><p><i>（在描述这个「双玩家 n 门问题」的时候，我个人解开了这个「悖论」，不过在下面的回答中，我尚未看到清晰的解释，尽管有人在解释原始的三门问题时已经很接近了。）</i></p></div></details>
+        <p class="tags"><a href="../?q=%E8%AF%81%E6%8D%AE%E7%AD%9B%E9%80%89">#证据筛选</a><a href="../?q=%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E7%90%86">#贝叶斯推理</a><a href="../?q=%E9%80%89%E6%8B%A9%E5%81%8F%E5%B7%AE">#选择偏差</a><a href="../?q=%E8%92%99%E6%8F%90%E9%9C%8D%E5%B0%94%E9%97%AE%E9%A2%98">#蒙提霍尔问题</a><a href="../?q=%E8%AF%81%E6%8D%AE%E6%8A%A5%E5%91%8A">#证据报告</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="pxbNeppZ">因为很多人的直觉忽略了主持人的行为规则。或者说，很多人把「主持人打开第二扇门，且第二扇门是空的」和「第二扇门是空的」这两件事当成了一件事。</p><blockquote data-pid="BKQij8ZZ">以下内容节选自 <a class="member_mention" data-hash="4c592f496dc33822b560b382907ff1d0" data-hovercard="p$b$4c592f496dc33822b560b382907ff1d0" href="https://www.zhihu.com/people/L.M.Sherlock" rel="noopener noreferrer" target="_blank">@Thoughts Memo</a> 汉化组的译文《<a class="internal tm-internal" data-tm-id="15300705897" href="15300705897.html">什么是证据筛选？</a>》</blockquote><p data-pid="7PhJGET0">一个更简单的例子：一枚有偏差的硬币，要么偏向正面（正面概率 2/3，反面概率 1/3），要么偏向反面（正面概率 1/3，反面概率 2/3）。这两种情况的先验概率相等。每观察到一次正面，就有 <a class="wrap external" href="https://www.readthesequences.com/How-Much-Evidence-Does-It-Take" rel="noopener noreferrer" target="_blank">1 比特</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>的证据支持硬币偏向正面；每观察到一次反面，就有 1 比特的证据支持硬币偏向反面。假设我抛了这枚硬币十次，然后告诉你：「第 4 次、第 6 次和第 9 次都是正面。」现在，你认为这枚硬币偏向正面的后验概率是多少？</p><p data-pid="79Pv4zeK">答案是，这个概率几乎可以是任何值，完全取决于我话语背后的因果动机——也就是说，我在报告时筛选抛掷结果的方式。</p><ul><li data-pid="DcuZPvnN">我或许是在按这样一种规则行事：只报告第 4、6、9 次抛掷结果，无论其他抛掷的结果如何。假设你知道了我所采用的报告规则，就能得出后验概率比为 8:1，即硬币偏向正面的可能性是偏向反面的 8 倍。<br/><br/></li><li data-pid="yFgJD8G4">我可能是在报告所有正面朝上的结果，且只报告正面。在这种情况下，你能就此推断出其他 7 次均为反面朝上，后验概率因此变成 1:16，即硬币偏向正面的可能性仅为偏向反面的 1/16。<br/><br/></li><li data-pid="24fbY1Zg">我也可能事先决定，只有当硬币偏向正面的概率超过 98% 时，才报告第 4、6、9 次的结果。诸如此类。<br/></li></ul><p data-pid="_pJSsasm">再来看看 Monty Hall 问题：</p><blockquote data-pid="Ku7E-gSk">你参加一个游戏节目，面前有三扇门，分别通向三个房间。已知其中一个房间里有 10 万美元大奖，而另外两个房间则是空的。主持人请你选一扇门，你选了 1 号门。接着主持人打开了 2 号门，展示里面空无一物。现在你是否要改选 3 号门，还是坚持最初的 1 号门呢？</blockquote><p data-pid="9dNOY-xX">答案取决于主持人的行为规则。如果主持人每次都会打开一扇门，而且总是选择一扇通向空房间的门，那么你应该换到 3 号门。如果无论门后是什么，主持人都会打开 2 号门，那么 1 号门和 3 号门各有 50% 的机会藏有奖金。如果主持人只在你最初选中了有奖金的门时才会打开另一扇门，那么你绝对应该坚持 1 号门不变。</p><p data-pid="95_z5Z4D">在做判断时，你不应该仅仅考虑 「2 号门为空」这一事实，还得考虑「主持人<b>选择</b>打开 2 号门」这一行为。许多人之所以对经典的 Monty Hall 问题感到困惑，是因为他们在更新自己的概率判断时，只考虑到了 「2 号门为空」；单看这一条，1 号门和 3 号门确实各有 50% 的机会藏有奖金。这就是为什么，贝叶斯学派强调，我们必须根据所有已知信息来进行条件概率推理，否则就可能陷入自相矛盾。</p><p data-pid="Es_A4KXl">当有人说出「第四次抛掷结果为正面」时，我们要考虑的并非「第四次抛掷结果为正面」这一事实本身。如果我们想从所有可能性的平行宇宙中找出自己所身处的宇宙，使用的筛选条件并非「硬币的第四次抛掷结果为正面」，而是「有一位遵循特定发言规则的发言人，<b>说出</b>了『第四次抛掷结果为正面』这句话」。说出的话语本身不等同于事实；不要被词语的字面意思所误导。</p><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 支持一个信念需要多少证据？ <a href="https://hpmor.xyz/ai2zb_23/" rel="noopener noreferrer" target="_blank">https://hpmor.xyz/ai2zb_23/</a></li></ol>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Thoughts%20Memo">Thoughts Memo</a></dd></div>
+            
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://www.zhihu.com/question/465382771/answer/79134961476" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="21962964397"><div class="post-meta"><time datetime="2024-11-03">2024-11-03</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 72 · 13 分钟</span></div><div class="post-summary"><h2><a href="21962964397.html"><span>如何破除对科学的怀疑？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>不必破除，科学不是宗教，科学接纳怀疑 [1] 。 相比盲信科学，你反而更应该审慎地看待科学研究。 就像统计数字会撒谎，科学研究也能用于撒谎。 以下内容摘自 @Thoughts Memo 汉化组的译文《 提防只看一项研究的人 》 一、提防单一研究：以医学为例 中世纪神学家 Aquinas 有 一句名言 ：「提防只念一本书的人」…</p><p class="tags"><a href="../?q=%E7%A7%91%E5%AD%A6%E7%B4%A0%E5%85%BB">#科学素养</a><a href="../?q=%E6%A6%82%E7%8E%87%E6%8E%A8%E7%90%86">#概率推理</a><a href="../?q=%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7">#不确定性</a><a href="../?q=%E6%9D%83%E5%A8%81">#权威</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1908952639854589075"><div class="post-meta"><time datetime="2025-05-22">2025-05-22</time><a class="meta-author" href="../?q=Jarrett%20Ye">Jarrett Ye · 回答</a><span>▲ 527 · 30 分钟</span></div><div class="post-summary"><h2><a href="1908952639854589075.html"><span>如何评价睡前消息第901期[“西方伪史论”对西方表达了最大敬畏]？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>哥白尼革命是科学史上的一个转折性事件。然而，我坚信人们通常从这段历史中汲取的教训在很大程度上与史实不符，而那些最重要的教训基本上 根本无人提及 [1]。事实证明，哥白尼革命的历史承载了关于理性的重要且出人意料的启示——揭示了探明世界真实运作方式的真实（与非真实）样貌。此外，它也与深度学习相关，但我大约需要花费五千字的篇幅来阐述…</p><p class="tags"><a href="../?q=%E5%93%A5%E7%99%BD%E5%B0%BC%E9%9D%A9%E5%91%BD">#哥白尼革命</a><a href="../?q=%E7%A7%91%E5%AD%A6%E5%93%B2%E5%AD%A6">#科学哲学</a><a href="../?q=%E7%90%86%E8%AE%BA%E4%B8%8E%E8%AF%81%E6%8D%AE">#理论与证据</a><a href="../?q=%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E7%90%86">#贝叶斯推理</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="827917379"><div class="post-meta"><time datetime="2024-10-18">2024-10-18</time><a class="meta-author" href="../?q=Eliezer%20Yudkowsky">Eliezer Yudkowsky</a><span>▲ 30 · 4 分钟</span></div><div class="post-summary"><h2><a href="827917379.html"><span>如何让我相信 2 + 2 = 3</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文回应「如何让我相信 2+2=3」的提问，认为即使一个数学信念看似确定，也可以想象足以促使人更新判断的经验；关键不是口头承认自己可能错，而是让信念回应证据。作者用耳塞数量、感知因果链和宗教信仰作例，说明真实信念应由思维与现实的相互作用形成，而非盲目坚持。</p><p class="tags"><a href="../?q=%E4%BF%A1%E5%BF%B5%E6%9B%B4%E6%96%B0">#信念更新</a><a href="../?q=%E8%AF%81%E6%8D%AE">#证据</a><a href="../?q=%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E7%90%86">#贝叶斯推理</a><a href="../?q=%E7%90%86%E6%80%A7%E4%B8%BB%E4%B9%89">#理性主义</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="22493693690"><div class="post-meta"><time datetime="2024-11-04">2024-11-04</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 66 · 7 分钟</span></div><div class="post-summary"><h2><a href="22493693690.html"><span>真正的谦卑是什么样的？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>真正的谦卑是一种深刻的自我认知和对知识的敬畏。 真正的谦卑不是贬低自己，而是认识自己的局限性。 真正的谦卑不是口头上说说而已，而是付诸于行动。 真正的谦卑不会被用作逃避责任或回避问题的借口。 以下内容摘自 @Thoughts Memo 汉化组的译文《 谦逊的恰当用法 》 人们普遍认为，优秀的科学离不开谦逊。但对于需要 什么样的…</p><p class="tags"><a href="../?q=%E7%90%86%E6%80%A7%E6%80%9D%E7%BB%B4">#理性思维</a><a href="../?q=%E7%A1%AE%E8%AE%A4%E5%81%8F%E8%AF%AF">#确认偏误</a><a href="../?q=%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E7%90%86">#贝叶斯推理</a><a href="../?q=%E4%BF%A1%E5%BF%B5%E4%BF%AE%E6%AD%A3">#信念修正</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="827867654"><div class="post-meta"><time datetime="2024-10-06">2024-10-06</time><a class="meta-author" href="../?q=Rob%20Bensinger">Rob Bensinger</a><span>▲ 130 · 17 分钟</span></div><div class="post-summary"><h2><a href="827867654.html"><span>理性：导读</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Rob Bensinger 为《如何真正改变你的想法》作导读，主张任何事实信念都应有受证据约束的最佳置信度：以先验结合新证据更新，而非把不确定当作50/50或任意观点。文中用Bob暗恋的例子，从1:5先验和10:1线索算出2:1后验（概率2/3）。译者补充，这里的理性指贝叶斯主义，不是启蒙理性主义、康德或亚里士多德的理性。 作…</p><p class="tags"><a href="../?q=%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E7%90%86">#贝叶斯推理</a><a href="../?q=%E7%90%86%E6%80%A7">#理性</a><a href="../?q=%E8%AE%A4%E7%9F%A5%E5%81%8F%E5%B7%AE">#认知偏差</a><a href="../?q=%E6%A6%82%E7%8E%87%E8%AE%BA">#概率论</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1979987449045337721"><div class="post-meta"><time datetime="2025-12-04">2025-12-04</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 272 · 14 分钟</span></div><div class="post-summary"><h2><a href="1979987449045337721.html"><span>拿到保研资格，却犹豫是直接读研还是去工作，该如何抉择？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>我和题主你经历相反：我是先在墨墨背单词实习，基本确定能进墨墨做记忆算法工程师，然后收到教务秘书的通知，告诉我保研资格轮到我了。 我是怎么决策的呢？我很果断地放弃了保研资格。因为我真在实验室待过一年，也和各种硕士生、博士生交流过，发觉自己不适合待在学术界。而公司那边我也待了一年多，具体什么情况我也都了解过了。虽然搞教育科技是我一…</p><p class="tags"><a href="../?q=%E5%86%B3%E7%AD%96%E5%88%86%E6%9E%90">#决策分析</a><a href="../?q=%E8%A1%8C%E5%8A%A8%E5%AD%A6%E4%B9%A0">#行动学习</a><a href="../?q=%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%9B%B4%E6%96%B0">#贝叶斯更新</a><a href="../?q=%E4%BF%A1%E6%81%AF%E8%8E%B7%E5%8F%96">#信息获取</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

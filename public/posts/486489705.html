@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>自主评分的间隔重复记忆系统可避免假阴性</title>
+<meta name="description" content="译文解释，机器评分的间隔重复系统可能把记忆正确但输入时手滑的答案判错，形成令人恼火且会额外安排复习的假阴性。拼写容错或变体词典只能部分解决这一问题；自主评分则让学习者区分记忆错误与输入失误，并可尝试不同评分方式，观察它们对学习的影响。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="自主评分的间隔重复记忆系统可避免假阴性">
+<meta property="og:description" content="译文解释，机器评分的间隔重复系统可能把记忆正确但输入时手滑的答案判错，形成令人恼火且会额外安排复习的假阴性。拼写容错或变体词典只能部分解决这一问题；自主评分则让学习者区分记忆错误与输入失误，并可尝试不同评分方式，观察它们对学习的影响。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-03-24">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="486489705" data-rec-seeds="472256442,552951806,623551320,404257681,399548149,537644290,533792911,688186934">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2022-03-24">2022-03-24</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%20%26%20%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">间隔重复 &amp; 注意力管理</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 2 分钟</span>
+          <span>▲ 13</span>
+        </p>
+        <h1>自主评分的间隔重复记忆系统可避免假阴性</h1>
+        
+        <p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E5%81%87%E9%98%B4%E6%80%A7">#假阴性</a><a href="../?q=%E8%87%AA%E6%88%91%E8%AF%84%E4%BC%B0">#自我评估</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F">#记忆系统</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">参考文献</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">链接至本文</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="7YI-8Up2">在<a class="wrap external" href="https://notes.andymatuschak.org/z4eXdSMJFv2qVGXSUEKH4vdcHBrLHcFY1ZGfC" rel="noopener noreferrer" target="_blank">间隔重复记忆系统</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>的复习环节中，如果我因为记错了一个函数的名字而在 SQL 表达式中打错了字，那就不好了，我可能应该再复习一遍。但是，如果我因为手指打滑而打错了字，我仍然自认为是「正确的」。在机器评分的系统中，假阴性是非常令人恼火的。当然，假阴性也是低效的，因为卡片会更快地重新出现。但激怒用户才是更严重的问题。</p><p data-pid="XNyximY9">机器分级系统引入了各种机制来避免这个问题——例如，允许用户输入与答案之间有一定的较小的编辑距离，或者为的拼写变体准备字典。这些措施必然是相当片面的。（译注：编辑距离是针对二个字符串的差异程度的量化量测，量测方式是看至少需要多少次的处理才能将一个字符串变成另一个字符串。）</p><p data-pid="kyRl_rZO">更多内容请参见《为非常好奇的人提供的量子计算》中的<a class="wrap external" href="https://quantum.country/qcvc#how-to-use-or-not-use-the-questions" rel="noopener noreferrer" target="_blank">如何使用（或不使用！）问题</a>一节；例如：</p><blockquote data-pid="XAf1V0B_">你可能已经注意到这些问题是自我评估的。如果你有时即使是在你不正确的时候，但也想评为「正确」，尽可大胆去做！你认为这对你的学习会有什么影响？你喜欢这种略带背德的感觉吗？我必须承认，我喜欢。如果是的话，不要感到尴尬：这应该是，首先是乐趣。或者试着在你正确的时候给自己评分为「错误」，或者干脆跳过这些问题。这些行为对你的学习有什么影响？关键是要弄清楚如何与这些问题尽力较量，从而尽可能快地学习。这意味着要对你的学习方式进行有趣的试验，找到适合你的方法。</blockquote><hr/><h2 id="sec-1">参考文献</h2><p data-pid="zgR0P3-K">Matuschak, A., &amp; Nielsen, M. (2019, March). Quantum computing for the very curious. Quantum Country. <a class="external" href="https://quantum.country/qcvc" rel="noopener noreferrer" target="_blank"><span class="invisible">https://</span><span class="visible">quantum.country/qcvc</span><span class="invisible"></span></a></p><h2 id="sec-2">链接至本文</h2><ul><li data-pid="pFxCRSGN">暂无</li></ul><h2 id="sec-3">声明</h2><p data-pid="EXe-X8pe">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="AEexX0wS"><a class="wrap external" href="https://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/z7NmYGQd6wLQr3zQcDEPMizghkD9thEhhfg2E" rel="noopener noreferrer" target="_blank">Self-graded spaced repetition memory systems avoid false negatives (andymatuschak.org)</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 间隔重复记忆系统 <a class="tm-internal" data-tm-id="404257681" href="404257681.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">参考文献</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">链接至本文</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/z7NmYGQd6wLQr3zQcDEPMizghkD9thEhhfg2E" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/z7NmYGQd6wLQr3zQcDEPMizghkD9thEhhfg2E ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/486489705" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="472256442"><div class="post-meta"><time datetime="2022-02-26">2022-02-26</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 13 · 1 分钟</span></div><div class="post-summary"><h2><a href="472256442.html"><span>自主评分的间隔重复记忆系统比机器评分的系统更有效率</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者认为，机器评分的间隔重复系统要求输入答案，会把每项复习耗时提高数倍；选择题虽然免去输入，却将主动生成转为辨认，可能削弱记忆编码。文章据此主张自主评分的系统能降低交互成本并保留提取练习。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E7%94%9F%E6%88%90%E6%95%88%E5%BA%94">#生成效应</a><a href="../?q=%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1">#交互设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="399548149"><div class="post-meta"><time datetime="2021-08-13">2021-08-13</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 24 · 2 分钟</span></div><div class="post-summary"><h2><a href="399548149.html"><span>在间隔重复记忆系统中，填空卡似乎比问答卡产生更少的理解</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 根据个人观察提出，填空卡虽易制作，却可能因暗示过多、角度单一、内容不够原子化或答案不明确而促成模式匹配，较难帮助理解；他也承认这些判断缺少具体证据。填空卡仍适合高效建卡或某些持续阅读应用，尤其当替代方案是完全不做卡片时。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%A1%AB%E7%A9%BA%E5%8D%A1">#填空卡</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E7%90%86%E8%A7%A3">#理解</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="594372725"><div class="post-meta"><time datetime="2022-12-26">2022-12-26</time><a class="meta-author" href="../?q=Derek%20Sivers">Derek Sivers</a><span>▲ 230 · 8 分钟</span></div><div class="post-summary"><h2><a href="594372725.html"><span>用间隔重复软件记住一门编程语言</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Derek Sivers 分享自己用 Anki 学习编程语言的经验：先真正理解内容，再把命令、语法和易错点拆成小卡片，通过代码输出题、对比案例及多种解法来检索。作者称，连续一年每日练习后，编程表达流畅度明显提高，并建议让卡片测试未来容易混淆的细节；文章属于个人经验报告，而非控制实验。</p><p class="tags"><a href="../?q=Anki">#Anki</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80">#编程语言</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2834169225"><div class="post-meta"><time datetime="2023-01-07">2023-01-07</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 32 · 7 分钟</span></div><div class="post-summary"><h2><a href="2834169225.html"><span>如何学会正确的理解记忆？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这个问题可以从如何编写易于记忆的抽认卡的角度来回答： 间隔重复记忆卡片应该从多个角度对概念进行编码 抽认卡，就像那些 间隔重复记忆系统 [1] 一样，得到了一个罪有应得的坏名声，部分原因是它们让人们想起了死记硬背的学校学习。人们记得被强迫去记住孤立的事实，如不同类别的云的名称——他们记得在没有建立任何持久理解的情况下，鹦鹉学舌…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%89%87">#记忆卡片</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="565467709"><div class="post-meta"><time datetime="2022-09-17">2022-09-17</time><a class="meta-author" href="../?q=Issa%20Rice">Issa Rice</a><span>▲ 11 · 1 分钟</span></div><div class="post-summary"><h2><a href="565467709.html"><span>间隔重复让你感觉在某门学科上总是学生</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者指出，间隔重复能延长记忆，却可能让学习者觉得自己永远处于学生阶段：持续复习会不断提示遗忘之处。文章也提到 Andy Matuschak 对“量子计算学习者”的相反看法，认为持续学习可以意味着认真掌握，而非浅尝后遗忘。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E8%80%85%E8%BA%AB%E4%BB%BD">#学习者身份</a><a href="../?q=%E8%AE%B0%E5%BF%86">#记忆</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E5%8A%A8%E6%9C%BA">#学习动机</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="688186934"><div class="post-meta"><time datetime="2024-03-21">2024-03-21</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 71 · 2 分钟</span></div><div class="post-summary"><h2><a href="688186934.html"><span>也许是「练习系统」，而不是「记忆系统」</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 认为，“记忆系统”仍不足以描述间隔复习工具：它们也能支持围绕感兴趣的想法进行规律练习、建立联系、应用和内化。练习系统这一称呼更能强调行动与渐进提升，但可能忽略反思和消化等学习环节；他因此也考虑“学习系统”这一更宽泛名称。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%BB%83%E4%B9%A0%E7%B3%BB%E7%BB%9F">#练习系统</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F">#记忆系统</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

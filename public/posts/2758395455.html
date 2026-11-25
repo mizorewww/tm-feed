@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>请问墨墨背单词的算法是怎样的?</title>
+<meta name="description" content="利益相关：墨墨记忆算法工程师 墨墨背单词基于 DHP 记忆模型和 SSP 优化算法，计算了不同复习反馈时间序列下最优的复习时机。其优化目标是最小化每一位学习者记忆单词的时间成本。关于这个算法的具体介绍，请见我的论文： 叶峻峣：KDD&#x27;22 | 墨墨背单词：基于时序模型与最优控制的记忆算法 [AI+教育] 在墨墨记忆算法中，每个…">
+<meta name="author" content="Thoughts Memo">
+<meta property="og:title" content="请问墨墨背单词的算法是怎样的?">
+<meta property="og:description" content="利益相关：墨墨记忆算法工程师 墨墨背单词基于 DHP 记忆模型和 SSP 优化算法，计算了不同复习反馈时间序列下最优的复习时机。其优化目标是最小化每一位学习者记忆单词的时间成本。关于这个算法的具体介绍，请见我的论文： 叶峻峣：KDD&#x27;22 | 墨墨背单词：基于时序模型与最优控制的记忆算法 [AI+教育] 在墨墨记忆算法中，每个…">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-11-14">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="2758395455" data-rec-seeds="3022625285,2103097374788928856,3441880156,3517882952,73912067084,3459523209,577383961,3415138220">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2022-11-14">2022-11-14</time>
+          <a class="tag" href="../?q=%E5%AD%A6%E5%A7%94%E5%8F%B6%E5%93%A5%E7%9A%84%E9%9A%8F%E7%AC%94">学委叶哥的随笔</a>
+          <a class="tag" href="../?q=Thoughts%20Memo">Thoughts Memo</a>
+          <span>约 1 分钟</span>
+          <span>▲ 135</span>
+        </p>
+        <h1>请问墨墨背单词的算法是怎样的?</h1>
+        <details class="question-fold"><summary>查看问题描述</summary><div class="question-fold-body prose"><p>最近在使用墨墨背单词，记忆时操作有些懵，想问一下这个APP的基本算法，比如:</p><p><b>“模糊”“认识”“忘记”这几个按钮在第一次和非第一次接触某个单词时，点击之后分别产生什么效果？</b></p><p><b>复习的单词从何而来？是随机抽取还是根据记忆时间之类的指标？</b></p><p>个人记忆曲线根据什么绘制？</p><p>……等等</p></div></details>
+        <p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=DHP%E6%A8%A1%E5%9E%8B">#DHP模型</a><a href="../?q=%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97">#时间序列</a><a href="../?q=%E9%9A%8F%E6%9C%BA%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84">#随机最短路径</a><a href="../?q=SSP-MMC">#SSP-MMC</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="bITX2G_S">利益相关：墨墨记忆算法工程师</p><p data-pid="9kPo8jgg">墨墨背单词基于 DHP 记忆模型和 SSP 优化算法，计算了不同复习反馈时间序列下最优的复习时机。其优化目标是最小化每一位学习者记忆单词的时间成本。关于这个算法的具体介绍，请见我的论文：</p><a class="internal tm-internal" data-image="https://pic2.zhimg.com/v2-337e676d732039a25471c1057c54bfa3_180x120.jpg" data-image-height="1480" data-image-width="2700" data-tm-id="577383961" href="577383961.html">叶峻峣：KDD'22 | 墨墨背单词：基于时序模型与最优控制的记忆算法 [AI+教育]</a><p data-pid="p9vfUR3Y">在墨墨记忆算法中，每个用户的每个单词都有一个记忆稳定性来刻画该单词的遗忘速率。对于不同难度、不同记忆稳定性的单词而言，其未来复习时间成本的期望是不同的。墨墨抽取复习单词，是根据每个单词的最优复习时间确定的。在最优复习时间进行记忆，未来的复习时间成本最小。</p><p data-pid="-_IyGKpB">当你对单词反馈“模糊”、“认识”或者“忘记”时，该单词的复习时间序列会更新，并重新计算记忆稳定性，然后根据优化算法安排最佳复习间隔。</p><p data-pid="sBcSkS1o">墨墨的个人记忆曲线是根据所有已学单词的记忆稳定性计算而来的。每个记忆稳定性对应一个单词的遗忘曲线，对这些遗忘曲线进行加权平均，即可得到个人整体记忆曲线。</p><p data-pid="TymRMy43">关于该算法的研发过程，可以看我的研究手札：</p><a class="internal" data-image="https://pic1.zhimg.com/v2-08134e67de67b70a126b02829d90edcc_180x120.jpg" data-image-height="1592" data-image-width="2251" href="https://zhuanlan.zhihu.com/p/543325359" rel="noopener noreferrer" target="_blank">叶峻峣：我是如何在本科期间发表顶会论文的？（内含开源代码和数据集）</a><p data-pid="nu3fzXlO">若想深入记忆算法研究，可以参考我写的算法教程和研究资源汇总：</p><a class="internal" data-image="https://pica.zhimg.com/v2-d5734ba2a8f7443e5dd8001cb46031fc_180x120.jpg" data-image-height="1080" data-image-width="1920" href="https://zhuanlan.zhihu.com/p/556020884" rel="noopener noreferrer" target="_blank">叶峻峣：间隔重复记忆算法：e 天内，从入门到入土。</a><a class="internal" data-image="https://pic1.zhimg.com/v2-508467d2d77b37d7642c84c0a995408a_180x120.jpg" data-image-height="815" data-image-width="1199" href="https://zhuanlan.zhihu.com/p/561539418" rel="noopener noreferrer" target="_blank">叶峻峣：间隔重复记忆算法研究资源汇总</a><p></p>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Thoughts%20Memo">Thoughts Memo</a></dd></div>
+            
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://www.zhihu.com/question/451367906/answer/2758395455" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="3022625285"><div class="post-meta"><time datetime="2023-05-11">2023-05-11</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 410 · 1 分钟</span></div><div class="post-summary"><h2><a href="3022625285.html"><span>你中第一篇顶会的时候是什么感觉？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>当然是激动咯，本科毕业前总算发出来了，当天立马发了条朋友圈： 关于这篇论文的研究历程，我也记录在了知乎上： 叶峻峣：我是如何在本科期间发表顶会论文的？（内含开源代码和数据集） 该论文的中文稿： 叶峻峣：KDD&#x27;22 | 墨墨背单词：基于时序模型与最优控制的记忆算法 [AI+教育] 我的毕业论文对其进行了进一步的拓展： 叶峻峣…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=DHP%E6%A8%A1%E5%9E%8B">#DHP模型</a><a href="../?q=%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97">#时间序列</a><a href="../?q=%E9%9A%8F%E6%9C%BA%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84">#随机最短路径</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="577383961"><div class="post-meta"><time datetime="2022-10-26">2022-10-26</time><a class="meta-author" href="../?q=Junyao%20Ye">Junyao Ye</a><span>▲ 574 · 16 分钟</span></div><div class="post-summary"><h2><a href="577383961.html"><span>KDD&#x27;22 | 墨墨背单词：基于时序模型与最优控制的记忆算法 [AI+教育]</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>叶峻峣等介绍KDD 2022论文，用墨墨背单词一个月的2.2亿条日志保留复习间隔与反馈顺序，按词难度聚合、拟合遗忘半衰期，公开数据与代码。DHP以难度、半衰期、回忆概率和结果建立可解释的状态转移，纳入间隔效应及遗忘后的变化；对历史数据的半衰期预测优于HLR，并观察到巩固收益递减。 SSP-MMC把单条记忆达到目标半衰期的预期复…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=DHP%E6%A8%A1%E5%9E%8B">#DHP模型</a><a href="../?q=%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97">#时间序列</a><a href="../?q=%E9%9A%8F%E6%9C%BA%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84">#随机最短路径</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="3441880156"><div class="post-meta"><time datetime="2024-03-24">2024-03-24</time><a class="meta-author" href="../?q=Jarrett%20Ye">Jarrett Ye · 回答</a><span>▲ 147 · 1 分钟</span></div><div class="post-summary"><h2><a href="3441880156.html"><span>什么样子叫做喜欢科研，不喜欢写论文但喜欢解决问题叫吗？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>老实说，写完四篇论文后我就不太想继续写了。 发论文太花时间，发出来后方法已经过时了（被新的自己超越）。我现在回头看以前论文实验的代码，都恨不得把自己锤一遍，什么垃圾玩意。 和审稿人拉扯很烦，之前就遇到审稿人指定要求引用 A、B、C 文献（作者都是同一个人）。 现在还有一篇和别人合作在写，只想尽到自己的责任，把这个工作做完，之后…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E9%9A%8F%E6%9C%BA%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84">#随机最短路径</a><a href="../?q=DHP%E6%A8%A1%E5%9E%8B">#DHP模型</a><a href="../?q=%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97">#时间序列</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="656714407"><div class="post-meta"><time datetime="2023-09-17">2023-09-17</time><a class="meta-author" href="../?q=Jingyong%20Su">Jingyong Su</a><span>▲ 335 · 23 分钟</span></div><div class="post-summary"><h2><a href="656714407.html"><span>IEEE TKDE 2023 | 墨墨背单词：通过捕捉记忆动态，优化间隔重复调度</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>论文提出交替优化记忆预测与复习计划的间隔重复框架：用 DHP-HLR 和 GRU-HLR 根据复习历史建模半衰期与回忆概率，再把调度建成随机最短路径问题，以尽量降低达到目标记忆强度的复习成本。作者报告，在墨墨背单词的大规模行为数据上，时序模型比 HLR 更准确，SSP-MMC 仿真也优于若干基线；文章同时指出模型泛化和学习场景…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%A4%8D%E4%B9%A0%E8%B0%83%E5%BA%A6">#复习调度</a><a href="../?q=%E5%8D%8A%E8%A1%B0%E6%9C%9F%E5%9B%9E%E5%BD%92">#半衰期回归</a><a href="../?q=GRU">#GRU</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2103097374788928856"><div class="post-meta"><time datetime="2026-11-09">2026-11-09</time><a class="meta-author" href="../?q=Jarrett%20Ye">Jarrett Ye · 回答</a><span>▲ 37 · 1 分钟</span></div><div class="post-summary"><h2><a href="2103097374788928856.html"><span>学生发表的学术论文的被引次数一般是多少？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>其他领域不太清楚，至少在间隔重复算法这个冷门领域，我大四的时候发的论文，现在有四十多个引用了： 这个上升速度，让我不禁怀疑是 AI 灌水越来越严重了（ 在前 GPT 时代搓这两篇论文还是挺累的： KDD&#x27;22 | 墨墨背单词：基于时序模型与最优控制的记忆算法 [AI+教育] IEEE TKDE 2023 | 墨墨背单词：通过捕…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E9%9A%8F%E6%9C%BA%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84">#随机最短路径</a><a href="../?q=DHP%E6%A8%A1%E5%9E%8B">#DHP模型</a><a href="../?q=%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97">#时间序列</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1918737658743612940"><div class="post-meta"><time datetime="2025-06-18">2025-06-18</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 464 · 4 分钟</span></div><div class="post-summary"><h2><a href="1918737658743612940.html"><span>计算机科学好像可以和任何学科交叉，计算机在学科研究方面有什么价值？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>利益相关：墨墨背单词算法工程师 我是做计算机和教育/认知学科交叉的，比如我的这两篇论文： KDD&#x27;22 |墨墨背单词：基于时序模型与最优控制的记忆算法 [AI+教育] IEEE TKDE 2023 |墨墨背单词：通过捕捉记忆动态，优化间隔重复调度 还有我维护的开源项目： open-spaced-repetition/fsrs4…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E9%9A%8F%E6%9C%BA%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84">#随机最短路径</a><a href="../?q=DHP%E6%A8%A1%E5%9E%8B">#DHP模型</a><a href="../?q=%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97">#时间序列</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

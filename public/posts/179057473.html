@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>遗忘指数是间隔重复中的一个有缺陷的度量</title>
+<meta name="description" content="文章指出，遗忘指数只是所有卡片平均可提取性的指标，不能呈现不同卡片回忆概率的分布，也无法充分反映记忆稳定性增长。作者用 SM-16 与 SM-17 的模拟例子说明，即使平均值相同，单卡表现和稳定性增长也可能不同；因此不应把平均遗忘率当作间隔重复算法效率的最终衡量。">
+<meta name="author" content="Piotr Wozniak">
+<meta property="og:title" content="遗忘指数是间隔重复中的一个有缺陷的度量">
+<meta property="og:description" content="文章指出，遗忘指数只是所有卡片平均可提取性的指标，不能呈现不同卡片回忆概率的分布，也无法充分反映记忆稳定性增长。作者用 SM-16 与 SM-17 的模拟例子说明，即使平均值相同，单卡表现和稳定性增长也可能不同；因此不应把平均遗忘率当作间隔重复算法效率的最终衡量。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-08-11">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="179057473" data-rec-seeds="179076885,401155017,563438547,274352214,580945538,574628398,2020082520478201804,471760789">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2020-08-11">2020-08-11</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%20%26%20%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">间隔重复 &amp; 注意力管理</a>
+          <a class="tag" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a>
+          <span>约 2 分钟</span>
+          <span>▲ 6</span>
+        </p>
+        <h1>遗忘指数是间隔重复中的一个有缺陷的度量</h1>
+        
+        <p class="tags"><a href="../?q=%E9%81%97%E5%BF%98%E6%8C%87%E6%95%B0">#遗忘指数</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E7%AE%97%E6%B3%95%E8%AF%84%E4%BC%B0">#算法评估</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">遗忘指数只是一个平均值</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">例子</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">解决方案</a></li><li class="level-2"><a href="#sec-4" data-toc-target="sec-4">请参阅</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <blockquote data-pid="bL1VAejs">原文：<a class="wrap external" href="http://supermemopedia.com/wiki/Forgetting_index_is_a_flawed_metric_in_spaced_repetition" rel="noopener noreferrer" target="_blank">Forgetting index is a flawed metric in spaced repetition</a></blockquote><h2 id="sec-1"><b>遗忘指数只是一个平均值</b></h2><p data-pid="-r0xKEO0">在算法 SM-17 出现之前，所有间隔重复软件是围绕遗忘指数的概念而设计的。甚至神经网络的方法也使用平均回忆率作为优化标准。遗忘指数是学习效率和进步的有趣指标。但是，我们不能忘记这是一个平均值，并且没有表明重复样本的方差。</p><p data-pid="CXtJ-e5-">遗忘概率的<b>分布</b>对于学习效率和间隔重复算法的设计至关重要。这不仅是统计问题。准确的概率预测对于最大程度地提高记忆稳定性至关重要。</p><h2 id="sec-2"><b>例子</b></h2><p data-pid="r9BpAFIK">以3个虚构的卡片为例，并在 SuperMemo 16 和 SuperMemo 17 中看看 3 个关于回忆概率（可提取性用 R 表示）的模拟预测（为便于说明，夸大了差异）：</p><ul><li data-pid="YU8KYeC6">SuperMemo 16（不准确）：R = 70，R = 80，R = 90</li><li data-pid="yum9Zk1l">SuperMemo 17（准确的）：R = 80，R = 80，R = 80</li></ul><p data-pid="IhDUfTFP">这三个卡片的样本均将产生 80％ 的平均可提取性。</p><p data-pid="L6oiQiO8">但是，对于这 3 个卡片，重复进行的（模拟）记忆稳定性增长可能存在显着差异：</p><ul><li data-pid="86lnQ5H0">SuperMemo 16：SInc = 1.5，SInc = 2.2，SInc = 1.3（平均更低的增长：SInc = 1.66）</li><li data-pid="m6VI_wgZ">SuperMemo 17：SInc = 2.3，SInc = 2.2，SInc = 2.1（平均更高的增长：SInc = 2.2）</li></ul><blockquote data-pid="7GO-o620">译者注：这里的 SInc 即复习前后的间隔比例，SInc 越大间隔增长的倍数也越大。想了解记忆模型？请参阅：<a class="internal tm-internal" data-tm-id="179076885" href="179076885.html">记忆的两个组成成分|浓缩通俗版</a></blockquote><p data-pid="cw0T2p7B">该实施例表明所述遗忘指数不是算法效率的最终测量。<a class="external" href="http://supermemo.com" rel="noopener noreferrer" target="_blank"><span class="invisible">http://</span><span class="visible">supermemo.com</span><span class="invisible"></span></a> 上的一些较旧的资料可能在比较中过分强调了遗忘指数的价值。</p><h2 id="sec-3"><b>解决方案</b></h2><p data-pid="xzcoMUX8">间隔重复软件设计的最佳度量是什么？我们有个主意。但是，我们希望保持讨论开放，直到我们确定最佳选择：<a class="wrap external" href="http://supermemopedia.com/wiki/Spaced_repetition_algorithm_metric" rel="noopener noreferrer" target="_blank">间隔重复算法度量</a></p><h2 id="sec-4"><b>请参阅</b></h2><ul><li data-pid="YNZaRjcZ"><a class="wrap external" href="http://supermemopedia.com/wiki/Open_letter_to_spaced_repetition_developers" rel="noopener noreferrer" target="_blank">给间隔重复开发人员的公开信</a></li></ul><p></p>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">遗忘指数只是一个平均值</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">例子</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">解决方案</a></li><li class="level-2"><a href="#sec-4" data-toc-target="sec-4">请参阅</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Piotr%20Wozniak">Piotr Wozniak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="http://supermemopedia.com/wiki/Forgetting_index_is_a_flawed_metric_in_spaced_repetition" target="_blank" rel="noopener noreferrer">http://supermemopedia.com/wiki/Forgetting_index_is_a_flawed_metric_in_spaced_repetition ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/179057473" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="179076885"><div class="post-meta"><time datetime="2020-08-10">2020-08-10</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 75 · 3 分钟</span></div><div class="post-summary"><h2><a href="179076885.html"><span>记忆的两个组成成分|浓缩通俗版</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本文浓缩翻译 SuperMemo 对记忆的双成分模型：回忆概率描述某时刻能否提取，记忆稳定性描述其随时间衰减的速度；后续又加入卡片难度。作者介绍稳定性增长如何随复习前的稳定性、可提取性和难度变化，并说明 SuperMemo 以多维矩阵近似优化复习间隔。</p><p class="tags"><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8D%A1%E7%89%87%E9%9A%BE%E5%BA%A6">#卡片难度</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1907760881749718522"><div class="post-meta"><time datetime="2025-05-19">2025-05-19</time><a class="meta-author" href="../?q=Domenic%20Denicola">Domenic Denicola</a><span>▲ 261 · 12 分钟</span></div><div class="post-summary"><h2><a href="1907760881749718522.html"><span>间隔重复记忆系统：已取得长足进步</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Domenic Denicola 回顾间隔重复系统如何从 SM-2 一类固定间隔规则转向 FSRS：后者用机器学习拟合难度、稳定性和可提取性，再依用户设定的目标保留率安排复习，并可优化个人参数。作者以自己的日语卡片模拟和使用经验说明，较低的目标保留率可能减少复习负担并增加记住的卡片数。在该模拟中，每日复习量设有上限，降低保留率…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=FSRS">#FSRS</a><a href="../?q=SM-2">#SM-2</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="279166945"><div class="post-meta"><time datetime="2020-11-08">2020-11-08</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 21 · 3 分钟</span></div><div class="post-summary"><h2><a href="279166945.html"><span>间隔效应</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章解释间隔效应，并区分增加学习间隔可能带来的正面收益与复习过频可能使效果被忽略的负面解释。作者以记忆的双组分模型和稳定化函数统一二者，称每条记忆痕迹都有使预期效果最大化的复习时机；SuperMemo 数据显示，稳定性较低、内容较复杂的记忆可能有更明显的间隔效应。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E6%95%88%E5%BA%94">#间隔效应</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E7%A8%B3%E5%AE%9A%E5%8C%96%E5%87%BD%E6%95%B0">#稳定化函数</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2020082520478201804"><div class="post-meta"><time datetime="2026-03-25">2026-03-25</time><a class="meta-author" href="../?q=Giacomo%20Randazzo">Giacomo Randazzo</a><span>▲ 17 · 14 分钟</span></div><div class="post-summary"><h2><a href="2020082520478201804.html"><span>记忆模型的数学形式化</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Giacomo Randazzo 与 Aidan Campbell 将记忆模型形式化为：输入学生、卡片内容和完整复习历史，输出随时间变化的遗忘曲线及回忆概率。该框架突破只看单卡历史的局部独立假设，使跨卡迁移和干扰可被建模；稳定性成为可推导量，难度则由具体模型决定。作者还证明，若无额外结构假设，仅凭单次二元回忆结果无法识别可提取…</p><p class="tags"><a href="../?q=%E8%AE%B0%E5%BF%86%E6%A8%A1%E5%9E%8B">#记忆模型</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E9%81%97%E5%BF%98%E6%9B%B2%E7%BA%BF">#遗忘曲线</a><a href="../?q=FSRS">#FSRS</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="401155017"><div class="post-meta"><time datetime="2021-08-18">2021-08-18</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 9 · 4 分钟</span></div><div class="post-summary"><h2><a href="401155017.html"><span>JOST&#x27;S LAW 约斯特定律</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>条目介绍约斯特第一、第二定律：同等强度的联想中，较旧的记忆更能从重复中获益，也会随时间衰退得更慢。文章把这一观察联系到间隔效应、额外学习，以及后来以稳定性和可提取性描述长期记忆的双组分模型。</p><p class="tags"><a href="../?q=%E7%BA%A6%E6%96%AF%E7%89%B9%E5%AE%9A%E5%BE%8B">#约斯特定律</a><a href="../?q=%E9%97%B4%E9%9A%94%E6%95%88%E5%BA%94">#间隔效应</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="274352214"><div class="post-meta"><time datetime="2020-11-05">2020-11-05</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 22 · 5 分钟</span></div><div class="post-summary"><h2><a href="274352214.html"><span>遗忘曲线</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>词条介绍遗忘曲线：回忆概率会随时间下降，复习提升记忆稳定性并延长保持时间。作者区分单一稳定性记忆的指数遗忘与不同复杂度记忆混合后呈现的幂律近似，并用 SuperMemo 收集的曲线说明材料异质性、复习次数和学习者条件会影响数据形状；同时强调表述清晰的材料可能更易长期保留。</p><p class="tags"><a href="../?q=%E9%81%97%E5%BF%98%E6%9B%B2%E7%BA%BF">#遗忘曲线</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

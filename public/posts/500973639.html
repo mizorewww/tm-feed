@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>过早的扩大规模会阻碍系统的迭代</title>
+<meta name="description" content="作者警告，过早扩大原型会把系统架构和团队目标冻结在早期，增加维护负担并压低大胆实验的空间。扩大规模固然能带来真实用户反馈，但小规模、真实使用场景也能回答核心问题；作者主张先让系统规模服务于研究问题，而非把规模增长当成终点。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="过早的扩大规模会阻碍系统的迭代">
+<meta property="og:description" content="作者警告，过早扩大原型会把系统架构和团队目标冻结在早期，增加维护负担并压低大胆实验的空间。扩大规模固然能带来真实用户反馈，但小规模、真实使用场景也能回答核心问题；作者主张先让系统规模服务于研究问题，而非把规模增长当成终点。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-06-13">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="500973639" data-rec-seeds="552263007,521844479,484620977,500393401,625325526,644643099,582796159,631040289">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2022-06-13">2022-06-13</time>
+          <a class="tag" href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B%20%26%20%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">助记媒介 &amp; 思想工具</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 2 分钟</span>
+          <span>▲ 18</span>
+        </p>
+        <h1>过早的扩大规模会阻碍系统的迭代</h1>
+        
+        <p class="tags"><a href="../?q=%E8%BF%87%E6%97%A9%E8%A7%84%E6%A8%A1%E5%8C%96">#过早规模化</a><a href="../?q=%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1">#原型设计</a><a href="../?q=%E7%B3%BB%E7%BB%9F%E8%BF%AD%E4%BB%A3">#系统迭代</a><a href="../?q=%E7%94%A8%E6%88%B7%E5%8F%8D%E9%A6%88">#用户反馈</a><a href="../?q=%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1">#实验设计</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-3"><a href="#sec-1" data-toc-target="sec-1">为什么</a></li><li class="level-3"><a href="#sec-2" data-toc-target="sec-2">关于保持小规模</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-4" data-toc-target="sec-4">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="ErK4POkP">特别是在硅谷，当一个人有了一个原型或一点运作良好的模糊念头时，就面临将其扩大的诱惑：让它为更多的人和更多的用例工作，把它变成一个平台，让业绩折线图向右上角奔跑，等等。这个剧本显然威力巨大，但它的部署应该有谨慎的时机，因为它往往会让整个系统的概念架构冻结在早期。</p><h3 id="sec-1">为什么</h3><p data-pid="j_SHiVU-">你要花时间建设通用的基础设施。需要仔细设计接口，写文档和测试，并且确保系统能处理负载。这些工作和做实验是对立的，不仅因为要占用时间：这套系统会更加固化。</p><p data-pid="3hwDk1tq">一旦用户和用例增加，做出改变或者进行大胆的实验就变得很困难。你要保证现有的功能不被破坏，否则需要小心地沟通并管理变化。</p><p data-pid="uNXXmaV-">这些不同的用户每天都要消耗大量的时间：在一个小的原型中，1% 的人出现的故障不会带来真正的问题，但当你有 10 万个用户时，它就会成为高度优先的问题。</p><p data-pid="Hup38Lx4">一旦这个剧本成为主要目标，你的动机就会改变：你的目标自然会变成使业绩图表上升，而不是回答关于你的系统的基本问题。</p><h3 id="sec-2">关于保持小规模</h3><p data-pid="Gm6Tx8O8">扩大规模的一个巨大的好处是，<a class="wrap external" href="https://notes.andymatuschak.org/z7YyAp683VNbTmDG4hx9QFpf5urwxZJpsycS6" rel="noopener noreferrer" target="_blank">实践出洞见</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>的过程能得到更多的反馈。诚然，<a class="wrap external" href="https://notes.andymatuschak.org/z3H98n8DGZmu8XArqHZVsckyWvbTe8wK4kAt2" rel="noopener noreferrer" target="_blank">有效的系统设计需要从真刀真枪的使用情境汲取洞见</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>，但是创造小规模的真刀真枪的使用环境是可能的，你同样能将其用于回答关于你的系统的许多核心问题。事实上：技术专家经常本能地扩大他们的系统，以增加他们从严肃用户那里得到有力反馈的机会，但这是一个相当随机的方法。你可以通过精心组织你的原型设计过程来实现这一目标。这最终可能会更好，因为<a class="wrap external" href="https://notes.andymatuschak.org/z7Ldzn94FibghJBEG9hAebu8LMNV7NVBFvsfg" rel="noopener noreferrer" target="_blank">实践出洞见时，建议摸石头过河而不是先画蓝图</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup></p><p data-pid="e32dqFRj">当然，最终你会需要对系统进行归纳，以回答某些问题，但至少在研究成果方面，最好是使规模<b>遵循</b>这些问题所表达的需要。在这个意义上，它是一个工具性的目的，而不是一个终极目的。</p><h2 id="sec-3">链接至本文（已汉化）</h2><ul><li data-pid="XBLDCJCE"><a class="internal tm-internal" data-tm-id="500393401" href="500393401.html">在 2020 年大力推广助记媒介尚且为时过早</a></li></ul><h2 id="sec-4">声明</h2><p data-pid="a1kSLiu9">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="IlsSjAoI"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>题图 by A2017laite<br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/z2kr7QrJczqYyfwLFcv1FLEUMdVTsgfYSdFXA" rel="noopener noreferrer" target="_blank">Premature scaling can stunt system iteration (andymatuschak.org)</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 实践出洞见 <a class="tm-internal" data-tm-id="521844479" href="521844479.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 有效的系统设计需要从真刀真枪的使用情境汲取洞见 <a class="tm-internal" data-tm-id="552263007" href="552263007.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 实践出洞见时，建议摸石头过河而不是先画蓝图 <a class="tm-internal" data-tm-id="484620977" href="484620977.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-3"><a href="#sec-1" data-toc-target="sec-1">为什么</a></li><li class="level-3"><a href="#sec-2" data-toc-target="sec-2">关于保持小规模</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-4" data-toc-target="sec-4">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/z2kr7QrJczqYyfwLFcv1FLEUMdVTsgfYSdFXA" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/z2kr7QrJczqYyfwLFcv1FLEUMdVTsgfYSdFXA ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/500973639" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="552263007"><div class="post-meta"><time datetime="2022-08-11">2022-08-11</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 7 · 4 分钟</span></div><div class="post-summary"><h2><a href="552263007.html"><span>有效的系统设计需要从真刀真枪的使用情境汲取洞见</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者认为，原型有助于快速迭代，但许多系统洞见只能在真实、有意义的使用情境中出现；若工具制作者不参与领域实践，评估就难以揭示理论与现实的差距。文章以 Pixar 的技术和电影协同发展为例，并讨论研究者需要兼具工具开发与严肃使用能力。</p><p class="tags"><a href="../?q=%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1">#系统设计</a><a href="../?q=%E7%9C%9F%E5%AE%9E%E4%BD%BF%E7%94%A8%E6%83%85%E5%A2%83">#真实使用情境</a><a href="../?q=%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91">#工具开发</a><a href="../?q=%E8%AE%BE%E8%AE%A1%E7%A0%94%E7%A9%B6">#设计研究</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="521844479"><div class="post-meta"><time datetime="2022-05-30">2022-05-30</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 12 · 2 分钟</span></div><div class="post-summary"><h2><a href="521844479.html"><span>实践出洞见</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文提出“实践出洞见”闭环：构建系统并观察其行为，可能让人从新角度理解底层理论；这些理论洞见又能反过来改进系统。作者认为，要形成这一循环，实践者既需系统设计能力，也需深入掌握所处理的主题，并应解决真实且重要的问题；玩具系统或脱离使用场景的理论工作都较难产生有力洞见。</p><p class="tags"><a href="../?q=%E5%AE%9E%E8%B7%B5%E5%87%BA%E6%B4%9E%E8%A7%81">#实践出洞见</a><a href="../?q=%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">#思想工具</a><a href="../?q=%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1">#系统设计</a><a href="../?q=%E7%90%86%E8%AE%BA%E6%A8%A1%E5%9E%8B">#理论模型</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="500393401"><div class="post-meta"><time datetime="2022-04-19">2022-04-19</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 10 · 2 分钟</span></div><div class="post-summary"><h2><a href="500393401.html"><span>在 2020 年大力推广助记媒介尚且为时尚早</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者认为助记媒介虽展现潜力，但 2020 年仍在探索如何设计，贸然平台化和大规模推广会妨碍迭代。文章举应用卡片、逐步展开创作经验及助记文章增加阅读时间等实验与限制，说明媒介尚需改进，因此作者选择先完善 Orbit，并让少数作者试用以获得反馈。</p><p class="tags"><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=Orbit">#Orbit</a><a href="../?q=%E4%BA%A7%E5%93%81%E8%BF%AD%E4%BB%A3">#产品迭代</a><a href="../?q=%E7%94%A8%E6%88%B7%E6%B5%8B%E8%AF%95">#用户测试</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="625325526"><div class="post-meta"><time datetime="2023-04-27">2023-04-27</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 32 · 7 分钟</span></div><div class="post-summary"><h2><a href="625325526.html"><span>工具制造者/使用者合作的军械库</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章认为，思想工具常由深耕具体领域问题的人顺手创造，但工具制造与工具使用需要不同专长。作者建议两类合作者紧密合作，并共同建立一套成熟度不一、足以供人构想和试用的“工具点子军械库”，让创作者在真实项目中探索新媒介。由于单个项目可迭代范围有限，反复合作、连续开展规模适中而有实际挑战的创作项目，更有利于发展工具想法。</p><p class="tags"><a href="../?q=%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">#思想工具</a><a href="../?q=%E5%B7%A5%E5%85%B7%E8%AE%BE%E8%AE%A1">#工具设计</a><a href="../?q=%E7%94%A8%E6%88%B7%E7%A0%94%E7%A9%B6">#用户研究</a><a href="../?q=%E8%AE%BE%E8%AE%A1%E5%90%88%E4%BD%9C">#设计合作</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="484620977"><div class="post-meta"><time datetime="2022-03-22">2022-03-22</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 17 · 2 分钟</span></div><div class="post-summary"><h2><a href="484620977.html"><span>实践出洞见时，建议摸石头过河而不是先画蓝图</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者主张设计新思想工具时，应让理论与系统开发并行，并在真实使用中反复验证新想法；短反馈循环更适合用“摸石头过河”的渐进构建，而非先做宏大蓝图。每一步仍需形成具体原型，避免漫无方向。他还指出，软件开发与研究思维切换成本高，合作伙伴关系因此不宜停留在浅层兼职。</p><p class="tags"><a href="../?q=%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">#思想工具</a><a href="../?q=%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1">#系统设计</a><a href="../?q=%E6%B8%90%E8%BF%9B%E5%BC%80%E5%8F%91">#渐进开发</a><a href="../?q=%E5%8E%9F%E5%9E%8B%E8%BF%AD%E4%BB%A3">#原型迭代</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="644643099"><div class="post-meta"><time datetime="2023-07-20">2023-07-20</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 38 · 12 分钟</span></div><div class="post-summary"><h2><a href="644643099.html"><span>思想工具的棘轮过程</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak认为，思想工具只有形成可共享、可累积的知识，才成为真正的领域：把认知或主题洞见体现为系统，在真实任务中认真使用，再提炼并传播可推广认识，推动下一代系统。学界常缺严肃使用环境；企业多优化产品与市场表现，而非改写基础理论；独立制作者也可能止于漂亮原型，缺少持续观察和总结。 这个循环不能简单串行执行。系统…</p><p class="tags"><a href="../?q=%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">#思想工具</a><a href="../?q=%E8%AE%BE%E8%AE%A1%E7%A0%94%E7%A9%B6">#设计研究</a><a href="../?q=%E7%90%86%E8%AE%BA%E4%B8%8E%E5%AE%9E%E8%B7%B5">#理论与实践</a><a href="../?q=%E7%94%A8%E6%88%B7%E7%A0%94%E7%A9%B6">#用户研究</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

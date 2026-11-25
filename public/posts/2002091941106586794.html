@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>在 Execute Program 的复习中，错过的答案不会惩罚学生，除非他们「放弃」</title>
+<meta name="description" content="这则产品设计笔记说明，Execute Program 的间隔重复练习曾因机器评分把拼写等小错判成失败而产生大量假阴性。SQL 课程因此改为允许多次作答，只要最终正确就不算失败，且不再以表现决定后续课节解锁；只有点击“放弃”查看答案时，系统才缩短该题的复习间隔。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="在 Execute Program 的复习中，错过的答案不会惩罚学生，除非他们「放弃」">
+<meta property="og:description" content="这则产品设计笔记说明，Execute Program 的间隔重复练习曾因机器评分把拼写等小错判成失败而产生大量假阴性。SQL 课程因此改为允许多次作答，只要最终正确就不算失败，且不再以表现决定后续课节解锁；只有点击“放弃”查看答案时，系统才缩短该题的复习间隔。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-02-03">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="2002091941106586794" data-rec-seeds="2001372387644563990,1999896955036406673,2002785452772565187,2003900630289379481,1999149514427213729,2000259693428351079,1999145478621769990,576613520">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2026-02-03">2026-02-03</time>
+          <a class="tag" href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B%20%26%20%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">助记媒介 &amp; 思想工具</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 2 分钟</span>
+          <span>▲ 5</span>
+        </p>
+        <h1>在 Execute Program 的复习中，错过的答案不会惩罚学生，除非他们「放弃」</h1>
+        
+        <p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%87%AA%E5%8A%A8%E8%AF%84%E5%88%86">#自动评分</a><a href="../?q=%E5%81%87%E9%98%B4%E6%80%A7">#假阴性</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E5%8F%8D%E9%A6%88">#学习反馈</a><a href="../?q=Execute%20Program">#Execute Program</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">参考资料</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="XBWv2Cmq"><a class="wrap external" href="https://notes.andymatuschak.org/zSsjk5UvNPGrYp8B6DEFCMS" rel="noopener noreferrer" target="_blank">Execute Program</a> 的<a class="wrap external" href="https://notes.andymatuschak.org/z2D1qPwddPktBjpNuwYFVva" rel="noopener noreferrer" target="_blank">间隔重复记忆系统</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>卡片是机器判分的，因此如果读者在回答中出现语义上无关紧要的拼写错误，系统也会把卡片判错。这种假阴性会非常恼人，尤其是因为<a class="wrap external" data-draft-title="在你成功复习其前置课程之前，Execute Program 的课程不会解锁" href="https://notes.andymatuschak.org/zHLWyC5LVXZLWE9RmoC1gua" rel="noopener noreferrer" target="_blank">在你成功复习其前置课程之前，Execute Program 的课程不会解锁</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>。在 SQL 课程中，假阴性率高到足以促使系统在 2020 年初进行修改：只要学生最终能给出正确答案，不正确的回答就不再被「算作」失败。读者可以想尝试多少次就尝试多少次，而下一次复习的间隔仍会按 SRS 曲线增加。后续课节的解锁也不再取决于用户表现。</p><p data-pid="0BYOacBo">如果用户在尝试多次后仍无法给出答案，他们最终可以点击「放弃」来查看正确答案。如果他们以这种方式放弃，那么该问题的间隔会像 SRS 中常见的「遗忘答案」那样缩短。</p><p data-pid="4vSzS6HC">另见：<a class="wrap external" data-draft-title="自主评分的间隔重复记忆系统可避免假阴性" href="https://notes.andymatuschak.org/zQp7to6CDgQzSFqM7k3yPn7" rel="noopener noreferrer" target="_blank">自主评分的间隔重复记忆系统可避免假阴性</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup>以及<a class="wrap external" data-draft-title="间隔重复记忆系统中的自主评分与机器评分" href="https://notes.andymatuschak.org/zScaVuH9r2pwo24iD3f39bU" rel="noopener noreferrer" target="_blank">间隔重复记忆系统中的自主评分与机器评分</a>。</p><hr/><p class="ztext-empty-paragraph"><br/></p><h2 id="sec-1">参考资料</h2><ul><li data-pid="vmxyZUPM">Conversation with Gary Bernhardt, 2020-03-24</li><li data-pid="1qfyuUBK">Email with Gary Bernhardt, 2020-04-07. <span class="nolink">Re: Progress mechanics for spaced memory systems</span></li></ul><h2 id="sec-2">链接至本文（已汉化）</h2><ul><li data-pid="9xu8JrvJ">暂无</li></ul><h2 id="sec-3">声明</h2><p data-pid="a1kSLiu9">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="LmxKl2KQ"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 gpt-5.2-high，校对 Jarrett Ye<br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/zX7RdiHGbHYnkFznUr9VZx7" rel="noopener noreferrer" target="_blank">Missed answers in Execute Program’s reviews don’t penalize the student unless they “give up”</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 间隔重复记忆系统（Spaced repetition memory system） <a class="tm-internal" data-tm-id="404257681" href="404257681.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 在你成功复习其前置课程之前，Execute Program 的课程不会解锁 <a class="tm-internal" data-tm-id="2001372387644563990" href="2001372387644563990.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 自主评分的间隔重复记忆系统可避免假阴性 <a class="tm-internal" data-tm-id="486489705" href="486489705.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">参考资料</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/zX7RdiHGbHYnkFznUr9VZx7" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/zX7RdiHGbHYnkFznUr9VZx7 ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/2002091941106586794" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="2001372387644563990"><div class="post-meta"><time datetime="2026-02-01">2026-02-01</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 9 · 2 分钟</span></div><div class="post-summary"><h2><a href="2001372387644563990.html"><span>在你成功复习其前置课程之前，Execute Program 的课程不会解锁</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者解释，Execute Program 会锁住尚未满足前置条件的课节，只有依赖课程被阅读并近期复习后才解锁。这样作者可写出更聚焦、无需重讲前置内容的课程，但也形成过关式学习序列，与间隔重复按个体记忆状态灵活安排复习的方式存在冲突。</p><p class="tags"><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1">#课程设计</a><a href="../?q=%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86">#前置知识</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2003900630289379481"><div class="post-meta"><time datetime="2026-02-08">2026-02-08</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 11 · 2 分钟</span></div><div class="post-summary"><h2><a href="2003900630289379481.html"><span>Execute Program</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这篇译文介绍 Gary Bernhardt 的 Execute Program：它把编程讲解与可执行练习结合，并用间隔重复系统安排回顾。作者列出其交互特点，包括课程按前置知识解锁、卡片要求实际运行程序、复习错误不作惩罚，以及进度更强调完成新课而非无限延长复习。</p><p class="tags"><a href="../?q=%E7%BC%96%E7%A8%8B%E6%95%99%E8%82%B2">#编程教育</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%AD%A6%E4%B9%A0">#交互式学习</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="643871124"><div class="post-meta"><time datetime="2023-07-16">2023-07-16</time><a class="meta-author" href="../?q=Dwarkesh%20Patel">Dwarkesh Patel</a><span>▲ 289 · 95 分钟</span></div><div class="post-summary"><h2><a href="643871124.html"><span>Andy Matuschak - 自学，间隔重复，以及为什么书本不起作用</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Dwarkesh Patel 采访研究者兼设计师 Andy Matuschak，起点是后者逐句精读量子力学教材的示范。Matuschak 认为，深入阅读既需要兴趣，也需要训练；很多人并非不想理解，而是不知道如何提问、辨认困惑并追查作者的推理。材料越难，计划、监控理解等元认知越困难，因此课程大纲、阶段练习和伴随问题可暂时代办引导…</p><p class="tags"><a href="../?q=%E4%B8%BB%E5%8A%A8%E9%98%85%E8%AF%BB">#主动阅读</a><a href="../?q=%E8%87%AA%E4%B8%BB%E5%AD%A6%E4%B9%A0">#自主学习</a><a href="../?q=%E5%85%83%E8%AE%A4%E7%9F%A5">#元认知</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2002785452772565187"><div class="post-meta"><time datetime="2026-02-05">2026-02-05</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 8 · 2 分钟</span></div><div class="post-summary"><h2><a href="2002785452772565187.html"><span>Execute Program 的进度机制强调完成新课，而不是延长回忆时长</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文分析 Execute Program 的进度界面：课程在学习并至少复习一次后即标记为 Learned，已完成课程比例成为主要进度指标，不区分复习间隔是一两天还是一个月。作者将其与以回忆耐久度为核心的 Quantum Country 对比，指出这种设计便于完成新课，却可能让用户在课程“结束”后看不出持续复习的目标，从而逐渐流…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%BF%9B%E5%BA%A6%E8%BF%BD%E8%B8%AA">#进度追踪</a><a href="../?q=%E8%AE%B0%E5%BF%86%E4%BF%9D%E6%8C%81">#记忆保持</a><a href="../?q=%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1">#产品设计</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1999896955036406673"><div class="post-meta"><time datetime="2026-01-28">2026-01-28</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 1 · 2 分钟</span></div><div class="post-summary"><h2><a href="1999896955036406673.html"><span>Execute Program 没有不可执行的卡片</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者说明 Execute Program 的交互卡片要求读者实际执行代码来回答，因此该课程只包含可执行的“应用卡片”，不能容纳解释正则表达式概念等传统问答卡。文章以此指出，面向操作技能的练习模式不适合主要依赖概念分析的课程。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%BB%83%E4%B9%A0">#可执行练习</a><a href="../?q=%E7%BC%96%E7%A8%8B%E6%95%99%E8%82%B2">#编程教育</a><a href="../?q=%E5%BA%94%E7%94%A8%E5%8D%A1%E7%89%87">#应用卡片</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1999145478621769990"><div class="post-meta"><time datetime="2026-01-26">2026-01-26</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 6 · 2 分钟</span></div><div class="post-summary"><h2><a href="1999145478621769990.html"><span>Execute Program 的课程根据读者的互动逐段展开正文</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者比较 Execute Program 与助记媒介：前者逐段解锁文字，读者完成交互卡片后才继续，阅读节奏一致、卡片更贴合流程，但自由滚动和略读空间较少。作者认为这种结构像一场只能回应的对话，互动仍由课程控制，因此不算由参与者行动主导的情景体验。</p><p class="tags"><a href="../?q=%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%AD%A6%E4%B9%A0">#交互式学习</a><a href="../?q=Execute%20Program">#Execute Program</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E9%98%85%E8%AF%BB%E4%BD%93%E9%AA%8C">#阅读体验</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

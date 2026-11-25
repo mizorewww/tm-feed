@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>应用程序无法很好地记录滚动条的历史位置</title>
+<meta name="description" content="文章认为，应用常未把滚动位置视为重要状态，因此用户切换聊天、搜索或收藏后容易丢失阅读位置。由于不同内容视图需要不同的恢复语义，滚动位置不应只由通用 UI 组件管理；记录和恢复行为应由应用按内容场景决定。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="应用程序无法很好地记录滚动条的历史位置">
+<meta property="og:description" content="文章认为，应用常未把滚动位置视为重要状态，因此用户切换聊天、搜索或收藏后容易丢失阅读位置。由于不同内容视图需要不同的恢复语义，滚动位置不应只由通用 UI 组件管理；记录和恢复行为应由应用按内容场景决定。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-05-26">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="631985093" data-rec-seeds="619935591,641059991,657469538,565941177,619935161,610817436,550076763,661273104">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2023-05-26">2023-05-26</time>
+          <a class="tag" href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B%20%26%20%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">助记媒介 &amp; 思想工具</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 2 分钟</span>
+          <span>▲ 10</span>
+        </p>
+        <h1>应用程序无法很好地记录滚动条的历史位置</h1>
+        
+        <p class="tags"><a href="../?q=%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1">#界面设计</a><a href="../?q=%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C">#用户体验</a><a href="../?q=%E6%BB%9A%E5%8A%A8%E4%BD%8D%E7%BD%AE">#滚动位置</a><a href="../?q=%E5%BA%94%E7%94%A8%E7%8A%B6%E6%80%81">#应用状态</a><a href="../?q=%E6%95%B0%E5%AD%97%E9%98%85%E8%AF%BB">#数字阅读</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">参考文献</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="of1a57oC">具有长可滚动区域的界面（例如长文本，消息历史）会让人感到麻烦和不可靠，部分原因是应用开发人员没把记录阅读位置当作应用的重要组成部分。</p><p data-pid="ivYQTh4R">如果用户收藏一条消息，或者打开了按条件搜索，这通常是一个持续型行为；取消操作之后数据可能会丢失。相比之下，界面中的常见操作都会丢失滚动位置。</p><p data-pid="r97BEImb">这里的一个关键点是，虽然滚动行为通常通过一个共同的系统级组件来实现，但滚动位置的<b>语义</b>解析在应用程序状态却是由界面决定的。例如，同一个视窗可能用于显示多个不同的话题聊天记录。在某些情况下，保留并恢复最近浏览的聊天记录的滚动位置更合理；在其他情况下，为每个聊天记录独立保留滚动位置更合理。因此，保留这种状态不能通常在其本应所在的层上进行。</p><p data-pid="NbsJSW2F">相关笔记：</p><ul><li data-pid="zJnRfliA"><a class="wrap external" href="https://notes.andymatuschak.org/z6cxCDMXRWBritiSgzs4cdKd737H5U9XLBaFr" rel="noopener noreferrer" target="_blank">连续滚动式的电子阅读扰乱了物体恒存性，令人不适</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup><br/> </li><li data-pid="3eB-7tzb"><a class="wrap external" href="https://notes.andymatuschak.org/ztR58jhZh7eCJLm7Yc51wAqJVLENXNL4JDi" rel="noopener noreferrer" target="_blank">数据电子化不意味着井井有条</a><br/> </li></ul><hr/><p data-pid="jy8gVD-p">问：为什么应用程序不能可靠地保留界面视图的滚动位置？<br/>答：开发人员并不认为滚动位置是界面状态的重要组成部分。</p><p data-pid="QxxOtSNP">问：记录滚动位置的应用程序状态有哪些难点？<br/>答：（例如，通常 UI 框架想要成为“模型”，视窗标识的语义解释有微妙的变化，等等）</p><hr/><h2 id="sec-1">参考文献</h2><p data-pid="7bpsEtrI">推特用户 Omar Rizwan：「我对滚动条害怕又反感（例如，向上滚动很长时间以查看聊天记录）,因为我知道应用程序开发人员并不认真对待它们。比如我会在中途点击另一个聊天，之后又回到我曾向上滚动的聊天，然后发现原来的滚动位置已经丢失了。」</p><h2 id="sec-2">链接至本文（已汉化）</h2><ul><li data-pid="NBQc6RDU"><a class="internal tm-internal" data-tm-id="619935591" href="619935591.html">连续滚动式的电子阅读扰乱了物体恒存性，令人不适</a></li></ul><h2 id="sec-3">声明</h2><p data-pid="a1kSLiu9">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="exYmCPGp"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 panda、校对 JarrettYe<br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/z2aEsmuNMnFH15r8LstXK3SpX3uuHGoP4HLN" rel="noopener noreferrer" target="_blank">Applications don’t reliably maintain scroll positions (andymatuschak.org)</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 连续滚动式的电子阅读扰乱了物体恒存性，令人不适 <a class="tm-internal" data-tm-id="619935591" href="619935591.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">参考文献</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/z2aEsmuNMnFH15r8LstXK3SpX3uuHGoP4HLN" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/z2aEsmuNMnFH15r8LstXK3SpX3uuHGoP4HLN ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/631985093" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="619935591"><div class="post-meta"><time datetime="2023-04-08">2023-04-08</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 19 · 2 分钟</span></div><div class="post-summary"><h2><a href="619935591.html"><span>连续滚动式的电子阅读扰乱了物体恒存性，令人不适</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文认为，连续滚动的电子文本让读者难以定位先前读过的位置，因而像打乱了对文本“物体恒存”的感受；实体书可凭页码、左右页和手指定位。作者主张，若要普及网络长文，需要替代连续滚动的阅读方式，并引用 Vandendorpe 对纸莎草卷缺少导航标记的分析作对照。</p><p class="tags"><a href="../?q=%E7%94%B5%E5%AD%90%E9%98%85%E8%AF%BB">#电子阅读</a><a href="../?q=%E8%BF%9E%E7%BB%AD%E6%BB%9A%E5%8A%A8">#连续滚动</a><a href="../?q=%E9%9D%9E%E7%BA%BF%E6%80%A7%E9%98%85%E8%AF%BB">#非线性阅读</a><a href="../?q=%E7%89%A9%E4%BD%93%E6%81%92%E5%AD%98%E6%80%A7">#物体恒存性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="657469538"><div class="post-meta"><time datetime="2023-09-21">2023-09-21</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 20 · 9 分钟</span></div><div class="post-summary"><h2><a href="657469538.html"><span>用户观察带来的惊喜</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 记录为新助记媒介原型进行用户观察的过程：先与有经验的读者现场试用，再通过视频会议扩大测试，强调早期测试可容忍简陋，只要研究者在场能解说和修复问题。用户反馈带来意外发现，包括新功能引发更多笔记需求，以及卡片被当作阅读摘要。作者据此指出，为把见解写成问句而添加的多余词语会产生句法噪音，一个完整见解又常…</p><p class="tags"><a href="../?q=%E7%94%A8%E6%88%B7%E8%A7%82%E5%AF%9F">#用户观察</a><a href="../?q=%E4%BA%A7%E5%93%81%E5%8E%9F%E5%9E%8B">#产品原型</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E8%AE%BE%E8%AE%A1%E8%BF%AD%E4%BB%A3">#设计迭代</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="641059991"><div class="post-meta"><time datetime="2023-07-03">2023-07-03</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 5 · 1 分钟</span></div><div class="post-summary"><h2><a href="641059991.html"><span>作者可能会从纸质书销售中赚取更多收入（在也销售电子书的同时）</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者谨慎地分享一个观察：同时销售纸质书和 EPUB 的作者中，他认识的人似乎从纸书获得更多收入；他猜测这更可能源于销量差异，而非版税结构。</p><p class="tags"><a href="../?q=%E7%BA%B8%E8%B4%A8%E4%B9%A6">#纸质书</a><a href="../?q=%E7%94%B5%E5%AD%90%E4%B9%A6">#电子书</a><a href="../?q=%E4%BD%9C%E8%80%85%E6%94%B6%E5%85%A5">#作者收入</a><a href="../?q=%E5%87%BA%E7%89%88%E9%94%80%E5%94%AE">#出版销售</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="565941177"><div class="post-meta"><time datetime="2022-09-19">2022-09-19</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 11 · 1 分钟</span></div><div class="post-summary"><h2><a href="565941177.html"><span>电子阅读时，并排阅读基本上不可能</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者指出，电子阅读器难以同时查看同一本书中不相邻的页面，查阅章节对应的参考书目往往要反复翻页；数字复制粘贴也缺少纸面剪贴所保留的并行中间状态。</p><p class="tags"><a href="../?q=%E7%94%B5%E5%AD%90%E9%98%85%E8%AF%BB">#电子阅读</a><a href="../?q=%E5%B9%B6%E8%A1%8C%E9%98%85%E8%AF%BB">#并行阅读</a><a href="../?q=%E9%98%85%E8%AF%BB%E8%BD%AF%E4%BB%B6">#阅读软件</a><a href="../?q=%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E6%A3%80%E7%B4%A2">#参考资料检索</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="620532040"><div class="post-meta"><time datetime="2023-04-10">2023-04-10</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 25 · 1 分钟</span></div><div class="post-summary"><h2><a href="620532040.html"><span>在电脑上阅读文本令人不快</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文列举电脑阅读的多项障碍，包括滚动破坏位置感、非线性阅读与多位置管理困难、难以并排阅读，以及旁注和电子批注支持不足；作者认为，普及带有新认知支持的文字媒体，必须先改善电子阅读环境。</p><p class="tags"><a href="../?q=%E7%94%B5%E5%AD%90%E9%98%85%E8%AF%BB">#电子阅读</a><a href="../?q=%E9%9D%9E%E7%BA%BF%E6%80%A7%E9%98%85%E8%AF%BB">#非线性阅读</a><a href="../?q=%E6%97%81%E6%B3%A8">#旁注</a><a href="../?q=%E9%98%85%E8%AF%BB%E7%95%8C%E9%9D%A2">#阅读界面</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="550076763"><div class="post-meta"><time datetime="2022-08-05">2022-08-05</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 9 · 1 分钟</span></div><div class="post-summary"><h2><a href="550076763.html"><span>电子批注过于形式化</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 认为，电子批注要求精确选定文本范围，但实际阅读时，人常只是泛泛指向某片区域或整篇文章；硬性选区可能造成误导和视觉干扰，也不利于跨文本讨论观点。纸本上的贴纸、划痕和卷角提供了更自然、模糊的指向方式，数字阅读界面应支持类似自由度。</p><p class="tags"><a href="../?q=%E7%94%B5%E5%AD%90%E6%89%B9%E6%B3%A8">#电子批注</a><a href="../?q=%E6%95%B0%E5%AD%97%E9%98%85%E8%AF%BB">#数字阅读</a><a href="../?q=%E9%98%85%E8%AF%BB%E7%95%8C%E9%9D%A2">#阅读界面</a><a href="../?q=%E6%96%87%E6%9C%AC%E6%A0%87%E6%B3%A8">#文本标注</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

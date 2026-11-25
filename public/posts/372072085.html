@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>渐进阅读的最小定义</title>
+<meta name="description" content="文章列出渐进阅读软件的最低功能要求，包括间隔重复、摘录、挖空、阅读点、优先队列、自动排序、知识树和网络导入，并补充进阶工具。作者提醒，功能清单不足以替代多年实际使用经验；文末配图说明如何从文章摘录、标记关键词并生成复习题。">
+<meta name="author" content="Piotr Wozniak">
+<meta property="og:title" content="渐进阅读的最小定义">
+<meta property="og:description" content="文章列出渐进阅读软件的最低功能要求，包括间隔重复、摘录、挖空、阅读点、优先队列、自动排序、知识树和网络导入，并补充进阶工具。作者提醒，功能清单不足以替代多年实际使用经验；文末配图说明如何从文章摘录、标记关键词并生成复习题。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-05-13">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="372072085" data-rec-seeds="1956131449,315758950,319611234,289631499,305651556,572444486,651472821,1745941223">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2021-05-13">2021-05-13</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%20%26%20%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">间隔重复 &amp; 注意力管理</a>
+          <a class="tag" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a>
+          <span>约 2 分钟</span>
+          <span>▲ 45</span>
+        </p>
+        <h1>渐进阅读的最小定义</h1>
+        
+        <p class="tags"><a href="../?q=%E6%B8%90%E8%BF%9B%E9%98%85%E8%AF%BB">#渐进阅读</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=%E6%8C%96%E7%A9%BA">#挖空</a><a href="../?q=%E7%9F%A5%E8%AF%86%E6%A0%91">#知识树</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">为什么需要一个定义？</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">定义</a></li><li class="level-3"><a href="#sec-3" data-toc-target="sec-3">基本选项</a></li><li class="level-3"><a href="#sec-4" data-toc-target="sec-4">重要选项</a></li><li class="level-3"><a href="#sec-5" data-toc-target="sec-5">SuperMemo 中的其他选项</a></li><li class="level-2"><a href="#sec-6" data-toc-target="sec-6">免费的渐进阅读</a></li><li class="level-2"><a href="#sec-7" data-toc-target="sec-7">用户经验是至关重要的</a></li><li class="level-2"><a href="#sec-8" data-toc-target="sec-8">图片</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <blockquote data-pid="AEzf109M">本文使用 <a class="internal" href="https://zhuanlan.zhihu.com/p/106057556" rel="noopener noreferrer" target="_blank">Zhihu On VSCode</a> 创作并发布</blockquote><h2 id="sec-1">为什么需要一个定义？</h2><p data-pid="Xam1XFiJ">"<a class="wrap external" href="https://supermemo.guru/wiki/Incremental_reading" rel="noopener noreferrer" target="_blank">渐进阅读</a>" 这个词已经有近二十年的历史了，它慢慢渗入到<a class="wrap external" href="https://supermemo.guru/wiki/Spaced_repetition" rel="noopener noreferrer" target="_blank">间隔重复</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>的使用者的意识中。为了确保没有半成品可以声称拥有这个称号，请要求声称 "实现渐进阅读" 的软件的作者遵守以下的 "最小定义"。</p><h2 id="sec-2">定义</h2><h3 id="sec-3">基本选项</h3><ul><li data-pid="fNuj8qTS"><a class="wrap external" href="https://supermemo.guru/wiki/Spaced_repetition" rel="noopener noreferrer" target="_blank">间隔重复</a></li><li data-pid="dER7_mO-">摘抄</li><li data-pid="3WFYAy-O"><a class="wrap external" href="https://supermemo.guru/wiki/Cloze_deletion" rel="noopener noreferrer" target="_blank">挖空</a></li><li data-pid="3idCfkDN">阅读点（书签）</li><li data-pid="Sddeo8k7"><a class="wrap external" href="https://supermemo.guru/wiki/Priority_queue" rel="noopener noreferrer" target="_blank">优先队列</a></li><li data-pid="opta4P4j">重复的自动排序和自动延时</li><li data-pid="EnayI44C"><a class="wrap external" href="https://supermemo.guru/wiki/Knowledge_tree" rel="noopener noreferrer" target="_blank">知识树</a>中的摘抄和挖空层次结构（对语义复习是必要的）</li><li data-pid="-ydCJ-FS">易于从网络上导入（至少是 HTML 和图片）</li><li data-pid="PNlrRoO_">HTML 渲染（所见即所得）</li><li data-pid="9ykgNQVY">图像引用传递</li></ul><h3 id="sec-4">重要选项</h3><ul><li data-pid="IAvMBU1Y">带有间距效应修正的中间间隔复习（见：<a class="wrap external" href="https://supermemo.guru/wiki/Algorithm_SM-17" rel="noopener noreferrer" target="_blank">算法 SM-17</a>)</li><li data-pid="zF-KVkC0">提早复习工具（例如：<b>提前</b>、<b>添加到待办</b>等）</li><li data-pid="y296bPBD">语义复习工具（特别是搜索复习、分支复习、筛选集等）。</li><li data-pid="dFsqQT_N">超负荷工具（如 <b>支配</b>、<b>延迟</b>或类似的）。</li><li data-pid="J5ajdyLg">参考引用传递</li><li data-pid="IoKHvwj5">图像下载/本地化</li></ul><h3 id="sec-5">SuperMemo 中的其他选项</h3><ul><li data-pid="gFtoQYfj">基于 A-Factor 的文章复习算法（或类似的算法）</li><li data-pid="pqZNYV48">处理属性和格式化（如摘抄、关键词挖空、高亮、忽略文本等）</li><li data-pid="iledRCY5">源链接和层次结构</li><li data-pid="cLXPrUub">视觉学习（图像缩放、裁剪、压缩）</li><li data-pid="u_2NIN90">文件和文件夹的批量导入（带文件夹层次）</li><li data-pid="deUsZ1TK">网络搜索工具（例如，从字典和喜爱的数据网站轻松导入）</li><li data-pid="CbgW7qEx">流行网站过滤器（维基百科、YouTube 等）</li><li data-pid="gptcC5E1">自动分解数据的工具（如文章分割、拆分、分解等）</li><li data-pid="Dhm2UmXY">更多用于渐进学习的格式：视频、音频、邮件等。还有 PDF、PowerPoint 和 OneNote，尽管很难要求将其作为定义的一部分，尤其是 SuperMemo 未能支持这些内容</li><li data-pid="MWYIIWnI">进度统计</li></ul><h2 id="sec-6">免费的渐进阅读</h2><p data-pid="m1Mip200">截至 2016 年，<a class="wrap external" href="https://supermemo.guru/wiki/SuperMemo_15" rel="noopener noreferrer" target="_blank">SuperMemo 15</a> 是免费软件，符合免费渐进阅读的标准</p><h2 id="sec-7">用户经验是至关重要的</h2><p data-pid="qpZx_uC3">mj 写道：渐进阅读诞生于 SuperMemo。我认为，如果不是自己先在 SuperMemo 中使用渐进阅读，任何人都不应该声称自己实现了渐进阅读。理论描述与实际应用有很大不同。我认为，关于<a class="wrap external" href="https://supermemo.guru/wiki/Incremental_reading" rel="noopener noreferrer" target="_blank">渐进阅读</a>的文字很少，渐进阅读中使用的工具要大得多，而做好渐进阅读的实际训练就更多了。这意味着，渐进阅读比 SuperMemo 网站上写的要多两个数量级。<b>我无法想象，如果不先使用 2-3 年，就实现渐进阅读</b>！！！这就像设计一辆新的跑车，却没有开过车一样！</p><h2 id="sec-8">图片</h2><p class="ztext-empty-paragraph"><br/></p><figure data-size="normal"><img class="content_image" data-original-token="v2-9aed5749c59f21eca9684ebd71c05436" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://pic1.zhimg.com/v2-9aed5749c59f21eca9684ebd71c05436_1440w.jpg"/><figcaption>Incremental reading with SuperMemo 17</figcaption></figure><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="GLomrpf2">图：<a class="wrap external" href="https://supermemo.guru/wiki/SuperMemo" rel="noopener noreferrer" target="_blank">SuperMemo</a> 中<a class="wrap external" href="https://supermemo.guru/wiki/Incremental_reading" rel="noopener noreferrer" target="_blank">渐进阅读</a>过程的一个典型快照。在学习瘦蛋白的过程中，学生<a class="wrap external" href="https://supermemo.guru/wiki/Extract" rel="noopener noreferrer" target="_blank">摘抄</a>了文本的重要部分（蓝色），并标记了<a class="wrap external" href="https://supermemo.guru/wiki/Cloze_deletion" rel="noopener noreferrer" target="_blank">关键词</a>，这些关键词将被用来形成问题，以<a class="wrap external" href="https://supermemo.guru/wiki/Memory_stability" rel="noopener noreferrer" target="_blank">加强记忆</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>（深橙色）。这些问题将按照<a class="wrap external" href="https://supermemo.guru/wiki/Spaced_repetition" rel="noopener noreferrer" target="_blank">间隔重复</a>的时间表进行复习。请看这个<a class="wrap external" href="https://www.youtube.com/watch?v=DoQoeK53bP8" rel="noopener noreferrer" target="_blank">视频例子</a>的解释。大脑图片取自<a class="wrap external" href="https://supermemo.guru/wiki/Sleep_control_system" rel="noopener noreferrer" target="_blank">这里</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 间隔重复 (spaced repetition) <a class="tm-internal" data-tm-id="305651556" href="305651556.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 记忆稳定性 <a class="tm-internal" data-tm-id="559298549" href="559298549.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">为什么需要一个定义？</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">定义</a></li><li class="level-3"><a href="#sec-3" data-toc-target="sec-3">基本选项</a></li><li class="level-3"><a href="#sec-4" data-toc-target="sec-4">重要选项</a></li><li class="level-3"><a href="#sec-5" data-toc-target="sec-5">SuperMemo 中的其他选项</a></li><li class="level-2"><a href="#sec-6" data-toc-target="sec-6">免费的渐进阅读</a></li><li class="level-2"><a href="#sec-7" data-toc-target="sec-7">用户经验是至关重要的</a></li><li class="level-2"><a href="#sec-8" data-toc-target="sec-8">图片</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Piotr%20Wozniak">Piotr Wozniak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://supermemo.guru/wiki/Minimum_definition_of_incremental_reading" target="_blank" rel="noopener noreferrer">https://supermemo.guru/wiki/Minimum_definition_of_incremental_reading ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/372072085" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="315758950"><div class="post-meta"><time datetime="2020-11-27">2020-11-27</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 32 · 1 分钟</span></div><div class="post-summary"><h2><a href="315758950.html"><span>谬误：SuperMemo 的重复会浪费太多时间</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这段“谬误—事实”短文反驳重复耗时就不值得的看法：作者建议少量精选问答卡片优于大量死记硬背，并称每日短时复习也有价值；高保留率应留给关键知识，而知识表述、渐进阅读和知识筛选可减少投入。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=%E7%9F%A5%E8%AF%86%E8%A1%A8%E8%BF%B0">#知识表述</a><a href="../?q=%E6%B8%90%E8%BF%9B%E9%98%85%E8%AF%BB">#渐进阅读</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1956131449"><div class="post-meta"><time datetime="2021-06-23">2021-06-23</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 19 · 1 分钟</span></div><div class="post-summary"><h2><a href="1956131449.html"><span>请问marginnote和anki的组合能否实现渐进阅读？并且使用anki相对超期程筛选进行复习？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>如果在 marginnote 上阅读的过程也可以自动排期，那应该可以。具体细节可以看渐进阅读的最小定义： 叶峻峣：渐进阅读的最小定义 满足其中的定义，才能算是渐进阅读。（老原教旨主义了，其实我觉得 Dendro 实现的功能就差不多了 你也可以通过体验 Dendro 来感受一下，什么是渐进阅读的最小实现： 叶峻峣：简评 Dend…</p><p class="tags"><a href="../?q=%E6%B8%90%E8%BF%9B%E9%98%85%E8%AF%BB">#渐进阅读</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=%E6%8C%96%E7%A9%BA">#挖空</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="322673517"><div class="post-meta"><time datetime="2020-12-01">2020-12-01</time><a class="meta-author" href="../?q=Master%20How%20To%20Learn">Master How To Learn</a><span>▲ 207 · 11 分钟</span></div><div class="post-summary"><h2><a href="322673517.html"><span>示范：我的渐进阅读工作流程</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本文以一篇论文演示 SuperMemo 渐进阅读的工作流程：导入材料并设置元数据，分阶段阅读和摘录，再把摘录改写成简短问答或填空，最终安排复习。作者强调各步骤可由间隔算法分散到数周完成，并建议从基础概念开始、补足上下文、简化卡片，按个人先验知识选择保留内容。</p><p class="tags"><a href="../?q=%E6%B8%90%E8%BF%9B%E9%98%85%E8%AF%BB">#渐进阅读</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=%E6%91%98%E5%BD%95%E5%8D%A1%E7%89%87">#摘录卡片</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="562780743"><div class="post-meta"><time datetime="2022-09-09">2022-09-09</time><a class="meta-author" href="../?q=Issa%20Rice">Issa Rice</a><span>▲ 8 · 1 分钟</span></div><div class="post-summary"><h2><a href="562780743.html"><span>通过间隔重复生成问题</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文提出，复习 Anki 卡片时产生的问题可以成为进一步学习的线索；若这些问题值得追问，也应在最初制卡时纳入卡片。作者认为，间隔重复的自动安排或许能持续生成问题并推动知识深化，渐进阅读与 SuperMemo 更容易支持这种边阅读边补充问题和想法的过程。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=Anki">#Anki</a><a href="../?q=%E9%97%AE%E9%A2%98%E7%94%9F%E6%88%90">#问题生成</a><a href="../?q=%E6%B8%90%E8%BF%9B%E9%98%85%E8%AF%BB">#渐进阅读</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="319611234"><div class="post-meta"><time datetime="2020-11-29">2020-11-29</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 45 · 1 分钟</span></div><div class="post-summary"><h2><a href="319611234.html"><span>谬误：你需要每天使用 SuperMemo 学习</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>条目反驳“必须每天使用 SuperMemo”的说法：停用一段时间会影响新材料，长期知识的可提取性下降较慢；作者称，延迟与优先队列等机制出现前的每日使用建议更多出于心理考虑，同时提醒部分间隔重复实现会惩罚漏复习，并建议了解渐进阅读。</p><p class="tags"><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%B8%90%E8%BF%9B%E9%98%85%E8%AF%BB">#渐进阅读</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="289631499"><div class="post-meta"><time datetime="2020-11-12">2020-11-12</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 101 · 11 分钟</span></div><div class="post-summary"><h2><a href="289631499.html"><span>量子物理学家用 Anki 重新发现渐进阅读</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文介绍 SuperMemo 创作者对量子物理学家 Michael Nielsen 用 Anki 独立摸索渐进阅读的评论：Nielsen 以探索、筛选和切换材料来逐步搭建知识结构。作者赞赏其对线性阅读的突破，也强调自制卡片与个人知识网络的价值，并指出 Anki 缺少渐进阅读原生支持，可能限制语义整理、创造性联想和负荷管理。 评…</p><p class="tags"><a href="../?q=%E6%B8%90%E8%BF%9B%E9%98%85%E8%AF%BB">#渐进阅读</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=Anki">#Anki</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

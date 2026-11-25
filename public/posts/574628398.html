@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>重复历史</title>
+<meta name="description" content="本文定义“重复历史”为记录间隔复习日期与评分的数据序列，并说明 SuperMemo 还记录复习时刻等信息。配图以提取性、最优间隔和稳定性呈现一个知识片段的记忆变化；作者据一段实际复习记录指出，早期稳定性低时提取性下降较快，后续复习后则更缓慢。">
+<meta name="author" content="Piotr Wozniak">
+<meta property="og:title" content="重复历史">
+<meta property="og:description" content="本文定义“重复历史”为记录间隔复习日期与评分的数据序列，并说明 SuperMemo 还记录复习时刻等信息。配图以提取性、最优间隔和稳定性呈现一个知识片段的记忆变化；作者据一段实际复习记录指出，早期稳定性低时提取性下降较快，后续复习后则更缓慢。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-10-18">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="574628398" data-rec-seeds="580945538,559298549,584041631,559819340,456205621,563438547,571700330,305651556">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2022-10-18">2022-10-18</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%20%26%20%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%AE%A1%E7%90%86">间隔重复 &amp; 注意力管理</a>
+          <a class="tag" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a>
+          <span>约 1 分钟</span>
+          <span>▲ 2</span>
+        </p>
+        <h1>重复历史</h1>
+        
+        <p class="tags"><a href="../?q=%E9%87%8D%E5%A4%8D%E5%8E%86%E5%8F%B2">#重复历史</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%8F%90%E5%8F%96%E6%80%A7">#提取性</a><a href="../?q=%E6%9C%80%E4%BC%98%E9%97%B4%E9%9A%94">#最优间隔</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=SuperMemo">#SuperMemo</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="Qqc148pn"><b>重复历史</b>是对在<a class="wrap external" href="https://supermemo.guru/wiki/Spaced_repetition" rel="noopener noreferrer" target="_blank">间隔复习</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>过程中的<a class="wrap external" href="https://supermemo.guru/wiki/Repetition" rel="noopener noreferrer" target="_blank">重复</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>的记录。每个重复历史中最少包括：（1）重复日期（2）复习的<a class="wrap external" href="https://supermemo.guru/wiki/Grade" rel="noopener noreferrer" target="_blank">评分</a>。而 <a class="wrap external" href="https://supermemo.guru/wiki/SuperMemo" rel="noopener noreferrer" target="_blank">SuperMemo</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup> 则会额外记录一些数据（例如用于<a class="wrap external" href="https://supermemo.guru/wiki/SleepChart" rel="noopener noreferrer" target="_blank">睡眠研究</a>的重复的确切时间）</p><figure data-size="normal"><img class="origin_image zh-lightbox-thumb" data-original-token="v2-2a62b38d8572f8877242e2d9e49d63df" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://picx.zhimg.com/v2-2a62b38d8572f8877242e2d9e49d63df_r.jpg" width="500"/><figcaption>SuperMemo: Changes in two variables of long-term memory</figcaption></figure><p data-pid="uuuX1Ijw"> 图：示例<a class="wrap external" href="https://supermemo.guru/wiki/Piece_of_knowledge" rel="noopener noreferrer" target="_blank">知识片段</a><sup class="cite" id="cite-4"><a href="#ref-4">[4]</a></sup>的记忆状态随时间的变化。横轴表示跨越整个重复历史的时间。顶部面板展示了<a class="wrap external" href="https://supermemo.guru/wiki/Retrievability" rel="noopener noreferrer" target="_blank">可提取性</a><sup class="cite" id="cite-5"><a href="#ref-5">[5]</a></sup>（为了便于分析，进行十次方变换，R^10）。灰色的可提取性网格标记了 R=99%, R=98% 等标签。中部面板用深蓝色展示了<a class="wrap external" href="https://supermemo.guru/wiki/Optimum_interval" rel="noopener noreferrer" target="_blank">最优间隔</a><sup class="cite" id="cite-6"><a href="#ref-6">[6]</a></sup>。复习日期由蓝色垂线和浅蓝色标签标记。<a class="wrap external" href="https://supermemo.guru/wiki/Optimum_interval" rel="noopener noreferrer" target="_blank">最优间隔</a>的末端对应的 <a class="wrap external" href="https://supermemo.guru/wiki/Retrievability" rel="noopener noreferrer" target="_blank">R</a> 为 90% 左右，由红色垂线标记（仅当实际复习<a class="wrap external" href="https://supermemo.guru/wiki/Interval" rel="noopener noreferrer" target="_blank">间隔</a>大等于<a class="wrap external" href="https://supermemo.guru/wiki/Optimum_interval" rel="noopener noreferrer" target="_blank">最优间隔</a>时）。底部面板可视化了<a class="wrap external" href="https://supermemo.guru/wiki/Stability" rel="noopener noreferrer" target="_blank">稳定性</a>（为了便于分析，以 <code>ln(S)/ln(days)</code> 的形式展示）。该图表指出 ，<a class="wrap external" href="https://supermemo.guru/wiki/Retrievability" rel="noopener noreferrer" target="_blank">可提取性</a>在最初几次<a class="wrap external" href="https://supermemo.guru/wiki/Stability" rel="noopener noreferrer" target="_blank">稳定性</a><sup class="cite" id="cite-7"><a href="#ref-7">[7]</a></sup>很低时的<a class="wrap external" href="https://supermemo.guru/wiki/Repetition" rel="noopener noreferrer" target="_blank">复习</a>中下降得很快（指数型）。然而在第 7 次复习后，经过十年时间，可提取性从 100% 只下降到了 94%。所有的数值都来自实际的复习历史和<a class="wrap external" href="https://supermemo.guru/wiki/Three_component_model_of_memory" rel="noopener noreferrer" target="_blank">记忆的三变量模型</a><sup class="cite" id="cite-8"><a href="#ref-8">[8]</a></sup>。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="mc-eAOWm"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 Kureist<br/>原文：<a class="wrap external" href="https://supermemo.guru/wiki/Repetition_history" rel="noopener noreferrer" target="_blank">Repetition history - supermemo.guru</a><br/>本<a class="wrap external" href="https://supermemo.guru/wiki/Glossary" rel="noopener noreferrer" target="_blank">术语表</a>条目用于解释 <a class="wrap external" href="https://supermemo.guru/wiki/SuperMemo_Guru" rel="noopener noreferrer" target="_blank">SuperMemo</a>，一位自 <a class="wrap external" href="https://supermemo.guru/wiki/History_of_spaced_repetition_(print)" rel="noopener noreferrer" target="_blank">1987</a><sup class="cite" id="cite-9"><a href="#ref-9">[9]</a></sup> 年以来的<a class="wrap external" href="https://supermemo.guru/wiki/Spaced_repetition" rel="noopener noreferrer" target="_blank">间隔重复</a>软件先驱。</blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 间隔重复（spaced repetition） <a class="tm-internal" data-tm-id="305651556" href="305651556.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 重复 <a class="tm-internal" data-tm-id="572444486" href="572444486.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 什么是 SuperMemo <a href="https://www.yuque.com/supermemo/wiki/supermemo" rel="noopener noreferrer" target="_blank">https://www.yuque.com/supermemo/wiki/supermemo</a></li><li id="ref-4"><a aria-label="返回正文" class="ref-back" href="#cite-4">↩</a> 条目 <a class="tm-internal" data-tm-id="571700330" href="571700330.html">站内阅读 ↗</a></li><li id="ref-5"><a aria-label="返回正文" class="ref-back" href="#cite-5">↩</a> 记忆可提取性 <a class="tm-internal" data-tm-id="559819340" href="559819340.html">站内阅读 ↗</a></li><li id="ref-6"><a aria-label="返回正文" class="ref-back" href="#cite-6">↩</a> 最优间隔 <a class="tm-internal" data-tm-id="584041631" href="584041631.html">站内阅读 ↗</a></li><li id="ref-7"><a aria-label="返回正文" class="ref-back" href="#cite-7">↩</a> 记忆稳定性 <a class="tm-internal" data-tm-id="559298549" href="559298549.html">站内阅读 ↗</a></li><li id="ref-8"><a aria-label="返回正文" class="ref-back" href="#cite-8">↩</a> 记忆的三组分模型 <a class="tm-internal" data-tm-id="580945538" href="580945538.html">站内阅读 ↗</a></li><li id="ref-9"><a aria-label="返回正文" class="ref-back" href="#cite-9">↩</a> 《间隔重复的历史》 <a href="https://zhuanlan.zhihu.com/p/375379522" rel="noopener noreferrer" target="_blank">https://zhuanlan.zhihu.com/p/375379522</a></li></ol>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Piotr%20Wozniak">Piotr Wozniak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://supermemo.guru/wiki/Repetition_history" target="_blank" rel="noopener noreferrer">https://supermemo.guru/wiki/Repetition_history ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/574628398" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="580945538"><div class="post-meta"><time datetime="2022-11-06">2022-11-06</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 9 · 3 分钟</span></div><div class="post-summary"><h2><a href="580945538.html"><span>记忆的三组分模型</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这则词条将长期记忆分为三项：可提取性决定当前回忆概率，稳定性决定遗忘速度，复杂性决定复习能否增强稳定性。作者据此说明 SuperMemo 的 DSR 模型及最小信息原则，认为简单、原子化的条目更容易形成稳定记忆；另有睡眠与昼夜节律等变量不在模型之内。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E8%AE%B0%E5%BF%86%E5%A4%8D%E6%9D%82%E6%80%A7">#记忆复杂性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="584041631"><div class="post-meta"><time datetime="2022-11-16">2022-11-16</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 8 · 2 分钟</span></div><div class="post-summary"><h2><a href="584041631.html"><span>最优间隔</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这篇术语译文将最优间隔解释为分散复习同一知识点的理想时间，通常以复习时可提取性约 90% 为参照，并介绍 SuperMemo 17 以新学材料估算第一最优间隔的做法。作者给出一条遗忘曲线及约四天的估计，同时说明材料难度、初学程度和重复样本不足会影响曲线。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%9C%80%E4%BC%98%E9%97%B4%E9%9A%94">#最优间隔</a><a href="../?q=%E9%81%97%E5%BF%98%E6%9B%B2%E7%BA%BF">#遗忘曲线</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="279166945"><div class="post-meta"><time datetime="2020-11-08">2020-11-08</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 21 · 3 分钟</span></div><div class="post-summary"><h2><a href="279166945.html"><span>间隔效应</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章解释间隔效应，并区分增加学习间隔可能带来的正面收益与复习过频可能使效果被忽略的负面解释。作者以记忆的双组分模型和稳定化函数统一二者，称每条记忆痕迹都有使预期效果最大化的复习时机；SuperMemo 数据显示，稳定性较低、内容较复杂的记忆可能有更明显的间隔效应。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E6%95%88%E5%BA%94">#间隔效应</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E7%A8%B3%E5%AE%9A%E5%8C%96%E5%87%BD%E6%95%B0">#稳定化函数</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1373468425"><div class="post-meta"><time datetime="2020-07-31">2020-07-31</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 61 · 3 分钟</span></div><div class="post-summary"><h2><a href="1373468425.html"><span>Anki 可以视为 supermemo 的开源实现吗，它们的差别还有多大？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Anki 自行车，SuperMemo 方程式（暴论 2333 https://masterhowtolearn.wordpress.com/ 看过 Anki 手册的人都知道，Anki 是算法是基于 SM-2 的修修补补版。而 SM-2 是一个经验算法，它的提出 [1] (1987年)比 SuperMemo 的双变量记忆模型 […</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1941069300833190267"><div class="post-meta"><time datetime="2025-08-23">2025-08-23</time><a class="meta-author" href="../?q=Giacomo%20Randazzo">Giacomo Randazzo</a><span>▲ 62 · 21 分钟</span></div><div class="post-summary"><h2><a href="1941069300833190267.html"><span>感知内容的间隔重复</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>多数SRS按卡片ID分别保存复习历史，不知道“意大利首都是什么”和“罗马属于哪个国家”语义相连。内容感知记忆模型将卡片文本和相关卡片的复习历史纳入遗忘预测，还可估算新卡难度、检测歧义和整组卡片结构；作者强调，语义不只是字面相似，而是问题能否有效引出概念。 作者区分调度器与记忆模型：前者决定今天复习哪些卡片，并可优化保留率、负荷…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AE%B0%E5%BF%86%E6%A8%A1%E5%9E%8B">#记忆模型</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E5%8D%A1%E7%89%87%E8%AF%AD%E4%B9%89">#卡片语义</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="179076885"><div class="post-meta"><time datetime="2020-08-10">2020-08-10</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 75 · 3 分钟</span></div><div class="post-summary"><h2><a href="179076885.html"><span>记忆的两个组成成分|浓缩通俗版</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本文浓缩翻译 SuperMemo 对记忆的双成分模型：回忆概率描述某时刻能否提取，记忆稳定性描述其随时间衰减的速度；后续又加入卡片难度。作者介绍稳定性增长如何随复习前的稳定性、可提取性和难度变化，并说明 SuperMemo 以多维矩阵近似优化复习间隔。</p><p class="tags"><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8D%A1%E7%89%87%E9%9A%BE%E5%BA%A6">#卡片难度</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

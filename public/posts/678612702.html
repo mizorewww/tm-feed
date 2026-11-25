@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>阅读理解问题可以发现文本基础的漏洞</title>
+<meta name="description" content="作者记录了让大语言模型生成阅读理解题来检验线性代数文本基础的经历：题目意外暴露出自己认真阅读后仍未理解的部分。作者认为，面对这些问题时的困惑会促使自己回查原文，从而弥补文本理解漏洞；相比之下，发现更高层情境模型的问题通常需要复杂任务或迁移学习。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="阅读理解问题可以发现文本基础的漏洞">
+<meta property="og:description" content="作者记录了让大语言模型生成阅读理解题来检验线性代数文本基础的经历：题目意外暴露出自己认真阅读后仍未理解的部分。作者认为，面对这些问题时的困惑会促使自己回查原文，从而弥补文本理解漏洞；相比之下，发现更高层情境模型的问题通常需要复杂任务或迁移学习。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2024-01-19">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="678612702" data-rec-seeds="678195187,679063443,459483765,491870061,678405361,677786105,673340458,664173533">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2024-01-19">2024-01-19</time>
+          <a class="tag" href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B%20%26%20%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">助记媒介 &amp; 思想工具</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 2 分钟</span>
+          <span>▲ 11</span>
+        </p>
+        <h1>阅读理解问题可以发现文本基础的漏洞</h1>
+        
+        <p class="tags"><a href="../?q=%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3">#阅读理解</a><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3">#文本理解</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E8%BF%81%E7%A7%BB">#学习迁移</a><a href="../?q=%E6%83%85%E5%A2%83%E6%A8%A1%E5%9E%8B">#情境模型</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="IwzkIHQr">我有些尴尬地发现（<a class="wrap external" href="https://notes.andymatuschak.org/z2ZU99Tadhs5MdtF8rTsSuw" rel="noopener noreferrer" target="_blank">2023-09-11</a>），当我要求<a class="wrap external" href="https://notes.andymatuschak.org/zBe9vHWwqLoyaeA7eJfLnBA" rel="noopener noreferrer" target="_blank">大语言模型</a>生成阅读理解问题，以此来帮我评估我针对<a class="wrap external" href="https://notes.andymatuschak.org/z4e951xY6fkjGgoHGwHHchi" rel="noopener noreferrer" target="_blank">《线性代数》- Hefferon</a> 某一章节所构建的文本基础（参见<a class="wrap external" href="https://notes.andymatuschak.org/zHTLU2rAxAo8i1xBGVQPPcr" rel="noopener noreferrer" target="_blank">构建-整合模型</a>）时，有几个问题揭示出了文本中我完全未曾理解的部分。尽管我已经努力仔细阅读。</p><p data-pid="w4lzz9rt"><a class="wrap external" href="https://notes.andymatuschak.org/zVKwVczp4nEAKPWqfS1BqMi" rel="noopener noreferrer" target="_blank">阅读理解问题令人不快</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>，这些也不例外。关于这次我注意到的问题，我在这里加了一些笔记：</p><blockquote data-pid="SUYmpfFD">不幸的是，当遇到与我未能充分理解的内容相关的问题时，这种感觉<b>尤为</b>明显。这些问题对我来说似乎毫无意义。我能感觉到它们在要求我给出某种特定的答案，但我无法确定具体需要回答什么（因为我之前并未真正理解过需要的信息）。因此，这些问题就像让我盲目地追寻一样，我不得不翻来覆去地检查章节，试图找到与问题中词汇相匹配的段落。然后我才意识到，我原来根本没有真正理解过那部分内容，虽然我可能最终弄清楚了问题的意图……但这是一种不优雅的达成方式。</blockquote><p data-pid="1vppysNZ">有趣的是，这里的机制是间接的：当阅读理解问题暴露出我理解上的失败时，我通常并不完全明白这个问题到底在问什么。但这种困惑引导我重新阅读，寻找可能有帮助的信息，这个过程最终帮助我弥补了理解上的空缺。</p><p data-pid="Kt3LXL1m">我假设阅读理解问题同样能揭示出我在情境模型（参见<a class="wrap external" href="https://notes.andymatuschak.org/zHTLU2rAxAo8i1xBGVQPPcr" rel="noopener noreferrer" target="_blank">构建-整合模型</a>）中的漏洞，尽管我对此没有太多直接体验。对我而言，通过需要推理（即<a class="wrap external" href="https://notes.andymatuschak.org/z7ffiDfqTR9pPcEEUUbCL7C" rel="noopener noreferrer" target="_blank">迁移学习</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>）的复杂任务来发现这些漏洞更为常见。当我无法完成这些任务，而我的文本基础又看起来很扎实时，要确定情境模型的具体崩溃点似乎颇有难度。</p><p data-pid="SjIuMbXz">另见，在<a class="wrap external" href="https://notes.andymatuschak.org/zKPv6qkSErdRGqyryvgS2wS" rel="noopener noreferrer" target="_blank">助记媒介</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup>的背景下：<a class="wrap external" href="https://notes.andymatuschak.org/z58xEZ2ojjRjm1sMcih4bfQ" rel="noopener noreferrer" target="_blank">助记媒介中穿插的卡片有时会不太愉快地揭示出阅读理解上的疏漏</a>。</p><h2 id="sec-1"><br/>链接至本文（已汉化）</h2><ul><li data-pid="D7n-QY34"><a class="internal tm-internal" data-tm-id="679063443" href="679063443.html">阅读理解</a></li></ul><h2 id="sec-2">声明</h2><p data-pid="a1kSLiu9">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="7Sa7nG10"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 GPT-4，校对 Jarrett Ye<br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/zLZUS7KTrG4ABm3tRLGxMMj" rel="noopener noreferrer" target="_blank">Reading comprehension questions can uncover textbase holes (andymatuschak.org)</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 阅读理解问题令人不快 <a class="tm-internal" data-tm-id="678195187" href="678195187.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 迁移学习 <a class="tm-internal" data-tm-id="491870061" href="491870061.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 助记媒介（Mnemonic medium） <a class="tm-internal" data-tm-id="459483765" href="459483765.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/zLZUS7KTrG4ABm3tRLGxMMj" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/zLZUS7KTrG4ABm3tRLGxMMj ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/678612702" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="678195187"><div class="post-meta"><time datetime="2024-01-17">2024-01-17</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 16 · 7 分钟</span></div><div class="post-summary"><h2><a href="678195187.html"><span>阅读理解问题令人不快</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者指出，基础阅读理解题常让他感到乏味、居高临下，尤其当问题依赖自己尚未真正理解的内容时。相比之下，要求读者操作概念、解决有意义的问题或参与讨论的交互更有吸引力；他认为良好问题应检验理解并支持探索，而非让人猜标准答案。</p><p class="tags"><a href="../?q=%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3">#阅读理解</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%AD%A6%E4%B9%A0">#交互式学习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="459483765"><div class="post-meta"><time datetime="2022-01-19">2022-01-19</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 37 · 6 分钟</span></div><div class="post-summary"><h2><a href="459483765.html"><span>助记媒介（Mnemonic medium）</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 将助记媒介定义为在叙述文章中嵌入间隔重复卡片，以补足传统间隔重复系统难上手、卡片缺乏文本结构的问题。正文概述设计原则、记忆与理解影响、作者和读者收益、规模化疑问及采用障碍，是关于该媒介的完整介绍页。</p><p class="tags"><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E4%B8%93%E5%AE%B6%E5%8D%A1%E7%89%87">#专家卡片</a><a href="../?q=%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3">#阅读理解</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1939382691255526731"><div class="post-meta"><time datetime="2025-08-14">2025-08-14</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 1325 · 24 分钟</span></div><div class="post-summary"><h2><a href="1939382691255526731.html"><span>为什么我一年内读了近三百本书却不觉得自己有什么扎实的长进？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>根据 Andy Matuschak 的观点，题主遇到的这个问题非常普遍（就是一年三百本有点夸张了，什么量子波动速读？） Andy 认为，问题的关键不在于阅读的数量或是否做了笔记，而在于阅读时理解的深度。题主感觉「不踏实」，恰好印证了一个核心观察：许多人在阅读时，目光只是像「打水漂的石子一样掠过书页」，概念并没有被真正地消化和理…</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a><a href="../?q=%E7%9F%A5%E8%AF%86%E8%BF%81%E7%A7%BB">#知识迁移</a><a href="../?q=%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0">#数学学习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="643871124"><div class="post-meta"><time datetime="2023-07-16">2023-07-16</time><a class="meta-author" href="../?q=Dwarkesh%20Patel">Dwarkesh Patel</a><span>▲ 289 · 95 分钟</span></div><div class="post-summary"><h2><a href="643871124.html"><span>Andy Matuschak - 自学，间隔重复，以及为什么书本不起作用</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Dwarkesh Patel 采访研究者兼设计师 Andy Matuschak，起点是后者逐句精读量子力学教材的示范。Matuschak 认为，深入阅读既需要兴趣，也需要训练；很多人并非不想理解，而是不知道如何提问、辨认困惑并追查作者的推理。材料越难，计划、监控理解等元认知越困难，因此课程大纲、阶段练习和伴随问题可暂时代办引导…</p><p class="tags"><a href="../?q=%E4%B8%BB%E5%8A%A8%E9%98%85%E8%AF%BB">#主动阅读</a><a href="../?q=%E8%87%AA%E4%B8%BB%E5%AD%A6%E4%B9%A0">#自主学习</a><a href="../?q=%E5%85%83%E8%AE%A4%E7%9F%A5">#元认知</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="72300480546"><div class="post-meta"><time datetime="2025-01-05">2025-01-05</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 97 · 1 分钟</span></div><div class="post-summary"><h2><a href="72300480546.html"><span>每读一本书，我都会对书里的观点和立场深信不疑，觉得书里说的是对的，以此来纠正自己的看法，怎么办？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>我猜你可能根本就没有把书看进脑子里。 书看多了，必然会看到相互对立的观点或立场。不过如果你把以前看过的内容忘记了，自然就不会觉得矛盾了。 改进的方法也很简单，你看一本书，就把这本书的作者对各种事情的观点、立场、解释等等记住，哪怕你现在没有看法也没关系。一本一本看下去，自然会遇到与之前矛盾的内容，然后你就可以开始对比思考，究竟那…</p><p class="tags"><a href="../?q=%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3">#阅读理解</a><a href="../?q=%E4%B8%BB%E5%8A%A8%E9%98%85%E8%AF%BB">#主动阅读</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=Anki">#Anki</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="679063443"><div class="post-meta"><time datetime="2024-01-22">2024-01-22</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 39 · 1 分钟</span></div><div class="post-summary"><h2><a href="679063443.html"><span>阅读理解</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 的笔记汇总其阅读理解研究兴趣：读者常在一开始就未真正加工文本，却对自己把握主旨过度自信。作者列举自我解释、附加问题、记忆卡片和助记媒介等潜在干预，认为嵌入练习或可促使读者慢下来并发现理解漏洞。</p><p class="tags"><a href="../?q=%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3">#阅读理解</a><a href="../?q=%E8%87%AA%E6%88%91%E8%A7%A3%E9%87%8A">#自我解释</a><a href="../?q=%E9%99%84%E5%8A%A0%E9%97%AE%E9%A2%98">#附加问题</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

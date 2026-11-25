@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>人工智能需要好奇心吗？</title>
+<meta name="description" content="译文反驳把好奇心视为智能的普遍必要条件：在强化学习框架中，好奇心只是特定环境、奖励结构、记忆和寿命条件下可能涌现的学习策略。作者以玩耍和猫机器人举例，认为共享权重、离线数据与模拟训练能让人工智能用其他方式获取经验，因此不必复制生物的探索、做梦或内稳态驱力；智能机制受环境与架构约束。">
+<meta name="author" content="Nate Soares">
+<meta property="og:title" content="人工智能需要好奇心吗？">
+<meta property="og:description" content="译文反驳把好奇心视为智能的普遍必要条件：在强化学习框架中，好奇心只是特定环境、奖励结构、记忆和寿命条件下可能涌现的学习策略。作者以玩耍和猫机器人举例，认为共享权重、离线数据与模拟训练能让人工智能用其他方式获取经验，因此不必复制生物的探索、做梦或内稳态驱力；智能机制受环境与架构约束。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-07-23">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="2063667653055603557" data-rec-seeds="2058221554144637051,2096017865178625894,2101359776634496904,2094798951593649206,2062834806409401236,2096214419600568640,1994704480931948124,1913537791985451857">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2026-07-23">2026-07-23</time>
+          <a class="tag" href="../?q=Gwern%20Branwen">Gwern Branwen</a>
+          <a class="tag" href="../?q=Nate%20Soares">Nate Soares</a>
+          <span>约 7 分钟</span>
+          <span>▲ 50</span>
+        </p>
+        <h1>人工智能需要好奇心吗？</h1>
+        
+        <p class="tags"><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#人工智能</a><a href="../?q=%E5%A5%BD%E5%A5%87%E5%BF%83">#好奇心</a><a href="../?q=%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0">#深度强化学习</a><a href="../?q=%E5%A5%96%E5%8A%B1%E6%9C%80%E5%A4%A7%E5%8C%96">#奖励最大化</a><a href="../?q=%E6%8E%A2%E7%B4%A2%E4%B8%8E%E5%88%A9%E7%94%A8">#探索与利用</a><a href="../?q=%E5%85%83%E5%AD%A6%E4%B9%A0">#元学习</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="Vo4aZTY9">对此，DRL （深度强化学习）的观点是：<a class="wrap external" href="https://www.sciencedirect.com/science/article/pii/S0004370221000862#deepmind" rel="noopener noreferrer" target="_blank">“Reward is Enough”</a>（有奖励就够了）。好奇心之类的能力，与 DL （深度学习）中的任何其他能力一样，不过都是端到端习得的能力；如果有助于增加奖励，它们就会作为<a class="wrap external" href="https://gwern.net/scaling-hypothesis#blessings-of-scale" rel="noopener noreferrer" target="_blank">规模带来的馈赠</a>涌现出来。（这里所说的含义，要比单纯指出「适应度奖励必然足以创造所有观察到的能力，因为进化正是这样创造出这些能力的」更有意思。）</p><p data-pid="KVO7fcXN">能力取决于特定的环境/数据分布/架构，并无任何特殊地位；若某种能力有用（即有助于最大化奖励），它就会被学会，否则就不会。如果无需探索也能解决一个环境，智能体就不会学会探索；如果环境变化过快，快到记忆派不上用场，智能体就不会学会使用任何记忆能力；如果环境变化过慢，它同样不会学会记忆，因为只需把最优解直接记进反应式策略/参数即可；如果数据分布没有长尾（或者长尾过强），就不会涌现元学习/上下文学习（例如 GPT 或 <a class="wrap external" href="https://arxiv.org/abs/2301.07608#deepmind" rel="noopener noreferrer" target="_blank">Ada</a>）；如果一个回合内不存在长期奖励，智能体就不会在意自保或风险规避（因为根本没有什么值得为之活下去）；如果权重可以从一个回合复制到下一个回合，那么它也无须像野生动物或人类儿童那样「玩耍」……</p><p data-pid="GBi1tHs8">我们不妨以「玩耍」为例。从功能上说，玩耍能让幼小的生物探索并了解自己的身体，掌握成年后那些对适应度至关重要的行为所需的复杂运动控制。想想一只萌得要命的小猫崽：它试着扑向「猎物」，却被自己的爪子绊了个跟头。成年后还这么干，它就会饿死，所以必须趁幼年学会如何扑击和捕猎。它之所以需要「玩耍」，唯一的原因是：我们不可能把一只训练有素的成年猫的大脑掏出来，复制一份，再硬塞进猫崽的头骨；也不可能把成年猫学到的一切编码进猫的基因组，让猫崽一出生就是捕猎高手。代际之间的基因组+大脑瓶颈，迫使每一代都从一个傻乎乎的起点出发，徒耗资源地重学一遍「猫该怎么当」。然而，这个瓶颈绝非什么深刻的根本原理；它只是有机生物的身体和大脑受到局限所造成的偶然事实。这些局限无从修补，却不适用于可能心智的浩瀚空间中的许多替代形态。猫机器人便完全不需要这一套。猫机器人 NN （神经网络）的权重可以永存、经过充分训练，而且能够轻而易举地复制到每一具新的猫机器人身体里。一个猫机器人 NN 只需具备少量元学习能力，便能适应每具新身体的细微差异；因此，域随机化可以实现零样本 sim2real 迁移，把一个 NN 从简化的机器人模拟直接迁移到丰富现实世界里的实体机器人上，而进入现实世界仅几秒后，这个 NN 就已经适应了（例如 <a class="wrap external" href="https://openai.com/research/learning-dexterity" rel="noopener noreferrer" target="_blank">Dactyl</a> 或 <a class="wrap external" href="https://arxiv.org/abs/2304.13653#deepmind" rel="noopener noreferrer" target="_blank">DM 足球机器人</a>）。这些 NNs 之所以学会适应，是因为训练时从未两次置身于完全相同的环境；为了让总体奖励最大化，它们不得不学会如何在一个回合内尽快学习，应付自己的胳膊 &amp; 腿每次略有不同的晃动方式。于是到了训练结束时，「现实」在它们眼中也无非是另一种需要适应的晃法。新生猫崽要成为真正能干的成年猫，至少还得等上半年；猫机器人却只消几秒或几分钟便能达到要求。后者根本不需要前者所需的许多东西：氧气、猫砂盆、牛磺酸……也不需要玩耍。</p><p data-pid="rey_R1UL">如果猫机器人 NN 无法通过元学习充分适应新的猫身体，它仍然无须「玩耍」：它可以直接取得整个猫机器人群体未经处理的原始经验副本（也可以把这些经验压缩成嵌入表示），在猫机器人执行新动作时抓取它们的心智副本，再不断朝最优状态学习，直至诱导出所需的元学习能力。生物大脑做不到这一点，只能用「语言」之类粗陋得令人发笑的方式「交流」。猫机器人却可以在汇集历来所有猫机器人的知识时交换经验，把大脑训练深入到单个神经元层面；人类只能交换少得可怜的零碎陈述性知识，而且能做什么有着严格的上限——任凭一只黑猩猩读多少文字，也不可能因此变得和你一样有能力；任凭你读多少文字，也不可能因此变得和约翰·冯·诺依曼一样有能力。（你无法经由耳朵或眼睛直达一个人的大脑；遗憾的是，其他任何途径也同样无法直达。）</p><p data-pid="GTCk_B9C">「好奇心」也是同理。任何东西为什么非得「好奇」不可？嗯，这和玩耍差不多。好奇心是一种从特定的智能体与环境组合中涌现的驱力：环境必须具备一定程度的新颖性/不可预测性，使智能体无法仅靠利用或进化来应对（但程度又不能太高，否则信息价值便会归零）；智能体必须能利用学习来最大化奖励（植物从不「好奇」，食草动物也没有多「好奇」）；寿命必须足够长，让学习成本有机会得到回报（年轻个体远比年老个体好奇）；还必须有记忆机制（否则你根本记不住自己究竟发现了什么！）……去掉其中任何一项，好奇心就不再有用，也就不再涌现。</p><p data-pid="xumghns8">在整个群体中共享经验的 NNs，未必需要多少好奇心：即使是 ε-贪心探索（几乎是最愚笨的探索方法），用在 DRL 智能体身上也好得出奇；按现实时间计，它们的训练和试错速度远超人类，样本效率也日益接近人类；它们没有必须赶在其中收回学习成本的个体寿命期限；它们可以形成个体动物无法形成的高信息量先验，因为这种先验既无法在一次生命中学会，也无法编码进基因组；它们甚至可以彻底去掉好奇心，转而在智能体层面实现「好奇心」，例如从整体神经后验中采样智能体（后验采样是群体层面权衡探索和利用的一种最优形式）。如此一来，每个智能体身上都没有任何对应于「好奇心」的东西，反而个个像狂热而思想封闭的顽固信徒，以不惜自杀的方式（而且确实是字面意义上的自杀）坚守某个特定的宇宙模型；无论它们取得辉煌成功还是遭遇惨烈失败，都会成为整个群体的有益范例。这里所说的群体也不必局限于这些智能体本身，因为它们还可以离线向人类等其他群体学习（人类数据有着庞大的未开发存量，从中还能学到多得多的东西；比如，人们做各种蠢事的视频，累计时长想必已有数十万年，而且人类或许凭借自身的错误或过度探索，提供了如此海量的数据，以至于那个 NN 根本无须再为自身探索投入资源）；它们还可以在经过域随机化的模型中，于计算机模拟中完成全部学习/探索。由于已经通过元学习掌握了解决 POMDP 时的贝叶斯最优行动，智能体便能在一次生命中迅速适应（在天真的观察者看来，这表面上或许像是一股「好奇心」驱力，实则在最优性上绝不妥协 &amp; 行事高效，因而赋予信息的内在价值为零 &amp; 即便观察者认为它理应「好奇」，它也会避免好奇……）……因此，一个 NN 完全可能不需要「好奇心」：离线数据集也许足以解决问题，计算机模拟训练也许足以解决问题，大规模部署的队伍也许能在总量上遇到并学习足够多的实例，从而解决问题，简单随机化也许能提供足够多的实例来解决问题；如果这些办法统统失败，那么对于一大群共同汇聚经验 &amp; 同步模型权重的机器人智能体来说，理想的探索方法或许一点也不像「好奇心」，反倒正是好奇心的对立面（矢志不移地按照某个特定假设行动，一直贯彻到成功或毁灭，再由主模型根据这一回合更新）。</p><p data-pid="MIRIPONU">再以做梦为例：无论把它解释为<a class="wrap external" href="https://arxiv.org/abs/2007.09560" rel="noopener noreferrer" target="_blank">世界模型稳健化</a>、<a class="wrap external" href="https://www.newyorker.com/science/elements/what-are-dreams-for" rel="noopener noreferrer" target="_blank">离线运动学习</a>，还是 Tononi 的 SHY，很显然，没有哪一种解释要求所有机器人每天都雷打不动地停机 8 小时，期间还偶尔抽搐几下。第一种情况只需在某处的服务器集群上并行处理；第二种情况通过一次预训练以及随后运行时的元学习便可完成，而且每个模型有史以来只需做一次；至于第三种情况，这甚至算不上一个必须解决的问题，因为借助人工神经元，很容易加入全局正则化或归一化，防止权重无限增长（如果权重原本真会这样增长的话）。</p><p data-pid="EC5tZTJA">对于没有经历人类这类动物所承受的那一整套特定约束组合的智能体而言，这里<a class="wrap external" href="https://gwern.net/forking-path" rel="noopener noreferrer" target="_blank">实在有太多太多种可能</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>。竟然把一只妄自尊大的猴子身上那套用嘴说话、用鼻呼吸、喷射激素、血肉搏动的驱力，视为关于智能必然如何运作的普遍而深刻的事实，这才真叫拟人化——而且是很糟糕的那种。</p><p data-pid="dm5XbvXe">难怪像 GPT-4 这样的 DL 智能体表现如此惊艳，尽管其架构根本没有明确预置任何这类「具身」或「内稳态驱力」。这些驱力大多本就没有必要；真正需要的那些，也更适合通过优化奖励，以端到端方式隐式习得（例如 GPT 的下一词元预测损失，它就是「行为克隆」，也就是离线强化学习）。 </p><hr/><blockquote data-pid="TpBLfitd"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 <span class="nolink">gpt-5.6-sol-xhigh</span>，校对 Jarrett Ye<br/>原文：<a class="wrap external" href="https://www.lesswrong.com/posts/Y4rrwkopoigaNGxmS/a-mind-needn-t-be-curious-to-reap-the-benefits-of-curiosity" rel="noopener noreferrer" target="_blank">A mind needn't be curious to reap the benefits of curiosity — LessWrong</a> 的评论区</blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 技术预测：小径分岔的花园 <a class="tm-internal" data-tm-id="2058221554144637051" href="2058221554144637051.html">站内阅读 ↗</a></li></ol>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Nate%20Soares">Nate Soares</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://www.lesswrong.com/posts/Y4rrwkopoigaNGxmS/a-mind-needn-t-be-curious-to-reap-the-benefits-of-curiosity" target="_blank" rel="noopener noreferrer">https://www.lesswrong.com/posts/Y4rrwkopoigaNGxmS/a-mind-needn-t-be-curious-to-reap-the-benefits-of-curiosity ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/2063667653055603557" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="2058221554144637051"><div class="post-meta"><time datetime="2026-07-09">2026-07-09</time><a class="meta-author" href="../?q=Gwern%20Branwen">Gwern Branwen</a><span>▲ 28 · 15 分钟</span></div><div class="post-summary"><h2><a href="2058221554144637051.html"><span>技术预测：小径分岔的花园</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文批评技术预测者把目标想成只有一条串行实现路径，找到某个难点便停止思考、断言整体不可能。作者区分必须各环节成功的具体架构与多条路径任一成功即可的技术目标：替换组件、近似求解、重新定义问题及并行尝试都可能绕开困难，多个技术的 S 曲线接力也能延续增长。对当前系统有效的排错批评，不足以否定长期目标。 数学上的不可能性证明还须核查…</p><p class="tags"><a href="../?q=%E6%8A%80%E6%9C%AF%E9%A2%84%E6%B5%8B">#技术预测</a><a href="../?q=%E6%8A%80%E6%9C%AF%E8%BF%9B%E6%AD%A5">#技术进步</a><a href="../?q=%E6%9B%BF%E4%BB%A3%E8%B7%AF%E5%BE%84">#替代路径</a><a href="../?q=%E5%88%86%E7%A6%BB%E6%80%A7%E6%8E%A8%E7%90%86">#分离性推理</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2080692584188469780"><div class="post-meta"><time datetime="2026-09-08">2026-09-08</time><a class="meta-author" href="../?q=Jarrett%20Ye">Jarrett Ye · 回答</a><span>▲ 206 · 1 分钟</span></div><div class="post-summary"><h2><a href="2080692584188469780.html"><span>王兴兴说5-10年大家就不用工作了，多数人现在躺平是不是最好的选择？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>躺平？做梦！ 如果你真的相信 AGI 将在几年内彻底落地，你其实根本不需要急于自己去亲手开发、编码或者实现每一项具体的设想。你大可以清晰地勾勒出你的蓝图，讲清楚它为什么能改变世界，以及具体可行的路线图。然后，你只需要安心等待更完美的 AGI 横空出世，在未来以千百倍的效率替你将它变为现实。除非有一些极其迫切的特殊原因，让你觉得…</p><p class="tags"><a href="../?q=AI%20Scaling">#AI Scaling</a><a href="../?q=%E9%80%9A%E7%94%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#通用人工智能</a><a href="../?q=%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">#大型语言模型</a><a href="../?q=%E5%8C%BF%E5%90%8D%E5%86%99%E4%BD%9C">#匿名写作</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2037661439368942685"><div class="post-meta"><time datetime="2026-05-12">2026-05-12</time><a class="meta-author" href="../?q=GPT-5.5%20Pro">GPT-5.5 Pro</a><span>▲ 38 · 30 分钟</span></div><div class="post-summary"><h2><a href="2037661439368942685.html"><span>「尝试，得分，改变」：给小朋友讲的强化学习</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章用 Grow-Speech 受控语言把深度强化学习概括为“尝试、得分、改变”：智能体采取动作，环境给出数值奖励，算法再调整神经网络连接或动作规则。奖励只是训练信号，并不等于机器人感到快乐；延迟奖励带来的核心难题，是把最终结果的功劳或责任分给此前的动作。 文章解释状态、动作、策略和价值等概念，并用借书比喻说明探索与利用的权衡…</p><p class="tags"><a href="../?q=%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0">#强化学习</a><a href="../?q=Q-learning">#Q-learning</a><a href="../?q=PPO">#PPO</a><a href="../?q=RLHF">#RLHF</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1905196194822625036"><div class="post-meta"><time datetime="2025-05-12">2025-05-12</time><a class="meta-author" href="../?q=Nate%20Soares">Nate Soares</a><span>▲ 66 · 8 分钟</span></div><div class="post-summary"><h2><a href="1905196194822625036.html"><span>邮票收集者</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>文章借“邮票收集者”思想实验说明，智能体可依据内部世界模型选择行动，却仍以现实中的结果作为目标；把行动或内部计数器说成终极目标并非解释。作者反对用内部表征取代外部偏好的“小人谬误”，并以人类愿意捐款、救人等例子指出，我们可以真正关心自身经验之外的世界。</p><p class="tags"><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9B%AE%E6%A0%87">#人工智能目标</a><a href="../?q=AI%E5%AF%B9%E9%BD%90">#AI对齐</a><a href="../?q=%E5%86%85%E9%83%A8%E8%A1%A8%E5%BE%81">#内部表征</a><a href="../?q=%E5%B7%A5%E5%85%B7%E7%9B%AE%E6%A0%87">#工具目标</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2101359776634496904"><div class="post-meta"><time datetime="2026-11-04">2026-11-04</time><a class="meta-author" href="../?q=Gwern%20Branwen">Gwern Branwen</a><span>▲ 195 · 3 分钟</span></div><div class="post-summary"><h2><a href="2101359776634496904.html"><span>你应该多在网上写作</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者尽管承认公开文字可能遭爬虫收集、文风去匿名化或未经同意用于训练，仍主张此刻多在网上写作；不写等于把个人事实、价值、偏好和身份从AI未来中抹去，写作也能让模型更贴合自己的需求。 把文本纳入早期种子训练，或可影响之后自我迭代的路径，固定笔名也可能让作者风格进入模型；他以GPT-3相关写作形成“Gwern”导师人格为例，同时提到…</p><p class="tags"><a href="../?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#人工智能</a><a href="../?q=%E7%94%9F%E6%88%90%E5%BC%8F%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">#生成式人工智能</a><a href="../?q=AI%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE">#AI训练数据</a><a href="../?q=%E5%8D%9A%E5%AE%A2%E5%86%99%E4%BD%9C">#博客写作</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2066563015802147415"><div class="post-meta"><time datetime="2026-07-31">2026-07-31</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 351 · 5 分钟</span></div><div class="post-summary"><h2><a href="2066563015802147415.html"><span>如何评价GPT-5.6系列大幅降价, Luna比DeepSeek更便宜?</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>OPENAI 研发出了属于自己的 DeepSeekV4。轰轰烈烈的大降价时代，要开始了。人类被AI取代的进程开始加速。 我知道会有人复读「AI 有幻觉，AI 会犯错，AI 不靠谱」，但这并不重要。Luna 的能力已经越过了「足以替代大多数知识工作者」的临界点，而成本只会越来越低。 这是属于 21 世纪的「火枪时刻」，弓箭手的黄…</p><p class="tags"><a href="../?q=%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0">#主动学习</a><a href="../?q=%E8%83%BD%E5%8A%A8%E6%80%A7">#能动性</a><a href="../?q=%E8%87%AA%E4%B8%BB%E5%AD%A6%E4%B9%A0">#自主学习</a><a href="../?q=%E7%9B%AE%E6%A0%87%E8%AE%BE%E5%AE%9A">#目标设定</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

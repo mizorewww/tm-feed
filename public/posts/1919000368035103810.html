@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Math Academy 的 Eurisko 项目的故事：美国最先进的高中数学与计算机科学课程系列</title>
+<meta name="description" content="Justin Skycak 回顾 Eurisko 高中数学与计算机科学课程：学生依托 Math Academy 的大学数学基础，从零实现算法、机器学习和棋类项目，逐步复现 Blondie24 研究并开发游戏 AI。文章记录项目从暑期小组发展为正式、自主学习课程的过程，以及远程教学、配套教材和学生协作如何支持进阶实践。">
+<meta name="author" content="Justin Skycak">
+<meta property="og:title" content="Math Academy 的 Eurisko 项目的故事：美国最先进的高中数学与计算机科学课程系列">
+<meta property="og:description" content="Justin Skycak 回顾 Eurisko 高中数学与计算机科学课程：学生依托 Math Academy 的大学数学基础，从零实现算法、机器学习和棋类项目，逐步复现 Blondie24 研究并开发游戏 AI。文章记录项目从暑期小组发展为正式、自主学习课程的过程，以及远程教学、配套教材和学生协作如何支持进阶实践。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2025-06-19">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="1919000368035103810" data-rec-seeds="1915014809084203291,1905766928204673331,2042611668602114156,2078418096335991329,1961502452768548010,1966888588726743599,1899473160337863598,2043299894606263125">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2025-06-19">2025-06-19</time>
+          <a class="tag" href="../?q=The%20Math%20Academy%20Way">The Math Academy Way</a>
+          <a class="tag" href="../?q=Justin%20Skycak">Justin Skycak</a>
+          <span>约 7 分钟</span>
+          <span>▲ 83</span>
+        </p>
+        <h1>Math Academy 的 Eurisko 项目的故事：美国最先进的高中数学与计算机科学课程系列</h1>
+        
+        <p class="tags"><a href="../?q=%E6%95%B0%E5%AD%A6%E6%95%99%E8%82%B2">#数学教育</a><a href="../?q=%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E6%95%99%E8%82%B2">#计算机科学教育</a><a href="../?q=%E9%A1%B9%E7%9B%AE%E5%BC%8F%E5%AD%A6%E4%B9%A0">#项目式学习</a><a href="../?q=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">#机器学习</a><a href="../?q=%E8%87%AA%E4%B8%BB%E5%AD%A6%E4%B9%A0">#自主学习</a><a href="../?q=Math%20Academy">#Math Academy</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="pR3tENDo">在 2020-23 年的运营期间，Eurisko 是全美最顶尖的高中数学/计算机科学课程体系。该项目的最高成就是让高中生完成硕士/博士水平的课业（复现人工智能领域的学术研究论文，用 Python 从零开始构建各类项目）。</p><hr/><p data-pid="QrS04-SE">这<a class="wrap external" href="https://justinmath.com/books/#introduction-to-algorithms-and-machine-learning" rel="noopener noreferrer" target="_blank">本书</a>是为了支持 <a class="wrap external" href="https://eurisko.us/" rel="noopener noreferrer" target="_blank">Eurisko</a> 项目而编写的。Eurisko 是帕萨迪纳高中 Math Academy 项目中的一个高阶数学与计算机科学选修课程系列。在其 2020 年至 2023 年的运作期间，Eurisko 项目是美国最先进的高中数学与计算机科学课程系列。（「Eurisko」源于希腊语，意为「我发现」，它也是一个 20 世纪 80 年代的人工智能系统的名称，该系统曾连续两次赢得一项特定的游戏竞赛——即便在规则被修改以试图对其加以限制的情况下也未能阻止其获胜。）</p><p data-pid="7Z-1nFIn">Eurisko 课程的教学强度堪比顶尖理工科大学，并且学生们在获准使用外部程序库之前，所有代码都必须从零开始独立编写。这之所以成为可能，是因为学生已经通过 <a class="wrap external" href="https://mathacademy.us/" rel="noopener noreferrer" target="_blank">Math Academy</a> 打下了坚实的大学数学基础，在 10 年级结束时便已掌握了多元微积分、线性代数和微分方程等知识。</p><p data-pid="40Ivlo6J">Eurisko 的第一门课程受到了麻省理工学院「计算机科学导论」的启发，但在深度和广度上都远超前者。除了实现经典的数据结构和算法（如排序、搜索、图遍历算法），学生们还从零开始编写了自己的机器学习算法（包括多项式回归、逻辑回归、k-近邻算法、k-均值聚类算法，以及通过梯度下降进行参数拟合的方法）。</p><p data-pid="Khqy1khG">在后续的课程中，学生们实现了更为高级的机器学习算法，例如决策树和神经网络。他们还着手复现了人工智能领域的学术研究论文，一直到成功复现了 Blondie24——一个能够自学下棋的人工智能计算机程序。与此同时，他们还合作开发了 Space Empires ，这是一款极其复杂的桌面棋盘游戏，将他们在大规模项目开发方面的技能（如面向对象设计、版本控制等）推向了极限。项目的最终目标是从 Blondie24 所使用的技术中汲取灵感，创造出具备人工智能的 Space Empires 游戏玩家。</p><p data-pid="7aZ0Oppk">若没有 Eurisko 项目，这本教材便无从谈起；而若没有 Math Academy 创始人 Jason Roberts 和 Sandy Roberts 夫妇的鼎力合作，Eurisko 项目也断不可能实现。Eurisko 项目始于 2020 年 6 月，当时 Jason 请我在暑假期间为他 15 岁的儿子 Colby 教授一些高阶的计算机科学知识。他随即召集了 Colby 的一些在数学方面基础扎实的同学，我们由此组建了一个夏季计算机科学学习小组，每周上课三次，每周的习题量大约需要 10 个小时来完成。</p><p data-pid="4ZlJ82ts">所有的习题都要求学生独立使用 Python 语言，从零开始编写代码。他们不允许使用外部程序库，而是必须亲手构建所有功能。学生们可以在宏观层面进行协作，讨论解决问题的不同方案，但每一份习题都必须由每位学生独立完成并提交。</p><p data-pid="bJA4a1Mj">令我们惊喜的是，学生的进步速度甚至远超我们最乐观的预期：</p><ul><li data-pid="w6KNe6Zc"> 六月初时，他们尚不知如何编写辅助函数，就连判断一个字符串是否为回文这样简单的问题，对他们而言也并非易事。<br/> <br/></li><li data-pid="PTyiIYul"> 到了七月初，他们已经从零开始构建了一个矩阵类和一个梯度下降优化器。这个矩阵类不仅包含了矩阵运算的方法，还实现了行化简、行列式计算和逆矩阵求解等标准线性代数运算。<br/> <br/></li><li data-pid="e1YFp8eg"> 而到八月初，他们更进一步，在自己构建的矩阵类和梯度下降优化器的基础上，搭建起一个回归分析库。该库支持多项式回归、逻辑回归以及包含交互项的多元线性回归。<br/> <br/></li><li data-pid="-b_FpfTD"> 除此之外，他们还实现了数组排序和图遍历的标准算法。并且，根据 Jason 的建议，为了积累一些系统编程的经验，他们还创建了一个简化版的 Space Empires 桌面棋盘游戏，并通过编写和提交自动化策略程序来进行对战。<br/> </li></ul><p data-pid="kJZ6lbi8">那个夏天结束时，通过与 App Academy 的合作，Eurisko 项目有幸获得了资助，得以成为一门正式的高中课程。Jason 招募了第二批即将升入 10 年级的学生。而我则凭借着一项堪称极致的课堂管理技巧，在同一上课时段内，既要继续辅导第一批学生，又要同时启动第二批学生的教学。</p><p data-pid="cu9GiuJP">在 2020 至 2021 学年，课程的组织安排极具挑战性。由于新冠疫情，学校完全采用远程教学模式，每一批学生每周通过集体视频通话上课的时间仅有两小时。如果学生遇到难题，他们必须在 Slack 上发帖求助，而且帖子内容必须足够清晰详尽，以便我或其他同学能够迅速理解问题并简要作答，避免耗费过多时间。这种学习模式对于任何初级开发人员而言都将是一个陡峭的学习曲线，更不用说那些几乎没有或完全没有编程经验的高中低年级学生了。但我们坚持了下来，那些努力克服困难的学生最终培养出了令人惊叹的独立学习能力和调试排错能力。（更值得一提的是，我们所有的学习活动都是在学校配发的 Chromebooks 上，利用 Replit 和 Gitpod 等免费的在线开发环境完成的。）</p><p data-pid="zTUXKVv0">随着我对课程内容的不断完善以及学校恢复线下教学，后续几年的教学工作变得顺畅许多。在 2021 至 2022 学年，大部分习题都配备了足够详尽的书面辅导材料，以至于我每周只需进行一次传统的课堂讲授。2022 年夏天，我进一步优化和整理了这些辅导材料，将其编撰成书的各个章节。因此，在 2022 至 2023 学年，Eurisko 课程几乎完全实现了自主学习。学生们自行阅读指定的章节并完成练习题。在课堂上，我不再进行传统的讲授，而是专注于解答疑问并协助学生调试代码。</p><p data-pid="VRX44Vay">2021 年，Jason 分享了一个大胆的想法：让 Eurisko 的学生复现 Blondie24 项目的系列研究论文，并以此为灵感，创造出能够进行人工智能对战的 Space Empires 玩家。这成为了我们对该项目最终顶点设计所擘画的蓝图。Eurisko 的第一批学生一度非常接近这个目标，但由于他们只有两年完整的 Eurisko 课程学习时间，而非三年，最终因时间不足而未能完全实现。然而，第二批学生成功地复现了 Blondie24 研究计划中三篇论文里的一到两篇，并以此为启发，在 Space Empires 游戏中成功演化出了战斗策略。</p><p data-pid="Lo6sbqCI">第二批学生的最后一年（2022 至 2023 学年），也因我工作地点的变动而成为了 Eurisko 项目的最后一年。总计有 16 名学生坚持完成了整个项目的学习。</p><ul><li data-pid="EN9-qV7M"><b>第一批（2020 年夏季 - 2022 年春季）：</b> David Gieselman, George Meza, Riley Paddock, Colby Roberts, Elijah Tarr<br/> </li><li data-pid="x1ohQjwV"><b>第二批（2020 年秋季 - 2023 年春季）：</b> Maia Dimas, Justin Hong, Cayden Lau, Anton Perez, William Wallius, Charlie Weinberger<br/> </li><li data-pid="z9NGq0hH"><b>第三批（2021 年秋季 - 2023 年春季）：</b> Celeste Acosta, Elias Gee, Benjamin Park, Jeffrey Smithwick<br/> </li><li data-pid="F_j1w2QR"><b>第四批（2022 年秋季 - 2023 年春季）：</b> Matteo Paz<br/> </li></ul><p data-pid="ENOVlSRz">最后，我谨向 Sanjana Kulkarni 致以诚挚的谢意，感谢她为本书提供的富有洞察力的建议和一丝不苟的校对工作。</p><p data-pid="i_gZPjai"><b>更新：</b>更多相关信息请参阅文章<a class="wrap external" href="https://justinmath.com/math-academys-eurisko-sequence-5-years-later" rel="noopener noreferrer" target="_blank">《Math Academy 的 Eurisko 项目：五年回望》</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>。</p><p class="ztext-empty-paragraph"><br/></p><hr/><blockquote data-pid="n8k6X5ic"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 gemini-2.5-pro-exp，校对 Jarrett Ye<br/>原文：<a class="wrap external" href="https://www.justinmath.com/the-story-of-math-academys-eurisko-sequence/" rel="noopener noreferrer" target="_blank">The Story of Math Academy’s Eurisko Sequence: the Most Advanced High School Math/CS Sequence in the USA - Justin Skycak</a><br/>作者：<a class="wrap external" href="https://x.com/justinskycak" rel="noopener noreferrer" target="_blank">Justin Skycak (@justinskycak)</a><br/>发表于 2023 年 5 月 1 日</blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> Math Academy 的 Eurisko 项目五年回顾：美国最先进的高中数学/计算机科学课程体系培养的学生成就 <a class="tm-internal" data-tm-id="1915014809084203291" href="1915014809084203291.html">站内阅读 ↗</a></li></ol>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Justin%20Skycak">Justin Skycak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://www.justinmath.com/the-story-of-math-academys-eurisko-sequence/" target="_blank" rel="noopener noreferrer">https://www.justinmath.com/the-story-of-math-academys-eurisko-sequence/ ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/1919000368035103810" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="1915014809084203291"><div class="post-meta"><time datetime="2025-06-08">2025-06-08</time><a class="meta-author" href="../?q=Justin%20Skycak">Justin Skycak</a><span>▲ 111 · 12 分钟</span></div><div class="post-summary"><h2><a href="1915014809084203291.html"><span>Math Academy 的 Eurisko 项目五年回顾：美国最先进的高中数学/计算机科学课程体系培养的学生成就</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Justin Skycak 回顾Math Academy及2020—23年的Eurisko项目。前者从本地数学分班考试达到第90百分位、算术基础扎实的学生中招生，使其八年级学习AP微积分、高中学习本科数学；作者认为自动化练习与任务选择进一步提升了原人工教学成果。Eurisko在此基础上提供高强度定量计算机课程，要求先从零实现算…</p><p class="tags"><a href="../?q=Math%20Academy">#Math Academy</a><a href="../?q=Eurisko">#Eurisko</a><a href="../?q=%E5%8A%A0%E9%80%9F%E6%95%B0%E5%AD%A6%E8%AF%BE%E7%A8%8B">#加速数学课程</a><a href="../?q=%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E6%95%99%E8%82%B2">#计算机科学教育</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1911119368567357525"><div class="post-meta"><time datetime="2025-05-28">2025-05-28</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 171 · 18 分钟</span></div><div class="post-summary"><h2><a href="1911119368567357525.html"><span>美国名校的大学生也会逃课吗？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>当然，比如我们汉化组最近的常客 Justin Skycak，他在圣母大学 [1] 时，大一就完成了 2/3 的学分要求，然后大二开始就一直全职工作。平时只去要考勤的课，剩下的全部逃掉。 他的经历也挺传奇的，高中时就修完了 1/3 的大学课程（本科数学和一部分物理、计算机），毕业后没有继续做数据科学家的工作，而是投身数学教培，顺…</p><p class="tags"><a href="../?q=%E6%95%B0%E5%AD%A6%E6%95%99%E8%82%B2">#数学教育</a><a href="../?q=%E8%87%AA%E4%B8%BB%E5%AD%A6%E4%B9%A0">#自主学习</a><a href="../?q=Math%20Academy">#Math Academy</a><a href="../?q=%E8%87%AA%E9%80%82%E5%BA%94%E5%AD%A6%E4%B9%A0">#自适应学习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1905766928204673331"><div class="post-meta"><time datetime="2025-05-21">2025-05-21</time><a class="meta-author" href="../?q=Justin%20Skycak">Justin Skycak</a><span>▲ 49 · 18 分钟</span></div><div class="post-summary"><h2><a href="1905766928204673331.html"><span>Justin Skycak</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Justin Skycak自学数学，参与粒子物理、计算神经科学和数据科学项目，也辅导过数百名学生。他从自学中体验到效率与乐趣，后来希望让更多学生自主学习，因而加入Math Academy并开发其量化软件。 高中时，他利用MIT开放课程自学微积分、线性代数和物理，发现进展比课堂快；大学及工作后，他做研究和用户流失模型，却逐渐觉得…</p><p class="tags"><a href="../?q=%E6%95%B0%E5%AD%A6%E6%95%99%E8%82%B2">#数学教育</a><a href="../?q=%E8%87%AA%E4%B8%BB%E5%AD%A6%E4%B9%A0">#自主学习</a><a href="../?q=Math%20Academy">#Math Academy</a><a href="../?q=%E8%87%AA%E9%80%82%E5%BA%94%E5%AD%A6%E4%B9%A0">#自适应学习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1907408881207976645"><div class="post-meta"><time datetime="2025-05-27">2025-05-27</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 49 · 14 分钟</span></div><div class="post-summary"><h2><a href="1907408881207976645.html"><span>Math Academy 的 AI 是如何工作？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Math Academy以专家系统模拟辅导决策：知识图谱编码主题及依赖关系，学生模型用作答和间隔重复更新画像，诊断算法寻找已知与未知的边界，任务选择则优化单位时间学习量。诊断优先选择信息量大的题，并综合正误与用时；边缘掌握可先有条件放行，之后遇阻再回查。 FIRe将高阶练习中实际使用的基础技能计入隐式复习，但「学新课前需要懂」…</p><p class="tags"><a href="../?q=%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1">#知识图谱</a><a href="../?q=%E5%AD%A6%E7%94%9F%E6%A8%A1%E5%9E%8B">#学生模型</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%87%AA%E9%80%82%E5%BA%94%E5%AD%A6%E4%B9%A0">#自适应学习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1936564122906003135"><div class="post-meta"><time datetime="2025-08-07">2025-08-07</time><a class="meta-author" href="../?q=Math%20Academy%2C%20LLC">Math Academy, LLC</a><span>▲ 89 · 7 分钟</span></div><div class="post-summary"><h2><a href="1936564122906003135.html"><span>Math Academy 现有的课程</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本文是Math Academy课程目录，覆盖四年级起步、预代数、高中、SAT/AP、成人补基础及大学数学，并以自适应诊断识别前置缺口和已掌握内容。四年级入门要求掌握12以内乘法表并能独立阅读；文中列WASC认证与经学校门户安排UC学分成绩单的方式。 高中传统和综合序列内容相同而顺序不同，荣誉序列三年学完含预微积分的四年内容。成…</p><p class="tags"><a href="../?q=Math%20Academy">#Math Academy</a><a href="../?q=%E6%95%B0%E5%AD%A6%E8%AF%BE%E7%A8%8B">#数学课程</a><a href="../?q=%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1">#课程设计</a><a href="../?q=%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86">#前置知识</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1961502452768548010"><div class="post-meta"><time datetime="2025-10-17">2025-10-17</time><a class="meta-author" href="../?q=Justin%20Skycak">Justin Skycak</a><span>▲ 190 · 5 分钟</span></div><div class="post-summary"><h2><a href="1961502452768548010.html"><span>如何大学没毕业就得到全职软件工作？（五步路线图）</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>译文作者分享一条本科期间获得全职软件工作的五步路线：提前自学基础数学和编程、用复杂项目展示能力、在附近或远程公司实习并表现出色、学期中继续工作，待职责已接近正式员工后再争取职位确认。他强调这不是跳过基础课，而是提前掌握内容、减轻课业压力；路径来自个人经历，不构成对所有人的保证。</p><p class="tags"><a href="../?q=%E8%BD%AF%E4%BB%B6%E5%B0%B1%E4%B8%9A">#软件就业</a><a href="../?q=%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6">#数据科学</a><a href="../?q=%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%AE%9E%E4%B9%A0">#大学生实习</a><a href="../?q=%E8%87%AA%E4%B8%BB%E5%AD%A6%E4%B9%A0">#自主学习</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

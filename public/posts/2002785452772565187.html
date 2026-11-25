@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Execute Program 的进度机制强调完成新课，而不是延长回忆时长</title>
+<meta name="description" content="译文分析 Execute Program 的进度界面：课程在学习并至少复习一次后即标记为 Learned，已完成课程比例成为主要进度指标，不区分复习间隔是一两天还是一个月。作者将其与以回忆耐久度为核心的 Quantum Country 对比，指出这种设计便于完成新课，却可能让用户在课程“结束”后看不出持续复习的目标，从而逐渐流失。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="Execute Program 的进度机制强调完成新课，而不是延长回忆时长">
+<meta property="og:description" content="译文分析 Execute Program 的进度界面：课程在学习并至少复习一次后即标记为 Learned，已完成课程比例成为主要进度指标，不区分复习间隔是一两天还是一个月。作者将其与以回忆耐久度为核心的 Quantum Country 对比，指出这种设计便于完成新课，却可能让用户在课程“结束”后看不出持续复习的目标，从而逐渐流失。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-02-05">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="2002785452772565187" data-rec-seeds="2001372387644563990,2002091941106586794,2003900630289379481,1999896955036406673,1999149514427213729,1999145478621769990,576613520,2000259693428351079">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2026-02-05">2026-02-05</time>
+          <a class="tag" href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B%20%26%20%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">助记媒介 &amp; 思想工具</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 2 分钟</span>
+          <span>▲ 8</span>
+        </p>
+        <h1>Execute Program 的进度机制强调完成新课，而不是延长回忆时长</h1>
+        
+        <p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%BF%9B%E5%BA%A6%E8%BF%BD%E8%B8%AA">#进度追踪</a><a href="../?q=%E8%AE%B0%E5%BF%86%E4%BF%9D%E6%8C%81">#记忆保持</a><a href="../?q=%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1">#产品设计</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E5%8A%A8%E6%9C%BA">#学习动机</a><a href="../?q=Execute%20Program">#Execute Program</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="sPhBerNs"><a class="wrap external" href="https://notes.andymatuschak.org/zSsjk5UvNPGrYp8B6DEFCMS" rel="noopener noreferrer" target="_blank">Execute Program</a> 上的课节有四种状态：</p><ol><li data-pid="z1bPOdL2">Locked（当一个或多个前置课程未达到 Learned；见<a class="wrap external" data-draft-title="在你成功复习其前置课程之前，Execute Program 的课程不会解锁" href="https://notes.andymatuschak.org/zHLWyC5LVXZLWE9RmoC1gua" rel="noopener noreferrer" target="_blank">在你成功复习其前置课程之前，Execute Program 的课程不会解锁</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>）</li><li data-pid="kbOhSCWE">Unlocked（当所有前置课程都已达到 Learned，但你尚未学习该课节）</li><li data-pid="HAoe46Cc">Active（当你已学习该课节，但尚未复习）</li><li data-pid="GfEpJdOc">Learned（当你至少复习过该课节一次）</li></ol><p data-pid="bEy-ixod">这种展示到「Learned」就封顶了：读者只要复习过一次课节就能达到它。它不会区分「已证明能记住一个月」和「已证明能记住一天」。</p><p data-pid="RFxsYmwy">下面是 Execute Program 的课程仪表盘： </p><figure data-size="normal"><img class="origin_image zh-lightbox-thumb" data-original-token="v2-1f7a777198acdc0e4933961a638cf2be" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://pic1.zhimg.com/v2-1f7a777198acdc0e4933961a638cf2be_r.jpg" width="610"/></figure><p data-pid="kjpE_iIQ">最上面的圆圈代表课程中处于 Learned 状态的课节比例。因此，当所有课节都达到 Learned 时，你就「完成」了这门课，即便它们的 SRS 间隔可能只有一两天。</p><p data-pid="0AHWiMBW">这与 <a class="wrap external" href="https://notes.andymatuschak.org/zNVVrcxnkjk7pCabiBvaic1" rel="noopener noreferrer" target="_blank">Quantum Country</a> 形成了一个有趣的对比：在后者中，进度的核心是达到越来越高的回忆耐久度。</p><p data-pid="FSbIyBia">这种视角的一个有趣后果是：当用户把一门课里的所有课节都复习过一遍之后，他们大体上会觉得自己已经「结束」了。他们仍然会收到复习通知，但 UI 并不会把这些复习与任何有意义的目标关联起来，因此很多用户很可能会在这个节点流失。</p><hr/><p data-pid="AqjtOJa7">Q. 在 Execute Program 上，「完成」一节课的标准是什么？ <br/>A. 学过它，并至少复习过一次。</p><p data-pid="-g-pglfe">Q. Execute Program 的进度机制的侧重点与 Quantum Country 有何不同？ <br/>A. 它强调先把课程课节学完的初始进度，而不是强调在长尾阶段不断增加 SRS 间隔。</p><h2 id="sec-1">链接至本文（已汉化）</h2><ul><li data-pid="9xu8JrvJ">暂无</li></ul><h2 id="sec-2">声明</h2><p data-pid="a1kSLiu9">此内容发布由 Andy Matuschak 许可。未经允许，不得转载或修改。保留所有权利。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="LmxKl2KQ"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制<br/>感谢主要译者 gpt-5.2-high，校对 Jarrett Ye<br/>原文：<a class="wrap external" href="https://notes.andymatuschak.org/zHJBriKPXFC2VtF8MVCdj7K" rel="noopener noreferrer" target="_blank">Execute Program’s progress mechanics emphasize completing new lessons over increasing recall duration</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 在你成功复习其前置课程之前，Execute Program 的课程不会解锁 <a class="tm-internal" data-tm-id="2001372387644563990" href="2001372387644563990.html">站内阅读 ↗</a></li></ol>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">链接至本文（已汉化）</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">声明</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://notes.andymatuschak.org/zHJBriKPXFC2VtF8MVCdj7K" target="_blank" rel="noopener noreferrer">https://notes.andymatuschak.org/zHJBriKPXFC2VtF8MVCdj7K ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Jarrett Ye · <a href="https://zhuanlan.zhihu.com/p/2002785452772565187" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="2001372387644563990"><div class="post-meta"><time datetime="2026-02-01">2026-02-01</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 9 · 2 分钟</span></div><div class="post-summary"><h2><a href="2001372387644563990.html"><span>在你成功复习其前置课程之前，Execute Program 的课程不会解锁</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者解释，Execute Program 会锁住尚未满足前置条件的课节，只有依赖课程被阅读并近期复习后才解锁。这样作者可写出更聚焦、无需重讲前置内容的课程，但也形成过关式学习序列，与间隔重复按个体记忆状态灵活安排复习的方式存在冲突。</p><p class="tags"><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1">#课程设计</a><a href="../?q=%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86">#前置知识</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2002091941106586794"><div class="post-meta"><time datetime="2026-02-03">2026-02-03</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 5 · 2 分钟</span></div><div class="post-summary"><h2><a href="2002091941106586794.html"><span>在 Execute Program 的复习中，错过的答案不会惩罚学生，除非他们「放弃」</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这则产品设计笔记说明，Execute Program 的间隔重复练习曾因机器评分把拼写等小错判成失败而产生大量假阴性。SQL 课程因此改为允许多次作答，只要最终正确就不算失败，且不再以表现决定后续课节解锁；只有点击“放弃”查看答案时，系统才缩短该题的复习间隔。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E8%87%AA%E5%8A%A8%E8%AF%84%E5%88%86">#自动评分</a><a href="../?q=%E5%81%87%E9%98%B4%E6%80%A7">#假阴性</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E5%8F%8D%E9%A6%88">#学习反馈</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="2003900630289379481"><div class="post-meta"><time datetime="2026-02-08">2026-02-08</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 11 · 2 分钟</span></div><div class="post-summary"><h2><a href="2003900630289379481.html"><span>Execute Program</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这篇译文介绍 Gary Bernhardt 的 Execute Program：它把编程讲解与可执行练习结合，并用间隔重复系统安排回顾。作者列出其交互特点，包括课程按前置知识解锁、卡片要求实际运行程序、复习错误不作惩罚，以及进度更强调完成新课而非无限延长复习。</p><p class="tags"><a href="../?q=%E7%BC%96%E7%A8%8B%E6%95%99%E8%82%B2">#编程教育</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%AD%A6%E4%B9%A0">#交互式学习</a><a href="../?q=%E6%A3%80%E7%B4%A2%E7%BB%83%E4%B9%A0">#检索练习</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="576613520"><div class="post-meta"><time datetime="2022-10-26">2022-10-26</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 5 · 2 分钟</span></div><div class="post-summary"><h2><a href="576613520.html"><span>助记文本可以在一段时间内分小段连载，根据读者的记忆情况排期</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者设想将助记文本拆成短章节，并依据读者对前文的记忆安排解锁或推送时间；后续章节应补充而非重复前文，短小单元也可降低工作记忆负担。文中以 Execute Program 的课程结构为例，讨论一种跨时间展开的交互式文本。</p><p class="tags"><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BF%86">#工作记忆</a><a href="../?q=%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E6%9C%AC">#交互式文本</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1999145478621769990"><div class="post-meta"><time datetime="2026-01-26">2026-01-26</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 6 · 2 分钟</span></div><div class="post-summary"><h2><a href="1999145478621769990.html"><span>Execute Program 的课程根据读者的互动逐段展开正文</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者比较 Execute Program 与助记媒介：前者逐段解锁文字，读者完成交互卡片后才继续，阅读节奏一致、卡片更贴合流程，但自由滚动和略读空间较少。作者认为这种结构像一场只能回应的对话，互动仍由课程控制，因此不算由参与者行动主导的情景体验。</p><p class="tags"><a href="../?q=%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%AD%A6%E4%B9%A0">#交互式学习</a><a href="../?q=Execute%20Program">#Execute Program</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E9%98%85%E8%AF%BB%E4%BD%93%E9%AA%8C">#阅读体验</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1999896955036406673"><div class="post-meta"><time datetime="2026-01-28">2026-01-28</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 1 · 2 分钟</span></div><div class="post-summary"><h2><a href="1999896955036406673.html"><span>Execute Program 没有不可执行的卡片</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者说明 Execute Program 的交互卡片要求读者实际执行代码来回答，因此该课程只包含可执行的“应用卡片”，不能容纳解释正则表达式概念等传统问答卡。文章以此指出，面向操作技能的练习模式不适合主要依赖概念分析的课程。</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%BB%83%E4%B9%A0">#可执行练习</a><a href="../?q=%E7%BC%96%E7%A8%8B%E6%95%99%E8%82%B2">#编程教育</a><a href="../?q=%E5%BA%94%E7%94%A8%E5%8D%A1%E7%89%87">#应用卡片</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

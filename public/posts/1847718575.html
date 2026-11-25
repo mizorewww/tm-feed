@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SuperMemo 算法原理是怎么样的，代码如何实现的？</title>
+<meta name="description" content="SM-2 叶峻峣：04 SuperMemo 1.0: 日志 (1987) SM-5 叶峻峣：06 1989: SuperMemo 适应用户记忆(上) 叶峻峣：06 1989: SuperMemo 适应用户记忆(中) 叶峻峣：06 1989: SuperMemo 适应用户记忆(下) 记忆双变量模型 叶峻峣：05 1988：记忆的…">
+<meta name="author" content="Thoughts Memo">
+<meta property="og:title" content="SuperMemo 算法原理是怎么样的，代码如何实现的？">
+<meta property="og:description" content="SM-2 叶峻峣：04 SuperMemo 1.0: 日志 (1987) SM-5 叶峻峣：06 1989: SuperMemo 适应用户记忆(上) 叶峻峣：06 1989: SuperMemo 适应用户记忆(中) 叶峻峣：06 1989: SuperMemo 适应用户记忆(下) 记忆双变量模型 叶峻峣：05 1988：记忆的…">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-04-21">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="1847718575" data-rec-seeds="205600711,213170503,207094393,97887756,99505568,1729652349,1836330509,1373468425">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2021-04-21">2021-04-21</time>
+          <a class="tag" href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D%E7%9A%84%E5%8E%86%E5%8F%B2">间隔重复的历史</a>
+          <a class="tag" href="../?q=Thoughts%20Memo">Thoughts Memo</a>
+          <span>约 1 分钟</span>
+          <span>▲ 23</span>
+        </p>
+        <h1>SuperMemo 算法原理是怎么样的，代码如何实现的？</h1>
+        <details class="question-fold"><summary>查看问题描述</summary><div class="question-fold-body prose"><p>SuperMemo 算法原理，Piotr Wozniak 博士好像曾经开放过一下这个算法的，不知道哪里能找到？有这方面的行家吗？</p><p>如果可以，解析一下这个算法就最好了</p></div></details>
+        <p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=SM-2">#SM-2</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=SM-5">#SM-5</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      <details class="toc-mobile"><summary>目录</summary><nav aria-label="文章目录"><ol><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">SM-2</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">SM-5</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">记忆双变量模型</a></li></ol></nav></details>
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <h2 id="sec-1">SM-2</h2><a class="internal tm-internal" data-image="https://picx.zhimg.com/v2-9e2ee5b10cd764c7dd1be40b81aa6c6d_180x120.jpg" data-image-height="451" data-image-width="1258" data-tm-id="97887756" href="97887756.html">叶峻峣：04 SuperMemo 1.0: 日志 (1987)</a><h2 id="sec-2">SM-5</h2><a class="internal tm-internal" data-image="https://pic3.zhimg.com/v2-d2e80640a96db18c69ed9a36c5228448_180x120.jpg" data-image-height="456" data-image-width="899" data-tm-id="205600711" href="205600711.html">叶峻峣：06 1989: SuperMemo 适应用户记忆(上)</a><a class="internal tm-internal" data-image="https://pic2.zhimg.com/v2-0913a764622f1742797e4e7f0f693aed_180x120.jpg" data-image-height="477" data-image-width="953" data-tm-id="207094393" href="207094393.html">叶峻峣：06 1989: SuperMemo 适应用户记忆(中)</a><a class="internal tm-internal" data-image="https://picx.zhimg.com/v2-a76183f943e37f785644a1ecce4458d5_180x120.jpg" data-image-height="904" data-image-width="1199" data-tm-id="213170503" href="213170503.html">叶峻峣：06 1989: SuperMemo 适应用户记忆(下)</a><h2 id="sec-3">记忆双变量模型</h2><a class="internal tm-internal" data-image="https://pic3.zhimg.com/v2-810e0b24320f5cb2b6a3b357c474e014_180x120.jpg" data-image-height="753" data-image-width="1402" data-tm-id="99505568" href="99505568.html">叶峻峣：05 1988：记忆的两个组成成分</a><p data-pid="kDNCPhKL">其中只有 SM-2 有代码，Anki 的算法是基于 SM-2 的变体，详情请见：</p><a class="internal" data-image="https://pic2.zhimg.com/v2-75cbe90ad0adb828b95624e2460d273f_180x120.jpg" data-image-height="671" data-image-width="1339" href="https://zhuanlan.zhihu.com/p/42921090" rel="noopener noreferrer" target="_blank">叶峻峣：Anki 算法与术语浅谈</a><p></p>
+        </div>
+        <nav class="toc" aria-label="目录"><p>目录</p><ol id="desktop-toc-list"><li class="level-2"><a href="#sec-1" data-toc-target="sec-1">SM-2</a></li><li class="level-2"><a href="#sec-2" data-toc-target="sec-2">SM-5</a></li><li class="level-2"><a href="#sec-3" data-toc-target="sec-3">记忆双变量模型</a></li></ol></nav>
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Thoughts%20Memo">Thoughts Memo</a></dd></div>
+            
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://www.zhihu.com/question/26722887/answer/1847718575" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="205600711"><div class="post-meta"><time datetime="2020-08-29">2020-08-29</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 17 · 8 分钟</span></div><div class="post-summary"><h2><a href="205600711.html"><span>06 1989: SuperMemo 适应用户记忆(上)</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本篇介绍 SuperMemo 4 如何从 SM-2 的固定间隔规则发展出可自适应的最优间隔矩阵：根据重复质量调整矩阵条目，并据此安排不同难度卡片的复习。作者认为，这一思路首次尝试让旧项目经验影响新项目，但 SM-4 的修正过于缓慢，七个月内未显示明确的保留率收益；间隔可能倒退、难度因子变化也会造成过长或过短的调度，促使后续转向…</p><p class="tags"><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SM-4">#SM-4</a><a href="../?q=%E6%9C%80%E4%BC%98%E9%97%B4%E9%9A%94%E7%9F%A9%E9%98%B5">#最优间隔矩阵</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1729652349"><div class="post-meta"><time datetime="2021-02-14">2021-02-14</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 26 · 1 分钟</span></div><div class="post-summary"><h2><a href="1729652349.html"><span>如何评价Anki插件Auto Ease Factor?</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>这个插件我去年暑假研究算法的时候试用过了（大概是2020年7月），简单的评价一下，就是没有跳出 sm-2 算法的框架。 它这个算法的特点就是将一个单词的历史保留率（累积回忆次数/累积复习次数）和间隔系数关联起来，也就是改变了间隔系数的收敛方式。本质上，还是一个简单的状态空间方法，具体可以参考我这篇文章： 叶峻峣：从 Anki…</p><p class="tags"><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=SM-5">#SM-5</a><a href="../?q=SM-2">#SM-2</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="213170503"><div class="post-meta"><time datetime="2020-09-02">2020-09-02</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 30 · 5 分钟</span></div><div class="post-summary"><h2><a href="213170503.html"><span>06 1989: SuperMemo 适应用户记忆(下)</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本节依据1989年SM-5数据称其习得速率高于SM-2，并报告保留率及成绩分布；作者解释SM-5优于SM-2的关键在适应性最优因子矩阵，能随实际表现调整间隔增长，而SM-2使用固定因子。文章还从稳定性、复杂性与回忆率推导算法差异，并说明更硬核的后续优化内容未收入本译文。</p><p class="tags"><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=SM-5">#SM-5</a><a href="../?q=SM-2">#SM-2</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="1373468425"><div class="post-meta"><time datetime="2020-07-31">2020-07-31</time><a class="meta-author" href="../?q=Thoughts%20Memo">Thoughts Memo · 回答</a><span>▲ 61 · 3 分钟</span></div><div class="post-summary"><h2><a href="1373468425.html"><span>Anki 可以视为 supermemo 的开源实现吗，它们的差别还有多大？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Anki 自行车，SuperMemo 方程式（暴论 2333 https://masterhowtolearn.wordpress.com/ 看过 Anki 手册的人都知道，Anki 是算法是基于 SM-2 的修修补补版。而 SM-2 是一个经验算法，它的提出 [1] (1987年)比 SuperMemo 的双变量记忆模型 […</p><p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=%E8%AE%B0%E5%BF%86%E7%A8%B3%E5%AE%9A%E6%80%A7">#记忆稳定性</a><a href="../?q=%E5%8F%AF%E6%8F%90%E5%8F%96%E6%80%A7">#可提取性</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="413907414"><div class="post-meta"><time datetime="2021-09-25">2021-09-25</time><a class="meta-author" href="../?q=Master%20How%20To%20Learn">Master How To Learn</a><span>▲ 285 · 12 分钟</span></div><div class="post-summary"><h2><a href="413907414.html"><span>为什么我不再向我的朋友介绍 Anki / SuperMemo？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者反思为何不再主动向朋友推荐 Anki 或 SuperMemo：短暂介绍难以传达间隔重复的原理与价值，热情讲解还可能让对方感到困惑或受压。人们可能只是表达愿望，并未准备改变习惯；真正的信服通常来自亲自体验工具的好处。作者因此倾向于在线分享内容，让有兴趣者自行发现，而非持续劝说。</p><p class="tags"><a href="../?q=Anki">#Anki</a><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE">#学习建议</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="207094393"><div class="post-meta"><time datetime="2020-08-30">2020-08-30</time><a class="meta-author" href="../?q=Piotr%20Wozniak">Piotr Wozniak</a><span>▲ 18 · 13 分钟</span></div><div class="post-summary"><h2><a href="207094393.html"><span>06 1989: SuperMemo 适应用户记忆(中)</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>本文回顾 SM-5 如何从收敛缓慢的 SM-4 转向学习间隔增长倍率：按项目难度与复习阶段建立最优因子矩阵，用它计算下次间隔，再以随后回忆表现纠正此前用过的矩阵项。低分会减小倍率，遗忘则重启复习。作者强调，公开论文只给粗纲，随机分散和平滑等辅助程序对稳定收敛至关重要。 Anki 手册认为，跨卡自适应在难度、评分或学习时间不一致…</p><p class="tags"><a href="../?q=SuperMemo">#SuperMemo</a><a href="../?q=SM-5">#SM-5</a><a href="../?q=SM-2">#SM-2</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>将想法送入你的轨道（Orbit）</title>
+<meta name="description" content="作者设想把间隔重复做成操作系统层面的通用服务，让卡片、标注、阅读队列和日常工具互通，并以 Orbit 形容持续回到注意力中的想法。他把 SRS 从抽认卡扩展为安排重复任务的机制，可用于记忆、技能流畅度、卡片写作、习惯反思和阅读队列；其中卡片也能促使人长期思考问题，而不只是记住答案。">
+<meta name="author" content="Andy Matuschak">
+<meta property="og:title" content="将想法送入你的轨道（Orbit）">
+<meta property="og:description" content="作者设想把间隔重复做成操作系统层面的通用服务，让卡片、标注、阅读队列和日常工具互通，并以 Orbit 形容持续回到注意力中的想法。他把 SRS 从抽认卡扩展为安排重复任务的机制，可用于记忆、技能流畅度、卡片写作、习惯反思和阅读队列；其中卡片也能促使人长期思考问题，而不只是记住答案。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-06-05">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f9fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13161b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-page="post" data-root=".." data-post-id="524446794" data-rec-seeds="459483765,714693356,414517995,558666521,596146543,648828549,1919076634461475787,500393401">
+<div class="progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="shell">
+  <main id="main">
+    <article class="post-article">
+      <header class="article-header">
+        <p class="article-meta">
+          <a class="back-link" href="../">← 返回</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <time datetime="2022-06-05">2022-06-05</time>
+          <a class="tag" href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B%20%26%20%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">助记媒介 &amp; 思想工具</a>
+          <a class="tag" href="../?q=Andy%20Matuschak">Andy Matuschak</a>
+          <span>约 5 分钟</span>
+          <span>▲ 25</span>
+        </p>
+        <h1>将想法送入你的轨道（Orbit）</h1>
+        
+        <p class="tags"><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E6%80%9D%E6%83%B3%E5%B7%A5%E5%85%B7">#思想工具</a><a href="../?q=Orbit">#Orbit</a><a href="../?q=%E6%B8%90%E8%BF%9B%E5%86%99%E4%BD%9C">#渐进写作</a><a href="../?q=%E9%98%85%E8%AF%BB%E9%98%9F%E5%88%97">#阅读队列</a></p>
+        <i class="rule" aria-hidden="true"></i>
+      </header>
+      
+      <div class="article-body">
+        <div class="prose" id="article-prose">
+          
+          <p data-pid="QwaP0fT_">正如我在最近的帖子中提到的，我在过去的几个月里一直在建设基础设施，我希望这将有助于我（和其他人！）围绕助记媒介这样的系统，探索更广泛的想法。从某种真正意义上说，这感觉就像我在建立我的研究实验室！</p><p data-pid="qD6AIFG4">构建这样系统的一个奇怪之处在于，我对我正在构建的东西只有模糊的构想。我建造这个东西是为了观察，这样我才能建造这个东西，然后继续这个循环。由于我对核心结构的认知在不断发展，所以下面的内容都充满推测！但我觉得，你们可能会喜欢听听我现在是怎么想的。</p><p data-pid="XbeAYtIO">几十年来，计算机操作系统总是地内置一套差别不大的个人信息管理工具：地址簿、日历、电子邮件客户端、某些基本笔记功能、文件和文件夹等。这些工具的设计与封闭自成一体的 App 不同。典型的 App 想要从头到尾承担一套工作流程。而操作系统的软件虽然基础，但更具通用性。每个软件既是工具也是服务，可以通过 API 构建的集成服务，在整个操作系统中充分沟通连接。可以在电子邮件里向日历中添加事件，在聊天应用程序中输入联系人的姓名便自动填充，在多个应用程序中打开文件，保存到相同文件夹，等等。最近，我们已经开始期待这些功能能够在各处无缝同步，并与各种网络服务通讯。</p><p data-pid="pm4F8PZH">如果在「操作系统层面」上有<a class="wrap external" href="https://notes.andymatuschak.org/z4eXdSMJFv2qVGXSUEKH4vdcHBrLHcFY1ZGfC" rel="noopener noreferrer" target="_blank">间隔重复记忆系统</a><sup class="cite" id="cite-1"><a href="#ref-1">[1]</a></sup>，那会怎样？如果将卡片设计得更像文件夹里的文件，在整个系统和网络上的其他服务中都可读可写，而非像 Anki 或其他现存工具的卡片，存储在 App 的袖珍天地里，那会怎么样？</p><p data-pid="gkypoImE">网络文章可以呈现嵌入行文的卡片，这些卡片可能由作者编写，如<a class="wrap external" href="https://notes.andymatuschak.org/z4rRX3qwSSJRsEkdXKwH2shamgHNeRthrMLiF" rel="noopener noreferrer" target="_blank">助记媒介</a><sup class="cite" id="cite-2"><a href="#ref-2">[2]</a></sup>的卡片，也可能由读者编写，如《天才/假设》。你可以边阅读边灵活地导入卡片，就像你的浏览器在阅读时形成历史记录一样。</p><p data-pid="2b_J0maA">你的 PDF 和电子书阅读器中的标注，可以自然地这个中心化的 SRS 中找到，而不是封存在某个无法访问的侧边栏中。</p><p data-pid="zQ0G4NAw">现代操作系统，会根据聊天消息或电子邮件，尝试创建日历事件或建立联系人。类似地，SRS 系统也可能根据你标为书签的链接，或重复搜索的短语，来尝试创建 SRS 卡片。</p><p data-pid="63Y_gqFp">当你在日常会议上记笔记时，你可以用特殊的标签来标记关键的见解，以将其加入这个系统中——或许未来文字处理器的格式栏，将包括添加粗体、斜体、下划线等按钮……和「待复习」按钮。我已经为自己建立了这种「个人助记媒介」，并且在过去四个月里一直在使用它。我还没有过多地谈论它，因为它非常奇怪，我不了解它。但它很吸引人，而且我认为——前景可期！</p><p data-pid="8lDP5knY">但是，一旦你的想法中， SRS 除了用来记忆还有更多用处，这些想法就会变得更加有趣。</p><p data-pid="AcZX5iks">在《量子国度》的最后一章中，我们尝试使用间隔重复的卡片来帮助读者<b>应用</b>他们所学到的知识，除了记住他们所学到的知识之外。在我们个人的 Anki 实践中，迈克尔·尼尔森和我已经试验了几年<a class="wrap external" href="https://notes.andymatuschak.org/zE8PK4UUAAWK6LEcmr8jja8JdxpUxcf1FUCX" rel="noopener noreferrer" target="_blank">利用这些互动来促进综合和思考</a><sup class="cite" id="cite-3"><a href="#ref-3">[3]</a></sup>。在过去的一年里，我一直在试验<a class="wrap external" href="https://notes.andymatuschak.org/z7iCjRziX6V6unNWL81yc2dJicpRw2Cpp9MfQ" rel="noopener noreferrer" target="_blank">利用这些互动来支持渐进的创造性工作</a><sup class="cite" id="cite-4"><a href="#ref-4">[4]</a></sup>和<a class="wrap external" href="https://notes.andymatuschak.org/z7yRMBXGc81KkUwLxefodzfnnfKXx63vXzP88" rel="noopener noreferrer" target="_blank">我的阅读队列</a><sup class="cite" id="cite-5"><a href="#ref-5">[5]</a></sup>。</p><p data-pid="8Sawu7V9">例如，你现在抬起手腕，对智能手表说：「提醒我写下我的想法，可以将 SRS 认为是操作系统层级的服务。」这是一次性的提醒。但是有了操作系统层级的 SRS，你就可以抬起手腕，对智能手表说：「记住，我要思考这个问题，哪些新场景会受益于操作系统层级的 SRS 服务？」这样就不是生成一次性的「待办事项」，而是一张可供后续反复思考的卡片。</p><p data-pid="uu6Mi0IX">这一切都要求我们对间隔重复系统打开视角。典型的印象是抽认卡，用来记忆东西，标记为正确或不正确。但一种更泛用的描述方法是：通过 SRS，你可以安排在一段时间内重复参与一些任务，而且时间轴可以随着你的行动而变化。下面是这方面的一些实例：</p><ul><li data-pid="81l2Sa7P"><b>记忆</b>：重复回忆问题；时间间隔随着回答成功/失败而呈指数级扩大/缩小<br/> <br/></li><li data-pid="w1JH5Aqp"><b>过程的流畅性</b>：重复完成简短练习，有许多变体；时间间隔随着成功/失败而呈指数级扩大/缩小<br/> <br/></li><li data-pid="_pZoZ7BH"><b>卡片写作</b>：重复问题、模糊的想法、主干想法，从中积累思考，时间跨度为几个月；将卡片标记为「有成果」或「无成果」，以扩大/缩小时间间隔<br/> <br/></li><li data-pid="Xlm7vEJc"><b>习惯养成</b>：重复简短的反思卡片，可能根据顺序改变，应用于你的日常经验；间隔默认扩大，但可以放缓<br/> <br/></li><li data-pid="kcHzzD43"><b>阅读队列</b>：一系列 PDF，标签页，书本，总在变换：如果一段时间内忽略某些内容，它就会暂离一周，之后是一个月；比如说「我现在读够什么了」，这东西就会几天之内再次呈现；说某个东西「不是现在读」，那就几个月，之后是几个月之后再呈现……<br/> <br/></li><li data-pid="kb0-YeEY"> 电子邮件收件箱、任务队列、个人通信等<br/> </li></ul><p data-pid="LMYMTpk6">我这些想象的核心，是每日都要练习的一种习惯，类似冥想：打开软件，完成软件呈上的微任务。或许是锤炼记忆，基于反思问题写写东西，简单做些物理题，简单写点东西之类。十分钟之后，你等的火车来了，你登上火车，今天的练习就结束了。明天又有新东西。</p><p data-pid="a6b24YDJ">总体而言，这个系统意在让你能把想法<b>送入你的轨道（Orbit）</b>。一见到有趣的事物，就将其系上丝线，投入轨道，任其缓缓转动。某个时间点，它会回转到你眼前，但你并不关心几时几分。你会逐渐调整丝线松紧。你所收集的星星点点，在你的头顶上，汇成星座，变化不息。想法、事实、问题、卡片、心之所向，尽在其中。你每日抬头仰望这一角星空，回应众星。</p><p data-pid="kjj6_qgY">因此，至少现在，我把这个系统称为 <b>Orbit</b>。</p><p class="ztext-empty-paragraph"><br/></p><blockquote data-pid="36DSO-l0"><a class="wrap external" href="http://paratranz.cn/projects/3131" rel="noopener noreferrer" target="_blank">Thoughts Memo</a> 汉化组译制 <br/>题图：<a class="wrap external" href="https://www.pixiv.net/artworks/91612724" rel="noopener noreferrer" target="_blank">#Arcaea Beyond Biography - Saclia的插画 - pixiv</a> <br/>原文：<a class="wrap external" href="https://www.patreon.com/posts/bringing-ideas-36925173" rel="noopener noreferrer" target="_blank">Bringing ideas into your Orbit | Patreon 上的 Andy Matuschak</a></blockquote><hr/><ol class="references"><li id="ref-1"><a aria-label="返回正文" class="ref-back" href="#cite-1">↩</a> 间隔重复记忆系统 <a class="tm-internal" data-tm-id="404257681" href="404257681.html">站内阅读 ↗</a></li><li id="ref-2"><a aria-label="返回正文" class="ref-back" href="#cite-2">↩</a> 助记媒介 <a class="tm-internal" data-tm-id="459483765" href="459483765.html">站内阅读 ↗</a></li><li id="ref-3"><a aria-label="返回正文" class="ref-back" href="#cite-3">↩</a> 间隔重复记忆系统可用于促进应用、综合和创造 <a class="tm-internal" data-tm-id="412311494" href="412311494.html">站内阅读 ↗</a></li><li id="ref-4"><a aria-label="返回正文" class="ref-back" href="#cite-4">↩</a> 间隔重复对于逐步完善灵光一闪可能有用 <a class="tm-internal" data-tm-id="415857130" href="415857130.html">站内阅读 ↗</a></li><li id="ref-5"><a aria-label="返回正文" class="ref-back" href="#cite-5">↩</a> 间隔重复可以降低对收件箱进行维护中破坏性操作风险 <a class="tm-internal" data-tm-id="438631838" href="438631838.html">站内阅读 ↗</a></li></ol>
+        </div>
+        
+        <footer class="colophon">
+          <dl>
+            <div><dt>作者</dt><dd><a href="../?q=Andy%20Matuschak">Andy Matuschak</a></dd></div>
+            <div><dt>原文</dt><dd><a href="https://www.patreon.com/posts/bringing-ideas-36925173" target="_blank" rel="noopener noreferrer">https://www.patreon.com/posts/bringing-ideas-36925173 ↗</a></dd></div>
+            <div><dt>来源</dt><dd>Thoughts Memo · <a href="https://zhuanlan.zhihu.com/p/524446794" target="_blank" rel="noopener noreferrer">知乎原帖 ↗</a></dd></div>
+          </dl>
+        </footer>
+      </div>
+    </article>
+
+    <section class="bottom-recs" aria-label="延伸阅读">
+      <div class="bottom-recs-head">
+        <i class="rule top" aria-hidden="true"></i>
+        <h3 class="rec-heading">延伸阅读</h3>
+        <span>结合本文内容与你的阅读偏好推荐</span>
+        <i class="rule" aria-hidden="true"></i>
+      </div>
+      <div id="bottom-rec-list">
+        <article class="post-row" data-item-id="414517995"><div class="post-meta"><time datetime="2021-09-27">2021-09-27</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 12 · 2 分钟</span></div><div class="post-summary"><h2><a href="414517995.html"><span>接受助记媒介需要内容量达到临界值</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 认为，助记媒介的新用户需要先遇到足够有价值的内容，才能抵消规律复习的时间成本并养成习惯。单篇仅含十几张卡片的文章可能不足以促成采用，而像《量子国度》这样含约两百张卡片的深度内容，或多篇持续提供新卡片的文章，更可能成为入门支点。</p><p class="tags"><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%94%A8%E6%88%B7%E9%87%87%E7%94%A8">#用户采用</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E4%B9%A0%E6%83%AF">#学习习惯</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="714693356"><div class="post-meta"><time datetime="2024-08-16">2024-08-16</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 8 · 12 分钟</span></div><div class="post-summary"><h2><a href="714693356.html"><span>Orbit 的一个新兴审美取向</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 为 Orbit 探索一种传达真诚、热忱和好奇，而非义务或死记硬背的视觉语言。他把系统比作值得持续照料的园子和轨道，强调日常复习应投入注意力，却不执着于卡片进度或记忆率。文章介绍星芒图形如何同时表达卡片集合与间隔，并讨论字体、几何、动态色彩及嵌入其他出版物时的克制呈现。</p><p class="tags"><a href="../?q=Orbit">#Orbit</a><a href="../?q=%E8%A7%86%E8%A7%89%E8%AE%BE%E8%AE%A1">#视觉设计</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E5%AD%A6%E4%B9%A0%E5%8A%A8%E6%9C%BA">#学习动机</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="648828549"><div class="post-meta"><time datetime="2023-08-09">2023-08-09</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 21 · 4 分钟</span></div><div class="post-summary"><h2><a href="648828549.html"><span>通俗易懂还是凝练难解；让人高速略过的用户界面</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak讨论新概念产品 Orbit 如何解释自身：简单介绍过于肤浅，完整框架又空泛难懂，而用户往往会“速通”界面文字。作者主张逐步揭示产品的更广泛愿景，先从具体用法开始，再通过后续邮件和复习体验扩展理解；他也考虑把解释移到界面之外，以类似文章的形式建立信任。</p><p class="tags"><a href="../?q=%E7%94%A8%E6%88%B7%E5%BC%95%E5%AF%BC">#用户引导</a><a href="../?q=%E7%95%8C%E9%9D%A2%E6%96%87%E6%A1%88">#界面文案</a><a href="../?q=%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C">#用户体验</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="558666521"><div class="post-meta"><time datetime="2022-08-28">2022-08-28</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 5 · 3 分钟</span></div><div class="post-summary"><h2><a href="558666521.html"><span>助记媒介对读者的宏观影响是什么？</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>作者收集长期使用《量子国度》和间隔重复系统的读者反馈，追问记住内容在对话、个人实践、后续课程与项目中产生了什么影响。文中列出用户自述的多种下游用途，也说明作者计划联系持续复习者，了解细粒度记忆数据之外的生活价值；这些反馈是探索性经验材料，不是因果效果评估。</p><p class="tags"><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E4%B8%8B%E6%B8%B8%E5%AD%A6%E4%B9%A0">#下游学习</a><a href="../?q=%E8%AF%BB%E8%80%85%E4%BD%93%E9%AA%8C">#读者体验</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="459483765"><div class="post-meta"><time datetime="2022-01-19">2022-01-19</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 37 · 6 分钟</span></div><div class="post-summary"><h2><a href="459483765.html"><span>助记媒介（Mnemonic medium）</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 将助记媒介定义为在叙述文章中嵌入间隔重复卡片，以补足传统间隔重复系统难上手、卡片缺乏文本结构的问题。正文概述设计原则、记忆与理解影响、作者和读者收益、规模化疑问及采用障碍，是关于该媒介的完整介绍页。</p><p class="tags"><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E4%B8%93%E5%AE%B6%E5%8D%A1%E7%89%87">#专家卡片</a><a href="../?q=%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3">#阅读理解</a></p></div><i class="rule" aria-hidden="true"></i></article><article class="post-row" data-item-id="596146543"><div class="post-meta"><time datetime="2023-01-03">2023-01-03</time><a class="meta-author" href="../?q=Andy%20Matuschak">Andy Matuschak</a><span>▲ 9 · 3 分钟</span></div><div class="post-summary"><h2><a href="596146543.html"><span>Orbit - 价值观</span><span class="arr" aria-hidden="true">↗</span></a></h2><p>Andy Matuschak 将 Orbit 的价值观概括为真诚、好奇、热忱和主动投入，而非义务、苦差或追踪指标。他希望用户把复习视作长期练习：系统应帮助人加深与重视之物的关系，不以完成任务或学习本身为目的；作者提供卡片，但用户可以自行撰写、重组和舍弃材料，依个人价值观塑造工具。</p><p class="tags"><a href="../?q=Orbit">#Orbit</a><a href="../?q=%E5%8A%A9%E8%AE%B0%E5%AA%92%E4%BB%8B">#助记媒介</a><a href="../?q=%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D">#间隔重复</a><a href="../?q=%E7%94%A8%E6%88%B7%E8%87%AA%E4%B8%BB%E6%9D%83">#用户自主权</a></p></div><i class="rule" aria-hidden="true"></i></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>语料源自 <a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">tm-index</a> &amp; <a href="https://github.com/L-M-Sherlock/ZhiHuArchive" target="_blank" rel="noopener noreferrer">ZhiHuArchive</a>（CC0 1.0 · 原著权利归原作者）</span>
+    <nav aria-label="设置与链接">
+      <button class="theme" type="button" id="theme-toggle" aria-label="切换深浅色主题" title="切换深浅色">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/>
+        </svg>
+        <span>主题</span>
+      </button>
+      <a href="https://github.com/mizorewww/tm-feed" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </footer>
+</div>
+<button class="to-top" id="to-top-btn" type="button" aria-label="回到顶部">↑</button>
+<script src="../app.js" defer></script>
+</body>
+</html>
